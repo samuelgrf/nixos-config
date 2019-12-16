@@ -38,6 +38,9 @@
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
 
+  # Allow the installation of unfree software (required for Steam)
+  nixpkgs.config.allowUnfree = true;
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -73,12 +76,21 @@
     powertop
     python3
     speedtest-cli
+    steam
     usbutils
     vim
+    wineStaging
     xclip
     youtube-dl
     zsh-syntax-highlighting
   ];
+
+  # Enable 32-bit libraries for games
+  hardware.opengl.driSupport32Bit = true;
+  hardware.pulseaudio.support32Bit = true;
+
+  # Enable Steam hardware for additional controller support
+  hardware.steam-hardware.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
