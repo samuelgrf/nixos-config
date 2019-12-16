@@ -137,10 +137,13 @@
   # Enable NetworkManager
   networking.networkmanager.enable = true;
 
-  # Install kernel modules from additional packages
+  # Install wifi kernel module
   boot.extraModulePackages = with pkgs; [
     linuxPackages.rtl8821ce
   ];
+
+  # Blacklist sensor kernel modules
+  boot.blacklistedKernelModules = ["intel_ishtp_hid" "intel_ish_ipc"];
 
   # Install ADB and fastboot
   programs.adb.enable = true;
