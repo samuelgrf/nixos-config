@@ -41,10 +41,34 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    aircrack-ng android-studio android-udev-rules apktool ddgr firefox fortune
-    git gnupg htop imagemagick jetbrains.idea-community kate konsole lolcat 
-    lynx neofetch networkmanager pavucontrol p7zip pciutils powertop python3
-    speedtest-cli usbutils vim xclip youtube-dl
+    aircrack-ng
+    android-studio
+    android-udev-rules
+    apktool
+    ddgr
+    firefox
+    fortune
+    git
+    gnupg
+    htop
+    imagemagick
+    jetbrains.idea-community
+    kate
+    konsole
+    lolcat
+    lynx
+    neofetch
+    networkmanager
+    pavucontrol
+    p7zip
+    pciutils
+    powertop
+    python3
+    speedtest-cli
+    usbutils
+    vim
+    xclip
+    youtube-dl
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
