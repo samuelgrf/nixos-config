@@ -58,7 +58,6 @@
     lolcat
     lynx
     neofetch
-    networkmanager
     pavucontrol
     p7zip
     pciutils
