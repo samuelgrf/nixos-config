@@ -44,22 +44,31 @@
     aircrack-ng
     android-studio
     android-udev-rules
+    anki
     apktool
     ddgr
+    emacs
+    filezilla
     firefox
     fortune
+    gimp
     git
     gnupg
     htop
     imagemagick
     jetbrains.idea-community
     kate
+    keepassxc
     konsole
+    libreoffice
     lolcat
+    lshw
     lynx
+    mpv
     neofetch
     pavucontrol
     p7zip
+    partition-manager
     pciutils
     powertop
     python3
@@ -68,6 +77,7 @@
     vim
     xclip
     youtube-dl
+    zsh-syntax-highlighting
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
