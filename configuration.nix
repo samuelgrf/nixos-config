@@ -8,7 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./tlp.nix
+      ./HP_Pavilion_x360.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -153,4 +153,7 @@
 
   # Set Z shell as default
   # users.users.samuel.shell = pkgs.zsh;
+
+  # Enable TLP
+  services.tlp.enable = true;
 }
