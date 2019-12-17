@@ -57,6 +57,7 @@
     gimp
     git
     gnupg
+    gwenview
     htop
     imagemagick
     jetbrains.idea-community
