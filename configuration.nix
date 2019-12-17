@@ -61,6 +61,7 @@
     gwenview
     htop
     imagemagick
+    jdk
     jetbrains.idea-community
     kate
     kcalc
