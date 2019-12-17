@@ -8,7 +8,7 @@
     [ <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
     ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "sd_mod" "sdhci_pci" ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "sdhci_pci" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
@@ -28,7 +28,9 @@
       fsType = "vfat";
     };
 
-  swapDevices = [ { device = "/dev/zvol/rpool/swap"; } ];
+  swapDevices =
+    [ { device = "/dev/disk/by-uuid/b283b1f3-4339-4e05-a438-44b93110d7eb"; }
+    ];
 
   nix.maxJobs = lib.mkDefault 8;
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
