@@ -49,6 +49,7 @@
     android-udev-rules
     anki
     apktool
+    ark
     ddgr
     emacs
     filezilla
@@ -62,6 +63,7 @@
     imagemagick
     jetbrains.idea-community
     kate
+    kcalc
     keepassxc
     konsole
     libreoffice
@@ -70,6 +72,7 @@
     lynx
     mpv
     neofetch
+    okular
     pavucontrol
     p7zip
     partition-manager
@@ -78,6 +81,7 @@
     python3
     speedtest-cli
     steam
+    torbrowser
     usbutils
     vim
     wineStaging
