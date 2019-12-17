@@ -131,7 +131,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.samuel = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "networkmanager" ];
   };
 
   # This value determines the NixOS release with which your system is to be
