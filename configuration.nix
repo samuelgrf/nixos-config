@@ -80,6 +80,7 @@
     pciutils
     powertop
     python3
+    spectacle
     speedtest-cli
     steam
     torbrowser
