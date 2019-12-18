@@ -160,6 +160,9 @@
   # Enable NetworkManager
   networking.networkmanager.enable = true;
 
+  # Enable Early OOM
+  services.earlyoom.enable = true;
+
   # Install ADB and fastboot
   programs.adb.enable = true;
 
