@@ -28,7 +28,11 @@
       fsType = "vfat";
     };
 
-  swapDevices = [ ];
+  swapDevices =
+    [ { device = "/dev/disk/by-partuuid/2f06b325-f2bc-4c85-b567-8900400031d9";
+        randomEncryption = { enable = true; };
+      }
+    ];
 
   nix.maxJobs = lib.mkDefault 8;
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
