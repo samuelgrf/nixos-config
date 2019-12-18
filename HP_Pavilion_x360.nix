@@ -1,10 +1,17 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 {
+  # Set up LUKS on root partition
+  boot.initrd.luks.devices = {
+    luksroot = {
+      device = "/dev/disk/by-uuid/97e06f70-899d-44cf-baff-d09e5a2daa59";
+    };
+  };
+
   # The 32-bit host ID of this machine, formatted as 8 hexadecimal characters.
   # generated via "head -c 8 /etc/machine-id"
   # this is required by ZFS
-  networking.hostId = "52623593";
+  networking.hostId = "97e4f3b3";
 
   # Install wifi kernel module
   boot.extraModulePackages = with pkgs; [ pkgs.linuxPackages.rtl8821ce ];
