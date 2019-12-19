@@ -35,6 +35,12 @@
     defaultLocale = "en_DE.UTF-8";
   };
 
+  # Set additional environment variables 
+  environment.variables = {
+    LANGUAGE="en";
+    LC_ALL="C";
+  };
+
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
 
@@ -58,6 +64,8 @@
     fortune
     gimp
     git
+    gnome3.adwaita-icon-theme
+    gnome-themes-extra
     gnupg
     gwenview
     htop
@@ -71,6 +79,7 @@
     libreoffice
     lolcat
     lshw
+    lutris
     lynx
     mpv
     neofetch
