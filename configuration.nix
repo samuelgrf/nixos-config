@@ -50,6 +50,7 @@
     anki
     apktool
     ark
+    ddcutil
     ddgr
     emacs
     filezilla
@@ -175,4 +176,7 @@
 
   # Enable TLP
   services.tlp.enable = true;
+
+  # Load kernel module for ddcutil
+  boot.kernelModules = [ "i2c-dev" ];
 }
