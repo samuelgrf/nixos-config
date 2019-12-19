@@ -74,6 +74,7 @@
     mpv
     neofetch
     okular
+    patchelf
     pavucontrol
     p7zip
     partition-manager
