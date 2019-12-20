@@ -96,12 +96,14 @@
     steam
     torbrowser
     usbutils
-    vim
     wineStaging
     xclip
     youtube-dl
     zsh-syntax-highlighting
   ];
+
+  # Set Vim as default editor
+  programs.vim.defaultEditor = true;
 
   # Enable 32-bit libraries for games
   hardware.opengl.driSupport32Bit = true;
