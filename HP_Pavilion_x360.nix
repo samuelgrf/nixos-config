@@ -14,7 +14,7 @@
   networking.hostId = "97e4f3b3";
 
   # Install wifi kernel module
-  boot.extraModulePackages = with pkgs; [ pkgs.linuxPackages.rtl8821ce ];
+  boot.extraModulePackages = [ pkgs.linuxPackages.rtl8821ce ];
 
   # Blacklist sensor kernel modules
   boot.blacklistedKernelModules = [ "intel_ishtp_hid" "intel_ish_ipc" ];
@@ -22,8 +22,11 @@
   # Blacklist power management for wifi card as it may cause issues
   services.tlp.extraConfig = "RUNTIME_PM_BLACKLIST='02:00.0'";
 
-  # Install alsa-tools because it is needed to fix audio crackling
-  environment.systemPackages = with pkgs; [ alsaTools ];
+  # Install additional packages
+  environment.systemPackages = with pkgs; [ 
+    alsaTools
+    libva-utils
+  ];
 
   # Create a systemd service to fix audio crackling on startup/resume
   systemd.services.fixaudio = {
@@ -33,4 +36,7 @@
     wantedBy = [ "multi-user.target" "post-resume.target" ];
     after = [ "post-resume.target" ];
   };
+
+  # Install libraries for VA-API
+  hardware.opengl.extraPackages = [ pkgs.vaapiIntel ];
 }
