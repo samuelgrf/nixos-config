@@ -100,6 +100,14 @@
     xclip
     youtube-dl
     zsh-syntax-highlighting
+
+    # Install Vim plugins
+    (pkgs.vim_configurable.customize {
+      name = "vim";
+      vimrcConfig.vam.pluginDictionaries = [
+        { names = [ "vim-addon-nix" ]; ft_regex = "^nix\$"; }
+      ];
+    })
   ];
 
   # Set Vim as default editor
