@@ -113,6 +113,20 @@
   # Set Vim as default editor
   programs.vim.defaultEditor = true;
 
+  # Set ZSH as default shell
+  users.defaultUserShell = pkgs.zsh;
+
+  # Configure ZSH
+  programs.zsh = {
+    enable = true;
+    autosuggestions.enable = true;
+     ohMyZsh = {
+       enable = true;
+       theme = "powerlevel10k/powerlevel10k";
+       custom = "/home/samuel/git-repos/oh-my-zsh/";
+     };
+  };
+
   # Enable 32-bit libraries for games
   hardware.opengl.driSupport32Bit = true;
   hardware.pulseaudio.support32Bit = true;
