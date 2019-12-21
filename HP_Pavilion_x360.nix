@@ -39,4 +39,9 @@
 
   # Install libraries for VA-API
   hardware.opengl.extraPackages = [ pkgs.vaapiIntel ];
+
+  # Always start mpv with VA-API enabled
+  environment.shellAliases = {
+    "mpv" = "mpv --vo=vaapi --hwdec=vaapi";
+  };
 }
