@@ -186,9 +186,6 @@
   # Enable filesystem support
   boot.supportedFilesystems = [ "ntfs" "zfs" ];
 
-  # Request ZFS decryption key on boot
-  boot.zfs.requestEncryptionCredentials = true;
-
   # Enable NetworkManager
   networking.networkmanager.enable = true;
 
