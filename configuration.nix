@@ -202,12 +202,6 @@
   # Install ADB and fastboot
   programs.adb.enable = true;
 
-  # Enable Z shell
-  # programs.zsh.enable = true;
-
-  # Set Z shell as default
-  # users.users.samuel.shell = pkgs.zsh;
-
   # Enable TLP
   services.tlp.enable = true;
 
