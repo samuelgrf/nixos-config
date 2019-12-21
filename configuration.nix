@@ -186,10 +186,6 @@
   # Enable filesystem support
   boot.supportedFilesystems = [ "ntfs" "zfs" ];
 
-  # Enable unstable ZFS features
-  # required for ZFS encryption
-  boot.zfs.enableUnstable = true;
-
   # Request ZFS decryption key on boot
   boot.zfs.requestEncryptionCredentials = true;
 
