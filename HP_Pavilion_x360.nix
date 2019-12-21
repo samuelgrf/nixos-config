@@ -44,4 +44,13 @@
   environment.shellAliases = {
     "mpv" = "mpv --vo=vaapi --hwdec=vaapi";
   };
+
+  # Enable VA-API support on Chromium
+  nixpkgs.overlays = [
+  ( self: super: {
+    chromium = super.chromium.override {
+       useVaapi = true;
+      };
+    })
+  ];
 }

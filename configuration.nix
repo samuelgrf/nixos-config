@@ -56,6 +56,7 @@
     anki
     apktool
     ark
+    chromium
     ddcutil
     ddgr
     emacs
