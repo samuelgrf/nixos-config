@@ -31,7 +31,8 @@
   # Select internationalisation properties.
   i18n = {
     consoleFont = "Lat2-Terminus16";
-    consoleKeyMap = "de";
+    # consoleKeyMap = "de";
+    consoleUseXkbConfig = true;
     defaultLocale = "en_DE.UTF-8";
   };
 
@@ -161,7 +162,7 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   services.xserver.layout = "de";
-  services.xserver.xkbOptions = "eurosign:e";
+  services.xserver.xkbOptions = "caps:escape";
   services.xserver.autorun = true;
 
   # Enable touchpad support.
