@@ -122,11 +122,23 @@
   programs.zsh = {
     enable = true;
     autosuggestions.enable = true;
-     ohMyZsh = {
-       enable = true;
-       theme = "powerlevel10k/powerlevel10k";
-       custom = "/home/samuel/git-repos/oh-my-zsh/";
-     };
+      ohMyZsh = {
+        enable = true;
+        theme = "powerlevel10k/powerlevel10k";
+        custom = "/home/samuel/git-repos/oh-my-zsh/";
+      };
+  };
+
+  # Set shell aliases
+  environment.shellAliases = {
+    "c." = "cd ..";
+    "pki" = "sudo nix-env -iA";
+    "pks" = "nix search";
+    "pkl" = "nix-env -qaP";
+    "pkp" = "command-not-found";
+    "pkr" = "sudo nix-env -e";
+    "pku" = "sudo nix-channel --update && sudo nixos-rebuild switch";
+    "wttr" = "curl wttr.in";
   };
 
   # Enable 32-bit libraries for games
