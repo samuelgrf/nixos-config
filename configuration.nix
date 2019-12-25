@@ -127,6 +127,12 @@
         theme = "powerlevel10k/powerlevel10k";
         custom = "/home/samuel/git-repos/oh-my-zsh/";
       };
+      setOptions = [
+        "CORRECT"
+        "HIST_FCNTL_LOCK"
+        "HIST_IGNORE_DUPS"
+        "SHARE_HISTORY"
+      ];
   };
 
   # Set shell aliases
