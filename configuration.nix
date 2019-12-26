@@ -112,6 +112,12 @@
     })
   ];
 
+  # Set package overrides
+  nixpkgs.config.packageOverrides = pkgs: rec {
+    tuir = pkgs.callPackage ./pkgs/tuir.nix {};
+    powerlevel10k = pkgs.callPackage ./pkgs/powerlevel10k.nix {};
+  };
+
   # Set Vim as default editor
   programs.vim.defaultEditor = true;
 
