@@ -149,7 +149,7 @@
     "pkl" = "nix-env -qaP";
     "pkp" = "command-not-found";
     "pkr" = "sudo nix-env -e";
-    "pku" = "sudo nix-channel --update && sudo nixos-rebuild switch";
+    "pku" = "sudo nixos-rebuild switch --upgrade";
     "wttr" = "curl wttr.in";
   };
 
