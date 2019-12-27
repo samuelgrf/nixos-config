@@ -97,6 +97,7 @@
     speedtest-cli
     steam
     torbrowser
+    tuir
     usbutils
     wineStaging
     xclip
@@ -112,10 +113,12 @@
     })
   ];
 
-  # Set package overrides
-  nixpkgs.config.packageOverrides = pkgs: rec {
-    tuir = pkgs.callPackage ./pkgs/tuir.nix {};
-  };
+  # Set package overlays
+  nixpkgs.overlays = [
+    (self: super: {
+      tuir = super.callPackage ./overlays/tuir.nix { };
+    })
+  ];
 
   # Set Vim as default editor
   programs.vim.defaultEditor = true;
