@@ -76,6 +76,7 @@
         speedtest-cli
         tuir
         usbutils
+        wget
         wineStaging
         youtube-dl
         zsh-syntax-highlighting
