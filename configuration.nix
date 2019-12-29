@@ -50,68 +50,73 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    aircrack-ng
-    android-studio
-    android-udev-rules
-    anki
-    apktool
-    ark
-    chromium
-    ddcutil
-    ddgr
-    emacs
-    filezilla
-    firefox
-    fortune
-    gimp
-    git
-    gnome3.adwaita-icon-theme
-    gnome-themes-extra
-    gnupg
-    gwenview
-    htop
-    imagemagick
-    jdk
-    jetbrains.idea-community
-    kate
-    kcalc
-    keepassxc
-    konsole
-    libreoffice
-    lolcat
-    lshw
-    lutris
-    lynx
-    mpv
-    neofetch
-    okular
-    patchelf
-    pavucontrol
-    p7zip
-    partition-manager
-    pciutils
-    powertop
-    python3
-    spectacle
-    speedtest-cli
-    steam
-    torbrowser
-    tuir
-    usbutils
-    wineStaging
-    xclip
-    youtube-dl
-    zsh-syntax-highlighting
-
-    # Install Vim plugins
-    (pkgs.vim_configurable.customize {
-      name = "vim";
-      vimrcConfig.vam.pluginDictionaries = [
-        { names = [ "vim-addon-nix" ]; ft_regex = "^nix\$"; }
+  environment.systemPackages = with pkgs;
+    let
+      noxorg = [
+        aircrack-ng
+        android-udev-rules
+        apktool
+        ddcutil
+        ddgr
+        fortune
+        git
+        gnupg
+        htop
+        imagemagick
+        jdk
+        lolcat
+        lshw
+        lynx
+        neofetch
+        patchelf
+        p7zip
+        pciutils
+        powertop
+        python3
+        speedtest-cli
+        tuir
+        usbutils
+        wineStaging
+        youtube-dl
+        zsh-syntax-highlighting
+        # Install Vim plugins
+        (pkgs.vim_configurable.customize {
+          name = "vim";
+          vimrcConfig.vam.pluginDictionaries = [
+            { names = [ "vim-addon-nix" ]; ft_regex = "^nix\$"; }
+          ];
+        })
       ];
-    })
-  ];
+      xorg = [
+        android-studio
+        anki
+        ark
+        chromium
+        emacs
+        filezilla
+        firefox
+        gimp
+        gnome3.adwaita-icon-theme
+        gnome-themes-extra
+        gwenview
+        jetbrains.idea-community
+        kate
+        kcalc
+        keepassxc
+        konsole
+        libreoffice
+        lutris
+        mpv
+        okular
+        pavucontrol
+        partition-manager
+        spectacle
+        steam
+        torbrowser
+        xclip
+      ];
+    in
+      if config.services.xserver.enable then noxorg ++ xorg else noxorg;
 
   # Set package overlays
   nixpkgs.overlays = [
