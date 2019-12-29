@@ -152,10 +152,10 @@
   environment.shellAliases = {
     "c." = "cd ..";
     "pki" = "sudo nix-env -i";
-    "pks" = "nix search";
     "pkl" = "nix-env -qaP";
     "pkp" = "command-not-found";
     "pkr" = "sudo nix-env -e";
+    "pks" = "nix search";
     "pku" = "sudo nixos-rebuild switch --upgrade";
     "wttr" = "curl wttr.in";
   };
