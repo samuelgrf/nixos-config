@@ -111,6 +111,7 @@
         okular
         pavucontrol
         partition-manager
+        rpcs3
         spectacle
         steam
         torbrowser
@@ -123,6 +124,7 @@
   nixpkgs.overlays = [
     (self: super: {
       tuir = super.callPackage ./overlays/tuir.nix { };
+      rpcs3 = super.callPackage ./overlays/rpcs3.nix { };
     })
   ];
 
