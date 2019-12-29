@@ -151,7 +151,7 @@
   # Set shell aliases
   environment.shellAliases = {
     "c." = "cd ..";
-    "pki" = "sudo nix-env -iA";
+    "pki" = "sudo nix-env -i";
     "pks" = "nix search";
     "pkl" = "nix-env -qaP";
     "pkp" = "command-not-found";
