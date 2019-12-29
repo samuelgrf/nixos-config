@@ -232,4 +232,8 @@
 
   # Load kernel module for ddcutil
   boot.kernelModules = [ "i2c-dev" ];
+
+  # Collect nix store garbage and optimise daily.
+  nix.gc.automatic = true;
+  nix.optimise.automatic = true;
 }
