@@ -115,6 +115,7 @@
         spectacle
         steam
         torbrowser
+        unclutter-xfixes
         xclip
       ];
     in
