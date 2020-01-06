@@ -240,4 +240,14 @@
   # Collect nix store garbage and optimise daily.
   nix.gc.automatic = true;
   nix.optimise.automatic = true;
+
+  # Enable zram and use more efficient zstd compression
+  zramSwap = {
+    enable = true;
+    algorithm = "zstd";
+  };
+
+  # Set swappiness to 80 due to improved performance of zram.
+  # Can be up to 100 but will increase process queue on intense load such as boot.
+  boot.kernel.sysctl = { "vm.swappiness" = 80; };
 }
