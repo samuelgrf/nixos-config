@@ -112,7 +112,6 @@
         pavucontrol
         partition-manager
         rpcs3
-        shadowfox
         spectacle
         steam
         torbrowser
