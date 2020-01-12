@@ -55,7 +55,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs;
     let
-      noxorg = [
+      nox = [
         aircrack-ng
         android-udev-rules
         apktool
@@ -91,7 +91,7 @@
           ];
         })
       ];
-      xorg = [
+      x = [
         android-studio
         anki
         ark
@@ -121,9 +121,10 @@
         torbrowser
         unclutter-xfixes
         xclip
+        xorg.xev
       ];
     in
-      if config.services.xserver.enable then noxorg ++ xorg else noxorg;
+      if config.services.xserver.enable then nox ++ x else nox;
 
   # Set package overlays
   nixpkgs.overlays = [
