@@ -204,8 +204,8 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-  services.xserver.layout = "de";
-  services.xserver.xkbOptions = "caps:escape";
+  services.xserver.layout = "us";
+  services.xserver.xkbOptions = "compose:caps, ctrl:ralt_rctrl";
   services.xserver.autorun = true;
 
   # Enable touchpad support.
