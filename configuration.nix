@@ -45,6 +45,9 @@
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
 
+  # Allow installating x86 packages (required for PCSX2)
+  nixpkgs.config.allowUnsupportedSystem = true;
+
   # Allow the installation of unfree software (required for Steam)
   nixpkgs.config.allowUnfree = true;
 
@@ -111,6 +114,7 @@
         okular
         pavucontrol
         partition-manager
+        pcsx2
         rpcs3
         spectacle
         steam
@@ -124,6 +128,9 @@
   # Set package overlays
   nixpkgs.overlays = [
     (self: super: {
+      pcsx2 = super.pkgsi686Linux.callPackage ./overlays/pcsx2.nix {
+        wxGTK = super.pkgsi686Linux.wxGTK30;
+      };
       rpcs3 = super.callPackage ./overlays/rpcs3.nix { };
       tuir = super.callPackage ./overlays/tuir.nix { };
     })
