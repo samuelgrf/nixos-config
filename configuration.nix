@@ -4,7 +4,10 @@
 
 { config, pkgs, ... }:
 
-{
+# Add variable for unstable packages
+let
+  unstable = import <nixos-unstable> {};
+in {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
@@ -77,7 +80,7 @@
         powertop
         python3
         speedtest-cli
-        tuir
+        unstable.tuir
         usbutils
         wget
         wineStaging
@@ -114,7 +117,7 @@
         okular
         pavucontrol
         partition-manager
-        pcsx2
+        unstable.pcsx2
         rpcs3
         spectacle
         steam
@@ -129,11 +132,7 @@
   # Set package overlays
   nixpkgs.overlays = [
     (self: super: {
-      pcsx2 = super.pkgsi686Linux.callPackage ./overlays/pcsx2.nix {
-        wxGTK = super.pkgsi686Linux.wxGTK30;
-      };
       rpcs3 = super.callPackage ./overlays/rpcs3.nix { };
-      tuir = super.callPackage ./overlays/tuir.nix { };
     })
   ];
 
