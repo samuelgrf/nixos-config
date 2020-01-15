@@ -53,7 +53,7 @@ in {
   # $ nix search wget
   environment.systemPackages = with pkgs;
     let
-      nox = [
+      common = [
         aircrack-ng
         android-udev-rules
         apktool
@@ -81,13 +81,9 @@ in {
         wineStaging
         youtube-dl
         zsh-syntax-highlighting
-        # Install Vim plugins
-        (pkgs.vim_configurable.customize {
-          name = "vim";
-          vimrcConfig.vam.pluginDictionaries = [
-            { names = [ "vim-addon-nix" ]; ft_regex = "^nix\$"; }
-          ];
-        })
+      ];
+      nox = [
+        emacs-nox
       ];
       x = [
         android-studio
@@ -121,8 +117,7 @@ in {
         xclip
         xorg.xev
       ];
-    in
-      if config.services.xserver.enable then nox ++ x else nox;
+    in common ++ (if config.services.xserver.enable then x else nox);
 
   # Set package overlays
   nixpkgs.overlays = [
@@ -131,8 +126,8 @@ in {
     })
   ];
 
-  # Set Vim as default editor
-  programs.vim.defaultEditor = true;
+  # Set Emacs as default editor
+  services.emacs.defaultEditor = true;
 
   # Set ZSH as default shell
   users.defaultUserShell = pkgs.zsh;
