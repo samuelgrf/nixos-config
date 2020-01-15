@@ -199,7 +199,8 @@ in {
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   services.xserver.layout = "us";
-  services.xserver.xkbOptions = "compose:caps, ctrl:ralt_rctrl";
+  services.xserver.xkbVariant = "altgr-intl";
+  services.xserver.xkbOptions = "caps:escape";
   services.xserver.autorun = true;
 
   # Enable touchpad support.
