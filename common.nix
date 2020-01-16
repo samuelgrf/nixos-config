@@ -82,10 +82,10 @@ in {
         youtube-dl
         zsh-syntax-highlighting
       ];
-      nox = [
+      noX = [
         emacs-nox
       ];
-      x = [
+      X = [
         android-studio
         anki
         ark
@@ -117,7 +117,7 @@ in {
         xclip
         xorg.xev
       ];
-    in common ++ (if config.services.xserver.enable then x else nox);
+    in common ++ (if config.services.xserver.enable then X else noX);
 
   # Set package overlays
   nixpkgs.overlays = [
