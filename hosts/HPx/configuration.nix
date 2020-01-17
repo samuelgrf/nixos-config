@@ -44,4 +44,10 @@
   environment.shellAliases = {
     "mpv" = "mpv --vo=vaapi --hwdec=vaapi";
   };
+
+  # Enable Bluetooth support
+  hardware.bluetooth.enable = true;
+
+  # Use full PulseAudio package for Bluetooth support
+  hardware.pulseaudio.package = pkgs.pulseaudioFull;
 }
