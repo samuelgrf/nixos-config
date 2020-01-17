@@ -151,6 +151,9 @@ in {
 
   # Set shell aliases
   environment.shellAliases = {
+    "applyconfig" = "sudo git -C /etc/nixos fetch &&
+                     git -C /etc/nixos diff master origin/master &&
+                     sudo git -C /etc/nixos reset --hard origin/master";
     "c." = "cd ..";
     "pki" = "sudo nix-env -i";
     "pkl" = "nix-env -qaP";
