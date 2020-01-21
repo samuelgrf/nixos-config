@@ -209,9 +209,15 @@ in {
   services.xserver.desktopManager.plasma5.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.samuel = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" ];
+  users.users = {
+    samuel = {
+      isNormalUser = true;
+      extraGroups = [ "wheel" "networkmanager" ];
+    };
+      test = {
+      isNormalUser = true;
+      extraGroups = [ "wheel" "networkmanager" ];
+    };
   };
 
   # This value determines the NixOS release with which your system is to be
