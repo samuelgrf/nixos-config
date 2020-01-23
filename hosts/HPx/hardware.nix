@@ -13,6 +13,14 @@
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
+  # Set up LUKS on root partition
+  boot.initrd.luks.devices = {
+    luksroot = {
+      device = "/dev/disk/by-uuid/97e06f70-899d-44cf-baff-d09e5a2daa59";
+      allowDiscards = true;
+    };
+  };
+
   fileSystems."/" =
     { device = "rpool/root/nixos";
       fsType = "zfs";
