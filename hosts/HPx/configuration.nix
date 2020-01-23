@@ -43,4 +43,7 @@
 
   # Use full PulseAudio package for Bluetooth support
   hardware.pulseaudio.package = pkgs.pulseaudioFull;
+
+  # Enable weekly TRIM on ZFS
+  services.zfs.trim.enable = true;
 }
