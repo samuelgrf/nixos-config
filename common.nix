@@ -59,6 +59,7 @@ in {
         apktool
         ddcutil
         ddgr
+        fd
         fortune
         git
         gnupg
