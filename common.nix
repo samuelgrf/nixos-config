@@ -31,13 +31,7 @@ in {
     consoleFont = "Lat2-Terminus16";
     # consoleKeyMap = "de";
     consoleUseXkbConfig = true;
-    defaultLocale = "en_DE.UTF-8";
-  };
-
-  # Set additional environment variables 
-  environment.variables = {
-    LANGUAGE="en";
-    LC_ALL="C";
+    defaultLocale = "en_IE.UTF-8";
   };
 
   # Set your time zone.
