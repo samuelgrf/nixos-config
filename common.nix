@@ -78,14 +78,12 @@ in {
         zsh-syntax-highlighting
       ];
       noX = [
-        emacs-nox
       ];
       X = [
         android-studio
         anki
         ark
         chromium
-        emacs
         filezilla
         firefox
         gimp
@@ -116,13 +114,28 @@ in {
 
   # Set package overlays
   nixpkgs.overlays = [
-    (self: super: {
-      rpcs3 = super.callPackage ./overlays/rpcs3.nix { };
-    })
+    ( self: super: {
+        rpcs3 = super.callPackage ./overlays/rpcs3.nix { };
+        emacs-nox = pkgs.emacs.override {
+          withX = false;
+          withGTK2 = false;
+          withGTK3 = false;
+        };
+      }
+    )
   ];
 
-  # Set Emacs as default editor
-  services.emacs.defaultEditor = true;
+  # Configure Emacs
+  services.emacs = {
+    enable = true;
+    defaultEditor = true;
+    package = with pkgs; (
+      if config.services.xserver.enable
+        then emacs
+      else
+        emacs-nox
+    );
+  };
 
   # Set ZSH as default shell
   users.defaultUserShell = pkgs.zsh;
