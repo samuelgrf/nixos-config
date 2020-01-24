@@ -75,7 +75,6 @@ in {
         wget
         wineStaging
         youtube-dl
-        zsh-syntax-highlighting
       ];
       noX = [
       ];
@@ -145,6 +144,7 @@ in {
     enable = true;
     ohMyZsh.enable = true;
     autosuggestions.enable = true;
+    syntaxHighlighting.enable = true;
     promptInit = "source ${unstable.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
     setOptions = [
       "CORRECT"
