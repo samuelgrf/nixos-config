@@ -4,11 +4,7 @@
 
 { config, pkgs, ... }:
 
-# Add variable for unstable packages
-let
-  unstable = import <nixos-unstable> {};
-in {
-
+{
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -113,15 +109,15 @@ in {
 
   # Set package overlays
   nixpkgs.overlays = [
-    ( self: super: {
-        rpcs3 = super.callPackage ./overlays/rpcs3.nix { };
-        emacs-nox = pkgs.emacs.override {
-          withX = false;
-          withGTK2 = false;
-          withGTK3 = false;
-        };
-      }
-    )
+    (self: super: {
+      unstable = import <nixos-unstable> { config = config.nixpkgs.config; };
+      rpcs3 = super.callPackage ./overlays/rpcs3.nix { };
+      emacs-nox = pkgs.emacs.override {
+        withX = false;
+        withGTK2 = false;
+        withGTK3 = false;
+      };
+    })
   ];
 
   # Configure Emacs
@@ -145,7 +141,7 @@ in {
     ohMyZsh.enable = true;
     autosuggestions.enable = true;
     syntaxHighlighting.enable = true;
-    promptInit = "source ${unstable.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+    promptInit = "source ${pkgs.unstable.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
     setOptions = [
       "CORRECT"
       "HIST_FCNTL_LOCK"
