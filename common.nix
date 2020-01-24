@@ -143,18 +143,15 @@ in {
   # Configure ZSH
   programs.zsh = {
     enable = true;
+    ohMyZsh.enable = true;
     autosuggestions.enable = true;
-      ohMyZsh = {
-        enable = true;
-        theme = "powerlevel10k/powerlevel10k";
-        custom = "/home/samuel/git-repos/oh-my-zsh/";
-      };
-      setOptions = [
-        "CORRECT"
-        "HIST_FCNTL_LOCK"
-        "HIST_IGNORE_DUPS"
-        "SHARE_HISTORY"
-      ];
+    promptInit = "source ${unstable.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+    setOptions = [
+      "CORRECT"
+      "HIST_FCNTL_LOCK"
+      "HIST_IGNORE_DUPS"
+      "SHARE_HISTORY"
+    ];
   };
 
   # Set shell aliases
