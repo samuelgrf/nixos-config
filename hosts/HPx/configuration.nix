@@ -16,7 +16,7 @@
   services.tlp.extraConfig = "RUNTIME_PM_BLACKLIST='02:00.0'";
 
   # Install additional packages
-  environment.systemPackages = with pkgs; [ 
+  environment.systemPackages = with pkgs; [
     alsaTools
     libva-utils
   ];

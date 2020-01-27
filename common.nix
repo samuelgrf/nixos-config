@@ -1,7 +1,3 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, pkgs, ... }:
 
 {
@@ -13,20 +9,26 @@
 
   # Select internationalisation properties.
   i18n = {
-    consoleFont = "Lat2-Terminus16";
-    # consoleKeyMap = "de";
-    consoleUseXkbConfig = true;
     defaultLocale = "en_IE.UTF-8";
+    consoleFont = "Lat2-Terminus16";
+    consoleUseXkbConfig = true;
   };
 
-  # Set your time zone.
+  # Set keyboard layout
+  services.xserver = {
+    layout = "us";
+    xkbVariant = "altgr-intl";
+    xkbOptions = "caps:escape";
+  };
+
+  # Set time zone
   time.timeZone = "Europe/Berlin";
 
-  # Allow installating x86 packages (required for PCSX2)
-  nixpkgs.config.allowUnsupportedSystem = true;
-
-  # Allow the installation of unfree software (required for Steam)
-  nixpkgs.config.allowUnfree = true;
+  # Configure Nixpkgs
+  nixpkgs.config = {
+    allowUnsupportedSystem = true; # required for PCSX2
+    allowUnfree = true; # required for Steam
+  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -155,18 +157,13 @@
   };
 
   # Enable 32-bit libraries for games
-  hardware.opengl.driSupport32Bit = true;
-  hardware.pulseaudio.support32Bit = true;
+  hardware = {
+    opengl.driSupport32Bit = true;
+    pulseaudio.support32Bit = true;
+  };
 
   # Enable Steam hardware for additional controller support
   hardware.steam-hardware.enable = true;
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = { enable = true; enableSSHSupport = true; };
-
-  # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
@@ -180,15 +177,12 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-  services.xserver.layout = "us";
-  services.xserver.xkbVariant = "altgr-intl";
-  services.xserver.xkbOptions = "caps:escape";
   services.xserver.autorun = true;
 
   # Enable touchpad support.
   services.xserver.libinput.enable = true;
 
-  # Enable the KDE Desktop Environment.
+  # Enable KDE Plasma 5
   services.xserver.displayManager.sddm.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
 
@@ -210,7 +204,7 @@
   # should.
   system.stateVersion = "19.09"; # Did you read the comment?
 
-  # Enable filesystem support
+  # Enable support for additional filesystems
   boot.supportedFilesystems = [ "ntfs" "zfs" ];
 
   # Enable NetworkManager
@@ -228,9 +222,11 @@
   # Load kernel module for ddcutil
   boot.kernelModules = [ "i2c-dev" ];
 
-  # Collect nix store garbage and optimise daily.
-  nix.gc.automatic = true;
-  nix.optimise.automatic = true;
+  # Optimize Nix store and run garbage collector daily
+  nix = {
+    gc.automatic = true;
+    optimise.automatic = true;
+  };
 
   # Enable zram and use more efficient zstd compression
   zramSwap = {
@@ -242,6 +238,6 @@
   # Can be up to 100 but will increase process queue on intense load such as boot.
   boot.kernel.sysctl = { "vm.swappiness" = 80; };
 
-  # Disable annoying GUI password popup and console error message when using ssh
+  # Disable GUI password prompt when using ssh
   programs.ssh.askPassword = "";
 }
