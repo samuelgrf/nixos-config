@@ -70,6 +70,7 @@ in
         chromium
         filezilla
         firefox
+        gamemode
         gimp
         gnome3.adwaita-icon-theme
         gnome-themes-extra
@@ -103,7 +104,8 @@ in
   nixpkgs.overlays = [
     (self: super: {
       unstable = import <nixos-unstable> { config = config.nixpkgs.config; };
-      rpcs3 = super.callPackage ./overlays/rpcs3.nix { };
+      gamemode = super.callPackage ./overlays/gamemode { };
+      rpcs3 = super.callPackage ./overlays/rpcs3 { };
       emacs-nox = pkgs.emacs.override {
         withX = false;
         withGTK2 = false;
