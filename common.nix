@@ -66,6 +66,7 @@ in
         anki
         ark
         cabextract
+        unstable.caffeine-ng # desktop files are broken on stable
         chromium
         filezilla
         firefox
