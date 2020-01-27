@@ -43,7 +43,6 @@ in
         gnupg
         htop
         imagemagick
-        jdk
         lolcat
         lshw
         lynx
@@ -61,6 +60,7 @@ in
         youtube-dl
       ];
       noX = [
+        openjdk-headless
       ];
       X = [
         android-studio
@@ -73,6 +73,7 @@ in
         gnome3.adwaita-icon-theme
         gnome-themes-extra
         gwenview
+        openjdk
         jetbrains.idea-community
         kate
         kcalc
