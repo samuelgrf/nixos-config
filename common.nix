@@ -1,12 +1,6 @@
 { config, pkgs, ... }:
 
 {
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  # networking.hostName = "nixos"; # Define your hostname.
-
   # Select internationalisation properties.
   i18n = {
     defaultLocale = "en_IE.UTF-8";
@@ -175,13 +169,6 @@
   sound.enable = true;
   hardware.pulseaudio.enable = true;
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-  services.xserver.autorun = true;
-
-  # Enable touchpad support.
-  services.xserver.libinput.enable = true;
-
   # Enable KDE Plasma 5
   services.xserver.displayManager.sddm.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
@@ -215,9 +202,6 @@
 
   # Install ADB and fastboot
   programs.adb.enable = true;
-
-  # Enable TLP
-  services.tlp.enable = true;
 
   # Load kernel module for ddcutil
   boot.kernelModules = [ "i2c-dev" ];

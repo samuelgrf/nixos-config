@@ -1,6 +1,19 @@
 { config, lib, pkgs, ... }:
 
 {
+  # Use the systemd-boot EFI boot loader.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
+  # networking.hostName = "nixos"; # Define your hostname.
+
+  # Enable the X11 windowing system.
+  services.xserver.enable = true;
+  services.xserver.autorun = true;
+
+  # Enable touchpad support.
+  services.xserver.libinput.enable = true;
+
   # The 32-bit host ID of this machine, formatted as 8 hexadecimal characters.
   # generated via "head -c 8 /etc/machine-id"
   # this is required by ZFS
@@ -12,8 +25,9 @@
   # Blacklist sensor kernel modules
   boot.blacklistedKernelModules = [ "intel_ishtp_hid" "intel_ish_ipc" ];
 
-  # Blacklist power management for wifi card as it may cause issues
-  services.tlp.extraConfig = "RUNTIME_PM_BLACKLIST='02:00.0'";
+  # Configure TLP
+  services.tlp.enable = true;
+  services.tlp.extraConfig = "RUNTIME_PM_BLACKLIST='02:00.0'"; # Blacklist wifi card
 
   # Install additional packages
   environment.systemPackages = with pkgs; [
