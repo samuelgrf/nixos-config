@@ -1,5 +1,8 @@
 { config, pkgs, ... }:
 
+let
+  trueIfX = if config.services.xserver.enable then true else null;
+in
 {
   # Select internationalisation properties.
   i18n = {
@@ -20,8 +23,8 @@
 
   # Configure Nixpkgs
   nixpkgs.config = {
-    allowUnsupportedSystem = true; # required for PCSX2
-    allowUnfree = true; # required for Steam
+    allowUnsupportedSystem = trueIfX; # required for PCSX2
+    allowUnfree = trueIfX; # required for Steam
   };
 
   # List packages installed in system profile. To search, run:
@@ -152,12 +155,12 @@
 
   # Enable 32-bit libraries for games
   hardware = {
-    opengl.driSupport32Bit = true;
-    pulseaudio.support32Bit = true;
+    opengl.driSupport32Bit = trueIfX;
+    pulseaudio.support32Bit = trueIfX;
   };
 
   # Enable Steam hardware for additional controller support
-  hardware.steam-hardware.enable = true;
+  hardware.steam-hardware.enable = trueIfX;
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
@@ -170,8 +173,10 @@
   hardware.pulseaudio.enable = true;
 
   # Enable KDE Plasma 5
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
+  services.xserver = {
+    displayManager.sddm.enable = trueIfX;
+    desktopManager.plasma5.enable = trueIfX;
+  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users = {
