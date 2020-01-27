@@ -56,7 +56,6 @@ in
         unstable.tuir
         usbutils
         wget
-        wineStaging
         youtube-dl
       ];
       noX = [
@@ -66,6 +65,7 @@ in
         android-studio
         anki
         ark
+        cabextract
         chromium
         filezilla
         firefox
@@ -80,7 +80,7 @@ in
         keepassxc
         konsole
         libreoffice
-        lutris
+        unstable.lutris
         mpv
         okular
         pavucontrol
@@ -88,9 +88,11 @@ in
         unstable.pcsx2
         rpcs3
         spectacle
-        steam
+        unstable.steam
         torbrowser
         unclutter-xfixes
+        unstable.wine-staging
+        unstable.winetricks
         xclip
         xorg.xev
       ];
