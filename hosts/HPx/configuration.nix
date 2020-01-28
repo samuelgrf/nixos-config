@@ -19,6 +19,10 @@
   # this is required by ZFS
   networking.hostId = "97e4f3b3";
 
+  # Randomize MAC addresses
+  networking.networkmanager.ethernet.macAddress = "random";
+  networking.networkmanager.wifi.macAddress = "random";
+
   # Install wifi kernel module
   boot.extraModulePackages = [ pkgs.linuxPackages.rtl8821ce ];
 
