@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 let
   trueIfX = if config.services.xserver.enable then true else false;
@@ -24,7 +24,13 @@ in
   # Configure Nixpkgs
   nixpkgs.config = {
     allowUnsupportedSystem = trueIfX; # required for PCSX2
-    allowUnfree = trueIfX; # required for Steam
+
+    # Select allowed unfree packages
+    allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+      "steam"
+      "steam-original"
+      "steam-runtime"
+    ];
   };
 
   # List packages installed in system profile. To search, run:
