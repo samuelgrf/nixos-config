@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 let
-  trueIfX = if config.services.xserver.enable then true else null;
+  trueIfX = if config.services.xserver.enable then true else false;
 in
 {
   # Select internationalisation properties.
