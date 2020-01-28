@@ -149,6 +149,7 @@ in
     "applyconfig" = "sudo git -C /etc/nixos fetch &&
                      git -C /etc/nixos diff master origin/master &&
                      sudo git -C /etc/nixos reset --hard origin/master";
+    "testconfig" = "sudo nixos-rebuild test -I nixos-config=/home/samuel/git-repos/nixconfig/configuration.nix";
     "c." = "cd ..";
     "pki" = "sudo nix-env -i";
     "pkl" = "nix-env -qaP";
