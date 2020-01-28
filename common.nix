@@ -21,17 +21,12 @@ in
   # Set time zone
   time.timeZone = "Europe/Berlin";
 
-  # Configure Nixpkgs
-  nixpkgs.config = {
-    allowUnsupportedSystem = trueIfX; # required for PCSX2
-
-    # Select allowed unfree packages
-    allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-      "steam"
-      "steam-original"
-      "steam-runtime"
-    ];
-  };
+  # Select allowed unfree packages
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "steam"
+    "steam-original"
+    "steam-runtime"
+  ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
