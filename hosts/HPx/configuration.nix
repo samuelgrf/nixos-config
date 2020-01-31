@@ -1,6 +1,9 @@
 { config, lib, pkgs, ... }:
 
 {
+  # Set GRUB timeout
+  boot.loader.timeout = 1;
+
   # networking.hostName = "nixos"; # Define your hostname.
 
   # Enable the X11 windowing system.
