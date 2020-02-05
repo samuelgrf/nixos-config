@@ -73,7 +73,7 @@ in
         firefox
         gamemode
         gimp
-        gnome3.adwaita-icon-theme
+        gnome3.adwaita-icon-theme # needed for caffeine-ng to display icons
         gwenview
         openjdk
         jetbrains.idea-community
