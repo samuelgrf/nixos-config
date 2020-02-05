@@ -74,7 +74,6 @@ in
         gamemode
         gimp
         gnome3.adwaita-icon-theme
-        gnome-themes-extra
         gwenview
         openjdk
         jetbrains.idea-community
