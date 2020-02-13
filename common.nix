@@ -4,6 +4,10 @@ let
   trueIfX = if config.services.xserver.enable then true else false;
 in
 {
+  imports = [
+    ./modules/qemu-user.nix
+  ];
+
   # Select internationalisation properties.
   i18n = {
     defaultLocale = "en_IE.UTF-8";
@@ -111,6 +115,14 @@ in
         withGTK2 = false;
         withGTK3 = false;
       };
+      # Copied from https://github.com/cleverca22/nixos-configs/blob/master/overlays/qemu/default.nix
+      qemu-user-arm = if self.stdenv.system == "x86_64-linux"
+        then self.pkgsi686Linux.callPackage ./overlays/qemu-user { user_arch = "arm"; }
+        else self.callPackage ./overlays/qemu-user { user_arch = "arm"; };
+      qemu-user-x86 = self.callPackage ./overlays/qemu-user { user_arch = "x86_64"; };
+      qemu-user-arm64 = self.callPackage ./overlays/qemu-user { user_arch = "aarch64"; };
+      qemu-user-riscv32 = self.callPackage ./overlays/qemu-user { user_arch = "riscv32"; };
+      qemu-user-riscv64 = self.callPackage ./overlays/qemu-user { user_arch = "riscv64"; };
     })
   ];
 

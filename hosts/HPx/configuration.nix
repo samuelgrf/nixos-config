@@ -1,6 +1,10 @@
 { config, lib, pkgs, ... }:
 
 {
+  imports = [
+    ../modules/qemu-user.nix
+  ];
+
   # Set GRUB timeout
   boot.loader.timeout = 1;
 
@@ -88,4 +92,8 @@
          '';
       }
     ];
+
+  # Setup qemu user
+  qemu-user.aarch64 = true;
+  qemu-user.arm = true;
 }
