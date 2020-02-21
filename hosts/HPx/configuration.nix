@@ -39,7 +39,17 @@
   services.tlp.enable = true;
   services.tlp.extraConfig = "RUNTIME_PM_BLACKLIST='02:00.0'"; # Blacklist wifi card
 
-  # Install additional packages
+  # Undervolting
+  services.undervolt = {
+    enable = true;
+    coreOffset = "-125";
+    gpuOffset = "-115";
+    uncoreOffset = "-125";
+    # TODO: Test with USB devices
+    analogioOffset = "-105";
+  };
+
+ # Install additional packages
   environment.systemPackages = with pkgs; [
     alsaTools
     libva-utils
