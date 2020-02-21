@@ -58,6 +58,7 @@ in
         powertop
         python3
         speedtest-cli
+        stress
         unstable.tuir
         usbutils
         wget
@@ -83,6 +84,7 @@ in
         jetbrains.idea-community
         kate
         kcalc
+        kdialog
         keepassxc
         konsole
         libreoffice
@@ -94,6 +96,7 @@ in
         unstable.pcsx2
         rpcs3
         spectacle
+        unstable.spotify-tui
         unstable.steam
         torbrowser
         unclutter-xfixes
