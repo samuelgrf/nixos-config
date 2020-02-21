@@ -74,6 +74,11 @@
     "mpv" = "mpv --vo=vaapi --hwdec=vaapi";
   };
 
+  # Enable touch scrolling in Firefox
+  environment.variables = {
+    "MOZ_USE_XINPUT2" = "1";
+  };
+
   # Enable Bluetooth support
   hardware.bluetooth.enable = true;
 
