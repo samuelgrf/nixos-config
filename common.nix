@@ -235,7 +235,7 @@ in
 
   # Optimize Nix store and run garbage collector daily
   nix = {
-    gc.automatic = true;
+    gc.automatic = false;
     optimise.automatic = true;
   };
 
