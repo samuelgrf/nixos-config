@@ -8,12 +8,12 @@ in
     ./modules/qemu-user.nix
   ];
 
-  # Select internationalisation properties.
-  i18n = {
-    defaultLocale = "en_IE.UTF-8";
-    consoleFont = "Lat2-Terminus16";
-    consoleUseXkbConfig = true;
-  };
+  # Set locale
+  i18n.defaultLocale = "en_IE.UTF-8";
+
+  # Set console settings
+  console.font = "Lat2-Terminus16";
+  console.useXkbConfig = true;
 
   # Set keyboard layout
   services.xserver = {
@@ -216,7 +216,8 @@ in
   # compatible, in order to avoid breaking some software such as database
   # servers. You should change this only after NixOS release notes say you
   # should.
-  system.stateVersion = "19.09"; # Did you read the comment?
+
+  system.stateVersion = "20.03"; # Did you read the comment?
 
   # Enable support for additional filesystems
   boot.supportedFilesystems = [ "ntfs" "zfs" ];
