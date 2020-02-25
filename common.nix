@@ -164,9 +164,12 @@ in
 
   # Set shell aliases
   environment.shellAliases = {
-    "applyconfig" = "sudo git -C /etc/nixos fetch &&
-                     git -C /etc/nixos diff master origin/master &&
-                     sudo git -C /etc/nixos reset --hard origin/master";
+    "applyconfig" = "
+      OLDBRANCH=$(git -C /etc/nixos rev-parse --abbrev-ref HEAD) &&
+      NEWBRANCH=$(git -C /home/samuel/git-repos/nixconfig rev-parse --abbrev-ref HEAD) &&
+      sudo git -C /etc/nixos fetch &&
+      git -C /etc/nixos diff $OLDBRANCH origin/$NEWBRANCH &&
+      sudo git -C /etc/nixos reset --hard origin/$NEWBRANCH";
     "testconfig" = "sudo nixos-rebuild test -I nixos-config=/home/samuel/git-repos/nixconfig/configuration.nix";
     "c." = "cd ..";
     "pki" = "sudo nix-env -i";
