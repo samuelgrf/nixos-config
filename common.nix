@@ -118,6 +118,9 @@ in
         withGTK2 = false;
         withGTK3 = false;
       };
+      linuxPackages = super.linuxPackages.extend (self: super: {
+        rtl8821ce = super.callPackage ./overlays/rtl8821ce { };
+      });
       # Copied from https://github.com/cleverca22/nixos-configs/blob/master/overlays/qemu/default.nix
       qemu-user-arm = if self.stdenv.system == "x86_64-linux"
         then self.pkgsi686Linux.callPackage ./overlays/qemu-user { user_arch = "arm"; }
