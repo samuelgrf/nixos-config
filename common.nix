@@ -30,6 +30,7 @@ in
     "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos"
     "nixos-config=/etc/nixos/configuration.nix"
     "/nix/var/nix/profiles/per-user/root/channels"
+    "nixos-unstable=https://nixos.org/channels/nixos-unstable/nixexprs.tar.xz"
     "home-manager=https://github.com/rycee/home-manager/archive/master.tar.gz"
   ];
 
