@@ -59,7 +59,7 @@ in
         python3
         speedtest-cli
         stress
-        unstable.tuir
+        tuir
         usbutils
         wget
         youtube-dl
@@ -72,7 +72,7 @@ in
         anki
         ark
         cabextract
-        unstable.caffeine-ng # desktop files are broken on stable
+        caffeine-ng
         chromium
         filezilla
         firefox
@@ -96,7 +96,7 @@ in
         unstable.pcsx2
         rpcs3
         spectacle
-        unstable.spotify-tui
+        spotify-tui
         unstable.steam
         torbrowser
         unclutter-xfixes
@@ -153,7 +153,7 @@ in
     ohMyZsh.enable = true;
     autosuggestions.enable = true;
     syntaxHighlighting.enable = true;
-    promptInit = "source ${pkgs.unstable.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+    promptInit = "source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
     setOptions = [
       "CORRECT"
       "HIST_FCNTL_LOCK"
