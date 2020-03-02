@@ -211,7 +211,11 @@ in
 
   # Enable KDE Plasma 5
   services.xserver = {
-    displayManager.sddm.enable = trueIfX;
+    displayManager.sddm = {
+      enable = trueIfX;
+      autoLogin.enable = trueIfX;
+      autoLogin.user = "samuel";
+    };
     desktopManager.plasma5.enable = trueIfX;
   };
 
