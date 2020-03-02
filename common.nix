@@ -25,6 +25,14 @@ in
   # Set time zone
   time.timeZone = "Europe/Berlin";
 
+  # Set Nix path (NIX_PATH variable)
+  nix.nixPath = [
+    "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos"
+    "nixos-config=/etc/nixos/configuration.nix"
+    "/nix/var/nix/profiles/per-user/root/channels"
+    "home-manager=https://github.com/rycee/home-manager/archive/master.tar.gz"
+  ];
+
   # Select allowed unfree packages
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
     "steam"

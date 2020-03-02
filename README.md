@@ -8,4 +8,7 @@ and symlink the host-specific directory to
 Add the unstable channel by running:
 `sudo nix-channel --add https://nixos.org/channels/nixos-unstable nixos-unstable`.
 
+Install Home Manager:
+`nix-shell '<home-manager>' -A install`.
+
 [NixOS]: https://nixos.org
