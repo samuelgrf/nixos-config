@@ -74,7 +74,7 @@ in
         youtube-dl
       ];
       noX = [
-        openjdk-headless
+        openjdk_headless
       ];
       X = [
         android-studio
