@@ -49,6 +49,7 @@ in
         aircrack-ng
         android-udev-rules
         apktool
+        bind
         ddcutil
         ddgr
         fd
@@ -68,10 +69,12 @@ in
         python3
         speedtest-cli
         stress
+        sysstat
         tuir
         usbutils
         wget
         youtube-dl
+        ytop
       ];
       noX = [
         openjdk_headless
