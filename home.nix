@@ -13,4 +13,11 @@
   # the Home Manager release notes for a list of state version
   # changes in each release.
   home.stateVersion = "20.03";
+
+  # Needed to get the GPG password dialog to work
+  # https://github.com/NixOS/nixpkgs/issues/73332
+  services.gpg-agent = {
+    enable = true;
+    pinentryFlavor = "curses";
+  };
 }

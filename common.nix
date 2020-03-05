@@ -276,4 +276,7 @@ in
 
   # Disable GUI password prompt when using ssh
   programs.ssh.askPassword = "";
+
+  # Enable GnuPG agent
+  programs.gnupg.agent.enable = true;
 }
