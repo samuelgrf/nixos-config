@@ -20,4 +20,13 @@
     enable = true;
     pinentryFlavor = "curses";
   };
+
+  # Configure Git
+  programs.git = {
+    enable = true;
+    userName = "Samuel Gräfenstein";
+    userEmail = "git@samuelgrf.com";
+    signing.key = "FF2458328FAF466018C6186EEF76A063F15C63C8";
+    signing.signByDefault = true;
+  };
 }
