@@ -111,7 +111,6 @@ in
         spotify-tui
         unstable.steam
         torbrowser
-        unclutter-xfixes
         unstable.wine-staging
         unstable.winetricks
         xclip
@@ -145,6 +144,14 @@ in
       qemu-user-riscv64 = self.callPackage ./overlays/qemu-user { user_arch = "riscv64"; };
     })
   ];
+
+  # Hides the mouse cursor if it isn’t being used
+  systemd.user.services.unclutter = {
+    description = "unclutter-xfixes";
+    script = "${pkgs.unclutter-xfixes}/bin/unclutter";
+    wantedBy = [ "graphical-session.target" ];
+    partOf = [ "graphical-session.target" ];
+  };
 
   # Configure Emacs
   services.emacs = {
