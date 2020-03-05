@@ -124,7 +124,9 @@ in
     (self: super: {
       unstable = import <nixos-unstable> { config = config.nixpkgs.config; };
       gamemode = super.callPackage ./overlays/gamemode { };
-      rpcs3 = super.callPackage ./overlays/rpcs3 { };
+      rpcs3 = super.callPackage ./overlays/rpcs3 {
+        stdenv = super.impureUseNativeOptimizations super.stdenv;
+      };
       emacs-nox = pkgs.emacs.override {
         withX = false;
         withGTK2 = false;

@@ -30,7 +30,7 @@ stdenv.mkDerivation {
   cmakeFlags = [
     "-DUSE_SYSTEM_LIBPNG=ON"
     "-DUSE_SYSTEM_FFMPEG=ON"
-    "-DUSE_NATIVE_INSTRUCTIONS=OFF"
+    "-DUSE_NATIVE_INSTRUCTIONS=ON"
   ];
 
   nativeBuildInputs = [ cmake pkgconfig git ];
