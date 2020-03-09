@@ -6,6 +6,7 @@ in
 {
   imports = [
     ./modules/qemu-user.nix
+    ./modules/g810-led.nix
   ];
 
   # Set locale
@@ -122,6 +123,7 @@ in
   nixpkgs.overlays = [
     (self: super: {
       unstable = import <nixos-unstable> { config = config.nixpkgs.config; };
+      g810-led = super.callPackage ./overlays/g810-led { };
       gamemode = super.callPackage ./overlays/gamemode { };
       rpcs3 = super.callPackage ./overlays/rpcs3 {
         stdenv = super.impureUseNativeOptimizations super.stdenv;
