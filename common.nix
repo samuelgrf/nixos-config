@@ -37,6 +37,8 @@ in
 
   # Select allowed unfree packages
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "firefox-bin"
+    "firefox-release-bin-unwrapped"
     "steam"
     "steam-original"
     "steam-runtime"
@@ -88,7 +90,7 @@ in
         caffeine-ng
         chromium
         filezilla
-        firefox
+        firefox-bin
         gamemode
         gimp
         gnome3.adwaita-icon-theme # needed for caffeine-ng to display icons
