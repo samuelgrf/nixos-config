@@ -71,7 +71,7 @@
 
   # Always start mpv with VA-API enabled
   environment.shellAliases = {
-    "mpv" = "mpv --vo=vaapi --hwdec=vaapi";
+    "mpv" = "mpv --vo=gpu --hwdec=vaapi";
   };
 
   # Enable touch scrolling in Firefox
