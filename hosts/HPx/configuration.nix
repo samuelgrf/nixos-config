@@ -10,6 +10,9 @@
 
   # networking.hostName = "nixos"; # Define your hostname.
 
+  # Enable CPU microcode updates
+  hardware.cpu.intel.updateMicrocode = true;
+
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   services.xserver.autorun = true;
