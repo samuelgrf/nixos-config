@@ -245,7 +245,7 @@ in
       isNormalUser = true;
       extraGroups = [ "wheel" "networkmanager" ];
     };
-      test = {
+    test = {
       isNormalUser = true;
       extraGroups = [ "wheel" "networkmanager" ];
     };

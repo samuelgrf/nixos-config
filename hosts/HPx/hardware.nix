@@ -3,9 +3,9 @@
 {
   boot.loader.systemd-boot.enable = true;
 
-  imports =
-    [ <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
-    ];
+  imports = [
+    <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
+  ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "sdhci_pci" ];
   boot.initrd.kernelModules = [ ];
@@ -20,26 +20,26 @@
     };
   };
 
-  fileSystems."/" =
-    { device = "rpool/root/nixos";
-      fsType = "zfs";
-    };
+  fileSystems."/" = {
+    device = "rpool/root/nixos";
+    fsType = "zfs";
+  };
 
-  fileSystems."/home" =
-    { device = "rpool/home";
-      fsType = "zfs";
-    };
+  fileSystems."/home" = {
+    device = "rpool/home";
+    fsType = "zfs";
+  };
 
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/E7F8-95F0";
-      fsType = "vfat";
-    };
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/E7F8-95F0";
+    fsType = "vfat";
+  };
 
-  swapDevices =
-    [ { device = "/dev/disk/by-partuuid/c4114437-3b41-41c3-b005-ce9f8171815f";
-        randomEncryption = { enable = true; };
-      }
-    ];
+  swapDevices = [
+    { device = "/dev/disk/by-partuuid/c4114437-3b41-41c3-b005-ce9f8171815f";
+      randomEncryption.enable = true;
+    }
+  ];
 
   nix.maxJobs = lib.mkDefault 8;
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
