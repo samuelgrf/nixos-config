@@ -32,9 +32,6 @@
   # Blacklist sensor kernel modules
   boot.blacklistedKernelModules = [ "intel_ishtp_hid" "intel_ish_ipc" ];
 
-  # Setup virtualization
-  boot.kernelModules = [ "kvm-intel" ];
-
   # Configure TLP
   services.tlp.enable = true;
   services.tlp.extraConfig = "RUNTIME_PM_BLACKLIST='02:00.0'"; # Blacklist wifi card
