@@ -1,10 +1,11 @@
-{ config, pkgs, lib, ... }:
+{ config, lib, pkgs, channels, ... }:
 
 let
   trueIfX = if config.services.xserver.enable then true else false;
 in
 {
   imports = [
+    ./channels.nix
     ./modules/qemu-user.nix
     ./modules/g810-led.nix
   ];
@@ -26,13 +27,21 @@ in
   # Set time zone
   time.timeZone = "Europe/Berlin";
 
+  # Set nixpkgs channel declaratively (revision is defined in ./channels.nix)
+  nixpkgs.pkgs = import channels.unstable {
+    config = config.nixpkgs.config;
+    overlays = config.nixpkgs.overlays;
+    localSystem = config.nixpkgs.localSystem;
+    crossSystem = config.nixpkgs.crossSystem;
+  };
+
   # Set Nix path (NIX_PATH variable)
   nix.nixPath = [
-    "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos"
     "nixos-config=/etc/nixos/configuration.nix"
     "/nix/var/nix/profiles/per-user/root/channels"
-    "nixos-unstable=https://nixos.org/channels/nixos-unstable/nixexprs.tar.xz"
-    "home-manager=https://github.com/rycee/home-manager/archive/master.tar.gz"
+    "nixpkgs=${channels.unstable}"
+    "nixos-unstable=${channels.unstable}"
+    "home-manager=${channels.home-manager}"
   ];
 
   # Select allowed unfree packages
@@ -124,7 +133,12 @@ in
   # Set package overlays
   nixpkgs.overlays = [
     (self: super: {
-      unstable = import <nixos-unstable> { config = config.nixpkgs.config; };
+      unstable = import channels.unstable {
+        config = config.nixpkgs.config;
+        overlays = config.nixpkgs.overlays;
+        localSystem = config.nixpkgs.localSystem;
+        crossSystem = config.nixpkgs.crossSystem;
+      };
       g810-led = super.callPackage ./overlays/g810-led { };
       gamemode = super.callPackage ./overlays/gamemode { };
       rpcs3 = super.callPackage ./overlays/rpcs3 {
