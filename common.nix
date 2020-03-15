@@ -225,10 +225,8 @@ in
   };
 
   # Enable 32-bit libraries for games
-  hardware = {
-    opengl.driSupport32Bit = trueIfX;
-    pulseaudio.support32Bit = trueIfX;
-  };
+  hardware.opengl.driSupport32Bit = trueIfX;
+  hardware.pulseaudio.support32Bit = trueIfX;
 
   # Enable Steam hardware for additional controller support
   hardware.steam-hardware.enable = trueIfX;
@@ -244,16 +242,14 @@ in
   hardware.pulseaudio.enable = true;
 
   # Enable KDE Plasma 5
-  services.xserver = {
-    displayManager.sddm = {
-      enable = trueIfX;
-      autoLogin.enable = trueIfX;
-      autoLogin.user = "samuel";
-    };
-    desktopManager.plasma5.enable = trueIfX;
+  services.xserver.desktopManager.plasma5.enable = trueIfX;
+  services.xserver.displayManager.sddm = {
+    enable = trueIfX;
+    autoLogin.enable = trueIfX;
+    autoLogin.user = "samuel";
   };
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+  # Define user accounts. Don't forget to set a password with ‘passwd’.
   users.users = {
     samuel = {
       isNormalUser = true;
@@ -269,7 +265,6 @@ in
   # compatible, in order to avoid breaking some software such as database
   # servers. You should change this only after NixOS release notes say you
   # should.
-
   system.stateVersion = "20.03"; # Did you read the comment?
 
   # Enable support for additional filesystems
@@ -288,16 +283,12 @@ in
   boot.kernelModules = [ "i2c-dev" ];
 
   # Optimize Nix store and run garbage collector daily
-  nix = {
-    gc.automatic = false;
-    optimise.automatic = true;
-  };
+  nix.gc.automatic = false;
+  nix.optimise.automatic = true;
 
   # Enable zram and use more efficient zstd compression
-  zramSwap = {
-    enable = true;
-    algorithm = "zstd";
-  };
+  zramSwap.enable = true;
+  zramSwap.algorithm = "zstd";
 
   # Set swappiness to 80 due to improved performance of zram.
   # Can be up to 100 but will increase process queue on intense load such as boot.
