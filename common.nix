@@ -122,7 +122,7 @@ in
         spectacle
         spotify-tui
         unstable.steam
-        torbrowser
+        # torbrowser # Broken on unstable
         unstable.wine-staging
         unstable.winetricks
         xclip
