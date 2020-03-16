@@ -28,7 +28,7 @@ in
   time.timeZone = "Europe/Berlin";
 
   # Set nixpkgs channel declaratively (revision is defined in ./channels.nix)
-  nixpkgs.pkgs = import channels.unstable {
+  nixpkgs.pkgs = import channels.glibc227 {
     config = config.nixpkgs.config;
     overlays = config.nixpkgs.overlays;
     localSystem = config.nixpkgs.localSystem;
@@ -39,7 +39,7 @@ in
   nix.nixPath = [
     "nixos-config=/etc/nixos/configuration.nix"
     "/nix/var/nix/profiles/per-user/root/channels"
-    "nixpkgs=${channels.unstable}"
+    "nixpkgs=${channels.glibc227}"
     "nixos-unstable=${channels.unstable}"
     "home-manager=${channels.home-manager}"
   ];
@@ -86,7 +86,7 @@ in
         usbutils
         wget
         youtube-dl
-        ytop
+        unstable.ytop
       ];
       noX = [
         openjdk_headless
@@ -112,7 +112,7 @@ in
         keepassxc
         konsole
         libreoffice
-        unstable.lutris
+        lutris
         mpv
         okular
         pavucontrol
@@ -122,7 +122,7 @@ in
         spectacle
         spotify-tui
         unstable.steam
-        # torbrowser # Broken on unstable
+        unstable.torbrowser
         unstable.wine-staging
         unstable.winetricks
         xclip
@@ -134,6 +134,12 @@ in
   nixpkgs.overlays = [
     (self: super: {
       unstable = import channels.unstable {
+        config = config.nixpkgs.config;
+        overlays = config.nixpkgs.overlays;
+        localSystem = config.nixpkgs.localSystem;
+        crossSystem = config.nixpkgs.crossSystem;
+      };
+      glibc227 = import channels.glibc227 {
         config = config.nixpkgs.config;
         overlays = config.nixpkgs.overlays;
         localSystem = config.nixpkgs.localSystem;

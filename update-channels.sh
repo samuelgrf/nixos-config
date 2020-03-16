@@ -30,6 +30,16 @@ with lib;
       };
     };
 
+    glibc227 = mkOption {
+      type = types.attrs;
+      default = builtins.fetchGit {
+        name = \"glibc227\";
+        url = https://github.com/nixos/nixpkgs-channels.git;
+        ref = \"refs/heads/nixos-unstable\";
+        rev = \"2ac5fab2647895a95fe9cf877faa9ce648a7be7c\";
+      };
+    };
+
     home-manager = mkOption {
       type = types.attrs;
       default = builtins.fetchGit {
