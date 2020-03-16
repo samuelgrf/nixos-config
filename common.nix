@@ -1,11 +1,10 @@
-{ config, lib, pkgs, channels, ... }:
+{ config, pkgs, lib, ... }:
 
 let
   trueIfX = if config.services.xserver.enable then true else false;
 in
 {
   imports = [
-    ./channels.nix
     ./modules/qemu-user.nix
     ./modules/g810-led.nix
   ];
@@ -26,23 +25,6 @@ in
 
   # Set time zone
   time.timeZone = "Europe/Berlin";
-
-  # Set nixpkgs channel declaratively (revision is defined in ./channels.nix)
-  nixpkgs.pkgs = import channels.glibc227 {
-    config = config.nixpkgs.config;
-    overlays = config.nixpkgs.overlays;
-    localSystem = config.nixpkgs.localSystem;
-    crossSystem = config.nixpkgs.crossSystem;
-  };
-
-  # Set Nix path (NIX_PATH variable)
-  nix.nixPath = [
-    "nixos-config=/etc/nixos/configuration.nix"
-    "/nix/var/nix/profiles/per-user/root/channels"
-    "nixpkgs=${channels.glibc227}"
-    "nixos-unstable=${channels.unstable}"
-    "home-manager=${channels.home-manager}"
-  ];
 
   # Select allowed unfree packages
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
@@ -133,13 +115,7 @@ in
   # Set package overlays
   nixpkgs.overlays = [
     (self: super: {
-      unstable = import channels.unstable {
-        config = config.nixpkgs.config;
-        overlays = config.nixpkgs.overlays;
-        localSystem = config.nixpkgs.localSystem;
-        crossSystem = config.nixpkgs.crossSystem;
-      };
-      glibc227 = import channels.glibc227 {
+      unstable = import <nixos-unstable> {
         config = config.nixpkgs.config;
         overlays = config.nixpkgs.overlays;
         localSystem = config.nixpkgs.localSystem;
