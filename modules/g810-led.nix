@@ -3,10 +3,10 @@
 with lib;
 
 let
-  cfg = config.services.hardware.g810-led;
+  cfg = config.hardware.g810-led;
 in
 {
-  options.services.hardware.g810-led = {
+  options.hardware.g810-led = {
     enable = mkOption {
       type = types.bool;
       default = false;
