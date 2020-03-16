@@ -40,8 +40,11 @@
   services.xserver.videoDrivers = [ "amdgpu" ];
 
   # Enable Freesync
+  # Enable TearFree, this forces vsync globally and fixes apps with
+  # a broken vsync implementation
   services.xserver.deviceSection = ''
     Option "VariableRefresh" "true"
+    Option "TearFree" "true"
   '';
 
   # Use ACO shader compiler globally
