@@ -16,12 +16,6 @@ in
       '';
     };
 
-    package = mkOption {
-      type = types.package;
-      default = pkgs.g810-led;
-      defaultText = "pkgs.g810-led";
-    };
-
     profile = mkOption {
       type = types.path;
       description = ''
@@ -47,29 +41,28 @@ in
     };
   };
 
-
   config = mkIf cfg.enable {
-    environment.systemPackages = [ cfg.package ];
+    environment.systemPackages = [ pkgs.g810-led ];
     services.udev.extraRules = ''
-      ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c336", MODE="666" RUN+="${cfg.package}/bin/g213-led -p ${cfg.profile}"
-      ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c330", MODE="666" RUN+="${cfg.package}/bin/g410-led -p ${cfg.profile}"
-      ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c33a", MODE="666" RUN+="${cfg.package}/bin/g413-led -p ${cfg.profile}"
-      ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c33c", MODE="666" RUN+="${cfg.package}/bin/g513-led -p ${cfg.profile}"
-      ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c333", MODE="666" RUN+="${cfg.package}/bin/g610-led -p ${cfg.profile}"
-      ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c338", MODE="666" RUN+="${cfg.package}/bin/g610-led -p ${cfg.profile}"
-      ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c331", MODE="666" RUN+="${cfg.package}/bin/g810-led -p ${cfg.profile}"
-      ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c337", MODE="666" RUN+="${cfg.package}/bin/g810-led -p ${cfg.profile}"
-      ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c32b", MODE="666" RUN+="${cfg.package}/bin/g910-led -p ${cfg.profile}"
-      ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c335", MODE="666" RUN+="${cfg.package}/bin/g910-led -p ${cfg.profile}"
-      ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c339", MODE="666" RUN+="${cfg.package}/bin/gpro-led -p ${cfg.profile}"
+      ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c336", MODE="666" RUN+="${pkgs.g810-led}/bin/g213-led -p ${cfg.profile}"
+      ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c330", MODE="666" RUN+="${pkgs.g810-led}/bin/g410-led -p ${cfg.profile}"
+      ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c33a", MODE="666" RUN+="${pkgs.g810-led}/bin/g413-led -p ${cfg.profile}"
+      ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c33c", MODE="666" RUN+="${pkgs.g810-led}/bin/g513-led -p ${cfg.profile}"
+      ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c333", MODE="666" RUN+="${pkgs.g810-led}/bin/g610-led -p ${cfg.profile}"
+      ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c338", MODE="666" RUN+="${pkgs.g810-led}/bin/g610-led -p ${cfg.profile}"
+      ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c331", MODE="666" RUN+="${pkgs.g810-led}/bin/g810-led -p ${cfg.profile}"
+      ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c337", MODE="666" RUN+="${pkgs.g810-led}/bin/g810-led -p ${cfg.profile}"
+      ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c32b", MODE="666" RUN+="${pkgs.g810-led}/bin/g910-led -p ${cfg.profile}"
+      ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c335", MODE="666" RUN+="${pkgs.g810-led}/bin/g910-led -p ${cfg.profile}"
+      ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c339", MODE="666" RUN+="${pkgs.g810-led}/bin/gpro-led -p ${cfg.profile}"
       ${optionalString (cfg.vendorId != null && cfg.productId != null) ''
-        ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="${cfg.vendorId}", ATTRS{idProduct}=="${cfg.productId}", MODE="666" RUN+="${cfg.package}/bin/g810-led -p ${cfg.profile} -dv ${cfg.vendorId} -dp ${cfg.productId}"
+        ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="${cfg.vendorId}", ATTRS{idProduct}=="${cfg.productId}", MODE="666" RUN+="${pkgs.g810-led}/bin/g810-led -p ${cfg.profile} -dv ${cfg.vendorId} -dp ${cfg.productId}"
       ''}
       ${optionalString (cfg.vendorId == null && cfg.productId != null) ''
-        ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idProduct}=="${cfg.productId}", MODE="666" RUN+="${cfg.package}/bin/g810-led -p ${cfg.profile} -dp ${cfg.productId}"
+        ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idProduct}=="${cfg.productId}", MODE="666" RUN+="${pkgs.g810-led}/bin/g810-led -p ${cfg.profile} -dp ${cfg.productId}"
       ''}
       ${optionalString (cfg.vendorId != null && cfg.productId == null) ''
-        ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="${cfg.vendorId}", MODE="666" RUN+="${cfg.package}/bin/g810-led -p ${cfg.profile} -dv ${cfg.vendorId}"
+        ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="${cfg.vendorId}", MODE="666" RUN+="${pkgs.g810-led}/bin/g810-led -p ${cfg.profile} -dv ${cfg.vendorId}"
       ''}
     '';
   };
