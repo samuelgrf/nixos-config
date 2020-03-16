@@ -122,6 +122,7 @@ in
         crossSystem = config.nixpkgs.crossSystem;
       };
       g810-led = super.callPackage ./overlays/g810-led { };
+      lux = super.callPackage ./overlays/lux { };
       gamemode = super.callPackage ./overlays/gamemode { };
       rpcs3 = super.callPackage ./overlays/rpcs3 {
         stdenv = super.impureUseNativeOptimizations super.stdenv;
