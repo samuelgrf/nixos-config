@@ -32,6 +32,10 @@
   # Enable weekly TRIM on ZFS
   services.zfs.trim.enable = true;
 
+  # Add ddcci module for controlling the monitor through DDC
+  boot.extraModulePackages = [ pkgs.linuxPackages.ddcci-driver ];
+  boot.kernelModules = [ "ddcci" ];
+
   # Use the amdgpu video driver
   services.xserver.videoDrivers = [ "amdgpu" ];
 
