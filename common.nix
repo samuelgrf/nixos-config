@@ -68,7 +68,7 @@ in
         usbutils
         wget
         youtube-dl
-        unstable.ytop
+        ytop
       ];
       noX = [
         openjdk_headless
@@ -104,7 +104,7 @@ in
         spectacle
         spotify-tui
         unstable.steam
-        unstable.torbrowser
+        torbrowser
         unstable.wine-staging
         unstable.winetricks
         xclip
