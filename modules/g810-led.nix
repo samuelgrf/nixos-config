@@ -47,7 +47,9 @@ in
     };
   };
 
+
   config = mkIf cfg.enable {
+    environment.systemPackages = [ cfg.package ];
     services.udev.extraRules = ''
       ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c336", MODE="666" RUN+="${cfg.package}/bin/g213-led -p ${cfg.profile}"
       ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c330", MODE="666" RUN+="${cfg.package}/bin/g410-led -p ${cfg.profile}"
