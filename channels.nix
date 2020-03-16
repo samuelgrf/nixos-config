@@ -20,7 +20,7 @@ with lib;
         name = "nixos-unstable";
         url = https://github.com/nixos/nixpkgs-channels.git;
         ref = "refs/heads/nixos-unstable";
-        rev = "434ff94e73ac8a16e69f2893d7d5365d6a92bbd4";
+        rev = "0729b8c55e0dfaf302af4c57546871d47a652048";
       };
     };
 
