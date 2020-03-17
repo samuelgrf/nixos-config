@@ -240,11 +240,11 @@ in
   users.users = {
     samuel = {
       isNormalUser = true;
-      extraGroups = [ "wheel" "networkmanager" "video" ];
+      extraGroups = [ "wheel" "networkmanager" ];
     };
     test = {
       isNormalUser = true;
-      extraGroups = [ "wheel" "networkmanager" "video" ];
+      extraGroups = [ "wheel" "networkmanager" ];
     };
   };
 

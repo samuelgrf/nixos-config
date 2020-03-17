@@ -33,9 +33,6 @@
   # Enable weekly TRIM on ZFS
   services.zfs.trim.enable = true;
 
-  # Enable lux for brightness control
-  hardware.lux.enable = true;
-
   # Add ddcci module for controlling the monitor through DDC
   boot.extraModulePackages = [ pkgs.linuxPackages.ddcci-driver ];
   boot.kernelModules = [ "ddcci" ];
