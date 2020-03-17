@@ -96,6 +96,7 @@ in
         libreoffice
         lutris
         mpv
+        multimc
         okular
         pavucontrol
         partition-manager
