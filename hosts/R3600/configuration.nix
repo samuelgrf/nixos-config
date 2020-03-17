@@ -34,8 +34,11 @@
   services.zfs.trim.enable = true;
 
   # Add ddcci module for controlling the monitor through DDC
-  boot.extraModulePackages = [ pkgs.linuxPackages.ddcci-driver ];
+  boot.extraModulePackages = [ pkgs.unstable.linuxPackages_5_5.ddcci-driver ];
   boot.kernelModules = [ "ddcci" ];
+
+  # Use Linux kernel 5.5, this fixes screen flickering after suspend
+  boot.kernelPackages = pkgs.unstable.linuxPackages_5_5;
 
   # Use the amdgpu video driver
   services.xserver.videoDrivers = [ "amdgpu" ];
