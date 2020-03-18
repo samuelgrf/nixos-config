@@ -11,8 +11,14 @@
   boot.extraModulePackages = [ ];
 
   boot.initrd.luks.devices = {
-    luksroot.device = "/dev/disk/by-uuid/85109cb2-7c95-40d2-9903-8c173912c743";
-    luksroot.allowDiscards = true;
+    luksroot = {
+      device = "/dev/disk/by-uuid/85109cb2-7c95-40d2-9903-8c173912c743";
+      allowDiscards = true;
+    };
+    luksdisk2 = {
+      device = "/dev/disk/by-uuid/3483418f-8124-42b1-8cf3-501984c7b945";
+      allowDiscards = true;
+    };
   };
 
   fileSystems."/" = {
@@ -28,6 +34,11 @@
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/5E3B-2784";
     fsType = "vfat";
+  };
+
+  fileSystems."/disk2" = {
+    device = "spool";
+    fsType = "zfs";
   };
 
   swapDevices =
