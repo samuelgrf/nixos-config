@@ -52,6 +52,7 @@ in
         gnupg
         htop
         imagemagick
+        lm_sensors
         lolcat
         lshw
         lynx
