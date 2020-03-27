@@ -1,13 +1,13 @@
 { stdenv, lib, fetchgit, cmake, pkgconfig, git
-, qt5, openal, glew, vulkan-loader, libpng, ffmpeg, libevdev, python27
+, qt5, openal, glew, vulkan-loader, libpng, ffmpeg, libevdev, python3
 , pulseaudioSupport ? true, libpulseaudio
 , waylandSupport ? true, wayland
 , alsaSupport ? true, alsaLib
 }:
 
 let
-  majorVersion = "0.0.6";
-  gitVersion = "9274-45dc5d9b0"; # echo $(git rev-list HEAD --count)-$(git rev-parse --short HEAD)
+  majorVersion = "0.0.8";
+  gitVersion = "9300-341fdf7eb"; # echo $(git rev-list HEAD --count)-$(git rev-parse --short HEAD)
 in
 stdenv.mkDerivation {
   pname = "rpcs3";
@@ -15,8 +15,8 @@ stdenv.mkDerivation {
 
   src = fetchgit {
     url = "https://github.com/RPCS3/rpcs3";
-    rev = "45dc5d9b02d1b433e8e018f6047bbdbbc8fc2225";
-    sha256 = "1ig55k4vw2zf5wbm39srwc030nlhh3wgm3d1sazr6r014b0z3irn";
+    rev = "341fdf7eb14763fd06e2eab9a4b2b8f1adf9fdbd";
+    sha256 = "1qx97zkkjl6bmv5rhfyjqynbz0v8h40b2wxqnl59g287wj0yk3y1";
   };
 
   preConfigure = ''
@@ -36,7 +36,7 @@ stdenv.mkDerivation {
   nativeBuildInputs = [ cmake pkgconfig git ];
 
   buildInputs = [
-    qt5.qtbase qt5.qtquickcontrols openal glew vulkan-loader libpng ffmpeg libevdev python27
+    qt5.qtbase qt5.qtquickcontrols openal glew vulkan-loader libpng ffmpeg libevdev python3
   ] ++ lib.optional pulseaudioSupport libpulseaudio
     ++ lib.optional alsaSupport alsaLib
     ++ lib.optional waylandSupport wayland;
