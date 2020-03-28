@@ -1,5 +1,5 @@
 { stdenv, lib, fetchgit, cmake, pkgconfig, git
-, qt5, openal, glew, vulkan-loader, libpng, ffmpeg, libevdev, python3
+, qt5, openal, glew, vulkan-headers, vulkan-loader, libpng, ffmpeg, libevdev, python3
 , pulseaudioSupport ? true, libpulseaudio
 , waylandSupport ? true, wayland
 , alsaSupport ? true, alsaLib
@@ -33,10 +33,11 @@ stdenv.mkDerivation {
     "-DUSE_NATIVE_INSTRUCTIONS=ON"
   ];
 
-  nativeBuildInputs = [ cmake pkgconfig git ];
+  nativeBuildInputs = [ cmake pkgconfig git qt5.wrapQtAppsHook ];
 
   buildInputs = [
-    qt5.qtbase qt5.qtquickcontrols openal glew vulkan-loader libpng ffmpeg libevdev python3
+    qt5.qtbase qt5.qtquickcontrols openal glew vulkan-headers vulkan-loader libpng
+    ffmpeg libevdev python3
   ] ++ lib.optional pulseaudioSupport libpulseaudio
     ++ lib.optional alsaSupport alsaLib
     ++ lib.optional waylandSupport wayland;
