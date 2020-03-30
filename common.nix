@@ -129,6 +129,7 @@ in
       rpcs3 = super.callPackage ./overlays/rpcs3 {
         stdenv = super.impureUseNativeOptimizations super.stdenv;
       };
+      multimc = super.libsForQt5.callPackage ./overlays/multimc { };
       emacs-nox = pkgs.emacs.override {
         withX = false;
         withGTK2 = false;
