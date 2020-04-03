@@ -10,7 +10,8 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.timeout = 1;
 
-  # networking.hostName = "nixos"; # Define your hostname.
+  # Set hostname
+  networking.hostName = "R3600";
 
   # Enable CPU microcode updates
   hardware.cpu.amd.updateMicrocode = true;

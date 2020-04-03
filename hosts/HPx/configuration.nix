@@ -8,7 +8,8 @@
   # Set systemd-boot timeout
   boot.loader.timeout = 1;
 
-  # networking.hostName = "nixos"; # Define your hostname.
+  # Set hostname
+  networking.hostName = "HPx";
 
   # Enable CPU microcode updates
   hardware.cpu.intel.updateMicrocode = true;
