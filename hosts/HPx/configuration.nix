@@ -1,10 +1,6 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports = [
-    ../modules/qemu-user.nix
-  ];
-
   # Set systemd-boot timeout
   boot.loader.timeout = 1;
 

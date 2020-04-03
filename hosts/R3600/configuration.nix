@@ -1,11 +1,6 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports = [
-    ../modules/qemu-user.nix
-    ../modules/lux.nix
-  ];
-
   # Configure systemd-boot
   boot.loader.systemd-boot.enable = true;
   boot.loader.timeout = 1;

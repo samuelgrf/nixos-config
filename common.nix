@@ -4,11 +4,6 @@ let
   trueIfX = if config.services.xserver.enable then true else false;
 in
 {
-  imports = [
-    ./modules/qemu-user.nix
-    ./modules/g810-led.nix
-  ];
-
   # Set locale
   i18n.defaultLocale = "en_IE.UTF-8";
 
