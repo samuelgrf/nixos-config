@@ -1,4 +1,4 @@
-{ stdenv, fetchgit, lib, coreutils }:
+{ stdenv, fetchgit, coreutils }:
 
 stdenv.mkDerivation rec {
   pname = "lux";
