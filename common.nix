@@ -109,41 +109,6 @@ in
       ];
     in common ++ (if config.services.xserver.enable then X else noX);
 
-  # Set package overlays
-  nixpkgs.overlays = [
-    (self: super: {
-      unstable = import <nixos-unstable> {
-        config = config.nixpkgs.config;
-        overlays = config.nixpkgs.overlays;
-        localSystem = config.nixpkgs.localSystem;
-        crossSystem = config.nixpkgs.crossSystem;
-      };
-      g810-led = super.callPackage ./overlays/g810-led { };
-      lux = super.callPackage ./overlays/lux { };
-      gamemode = super.callPackage ./overlays/gamemode { };
-      rpcs3 = super.callPackage ./overlays/rpcs3 {
-        stdenv = super.impureUseNativeOptimizations super.stdenv;
-      };
-      multimc = super.libsForQt5.callPackage ./overlays/multimc { };
-      emacs-nox = pkgs.emacs.override {
-        withX = false;
-        withGTK2 = false;
-        withGTK3 = false;
-      };
-      linuxPackages = super.linuxPackages.extend (self: super: {
-        rtl8821ce = super.callPackage ./overlays/rtl8821ce { };
-      });
-      # Copied from https://github.com/cleverca22/nixos-configs/blob/master/overlays/qemu/default.nix
-      qemu-user-arm = if self.stdenv.system == "x86_64-linux"
-        then self.pkgsi686Linux.callPackage ./overlays/qemu-user { user_arch = "arm"; }
-        else self.callPackage ./overlays/qemu-user { user_arch = "arm"; };
-      qemu-user-x86 = self.callPackage ./overlays/qemu-user { user_arch = "x86_64"; };
-      qemu-user-arm64 = self.callPackage ./overlays/qemu-user { user_arch = "aarch64"; };
-      qemu-user-riscv32 = self.callPackage ./overlays/qemu-user { user_arch = "riscv32"; };
-      qemu-user-riscv64 = self.callPackage ./overlays/qemu-user { user_arch = "riscv64"; };
-    })
-  ];
-
   # Hides the mouse cursor if it isn’t being used
   systemd.user.services.unclutter = {
     description = "unclutter-xfixes";
