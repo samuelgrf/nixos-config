@@ -11,6 +11,9 @@
   # Enable CPU microcode updates
   hardware.cpu.amd.updateMicrocode = true;
 
+  # Needed for the time to stay in sync when dual booting Linux and Windows
+  time.hardwareClockInLocalTime = true;
+
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   services.xserver.autorun = true;
