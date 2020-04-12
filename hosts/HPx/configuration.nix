@@ -40,7 +40,7 @@
   services.undervolt = {
     enable = true;
     coreOffset = "-125";
-    gpuOffset = "-110";
+    gpuOffset = "-105";
     uncoreOffset = "-125";
     # TODO: Test with USB devices
     analogioOffset = "-105";
