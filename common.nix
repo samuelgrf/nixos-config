@@ -102,7 +102,7 @@ in
         spotify-tui
         unstable.steam
         torbrowser
-        unstable.wine-staging
+        unstable.wineWowPackages.staging # Comes with both x64 and x86 Wine
         unstable.winetricks
         xclip
         xorg.xev
