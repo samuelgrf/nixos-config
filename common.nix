@@ -31,6 +31,11 @@ in
     "steam-runtime"
   ];
 
+  # Select allowed insecure packages
+  nixpkgs.config.permittedInsecurePackages = [
+    "p7zip-16.02"
+  ];
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs;
