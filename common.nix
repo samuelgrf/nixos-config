@@ -23,6 +23,7 @@ in
 
   # Select allowed unfree packages
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "android-studio-stable"
     "firefox-bin"
     "firefox-release-bin-unwrapped"
     "steam"
