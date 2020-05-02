@@ -33,11 +33,11 @@
   services.zfs.trim.enable = true;
 
   # Add ddcci module for controlling the monitor through DDC
-  boot.extraModulePackages = [ pkgs.unstable.linuxPackages_5_5.ddcci-driver ];
+  boot.extraModulePackages = [ pkgs.unstable.linuxPackages_5_6.ddcci-driver ];
   boot.kernelModules = [ "ddcci" ];
 
   # Use Linux kernel 5.5, this fixes screen flickering after suspend
-  boot.kernelPackages = pkgs.unstable.linuxPackages_5_5;
+  boot.kernelPackages = pkgs.unstable.linuxPackages_5_6;
 
   # Install amdvlk driver, some games have graphical glitches when using mesa
   # Can be enabled by setting VK_ICD_FILENAMES=/nix/store/<hash>-amdvlk-2020.Q1.2/share/vulkan/icd.d/amd_icd64.json
