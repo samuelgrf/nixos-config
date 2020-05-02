@@ -10,6 +10,7 @@
         crossSystem = config.nixpkgs.crossSystem;
       };
       amdvlk = super.callPackage ./amdvlk { };
+      w7zip = super.callPackage ./w7zip { };
       g810-led = super.callPackage ./g810-led { };
       lux = super.callPackage ./lux { };
       gamemode = super.callPackage ./gamemode { };

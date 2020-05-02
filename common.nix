@@ -59,7 +59,6 @@ in
         lynx
         neofetch
         patchelf
-        p7zip
         pciutils
         powertop
         python3
@@ -68,6 +67,7 @@ in
         sysstat
         tuir
         usbutils
+        w7zip
         wget
         youtube-dl
         ytop
