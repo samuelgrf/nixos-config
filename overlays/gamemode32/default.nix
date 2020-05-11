@@ -1,5 +1,6 @@
-{ stdenv, fetchFromGitHub
-, pkgs
+{ stdenv_32bit, fetchFromGitHub
+, pkgsi686Linux
+, platforms
 , meson
 , ninja
 , cmake
@@ -10,8 +11,8 @@
 , inih
 }:
 
-stdenv.mkDerivation rec {
-  pname = "gamemode";
+stdenv_32bit.mkDerivation rec {
+  pname = "gamemode32";
   version = "1.5.1";
 
   src = fetchFromGitHub {
@@ -25,21 +26,14 @@ stdenv.mkDerivation rec {
   buildInputs = [ systemd dbus inih ];
   propagatedBuildInputs = [ polkit systemd ];
 
-  postPatch = ''
-    substituteInPlace daemon/gamemode-tests.c --replace "/usr/bin/gamemoderun" $out/bin/gamemoderun
-    '';
-
-  configurePhase = "meson build --prefix=$out -Dwith-systemd-user-unit-dir=$out/lib/systemd/user --libexecdir $out/lib/gamemode";
+  configurePhase = "meson build --prefix=$out -Dwith-daemon=false -Dwith-examples=false -Dwith-systemd=false -Dwith-util=false --libdir lib32";
   buildPhase = "ninja -C build";
   installPhase = ''
     ninja -C build install
-
-    mkdir -p $out/share/doc/${pname}/example
-    install -m644 -Dt $out/share/doc/${pname}/example example/gamemode.ini
   '';
 
-  meta = with stdenv.lib; {
-    platforms = [ "x86_64-linux" ];
+  meta = with stdenv_32bit.lib; {
+    platforms = [ "i686-linux" "x86_64-linux" ];
     description = "Optimise Linux system performance on demand.";
   };
 }

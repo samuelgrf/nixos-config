@@ -9,11 +9,15 @@
         localSystem = config.nixpkgs.localSystem;
         crossSystem = config.nixpkgs.crossSystem;
       };
+      # GameMode
+      inih = super.callPackage ./inih { };
+      gamemode32 = super.callPackage_i686 ./gamemode32 { };
+      gamemode = super.callPackage ./gamemode { };
+
       amdvlk = super.callPackage ./amdvlk { };
       w7zip = super.callPackage ./w7zip { };
       g810-led = super.callPackage ./g810-led { };
       lux = super.callPackage ./lux { };
-      gamemode = super.callPackage ./gamemode { };
       rpcs3 = super.callPackage ./rpcs3 {
         stdenv = super.impureUseNativeOptimizations super.stdenv;
       };

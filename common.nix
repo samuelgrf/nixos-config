@@ -86,6 +86,7 @@ in
         filezilla
         firefox-bin
         gamemode
+        gamemode32
         gimp
         gnome3.adwaita-icon-theme # needed for caffeine-ng to display icons
         gwenview
