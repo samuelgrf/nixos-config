@@ -29,6 +29,7 @@ in
     "steam"
     "steam-original"
     "steam-runtime"
+    "w7zip"
   ];
 
   # Select allowed insecure packages
