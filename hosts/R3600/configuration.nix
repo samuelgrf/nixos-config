@@ -45,6 +45,9 @@
     amdvlk
   ];
 
+  # Install GameMode systemd service
+  systemd.packages = [ pkgs.gamemode ];
+
   # Use the amdgpu video driver
   services.xserver.videoDrivers = [ "amdgpu" ];
 
