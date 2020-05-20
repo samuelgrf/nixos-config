@@ -3,32 +3,47 @@
 {
   nixpkgs.overlays = [
     (self: super: {
+      # Alias for unstable channel
       unstable = import <nixos-unstable> {
         config = config.nixpkgs.config;
         overlays = config.nixpkgs.overlays;
         localSystem = config.nixpkgs.localSystem;
         crossSystem = config.nixpkgs.crossSystem;
       };
-      # GameMode
-      inih = super.callPackage ./inih { };
-      gamemode32 = super.callPackage_i686 ./gamemode32 { };
-      gamemode = super.callPackage ./gamemode { };
 
-      amdvlk = super.callPackage ./amdvlk { };
-      w7zip = super.callPackage ./w7zip { };
-      g810-led = super.callPackage ./g810-led { };
-      lux = super.callPackage ./lux { };
-      rpcs3 = super.callPackage ./rpcs3 {
-        stdenv = super.impureUseNativeOptimizations super.stdenv;
-      };
+      ### APPLICATIONS
+
       emacs-nox = pkgs.emacs.override {
         withX = false;
         withGTK2 = false;
         withGTK3 = false;
       };
+
+      rpcs3 = super.callPackage ./rpcs3 {
+        stdenv = super.impureUseNativeOptimizations super.stdenv;
+      };
+
+      ### TOOLS
+
+      g810-led = super.callPackage ./g810-led { };
+
+      gamemode32 = super.callPackage_i686 ./gamemode32 { };
+      gamemode = super.callPackage ./gamemode { };
+
+      inih = super.callPackage ./inih { }; # GameMode dependency
+
+      lux = super.callPackage ./lux { };
+
+      w7zip = super.callPackage ./w7zip { };
+
+      ### MISC
+
+      amdvlk = super.callPackage ./amdvlk { };
+
       linuxPackages = super.linuxPackages.extend (self: super: {
         rtl8821ce = super.callPackage ./rtl8821ce { };
       });
+
       # Copied from https://github.com/cleverca22/nixos-configs/blob/master/overlays/qemu/default.nix
       qemu-user-arm = if self.stdenv.system == "x86_64-linux"
         then self.pkgsi686Linux.callPackage ./qemu-user { user_arch = "arm"; }
