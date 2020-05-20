@@ -168,6 +168,7 @@ in
       git -C /etc/nixos diff $OLDBRANCH origin/$NEWBRANCH &&
       sudo git -C /etc/nixos reset --hard origin/$NEWBRANCH";
     "testconfig" = "sudo nixos-rebuild test -I nixos-config=/home/samuel/git-repos/nixconfig/configuration.nix";
+    "nix-stray-roots" = ''nix-store --gc --print-roots | grep -Ev "^(/nix/var|/run/\w+-system|\{memory|\{censored)"'';
     "pks" = "nix search";
     "pku" = "sudo nixos-rebuild switch --upgrade";
     "wttr" = "curl wttr.in";
