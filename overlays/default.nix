@@ -19,6 +19,10 @@
         withGTK3 = false;
       };
 
+      pcsx2_NativeOptimizations = super.pkgs.pkgsi686Linux.pcsx2.override {
+        stdenv = super.pkgs.pkgsi686Linux.impureUseNativeOptimizations super.pkgs.pkgsi686Linux.stdenv;
+      };
+
       rpcs3 = super.callPackage ./rpcs3 {
         stdenv = super.impureUseNativeOptimizations super.stdenv;
       };
