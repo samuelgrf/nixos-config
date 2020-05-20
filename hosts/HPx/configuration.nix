@@ -66,11 +66,6 @@
   # Install libraries for VA-API
   hardware.opengl.extraPackages = [ pkgs.vaapiIntel ];
 
-  # Always start mpv with VA-API enabled
-  environment.shellAliases = {
-    "mpv" = "mpv --vo=gpu --hwdec=vaapi";
-  };
-
   # Enable touch scrolling in Firefox
   environment.variables = {
     "MOZ_USE_XINPUT2" = "1";
