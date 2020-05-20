@@ -168,11 +168,6 @@ in
       git -C /etc/nixos diff $OLDBRANCH origin/$NEWBRANCH &&
       sudo git -C /etc/nixos reset --hard origin/$NEWBRANCH";
     "testconfig" = "sudo nixos-rebuild test -I nixos-config=/home/samuel/git-repos/nixconfig/configuration.nix";
-    "c." = "cd ..";
-    "pki" = "sudo nix-env -i";
-    "pkl" = "nix-env -qaP";
-    "pkp" = "command-not-found";
-    "pkr" = "sudo nix-env -e";
     "pks" = "nix search";
     "pku" = "sudo nixos-rebuild switch --upgrade";
     "wttr" = "curl wttr.in";
