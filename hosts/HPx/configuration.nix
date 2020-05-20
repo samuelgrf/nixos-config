@@ -48,7 +48,6 @@
 
  # Install additional packages
   environment.systemPackages = with pkgs; [
-    alsaTools
     libva-utils
   ];
 
