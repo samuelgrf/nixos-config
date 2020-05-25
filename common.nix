@@ -105,6 +105,7 @@ in
         pavucontrol
         partition-manager
         unstable.pcsx2_nativeOptimizations
+        rpcs3_extraVram_nativeOptimizations
         rpcs3_update_nativeOptimizations
         spectacle
         spotify-tui

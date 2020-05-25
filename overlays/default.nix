@@ -80,7 +80,64 @@
 
             # Add vulkan-headers needed for Vulkan support
             buildInputs = (oldAttrs.buildInputs or []) ++ [ pkgs.vulkan-headers ];
-        });
+      });
+
+      # RPCS3 fork with higher VRAM limits, required by some texture upscaling mods
+      rpcs3_extraVram =
+        let
+          majorVersion = "0.0.10-dev";
+          gitVersion = "10422-3aa92a34b"; # echo $(git rev-list HEAD --count)-$(git rev-parse --short HEAD)
+          pkgs = self.qt-5-14-2;
+        in
+        pkgs.rpcs3.overrideAttrs (oldAttrs: {
+          version = "${majorVersion}-${gitVersion}";
+
+          src = pkgs.fetchgit {
+            url = "https://github.com/rxys/rpcs3";
+            rev = "3aa92a34b48f8e8bdcaf06418bb0bb4cb9877434";
+            sha256 = "1773yf153j3wy3gy6gxw4qjyp7sq349r79ggmn3gaq7vb3lay5nv";
+          };
+
+          preConfigure = ''
+            cat > ./rpcs3/git-version.h <<EOF
+            #define RPCS3_GIT_VERSION "${gitVersion}"
+            #define RPCS3_GIT_BRANCH "HEAD"
+            #define RPCS3_GIT_FULL_BRANCH "RPCS3/rpcs3/master"
+            #define RPCS3_GIT_VERSION_NO_UPDATE 1
+            EOF
+          '';
+
+          # Prevent file collisions
+          postInstall = ''
+            mv $out/bin/rpcs3 $out/bin/rpcs3_extra-vram
+            rm -rf $out/share/applications
+            rm -rf $out/share/icons
+            rm -rf $out/share/metainfo
+          '';
+      });
+
+      rpcs3_extraVram_nativeOptimizations =
+        let
+          pkgs = self.qt-5-14-2;
+        in
+        (self.rpcs3_extraVram.override {
+          mkDerivation = (pkgs.impureUseNativeOptimizations pkgs.stdenv).mkDerivation;
+        })
+          .overrideAttrs (oldAttrs: {
+            # Enable native optimizations in CMake
+            cmakeFlags = [
+              "-DUSE_SYSTEM_LIBPNG=ON"
+              "-DUSE_SYSTEM_FFMPEG=ON"
+              "-DUSE_NATIVE_INSTRUCTIONS=ON"
+            ];
+
+            # Add QT wrapper, this is needed because we are using stdenv.mkDerivation
+            # instead of mkDerivation
+            nativeBuildInputs = (oldAttrs.nativeBuildInputs or []) ++ [ pkgs.qt5.wrapQtAppsHook ];
+
+            # Add vulkan-headers needed for Vulkan support
+            buildInputs = (oldAttrs.buildInputs or []) ++ [ pkgs.vulkan-headers ];
+      });
 
       ### TOOLS
 
