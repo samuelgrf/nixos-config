@@ -11,6 +11,16 @@
         crossSystem = config.nixpkgs.crossSystem;
       };
 
+      # Experimental Qt 5.14.2 channel, needed for newer versions of RPCS3
+      # can be downloaded as tarball from:
+      # https://github.com/petabyteboy/nixpkgs/archive/feature/qt-5-14-2.tar.gz
+      qt-5-14-2 = import <qt-5-14-2> {
+        config = config.nixpkgs.config;
+        overlays = config.nixpkgs.overlays;
+        localSystem = config.nixpkgs.localSystem;
+        crossSystem = config.nixpkgs.crossSystem;
+      };
+
       ### APPLICATIONS
 
       emacs-nox = pkgs.emacs.override {
