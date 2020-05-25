@@ -33,9 +33,31 @@
         stdenv = super.pkgs.pkgsi686Linux.impureUseNativeOptimizations super.pkgs.pkgsi686Linux.stdenv;
       };
 
-      rpcs3 = super.callPackage ./rpcs3 {
-        stdenv = super.impureUseNativeOptimizations super.stdenv;
-      };
+      # Update to newest version, needs Qt version >5.14 to work
+      rpcs3_update =
+        let
+          majorVersion = "0.0.10-dev";
+          gitVersion = "10427-865180e63"; # echo $(git rev-list HEAD --count)-$(git rev-parse --short HEAD)
+          pkgs = self.qt-5-14-2;
+        in
+        pkgs.rpcs3.overrideAttrs (oldAttrs: {
+          version = "${majorVersion}-${gitVersion}";
+
+          src = pkgs.fetchgit {
+            url = "https://github.com/RPCS3/rpcs3";
+            rev = "865180e63e10b5336ca062829d6b1fad8618a3c7";
+            sha256 = "0l1f7hmwxfsayjwj9l9q90vsclg9sihg99ykxw78vqc81xkmznzz";
+          };
+
+          preConfigure = ''
+            cat > ./rpcs3/git-version.h <<EOF
+            #define RPCS3_GIT_VERSION "${gitVersion}"
+            #define RPCS3_GIT_BRANCH "HEAD"
+            #define RPCS3_GIT_FULL_BRANCH "RPCS3/rpcs3/master"
+            #define RPCS3_GIT_VERSION_NO_UPDATE 1
+            EOF
+          '';
+      });
 
       ### TOOLS
 
