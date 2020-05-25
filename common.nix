@@ -104,7 +104,7 @@ in
         okular
         pavucontrol
         partition-manager
-        unstable.pcsx2_NativeOptimizations
+        unstable.pcsx2_nativeOptimizations
         rpcs3
         spectacle
         spotify-tui
