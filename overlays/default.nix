@@ -59,6 +59,29 @@
           '';
       });
 
+      rpcs3_update_nativeOptimizations =
+        let
+          pkgs = self.qt-5-14-2;
+        in
+        (self.rpcs3_update.override {
+          mkDerivation = (pkgs.impureUseNativeOptimizations pkgs.stdenv).mkDerivation;
+        })
+          .overrideAttrs (oldAttrs: {
+            # Enable native optimizations in CMake
+            cmakeFlags = [
+              "-DUSE_SYSTEM_LIBPNG=ON"
+              "-DUSE_SYSTEM_FFMPEG=ON"
+              "-DUSE_NATIVE_INSTRUCTIONS=ON"
+            ];
+
+            # Add QT wrapper, this is needed because we are using stdenv.mkDerivation
+            # instead of mkDerivation
+            nativeBuildInputs = (oldAttrs.nativeBuildInputs or []) ++ [ pkgs.qt5.wrapQtAppsHook ];
+
+            # Add vulkan-headers needed for Vulkan support
+            buildInputs = (oldAttrs.buildInputs or []) ++ [ pkgs.vulkan-headers ];
+        });
+
       ### TOOLS
 
       g810-led = super.callPackage ./g810-led { };
