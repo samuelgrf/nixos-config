@@ -82,7 +82,6 @@ in
         ark
         cabextract
         caffeine-ng
-        chromium
         filezilla
         firefox-bin
         gamemode
@@ -111,6 +110,7 @@ in
         spotify-tui
         unstable.steam
         torbrowser
+        unstable.ungoogled-chromium # TODO: Switch to stable channel when package is available
         unstable.wineWowPackages.staging # Comes with both x64 and x86 Wine
         unstable.winetricks
         xclip
