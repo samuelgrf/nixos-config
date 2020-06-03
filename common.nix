@@ -105,7 +105,7 @@ in
         partition-manager
         unstable.pcsx2_nativeOptimizations
         rpcs3_extraVram_nativeOptimizations
-        rpcs3_update_nativeOptimizations
+        rpcs3_nativeOptimizations
         spectacle
         spotify-tui
         unstable.steam
