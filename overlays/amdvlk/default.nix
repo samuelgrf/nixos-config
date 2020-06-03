@@ -65,10 +65,10 @@ stdenv.mkDerivation rec {
   cmakeDir = "../drivers/xgl";
 
   installPhase = ''
-    mkdir -p $out/lib $out/share/vulkan/icd.d
+    mkdir -p $out/lib $out/share/amdvlk/icd.d
     cp icd/amdvlk64.so $out/lib/
-    cp ../drivers/AMDVLK/json/Redhat/amd_icd64.json $out/share/vulkan/icd.d/
-    substituteInPlace $out/share/vulkan/icd.d/amd_icd64.json --replace \
+    cp ../drivers/AMDVLK/json/Redhat/amd_icd64.json $out/share/amdvlk/icd.d/
+    substituteInPlace $out/share/amdvlk/icd.d/amd_icd64.json --replace \
       '/usr/lib64' "$out/lib"
     patchelf --set-rpath "$rpath" $out/lib/amdvlk64.so
   '';

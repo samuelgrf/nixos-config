@@ -39,8 +39,8 @@
   # Use Linux kernel 5.5, this fixes screen flickering after suspend
   boot.kernelPackages = pkgs.unstable.linuxPackages_5_6;
 
-  # Install amdvlk driver, some games have graphical glitches when using mesa
-  # Can be enabled by setting VK_ICD_FILENAMES=/nix/store/<hash>-amdvlk-2020.Q1.2/share/vulkan/icd.d/amd_icd64.json
+  # Install AMDVLK driver, some games have graphical glitches when using RADV
+  # Can be enabled by setting VK_ICD_FILENAMES=/run/current-system/sw/share/amdvlk/icd.d/amd_icd64.json
   environment.systemPackages = with pkgs; [
     amdvlk
   ];
