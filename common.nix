@@ -58,6 +58,7 @@ in
         lolcat
         lshw
         lynx
+        ncdu
         neofetch
         patchelf
         pciutils
