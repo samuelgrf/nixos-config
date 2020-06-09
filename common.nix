@@ -45,6 +45,7 @@ in
         aircrack-ng
         android-udev-rules
         apktool
+        bat
         bind
         ddcutil
         ddgr
