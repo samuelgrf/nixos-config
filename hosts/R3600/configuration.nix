@@ -32,12 +32,12 @@
   # Enable weekly TRIM on ZFS
   services.zfs.trim.enable = true;
 
-  # Add ddcci module for controlling the monitor through DDC
-  boot.extraModulePackages = [ pkgs.unstable.linuxPackages_5_6.ddcci-driver ];
-  boot.kernelModules = [ "ddcci" ];
+  # Use experimental Linux kernel
+  boot.kernelPackages = pkgs.unstable.linuxPackages_5_7;
 
-  # Use Linux kernel 5.5, this fixes screen flickering after suspend
-  boot.kernelPackages = pkgs.unstable.linuxPackages_5_6;
+  # Add ddcci module for controlling the monitor through DDC
+  boot.extraModulePackages = [ pkgs.unstable.linuxPackages_5_7.ddcci-driver ];
+  boot.kernelModules = [ "ddcci" ];
 
   # Install AMDVLK driver, some games have graphical glitches when using RADV
   # Can be enabled by setting VK_ICD_FILENAMES=/run/current-system/sw/share/amdvlk/icd.d/amd_icd64.json
