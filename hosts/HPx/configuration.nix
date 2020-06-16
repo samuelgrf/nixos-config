@@ -99,8 +99,4 @@
       '';
     }
   ];
-
-  # Setup qemu user
-  qemu-user.aarch64 = true;
-  qemu-user.arm = true;
 }
