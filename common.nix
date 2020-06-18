@@ -29,7 +29,6 @@ in
     "steam"
     "steam-original"
     "steam-runtime"
-    "w7zip"
   ];
 
   # Select allowed insecure packages
@@ -71,7 +70,6 @@ in
         tuir
         unar
         usbutils
-        w7zip
         wget
         youtube-dl
         ytop

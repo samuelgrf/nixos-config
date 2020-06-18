@@ -61,8 +61,6 @@
 
       lux = super.callPackage ./lux { };
 
-      w7zip = super.callPackage ./w7zip { };
-
       ### MISC
 
       amdvlk = super.callPackage ./amdvlk { };
