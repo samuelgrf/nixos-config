@@ -69,6 +69,7 @@ in
         stress
         sysstat
         tuir
+        unar
         usbutils
         w7zip
         wget
