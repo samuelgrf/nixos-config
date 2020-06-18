@@ -19,7 +19,7 @@ in
     profile = mkOption {
       type = types.path;
       description = ''
-        The profile file to be applied. Samples can be found at:
+        The profile file to be applied, samples can be found at:
         https://github.com/MatMoul/g810-led/tree/master/sample_profiles
       '';
     };
