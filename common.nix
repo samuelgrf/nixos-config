@@ -41,15 +41,12 @@ in
   environment.systemPackages = with pkgs;
     let
       common = [
-        aircrack-ng
         android-udev-rules
         apktool
         bat
         bind
-        ddcutil
         ddgr
         fd
-        fortune
         git
         gnupg
         htop
@@ -62,17 +59,13 @@ in
         neofetch
         patchelf
         pciutils
-        powertop
         python3
-        speedtest-cli
-        stress
         sysstat
         tuir
         unar
         usbutils
         wget
         youtube-dl
-        ytop
       ];
       noX = [
         openjdk_headless
@@ -81,7 +74,6 @@ in
         android-studio
         anki
         ark
-        cabextract
         caffeine-ng
         filezilla
         firefox-bin
@@ -93,7 +85,6 @@ in
         openjdk
         jetbrains.idea-community
         kate
-        kcalc
         kdialog
         keepassxc
         konsole
