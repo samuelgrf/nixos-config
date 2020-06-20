@@ -185,8 +185,30 @@ in
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
 
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
+  # Setup CUPS for printing documents
+  services.printing.enable = true;
+  services.printing.drivers = with pkgs; [ hplip ];
+
+  # Add printers
+  hardware.printers.ensurePrinters = [
+    {
+      name = "HP_OfficeJet_Pro_7720";
+      description = "HP Officejet Pro 7720";
+      location = "Office Downstairs";
+      deviceUri = "hp:/net/OfficeJet_Pro_7720_series?ip=192.168.178.36";
+      # Get installed PPD files by running "lpinfo -m"
+      model = "drv:///hp/hpcups.drv/hp-officejet_pro_7720_series.ppd";
+      # Get options by running "lpoptions -p HP_OfficeJet_Pro_7720 -l"
+      ppdOptions = {
+        "PageSize" = "A3";
+        "ColorModel" = "RGB";
+        "MediaType" = "Plain";
+        "OutputMode" = "Normal"; # Quality, can be "Normal", "FastDraft", "Best" or "Photo"
+        "InputSlot" = "Upper"; # Scanning?
+        "Duplex" = "None";
+      };
+    }
+  ];
 
   # Enable sound.
   sound.enable = true;
