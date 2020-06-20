@@ -94,7 +94,6 @@ in
         unstable.pcsx2_nativeOptimizations
         rpcs3_nativeOptimizations
         spectacle
-        spotify-tui
         unstable.steam
         torbrowser
         unstable.ungoogled-chromium # TODO: Switch to stable channel when package is available
