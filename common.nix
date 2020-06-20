@@ -76,9 +76,8 @@ in
         gamemode
         gamemode32
         gimp
-        gnome3.adwaita-icon-theme # needed for caffeine-ng to display icons
+        gnome3.adwaita-icon-theme # Needed for caffeine-ng to display icons
         gwenview
-        openjdk
         jetbrains.idea-community
         kate
         kdialog
@@ -89,8 +88,9 @@ in
         mpv
         multimc
         okular
-        pavucontrol
+        openjdk
         partition-manager
+        pavucontrol
         unstable.pcsx2_nativeOptimizations
         rpcs3_nativeOptimizations
         spectacle
