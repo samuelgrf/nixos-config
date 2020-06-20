@@ -45,11 +45,6 @@
     analogioOffset = "-105";
   };
 
- # Install additional packages
-  environment.systemPackages = with pkgs; [
-    libva-utils
-  ];
-
   # Create a systemd service to fix audio crackling on startup/resume
   # https://bugs.launchpad.net/ubuntu/+source/alsa-driver/+bug/1648183/comments/31
   systemd.services.fixaudio = {
