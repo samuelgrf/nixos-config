@@ -242,10 +242,6 @@ in
       isNormalUser = true;
       extraGroups = [ "wheel" "networkmanager" ];
     };
-    test = {
-      isNormalUser = true;
-      extraGroups = [ "wheel" "networkmanager" ];
-    };
   };
 
   # This value determines the NixOS release with which your system is to be
