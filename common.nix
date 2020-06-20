@@ -26,6 +26,7 @@ in
     "android-studio-stable"
     "firefox-bin"
     "firefox-release-bin-unwrapped"
+    "mfcl2700dnlpr"
     "steam"
     "steam-original"
     "steam-runtime"
@@ -182,7 +183,7 @@ in
 
   # Setup CUPS for printing documents
   services.printing.enable = true;
-  services.printing.drivers = with pkgs; [ hplip ];
+  services.printing.drivers = with pkgs; [ hplip mfcl2700dncupswrapper ];
 
   # Add printers
   hardware.printers.ensurePrinters = [
@@ -201,6 +202,24 @@ in
         "OutputMode" = "Normal"; # Quality, can be "Normal", "FastDraft", "Best" or "Photo"
         "InputSlot" = "Upper"; # Scanning?
         "Duplex" = "None";
+      };
+    }
+    {
+      name = "Brother_MFC-L2700DW";
+      description = "Brother MFC-L2700DW";
+      location = "Office Upstairs";
+      deviceUri = "ipp://192.168.178.37/ipp";
+      model = "brother-MFCL2700DN-cups-en.ppd";
+      ppdOptions = {
+        "PageSize" = "A4";
+        "BrMediaType" = "PLAIN";
+        "Resolution" = "600dpi";
+        "InputSlot" = "TRAY1"; # Scanning?
+        "Duplex" = "None";
+        "TonerSaveMode" = "OFF";
+        # Timeout before going to sleep after printing.
+        # Can be "PrinterDefault", "2minutes", "10minutes" or "30minutes"
+        "Sleep" = "PrinterDefault";
       };
     }
   ];
