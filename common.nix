@@ -4,12 +4,29 @@ let
   trueIfX = if config.services.xserver.enable then true else false;
 in
 {
+  ##############################################################################
+  ## General
+  ##############################################################################
+
+  # The NixOS release to be compatible with for stateful data such as databases.
+  system.stateVersion = "20.03";
+
+  # Enable support for additional filesystems
+  boot.supportedFilesystems = [ "ntfs" "zfs" ];
+
+  # Automatically optimize Nix store
+  nix.autoOptimiseStore = true;
+
+
+  ##############################################################################
+  ## Locale
+  ##############################################################################
+
   # Set locale
   i18n.defaultLocale = "en_IE.UTF-8";
 
-  # Set console settings
-  console.font = "Lat2-Terminus16";
-  console.useXkbConfig = true;
+  # Set time zone
+  time.timeZone = "Europe/Berlin";
 
   # Set keyboard layout
   services.xserver = {
@@ -18,22 +35,12 @@ in
     xkbOptions = "caps:escape";
   };
 
-  # Set time zone
-  time.timeZone = "Europe/Berlin";
 
-  # Select allowed unfree packages
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-    "android-studio-stable"
-    "firefox-bin"
-    "firefox-release-bin-unwrapped"
-    "mfcl2700dnlpr"
-    "steam"
-    "steam-original"
-    "steam-runtime"
-  ];
+  ##############################################################################
+  ## Package management
+  ##############################################################################
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
+  # System-wide packages
   environment.systemPackages = with pkgs;
     let
       common = [
@@ -103,6 +110,36 @@ in
       ];
     in common ++ (if config.services.xserver.enable then X else noX);
 
+  # Select allowed unfree packages
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "android-studio-stable"
+    "firefox-bin"
+    "firefox-release-bin-unwrapped"
+    "mfcl2700dnlpr"
+    "steam"
+    "steam-original"
+    "steam-runtime"
+  ];
+
+  # Install ADB and fastboot
+  programs.adb.enable = true;
+
+  # Enable GnuPG agent
+  programs.gnupg.agent.enable = true;
+
+
+  ##############################################################################
+  ## Xorg & Services
+  ##############################################################################
+
+  # Enable KDE Plasma 5
+  services.xserver.desktopManager.plasma5.enable = trueIfX;
+  services.xserver.displayManager.sddm = {
+    enable = trueIfX;
+    autoLogin.enable = trueIfX;
+    autoLogin.user = "samuel";
+  };
+
   # Hides the mouse cursor if it isn’t being moved
   systemd.user.services.unclutter = {
     description = "unclutter-xfixes";
@@ -122,6 +159,21 @@ in
         emacs-nox
     );
   };
+
+  # Enable Early OOM
+  services.earlyoom.enable = true;
+
+  # Enable the OpenSSH daemon.
+  # services.openssh.enable = true;
+
+
+  ##############################################################################
+  ## Console & Shell
+  ##############################################################################
+
+  # Set console settings
+  console.font = "Lat2-Terminus16";
+  console.useXkbConfig = true;
 
   # Set ZSH as default shell
   users.defaultUserShell = pkgs.zsh;
@@ -159,24 +211,59 @@ in
     "wttr" = "curl wttr.in";
   };
 
-  # Enable 32-bit libraries for games
-  hardware.opengl.driSupport32Bit = trueIfX;
-  hardware.pulseaudio.support32Bit = trueIfX;
+
+  ##############################################################################
+  ## Networking
+  ##############################################################################
+
+  # Enable NetworkManager
+  networking.networkmanager.enable = true;
 
   # Open ports needed for Steam In-Home Streaming
   # https://support.steampowered.com/kb_article.php?ref=8571-GLVN-8711
   networking.firewall.allowedUDPPortRanges = [ { from = 27031; to = 27036; } ];
   networking.firewall.allowedTCPPorts = [ 27036 ];
 
-  # Enable Steam hardware for additional controller support
-  hardware.steam-hardware.enable = trueIfX;
+
+  ##############################################################################
+  ## Kernel
+  ##############################################################################
+
+  # Load kernel module for ddcutil
+  boot.kernelModules = [ "i2c-dev" ];
+
+  # Enable zram and use more efficient zstd compression
+  zramSwap.enable = true;
+  zramSwap.algorithm = "zstd";
+
+  # Set swappiness to 80 due to improved performance of zram.
+  # Can be up to 100, but will increase process queue on intense load such as boot.
+  boot.kernel.sysctl = { "vm.swappiness" = 80; };
+
+
+  ##############################################################################
+  ## Hardware
+  ##############################################################################
 
   # Enable g810-led and set profile
   hardware.g810-led.enable = true;
   hardware.g810-led.profile = ./modules/g810-led_profile;
 
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  # Enable Steam hardware for additional controller support
+  hardware.steam-hardware.enable = trueIfX;
+
+  # Enable 32-bit libraries for games
+  hardware.opengl.driSupport32Bit = trueIfX;
+  hardware.pulseaudio.support32Bit = trueIfX;
+
+  # Enable sound.
+  sound.enable = true;
+  hardware.pulseaudio.enable = true;
+
+
+  ##############################################################################
+  ## Printing
+  ##############################################################################
 
   # Setup CUPS for printing documents
   services.printing.enable = true;
@@ -221,17 +308,10 @@ in
     }
   ];
 
-  # Enable sound.
-  sound.enable = true;
-  hardware.pulseaudio.enable = true;
 
-  # Enable KDE Plasma 5
-  services.xserver.desktopManager.plasma5.enable = trueIfX;
-  services.xserver.displayManager.sddm = {
-    enable = trueIfX;
-    autoLogin.enable = trueIfX;
-    autoLogin.user = "samuel";
-  };
+  ##############################################################################
+  ## Users & Misc
+  ##############################################################################
 
   # Define user accounts. Don't forget to set a password with ‘passwd’.
   users.users = {
@@ -241,42 +321,6 @@ in
     };
   };
 
-  # This value determines the NixOS release with which your system is to be
-  # compatible, in order to avoid breaking some software such as database
-  # servers. You should change this only after NixOS release notes say you
-  # should.
-  system.stateVersion = "20.03"; # Did you read the comment?
-
-  # Enable support for additional filesystems
-  boot.supportedFilesystems = [ "ntfs" "zfs" ];
-
-  # Enable NetworkManager
-  networking.networkmanager.enable = true;
-
-  # Enable Early OOM
-  services.earlyoom.enable = true;
-
-  # Install ADB and fastboot
-  programs.adb.enable = true;
-
-  # Load kernel module for ddcutil
-  boot.kernelModules = [ "i2c-dev" ];
-
-  # Automatically optimize Nix store and run garbage collector daily
-  nix.gc.automatic = false;
-  nix.autoOptimiseStore = true;
-
-  # Enable zram and use more efficient zstd compression
-  zramSwap.enable = true;
-  zramSwap.algorithm = "zstd";
-
-  # Set swappiness to 80 due to improved performance of zram.
-  # Can be up to 100 but will increase process queue on intense load such as boot.
-  boot.kernel.sysctl = { "vm.swappiness" = 80; };
-
   # Disable GUI password prompt when using ssh
   programs.ssh.askPassword = "";
-
-  # Enable GnuPG agent
-  programs.gnupg.agent.enable = true;
 }
