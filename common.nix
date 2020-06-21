@@ -139,7 +139,6 @@ in
       export GPG_TTY=$(tty)
     '';
     setOptions = [
-      "CORRECT"
       "HIST_FCNTL_LOCK"
       "HIST_IGNORE_DUPS"
       "SHARE_HISTORY"
