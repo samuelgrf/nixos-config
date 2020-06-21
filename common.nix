@@ -37,7 +37,6 @@ in
   environment.systemPackages = with pkgs;
     let
       common = [
-        android-udev-rules
         apktool
         bat
         bind
