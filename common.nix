@@ -104,7 +104,7 @@ in
       ];
     in common ++ (if config.services.xserver.enable then X else noX);
 
-  # Hides the mouse cursor if it isn’t being used
+  # Hides the mouse cursor if it isn’t being moved
   systemd.user.services.unclutter = {
     description = "unclutter-xfixes";
     script = "${pkgs.unclutter-xfixes}/bin/unclutter";
