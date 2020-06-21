@@ -262,9 +262,9 @@ in
   # Load kernel module for ddcutil
   boot.kernelModules = [ "i2c-dev" ];
 
-  # Optimize Nix store and run garbage collector daily
+  # Automatically optimize Nix store and run garbage collector daily
   nix.gc.automatic = false;
-  nix.optimise.automatic = true;
+  nix.autoOptimiseStore = true;
 
   # Enable zram and use more efficient zstd compression
   zramSwap.enable = true;
