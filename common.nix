@@ -67,7 +67,7 @@ in
         unar
         usbutils
         wget
-        youtube-dl
+        unstable.youtube-dl
       ];
       noX = [
         openjdk_headless
