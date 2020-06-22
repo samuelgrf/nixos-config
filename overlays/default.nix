@@ -23,6 +23,12 @@
 
       ### APPLICATIONS
 
+      mpv_sponsorblock = super.pkgs.mpv.override {
+        scripts = [
+          (super.callPackage ./mpv-scripts/sponsorblock.nix { })
+        ];
+      };
+
       pcsx2_nativeOptimizations = super.pkgs.pkgsi686Linux.pcsx2.override {
         stdenv = super.pkgs.pkgsi686Linux.impureUseNativeOptimizations super.pkgs.pkgsi686Linux.stdenv;
       };
