@@ -26,6 +26,8 @@ stdenv.mkDerivation {
     substituteInPlace sponsorblock.lua \
       --replace 'skip_categories = "sponsor",' \
         'skip_categories = "sponsor,intro,interaction,selfpromo",' \
+      --replace 'skip_once = true,' \
+        'skip_once = false,' \
       \
       --replace 'scripts_dir, "sponsorblock_shared/sponsorblock.py"' \
         "\"$out/share/mpv/scripts\", \"sponsorblock_shared/sponsorblock.py\"" \
