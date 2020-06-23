@@ -24,6 +24,9 @@ stdenv.mkDerivation {
   # to write to the Nix store. The folder needs to be created manually!
   patchPhase = ''
     substituteInPlace sponsorblock.lua \
+      --replace 'skip_categories = "sponsor",' \
+        'skip_categories = "sponsor,intro,interaction,selfpromo",' \
+      \
       --replace 'scripts_dir, "sponsorblock_shared/sponsorblock.py"' \
         "\"$out/share/mpv/scripts\", \"sponsorblock_shared/sponsorblock.py\"" \
       --replace 'scripts_dir, "sponsorblock_shared/sponsorblock.txt"' \
