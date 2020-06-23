@@ -91,7 +91,7 @@ in
         konsole
         libreoffice
         lutris
-        mpv
+        unstable.mpv # Use unstable channel because of youtube-dl
         multimc
         okular
         openjdk
