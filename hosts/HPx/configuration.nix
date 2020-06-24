@@ -1,32 +1,32 @@
 { config, lib, pkgs, ... }:
 
 {
-  # Set systemd-boot timeout
-  boot.loader.timeout = 1;
+  ##############################################################################
+  ## General
+  ##############################################################################
 
   # Set hostname
   networking.hostName = "HPx";
-
-  # Enable CPU microcode updates
-  hardware.cpu.intel.updateMicrocode = true;
-
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-  services.xserver.autorun = true;
-
-  # Enable touchpad support.
-  services.xserver.libinput.enable = true;
 
   # The 32-bit host ID of this machine, formatted as 8 hexadecimal characters.
   # generated via "head -c 8 /etc/machine-id"
   # this is required by ZFS
   networking.hostId = "97e4f3b3";
 
-  # Install wifi kernel module
-  boot.extraModulePackages = [ pkgs.linuxPackages.rtl8821ce ];
+  # Set systemd-boot timeout
+  boot.loader.timeout = 1;
 
-  # Blacklist sensor kernel modules
-  boot.blacklistedKernelModules = [ "intel_ishtp_hid" "intel_ish_ipc" ];
+  # Enable weekly TRIM on ZFS
+  services.zfs.trim.enable = true;
+
+
+  ##############################################################################
+  ## Xorg & Services
+  ##############################################################################
+
+  # Enable the X11 windowing system.
+  services.xserver.enable = true;
+  services.xserver.autorun = true;
 
   # Configure TLP
   services.tlp.enable = true;
@@ -41,6 +41,35 @@
     analogioOffset = "-105";
   };
 
+
+  ##############################################################################
+  ## Kernel & Modules
+  ##############################################################################
+
+  # Install wifi kernel module
+  boot.extraModulePackages = [ pkgs.linuxPackages.rtl8821ce ];
+
+  # Blacklist sensor kernel modules
+  boot.blacklistedKernelModules = [ "intel_ishtp_hid" "intel_ish_ipc" ];
+
+
+  ##############################################################################
+  ## Input devices
+  ##############################################################################
+
+  # Enable touchpad support.
+  services.xserver.libinput.enable = true;
+
+  # Enable touch scrolling in Firefox
+  environment.variables = {
+    "MOZ_USE_XINPUT2" = "1";
+  };
+
+
+  ##############################################################################
+  ## Audio
+  ##############################################################################
+
   # Create a systemd service to fix audio crackling on startup/resume
   # https://bugs.launchpad.net/ubuntu/+source/alsa-driver/+bug/1648183/comments/31
   systemd.services.fixaudio = {
@@ -53,20 +82,10 @@
     after = [ "post-resume.target" ];
   };
 
-  # Install libraries for VA-API
-  hardware.opengl.extraPackages = [ pkgs.vaapiIntel ];
-  hardware.opengl.extraPackages32 = [ pkgs.pkgsi686Linux.vaapiIntel ];
 
-  # Enable touch scrolling in Firefox
-  environment.variables = {
-    "MOZ_USE_XINPUT2" = "1";
-  };
-
-  # Enable Bluetooth support
-  hardware.bluetooth.enable = true;
-
-  # Enable weekly TRIM on ZFS
-  services.zfs.trim.enable = true;
+  ##############################################################################
+  ## Display
+  ##############################################################################
 
   # Add custom resolutions (for playing games at lower resolutions)
   services.xserver.xrandrHeads = [
@@ -86,4 +105,19 @@
       '';
     }
   ];
+
+
+  ##############################################################################
+  ## Other hardware
+  ##############################################################################
+
+  # Enable Bluetooth support
+  hardware.bluetooth.enable = true;
+
+  # Install libraries for VA-API
+  hardware.opengl.extraPackages = [ pkgs.vaapiIntel ];
+  hardware.opengl.extraPackages32 = [ pkgs.pkgsi686Linux.vaapiIntel ];
+
+  # Enable CPU microcode updates
+  hardware.cpu.intel.updateMicrocode = true;
 }
