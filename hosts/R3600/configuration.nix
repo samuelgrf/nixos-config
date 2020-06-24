@@ -51,9 +51,7 @@
   # Use the amdgpu video driver
   services.xserver.videoDrivers = [ "amdgpu" ];
 
-  # Enable Freesync
-  # Enable TearFree, this forces vsync globally and fixes apps with
-  # a broken vsync implementation
+  # Enable Freesync and TearFree (hardware vsync)
   services.xserver.deviceSection = ''
     Option "VariableRefresh" "true"
     Option "TearFree" "true"
