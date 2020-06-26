@@ -79,10 +79,6 @@
 
       amdvlk = super.callPackage ./amdvlk { };
 
-      linuxPackages = super.linuxPackages.extend (self: super: {
-        rtl8821ce = super.callPackage ./rtl8821ce { };
-      });
-
       mpv_sponsorblock = super.pkgs.mpv.override {
         scripts = [
           (super.callPackage ./mpv-scripts/sponsorblock.nix { })
