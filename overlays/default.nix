@@ -3,6 +3,11 @@
 {
   nixpkgs.overlays = [
     (self: super: {
+
+      ##########################################################################
+      ## Channel aliases
+      ##########################################################################
+
       # Alias for unstable channel
       unstable = import <nixos-unstable> {
         config = config.nixpkgs.config;
@@ -21,13 +26,10 @@
         crossSystem = config.nixpkgs.crossSystem;
       };
 
-      ### APPLICATIONS
 
-      mpv_sponsorblock = super.pkgs.mpv.override {
-        scripts = [
-          (super.callPackage ./mpv-scripts/sponsorblock.nix { })
-        ];
-      };
+      ##########################################################################
+      ## Applications
+      ##########################################################################
 
       pcsx2_nativeOptimizations = super.pkgs.pkgsi686Linux.pcsx2.override {
         stdenv = super.pkgs.pkgsi686Linux.impureUseNativeOptimizations super.pkgs.pkgsi686Linux.stdenv;
@@ -56,7 +58,10 @@
             nativeBuildInputs = oldAttrs.nativeBuildInputs ++ [ pkgs.qt5.wrapQtAppsHook ];
       });
 
-      ### TOOLS
+
+      ##########################################################################
+      ## Tools
+      ##########################################################################
 
       g810-led = super.callPackage ./g810-led { };
 
@@ -67,13 +72,23 @@
 
       lux = super.callPackage ./lux { };
 
-      ### MISC
+
+      ##########################################################################
+      ## Misc
+      ##########################################################################
 
       amdvlk = super.callPackage ./amdvlk { };
 
       linuxPackages = super.linuxPackages.extend (self: super: {
         rtl8821ce = super.callPackage ./rtl8821ce { };
       });
+
+      mpv_sponsorblock = super.pkgs.mpv.override {
+        scripts = [
+          (super.callPackage ./mpv-scripts/sponsorblock.nix { })
+        ];
+      };
+
     })
   ];
 }
