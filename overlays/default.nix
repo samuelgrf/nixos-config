@@ -77,8 +77,6 @@
       ## Misc
       ##########################################################################
 
-      amdvlk = super.callPackage ./amdvlk { };
-
       mpv_sponsorblock = super.pkgs.mpv.override {
         scripts = [
           (super.callPackage ./mpv-scripts/sponsorblock.nix { })
