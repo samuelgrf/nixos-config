@@ -13,7 +13,8 @@
   # this is required by ZFS
   networking.hostId = "db43f9bb";
 
-  # Set systemd-boot timeout
+  # Configure systemd-boot
+  boot.loader.systemd-boot.enable = true;
   boot.loader.timeout = 3;
 
   # Enable weekly TRIM on ZFS

@@ -1,8 +1,6 @@
 { config, lib, pkgs, ... }:
 
 {
-  boot.loader.systemd-boot.enable = true;
-
   imports = [
     <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
   ];
