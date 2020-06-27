@@ -55,7 +55,7 @@
   # Install AMDVLK driver, some games have graphical glitches when using RADV
   # Can be enabled by setting VK_ICD_FILENAMES=/run/current-system/sw/share/amdvlk/icd.d/amd_icd64.json
   environment.systemPackages = with pkgs; [
-    amdvlk
+    amdvlk_noDefault
   ];
 
   # Use ACO shader compiler globally
