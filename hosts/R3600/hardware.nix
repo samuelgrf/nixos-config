@@ -31,10 +31,8 @@
     };
 
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/2460728b-5b3a-4f8b-9c2a-48265f228e2d";
-        encrypted.enable = true;
-        encrypted.label = "cryptswap";
-        encrypted.blkDev = "/dev/disk/by-uuid/a06c0258-eed1-4a9e-8532-d6697efee5f9";
+    [ { device = "/dev/disk/by-partuuid/140325f2-7a11-49cb-8059-451c7d83f8e9";
+        randomEncryption.enable = true;
       }
     ];
 
