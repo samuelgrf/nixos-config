@@ -35,6 +35,4 @@
         randomEncryption.enable = true;
       }
     ];
-
-  nix.maxJobs = lib.mkDefault 12;
 }
