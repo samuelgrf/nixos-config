@@ -85,8 +85,12 @@
 
 
   ##############################################################################
-  ## Display
+  ## GPU & Display
   ##############################################################################
+
+  # Only enable modesetting video driver, if this isn't set other unused drivers
+  # are also installed.
+  services.xserver.videoDrivers = [ "modesetting" ];
 
   # Add custom resolutions (for playing games at lower resolutions)
   services.xserver.xrandrHeads = [
