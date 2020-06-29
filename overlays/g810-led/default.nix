@@ -1,4 +1,4 @@
-{ stdenv, lib, fetchgit, hidapi }:
+{ stdenv, fetchgit, hidapi }:
 
 stdenv.mkDerivation rec {
   pname = "g810-led";
@@ -30,6 +30,6 @@ stdenv.mkDerivation rec {
     homepage = "https://github.com/MatMoul/g810-led";
     # maintainers = with maintainers; [ samuelgrf ];
     license = licenses.gpl3;
-    platforms = stdenv.lib.platforms.linux;
+    platforms = platforms.linux;
   };
 }

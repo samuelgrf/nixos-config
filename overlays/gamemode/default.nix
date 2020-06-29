@@ -1,5 +1,4 @@
 { stdenv, fetchFromGitHub
-, pkgs
 , meson
 , ninja
 , cmake

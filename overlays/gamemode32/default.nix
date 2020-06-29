@@ -1,6 +1,4 @@
 { stdenv_32bit, fetchFromGitHub
-, pkgsi686Linux
-, platforms
 , meson
 , ninja
 , cmake

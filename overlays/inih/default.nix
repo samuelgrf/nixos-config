@@ -1,4 +1,4 @@
-{ stdenv, lib, fetchFromGitHub
+{ stdenv, fetchFromGitHub
 , meson
 , ninja
 , cmake
@@ -22,9 +22,9 @@ stdenv.mkDerivation rec {
   buildPhase = "ninja -C build";
   installPhase = ''
     ninja -C build install
-    '';
+  '';
 
-  meta = with lib; {
+  meta = with stdenv.lib; {
     description = "Simple .INI file parser in C, good for embedded systems.";
     platforms = platforms.linux;
   };
