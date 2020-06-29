@@ -42,7 +42,6 @@ in
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = [ pkgs.g810-led ];
     services.udev.extraRules = ''
       ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c336", MODE="666" RUN+="${pkgs.g810-led}/bin/g213-led -p ${cfg.profile}"
       ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c330", MODE="666" RUN+="${pkgs.g810-led}/bin/g410-led -p ${cfg.profile}"
