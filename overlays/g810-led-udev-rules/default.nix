@@ -15,10 +15,10 @@ stdenv.mkDerivation {
 
   installPhase = ''
     mkdir -p $out/etc/udev/rules.d
-    cp $src 10-g810-led.rules
-    substituteInPlace 10-g810-led.rules \
+    cp $src 90-g810-led.rules
+    substituteInPlace 90-g810-led.rules \
       --replace "/usr" "${g810-led}" \
       --replace "/etc/g810-led/profile" "${profile}"
-    cp 10-g810-led.rules $out/etc/udev/rules.d
+    cp 90-g810-led.rules $out/etc/udev/rules.d
   '';
 }
