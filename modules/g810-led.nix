@@ -11,8 +11,8 @@ in
       type = types.bool;
       default = false;
       description = ''
-        Wether to apply a g810-led profile after boot and when a compatible
-        keyboard is connected.
+        Wether to apply a g810-led profile when a compatible keyboard
+        is connected.
       '';
     };
 
@@ -24,47 +24,34 @@ in
       '';
     };
 
-    vendorId = mkOption {
-      type = types.nullOr types.str;
-      default = null;
+    enableFlashingWorkaround = mkOption {
+      type = types.bool;
+      default = false;
       description = ''
-        Set a custom USB vendor ID.
-      '';
-    };
-
-    productId = mkOption {
-      type = types.nullOr types.str;
-      default = null;
-      description = ''
-        Set a custom USB product ID.
+        Wether to turn off all key LEDs on shutdown and reboot.
+        Some keyboards flash 3 times on boot, this option works around that.
       '';
     };
   };
 
   config = mkIf cfg.enable {
-    services.udev.extraRules = ''
-      ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c336", MODE="666" RUN+="${pkgs.g810-led}/bin/g213-led -p ${cfg.profile}"
-      ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c330", MODE="666" RUN+="${pkgs.g810-led}/bin/g410-led -p ${cfg.profile}"
-      ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c33a", MODE="666" RUN+="${pkgs.g810-led}/bin/g413-led -p ${cfg.profile}"
-      ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c342", MODE="666" RUN+="${pkgs.g810-led}/bin/g512-led -p ${cfg.profile}"
-      ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c33c", MODE="666" RUN+="${pkgs.g810-led}/bin/g513-led -p ${cfg.profile}"
-      ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c333", MODE="666" RUN+="${pkgs.g810-led}/bin/g610-led -p ${cfg.profile}"
-      ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c338", MODE="666" RUN+="${pkgs.g810-led}/bin/g610-led -p ${cfg.profile}"
-      ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c331", MODE="666" RUN+="${pkgs.g810-led}/bin/g810-led -p ${cfg.profile}"
-      ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c337", MODE="666" RUN+="${pkgs.g810-led}/bin/g810-led -p ${cfg.profile}"
-      ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c33f", MODE="666" RUN+="${pkgs.g810-led}/bin/g815-led -p ${cfg.profile}"
-      ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c32b", MODE="666" RUN+="${pkgs.g810-led}/bin/g910-led -p ${cfg.profile}"
-      ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c335", MODE="666" RUN+="${pkgs.g810-led}/bin/g910-led -p ${cfg.profile}"
-      ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c339", MODE="666" RUN+="${pkgs.g810-led}/bin/gpro-led -p ${cfg.profile}"
-      ${optionalString (cfg.vendorId != null && cfg.productId != null) ''
-        ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="${cfg.vendorId}", ATTRS{idProduct}=="${cfg.productId}", MODE="666" RUN+="${pkgs.g810-led}/bin/g810-led -p ${cfg.profile} -dv ${cfg.vendorId} -dp ${cfg.productId}"
-      ''}
-      ${optionalString (cfg.vendorId == null && cfg.productId != null) ''
-        ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idProduct}=="${cfg.productId}", MODE="666" RUN+="${pkgs.g810-led}/bin/g810-led -p ${cfg.profile} -dp ${cfg.productId}"
-      ''}
-      ${optionalString (cfg.vendorId != null && cfg.productId == null) ''
-        ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="${cfg.vendorId}", MODE="666" RUN+="${pkgs.g810-led}/bin/g810-led -p ${cfg.profile} -dv ${cfg.vendorId}"
-      ''}
-    '';
+
+    services.udev.packages = [
+      (pkgs.g810-led-udev-rules.override {
+        profile = cfg.profile;
+      })
+    ];
+
+    # https://github.com/MatMoul/g810-led/blob/master/systemd/g810-led-reboot.service
+    systemd.services.g810-led-workaround = mkIf cfg.enableFlashingWorkaround {
+      description = "Turn off all g810-led keys";
+      script = "${pkgs.g810-led}/bin/g810-led -a 000000";
+
+      serviceConfig.Type = "oneshot";
+      unitConfig.DefaultDependencies = false;
+
+      wantedBy = [ "shutdown.target" ];
+      before = [ "shutdown.target" "reboot.target" "halt.target" ];
+    };
   };
 }

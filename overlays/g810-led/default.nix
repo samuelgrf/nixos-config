@@ -26,7 +26,7 @@ stdenv.mkDerivation rec {
   '';
 
   meta = with stdenv.lib; {
-    description = "Linux led controller for Logitech G213, G410, G413, G512, G513, G610, G810, G815, G910 and GPRO Keyboards";
+    description = "Linux LED controller for Logitech G213, G410, G413, G512, G513, G610, G810, G815, G910 and GPRO Keyboards";
     homepage = "https://github.com/MatMoul/g810-led";
     # maintainers = with maintainers; [ samuelgrf ];
     license = licenses.gpl3;
