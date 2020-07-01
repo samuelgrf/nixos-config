@@ -67,6 +67,7 @@ in
         unar
         usbutils
         wget
+        whois
         unstable.youtube-dl
       ];
       noX = [
