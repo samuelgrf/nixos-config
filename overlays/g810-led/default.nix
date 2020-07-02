@@ -1,4 +1,6 @@
-{ stdenv, fetchgit, hidapi }:
+{ stdenv, fetchgit, hidapi
+, profile ? "/etc/g810-led/profile"
+}:
 
 stdenv.mkDerivation rec {
   pname = "g810-led";
@@ -23,6 +25,11 @@ stdenv.mkDerivation rec {
     ln -s $out/bin/g810-led $out/bin/g815-led
     ln -s $out/bin/g810-led $out/bin/g910-led
     ln -s $out/bin/g810-led $out/bin/gpro-led
+
+    substituteInPlace udev/g810-led.rules \
+      --replace "/usr" $out \
+      --replace "/etc/g810-led/profile" "${profile}"
+    install -D udev/g810-led.rules $out/etc/udev/rules.d/90-g810-led.rules
   '';
 
   meta = with stdenv.lib; {

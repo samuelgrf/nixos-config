@@ -64,7 +64,6 @@
       ##########################################################################
 
       g810-led = super.callPackage ./g810-led { };
-      g810-led-udev-rules = super.callPackage ./g810-led-udev-rules { };
 
       gamemode32 = super.callPackage_i686 ./gamemode32 { };
       gamemode = super.callPackage ./gamemode { };

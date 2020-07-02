@@ -37,7 +37,7 @@ in
   config = mkIf cfg.enable {
 
     services.udev.packages = [
-      (pkgs.g810-led-udev-rules.override {
+      (pkgs.g810-led.override {
         profile = cfg.profile;
       })
     ];
