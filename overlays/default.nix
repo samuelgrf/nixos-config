@@ -18,18 +18,7 @@
 
 
       ##########################################################################
-      ## Applications
-      ##########################################################################
-
-      g810-led = super.callPackage ./g810-led { };
-
-      pcsx2_nativeOptimizations = super.pkgs.pkgsi686Linux.pcsx2.override {
-        stdenv = super.pkgs.pkgsi686Linux.impureUseNativeOptimizations super.pkgs.pkgsi686Linux.stdenv;
-      };
-
-
-      ##########################################################################
-      ## Misc
+      ## Packages
       ##########################################################################
 
       # The Vulkan Loader tries to load the default driver from $share/vulkan/icd.d/
@@ -42,6 +31,8 @@
           mv $out/icd.d $out/share/amdvlk
         '';
       };
+
+      g810-led = super.callPackage ./g810-led { };
 
       mpv_sponsorblock = super.pkgs.mpv.override {
         scripts = [

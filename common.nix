@@ -97,7 +97,6 @@ in
         openjdk
         partition-manager
         pavucontrol
-        unstable.pcsx2_nativeOptimizations
         spectacle
         unstable.steam
         torbrowser
