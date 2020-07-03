@@ -98,7 +98,6 @@ in
         partition-manager
         pavucontrol
         unstable.pcsx2_nativeOptimizations
-        rpcs3_nativeOptimizations
         spectacle
         unstable.steam
         torbrowser
