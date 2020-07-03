@@ -65,8 +65,6 @@
 
       g810-led = super.callPackage ./g810-led { };
 
-      lux = super.callPackage ./lux { };
-
 
       ##########################################################################
       ## Misc
