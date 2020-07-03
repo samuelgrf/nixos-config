@@ -65,11 +65,6 @@
 
       g810-led = super.callPackage ./g810-led { };
 
-      gamemode32 = super.callPackage_i686 ./gamemode32 { };
-      gamemode = super.callPackage ./gamemode { };
-
-      inih = super.callPackage ./inih { }; # GameMode dependency
-
       lux = super.callPackage ./lux { };
 
 
