@@ -36,10 +36,10 @@
   # Undervolting
   services.undervolt = {
     enable = true;
-    coreOffset = "-125";
-    gpuOffset = "-105";
-    uncoreOffset = "-125";
-    analogioOffset = "-105";
+    coreOffset = "-100";
+    gpuOffset = "-100";
+    uncoreOffset = "-100";
+    analogioOffset = "-100";
   };
 
 
