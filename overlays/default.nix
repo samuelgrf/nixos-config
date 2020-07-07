@@ -34,6 +34,16 @@
 
       g810-led = super.callPackage ./g810-led { };
 
+      # Remove Windows font variants from Nerd Fonts
+      nerdfonts_no-winfonts = super.nerdfonts.overrideAttrs (oldAttrs: {
+        preFixup = ''
+          rm -rfv $out/share/fonts/truetype/NerdFonts/*Windows\ Compatible.ttf
+        '';
+      });
+
+      hack_nerdfont = self.nerdfonts_no-winfonts.override { fonts = [ "Hack" ]; };
+      meslo-lg_nerdfont = self.nerdfonts_no-winfonts.override { fonts = [ "Meslo" ]; };
+
       mpv_sponsorblock = super.mpv.override {
         scripts = [
           (super.callPackage ./mpv-scripts/sponsorblock.nix { })
