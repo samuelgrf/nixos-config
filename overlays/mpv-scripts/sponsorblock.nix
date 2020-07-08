@@ -14,20 +14,21 @@ stdenv.mkDerivation {
 
   buildInputs = [ python3 ];
 
-  installPhase = ''
-    mkdir -p $out/share/mpv/scripts
-    cp -r . $out/share/mpv/scripts
-    rm -f $out/share/mpv/scripts/README.md
-  '';
+  # The sponsorblock Python script tries to download the sponsor database into
+  # '~/.local/share/sponsorblock' (set in postPatch), this patch makes it create
+  # the directory before downloading.
+  patches = [ ./sponsorblock.patch ];
 
-  # Save database and user ID in "~/.local/share/sponsorblock" instead of trying
-  # to write to the Nix store. The folder needs to be created manually!
-  patchPhase = ''
+  # Load python script from Nix store instead of the home directory.
+  # Save database and user ID in "~/.local/share/sponsorblock".
+  postPatch = ''
     substituteInPlace sponsorblock.lua \
-      --replace 'skip_categories = "sponsor",' \
-        'skip_categories = "sponsor,intro,interaction,selfpromo",' \
-      --replace 'skip_once = true,' \
-        'skip_once = false,' \
+      --replace 'skip_categories = "sponsor"' \
+        'skip_categories = "sponsor,intro,interaction,selfpromo"' \
+      --replace 'skip_once = true' \
+        'skip_once = false' \
+      --replace 'local_pattern = ""' \
+        'local_pattern = "-([%w-_]+)%.[mw][kpe][v4b]m?$"' \
       \
       --replace 'scripts_dir, "sponsorblock_shared/sponsorblock.py"' \
         "\"$out/share/mpv/scripts\", \"sponsorblock_shared/sponsorblock.py\"" \
@@ -37,6 +38,13 @@ stdenv.mkDerivation {
         'os.getenv("HOME"), ".local/share/sponsorblock/sponsorblock.db"'
   '';
 
+  installPhase = ''
+    mkdir -p $out/share/mpv/scripts
+    cp -r . $out/share/mpv/scripts
+    rm -f $out/share/mpv/scripts/README.md
+  '';
+
+  # Needed by mpv wrapper
   passthru.scriptName = "sponsorblock.lua";
 
   meta = with stdenv.lib; {
