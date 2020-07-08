@@ -79,7 +79,7 @@ in
         ark
         caffeine-ng
         filezilla
-        firefox-bin
+        firefox-beta-bin
         gimp
         gnome3.adwaita-icon-theme # Needed for caffeine-ng to display icons
         gwenview
@@ -112,8 +112,8 @@ in
   # Select allowed unfree packages
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
     "android-studio-stable"
-    "firefox-bin"
-    "firefox-release-bin-unwrapped"
+    "firefox-beta-bin"
+    "firefox-beta-bin-unwrapped"
     "mfcl2700dnlpr"
     "steam"
     "steam-original"
