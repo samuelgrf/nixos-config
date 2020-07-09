@@ -183,11 +183,11 @@ in
     ohMyZsh.enable = true;
     autosuggestions.enable = true;
     syntaxHighlighting.enable = true;
-    promptInit = "source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
-    # This is needed for Git to use the GPG pinentry program set in home.nix
-    shellInit = ''
-      export GPG_TTY=$(tty)
+    promptInit = ''
+      source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
     '';
+    # This is needed for Git to use the GPG pinentry program set in home.nix
+    shellInit = "export GPG_TTY=$(tty)";
     setOptions = [
       "HIST_FCNTL_LOCK"
       "HIST_IGNORE_DUPS"
@@ -195,18 +195,32 @@ in
     ];
   };
 
+  # Set environment variables
+  environment.variables = {
+    # Used for WIP changes (remote of $SYSTEMCONFIG)
+    USERCONFIG = "/home/samuel/git-repos/nixconfig";
+    # Used for finished configuration (pull from $USERCONFIG by running 'pullconfig')
+    SYSTEMCONFIG = "/etc/nixos";
+  };
+
   # Set shell aliases
   environment.shellAliases = {
-    "applyconfig" = "
-      OLDBRANCH=$(git -C /etc/nixos rev-parse --abbrev-ref HEAD) &&
-      NEWBRANCH=$(git -C /home/samuel/git-repos/nixconfig rev-parse --abbrev-ref HEAD) &&
-      sudo git -C /etc/nixos fetch &&
-      git -C /etc/nixos diff $OLDBRANCH origin/$NEWBRANCH &&
-      sudo git -C /etc/nixos reset --hard origin/$NEWBRANCH";
-    "testconfig" = "sudo nixos-rebuild test -I nixos-config=/home/samuel/git-repos/nixconfig/configuration.nix";
-    "nix-stray-roots" = ''nix-store --gc --print-roots | grep -Ev "^(/nix/var|/run/\w+-system|\{memory|\{censored)"'';
-    "pks" = "nix search";
-    "wttr" = "curl wttr.in";
+    pullconfig = ''bash -c "
+      cd $SYSTEMCONFIG &&
+      sudo git fetch &&
+      git diff master origin/master &&
+      sudo git reset --hard origin/master"
+    '';
+    testconfig = ''
+      sudo nixos-rebuild test \
+      -I nixos-config=$USERCONFIG/configuration.nix
+    '';
+    nix-stray-roots = ''
+      nix-store --gc --print-roots | \
+      grep -Ev "^(/nix/var|/run/\w+-system|\{memory|\{censored)"
+    '';
+    pks = "nix search";
+    wttr = "curl wttr.in";
   };
 
 
