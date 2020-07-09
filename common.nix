@@ -205,11 +205,11 @@ in
 
   # Set shell aliases
   environment.shellAliases = {
-    pushconfig = ''bash -c "
+    pushconfig = ''(
       cd $SYSTEMCONFIG &&
       sudo git fetch &&
       git diff master origin/master &&
-      sudo git reset --hard origin/master"\
+      sudo git reset --hard origin/master)\
     '';
     testconfig = ''
       sudo nixos-rebuild test \
