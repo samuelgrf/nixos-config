@@ -215,6 +215,7 @@ in
       sudo nixos-rebuild test \
       -I nixos-config=$USERCONFIG/configuration.nix\
     '';
+    nixos-rebuild = "sudo nixos-rebuild";
     nixos-upgrade = ''
       sudo nix-channel --update &&
       sudo nixos-rebuild\
