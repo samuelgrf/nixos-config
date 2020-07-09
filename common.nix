@@ -197,15 +197,15 @@ in
 
   # Set environment variables
   environment.variables = {
-    # Used for WIP changes (remote of $SYSTEMCONFIG)
+    # Used for WIP changes (push changes to $SYSTEMCONFIG by running 'pushconfig')
     USERCONFIG = "/home/samuel/git-repos/nixconfig";
-    # Used for finished configuration (pull from $USERCONFIG by running 'pullconfig')
+    # Used for finished configuration (set $USERCONFIG as remote)
     SYSTEMCONFIG = "/etc/nixos";
   };
 
   # Set shell aliases
   environment.shellAliases = {
-    pullconfig = ''bash -c "
+    pushconfig = ''bash -c "
       cd $SYSTEMCONFIG &&
       sudo git fetch &&
       git diff master origin/master &&
