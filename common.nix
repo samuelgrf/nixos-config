@@ -93,7 +93,7 @@ in
         lutris
         unstable.mpv_sponsorblock # Use unstable channel because of youtube-dl
         multimc
-        unstable.nixos-artwork.wallpapers.nineish-dark-gray
+        unstable.nixos-artwork.wallpapers.nineish-dark-gray # TODO Remove "unstable." on 20.09
         okular
         openjdk
         partition-manager
@@ -101,7 +101,7 @@ in
         spectacle
         unstable.steam
         torbrowser
-        unstable.ungoogled-chromium # TODO: Switch to stable channel when package is available
+        unstable.ungoogled-chromium # TODO Remove "unstable." on 20.09
         unstable.wineWowPackages.staging # Comes with both x64 and x86 Wine
         unstable.winetricks
         xclip
@@ -331,9 +331,9 @@ in
 
   # System-wide fonts
   fonts.fonts = with pkgs; [
-    unstable.hack_nerdfont # Emacs
+    unstable.hack_nerdfont # Emacs, TODO Remove "unstable." on 20.09
     liberation_ttf # Free replacement for MS Fonts
-    unstable.meslo-lg_nerdfont
+    unstable.meslo-lg_nerdfont # TODO Remove "unstable." on 20.09
     noto-fonts
     noto-fonts-cjk
     noto-fonts-emoji
