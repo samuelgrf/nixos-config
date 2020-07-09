@@ -152,10 +152,7 @@ in
     enable = true;
     defaultEditor = true;
     package = with pkgs; (
-      if config.services.xserver.enable
-        then emacs
-      else
-        emacs-nox
+      if config.services.xserver.enable then emacs else emacs-nox
     );
   };
 
