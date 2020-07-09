@@ -209,15 +209,15 @@ in
       cd $SYSTEMCONFIG &&
       sudo git fetch &&
       git diff master origin/master &&
-      sudo git reset --hard origin/master"
+      sudo git reset --hard origin/master"\
     '';
     testconfig = ''
       sudo nixos-rebuild test \
-      -I nixos-config=$USERCONFIG/configuration.nix
+      -I nixos-config=$USERCONFIG/configuration.nix\
     '';
     nix-stray-roots = ''
       nix-store --gc --print-roots | \
-      grep -Ev "^(/nix/var|/run/\w+-system|\{memory|\{censored)"
+      grep -Ev "^(/nix/var|/run/\w+-system|\{memory|\{censored)"\
     '';
     pks = "nix search";
     wttr = "curl wttr.in";
