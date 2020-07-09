@@ -215,6 +215,10 @@ in
       sudo nixos-rebuild test \
       -I nixos-config=$USERCONFIG/configuration.nix\
     '';
+    nixos-upgrade = ''
+      sudo nix-channel --update &&
+      sudo nixos-rebuild\
+    '';
     nix-stray-roots = ''
       nix-store --gc --print-roots | \
       grep -Ev "^(/nix/var|/run/\w+-system|\{memory|\{censored)"\
