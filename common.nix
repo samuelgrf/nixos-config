@@ -189,6 +189,16 @@ in
         sudo nixos-rebuild "$@" &&
         exec zsh
       }
+      # Run nix-collect-garbage as root when needed
+      nix-collect-garbage () {
+        if [ "$1" = "-d" -o \
+             "$1" = "--delete-old" -o \
+             "$1" = "--delete-older-than" ]; then
+          sudo nix-collect-garbage "$@"
+        else
+          nix-collect-garbage "$@"
+        fi
+      }
     '';
     setOptions = [
       "HIST_FCNTL_LOCK"
