@@ -180,10 +180,10 @@ in
     ohMyZsh.enable = true;
     autosuggestions.enable = true;
     syntaxHighlighting.enable = true;
-    promptInit = ''
-      source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
-    '';
     interactiveShellInit = ''
+      # Use powerlevel10k theme
+      source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
+
       # Use zsh instead of bash for nix-shell
       # TODO Remove "unstable." on 20.09
       source ${pkgs.unstable.zsh-nix-shell}/share/zsh-nix-shell/nix-shell.plugin.zsh
