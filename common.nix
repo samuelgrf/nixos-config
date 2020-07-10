@@ -184,11 +184,18 @@ in
       source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
     '';
     interactiveShellInit = ''
-      # Run nixos-rebuild with sudo and reload zsh
+      # Run nixos-rebuild as root and reload zsh when needed
       nixos-rebuild () {
-        sudo nixos-rebuild "$@" &&
-        exec zsh
+        if [ "$1" = "switch" -o "$1" = "test" ]; then
+          sudo nixos-rebuild "$@" &&
+          exec zsh
+        elif [ "$1" = "boot" ]; then
+          sudo nixos-rebuild "$@"
+        else
+          nixos-rebuild "$@"
+        fi
       }
+
       # Run nix-collect-garbage as root when needed
       nix-collect-garbage () {
         if [ "$1" = "-d" -o \
