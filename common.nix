@@ -183,6 +183,13 @@ in
     promptInit = ''
       source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
     '';
+    interactiveShellInit = ''
+      # Run nixos-rebuild with sudo and reload zsh
+      nixos-rebuild () {
+        sudo nixos-rebuild "$@" &&
+        exec zsh
+      }
+    '';
     setOptions = [
       "HIST_FCNTL_LOCK"
       "HIST_IGNORE_DUPS"
@@ -207,18 +214,17 @@ in
       sudo git reset --hard origin/master)\
     '';
     testconfig = ''
-      sudo nixos-rebuild test \
-      -I nixos-config=$USERCONFIG/configuration.nix\
+      nixos-rebuild test \
+        -I nixos-config=$USERCONFIG/configuration.nix\
     '';
-    nixos-rebuild = "sudo nixos-rebuild";
     level = "echo $SHLVL";
     nixos-upgrade = ''
       sudo nix-channel --update &&
-      sudo nixos-rebuild\
+      nixos-rebuild\
     '';
     nix-stray-roots = ''
       nix-store --gc --print-roots | \
-      grep -Ev "^(/nix/var|/run/\w+-system|\{memory|\{censored)"\
+        grep -Ev "^(/nix/var|/run/\w+-system|\{memory|\{censored)"\
     '';
     pks = "nix search";
     wttr = "curl wttr.in";
