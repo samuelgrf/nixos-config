@@ -192,7 +192,7 @@ in
         elif [ "$1" = "boot" ]; then
           sudo nixos-rebuild "$@"
         else
-          nixos-rebuild "$@"
+          command nixos-rebuild "$@"
         fi
       }
 
@@ -203,7 +203,7 @@ in
              "$1" = "--delete-older-than" ]; then
           sudo nix-collect-garbage "$@"
         else
-          nix-collect-garbage "$@"
+          command nix-collect-garbage "$@"
         fi
       }
     '';
