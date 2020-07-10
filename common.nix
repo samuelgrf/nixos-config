@@ -183,8 +183,6 @@ in
     promptInit = ''
       source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
     '';
-    # This is needed for Git to use the GPG pinentry program set in home.nix
-    shellInit = "export GPG_TTY=$(tty)";
     setOptions = [
       "HIST_FCNTL_LOCK"
       "HIST_IGNORE_DUPS"
