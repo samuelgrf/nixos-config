@@ -211,6 +211,7 @@ in
       -I nixos-config=$USERCONFIG/configuration.nix\
     '';
     nixos-rebuild = "sudo nixos-rebuild";
+    level = "echo $SHLVL";
     nixos-upgrade = ''
       sudo nix-channel --update &&
       sudo nixos-rebuild\
