@@ -29,9 +29,6 @@
   services.xserver.enable = true;
   services.xserver.autorun = true;
 
-  # Install GameMode systemd service
-  systemd.packages = [ pkgs.gamemode ];
-
 
   ##############################################################################
   ## Kernel & Modules
