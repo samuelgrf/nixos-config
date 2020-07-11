@@ -228,6 +228,7 @@ in
 
   # Set shell aliases
   environment.shellAliases = {
+    # NixOS & Nix
     applyconfig = ''(
       cd $SYSTEMCONFIG &&
       sudo git fetch &&
@@ -238,7 +239,6 @@ in
       nixos-rebuild test \
         -I nixos-config=$USERCONFIG/configuration.nix\
     '';
-    level = "echo $SHLVL";
     nixos-upgrade = ''
       sudo nix-channel --update &&
       nixos-rebuild\
@@ -248,6 +248,11 @@ in
         grep -Ev "^(/nix/var|/run/\w+-system|\{memory|\{censored)"\
     '';
     pks = "nix search";
+
+    # Other
+    incognito = "unset HISTFILE";
+    unincognito = "HISTFILE=$HOME/.zsh_history";
+    level = "echo $SHLVL";
     wttr = "curl wttr.in";
   };
 
