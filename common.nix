@@ -252,6 +252,13 @@ in
     # Other
     incognito = "unset HISTFILE";
     unincognito = "HISTFILE=$HOME/.zsh_history";
+    isincognito = ''
+      if [ -z "$HISTFILE" ]; then
+        echo "Yes"
+        else echo "No"
+      fi\
+    '';
+    reload = "exec zsh";
     level = "echo $SHLVL";
     wttr = "curl wttr.in";
   };
