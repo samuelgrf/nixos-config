@@ -50,6 +50,17 @@
         ];
       };
 
+      # Remove Oh My Zsh functions that don't work on Nix
+      oh-my-zsh = super.oh-my-zsh.overrideAttrs (oldAttrs: {
+        phases = [ oldAttrs.phases "preInstall" ];
+        preInstall = ''
+          chmod -R +w lib
+          sed -i -e "/uninstall_oh_my_zsh()/,+3 d" \
+                 -e "/upgrade_oh_my_zsh()/,+3 d" \
+              lib/functions.zsh
+        '';
+      });
+
     })
   ];
 }
