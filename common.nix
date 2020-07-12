@@ -250,16 +250,17 @@ in
     pks = "nix search";
 
     # Other
-    incognito = "unset HISTFILE";
-    unincognito = "HISTFILE=$HOME/.zsh_history";
-    isincognito = ''
-      if [ -z "$HISTFILE" ]; then
-        echo "Yes"
-        else echo "No"
+    incognito = ''
+      if [ -n "$HISTFILE" ]; then
+        unset HISTFILE &&
+        echo "Enabled incognito mode"
+      else
+        HISTFILE=$HOME/.zsh_history &&
+        echo "Disabled incognito mode"
       fi\
     '';
-    reload = "exec zsh";
     level = "echo $SHLVL";
+    reload = "exec zsh";
     wttr = "curl wttr.in";
   };
 
