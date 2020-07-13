@@ -93,7 +93,8 @@ in
         lutris
         unstable.mpv_sponsorblock # Use unstable channel because of youtube-dl
         multimc
-        unstable.nixos-artwork.wallpapers.nineish-dark-gray # TODO Remove "unstable." on 20.09
+        # TODO Remove "unstable." on 20.09
+        unstable.nixos-artwork.wallpapers.nineish-dark-gray
         okular
         openjdk
         partition-manager
