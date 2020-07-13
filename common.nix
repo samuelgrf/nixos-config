@@ -178,6 +178,7 @@ in
   programs.zsh = {
     enable = true;
     ohMyZsh.enable = true;
+    ohMyZsh.package = pkgs.unstable.oh-my-zsh; # TODO Remove on 20.09
     autosuggestions.enable = true;
     syntaxHighlighting.enable = true;
     interactiveShellInit = ''

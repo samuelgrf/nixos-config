@@ -50,20 +50,6 @@
         ];
       };
 
-      # Undefine Oh My Zsh functions that don't work on Nix
-      oh-my-zsh = super.oh-my-zsh.overrideAttrs (oldAttrs: {
-        phases = [ oldAttrs.phases "preInstall" ];
-        preInstall = ''
-          chmod +w oh-my-zsh.sh
-          cat >> oh-my-zsh.sh <<- EOF
-
-          # Undefine functions that don't work on Nix.
-          unfunction uninstall_oh_my_zsh
-          unfunction upgrade_oh_my_zsh
-          EOF
-        '';
-      });
-
     })
   ];
 }
