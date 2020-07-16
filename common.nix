@@ -254,11 +254,11 @@ in
     # Other
     incognito = ''
       if [ -n "$HISTFILE" ]; then
-        unset HISTFILE &&
-        echo "Enabled incognito mode"
+        echo "Enabled incognito mode" &&
+        unset HISTFILE
       else
-        HISTFILE=$HOME/.zsh_history &&
-        echo "Disabled incognito mode"
+        echo "Disabled incognito mode" &&
+        exec zsh
       fi\
     '';
     level = "echo $SHLVL";
