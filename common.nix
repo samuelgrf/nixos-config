@@ -168,8 +168,7 @@ in
   ## Console & Shell
   ##############################################################################
 
-  # Set console settings
-  console.font = "Lat2-Terminus16";
+  # Use X keyboard configuration on console
   console.useXkbConfig = true;
 
   # Set ZSH as default shell
@@ -378,6 +377,7 @@ in
   ];
 
   # Set default fonts
+  console.font = "Lat2-Terminus16";
   fonts.fontconfig.defaultFonts = {
     sansSerif = [
       "Noto Sans"
