@@ -4,5 +4,8 @@ secrets/
 # Symlink to the host directory
 host
 
+# Symlink created after building derivations with Nix
+result
+
 # VIM swap files
 *.swp
