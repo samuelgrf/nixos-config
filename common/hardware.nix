@@ -1,7 +1,7 @@
 { config, ... }:
 
 let
- trueIfX = if config.services.xserver.enable then true else false;
+  trueIfX = config.services.xserver.enable;
 in
 {
   # Enable g810-led and set profile
