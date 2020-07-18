@@ -1,8 +1,5 @@
 { config, ... }:
 
-let
-  trueIfX = if config.services.xserver.enable then true else false;
-in
 {
   # The NixOS release to be compatible with for stateful data such as databases.
   system.stateVersion = "20.03";

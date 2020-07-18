@@ -24,9 +24,7 @@ in
   services.emacs = {
     enable = true;
     defaultEditor = true;
-    package = with pkgs; (
-      if config.services.xserver.enable then emacs else emacs-nox
-    );
+    package = with pkgs; (if trueIfX then emacs else emacs-nox);
   };
 
   # Enable Early OOM

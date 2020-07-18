@@ -3,6 +3,7 @@
     # All hosts
     ./common/fonts.nix
     ./common/general.nix
+    ./common/hardware.nix
     ./common/kernel.nix
     ./common/locale.nix
     ./common/misc.nix

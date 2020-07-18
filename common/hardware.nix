@@ -1,9 +1,12 @@
 { config, ... }:
 
+let
+ trueIfX = if config.services.xserver.enable then true else false;
+in
 {
   # Enable g810-led and set profile
   hardware.g810-led.enable = true;
-  hardware.g810-led.profile = ./modules/g810-led_profile;
+  hardware.g810-led.profile = ../modules/g810-led_profile;
 
   # Enable Steam hardware for additional controller support
   hardware.steam-hardware.enable = trueIfX;
