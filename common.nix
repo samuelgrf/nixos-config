@@ -171,10 +171,10 @@ in
   # Use X keyboard configuration on console
   console.useXkbConfig = true;
 
-  # Set ZSH as default shell
+  # Set Zsh as default shell
   users.defaultUserShell = pkgs.zsh;
 
-  # Configure ZSH
+  # Configure Zsh
   programs.zsh = {
     enable = true;
     ohMyZsh.enable = true;
