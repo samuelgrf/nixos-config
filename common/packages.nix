@@ -10,6 +10,7 @@
         bind
         ddgr
         fd
+        file
         git
         gnupg
         htop
@@ -20,6 +21,8 @@
         lynx
         ncdu
         neofetch
+        nix-linter
+        nixfmt
         patchelf
         pciutils
         python3
