@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 
 {
-  # System-wide packages
+  # System-wide packages to install.
   environment.systemPackages = with pkgs;
     let
       common = [
@@ -42,7 +42,7 @@
         filezilla
         firefox-beta-bin
         gimp
-        gnome3.adwaita-icon-theme # Needed for caffeine-ng to display icons
+        gnome3.adwaita-icon-theme # Needed for caffeine-ng to display icons.
         gwenview
         inkscape
         jetbrains.idea-community
@@ -52,9 +52,9 @@
         konsole
         libreoffice
         lutris
-        unstable.mpv_sponsorblock # Use unstable channel because of youtube-dl
+        unstable.mpv_sponsorblock # Use unstable channel because of youtube-dl.
         multimc
-        # TODO Remove "unstable." on 20.09
+        # TODO Remove "unstable." on 20.09.
         unstable.nixos-artwork.wallpapers.nineish-dark-gray
         okular
         openjdk
@@ -63,15 +63,15 @@
         spectacle
         unstable.steam
         torbrowser
-        unstable.ungoogled-chromium # TODO Remove "unstable." on 20.09
-        unstable.wineWowPackages.staging # Comes with both x64 and x86 Wine
+        unstable.ungoogled-chromium # TODO Remove "unstable." on 20.09.
+        unstable.wineWowPackages.staging # Comes with both x64 and x86 Wine.
         unstable.winetricks
         xclip
         xorg.xev
       ];
     in common ++ (if config.services.xserver.enable then X else noX);
 
-  # Select allowed unfree packages
+  # Select allowed unfree packages.
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
     "android-studio-stable"
     "firefox-beta-bin"
@@ -82,9 +82,9 @@
     "steam-runtime"
   ];
 
-  # Install ADB and fastboot
+  # Install ADB and fastboot.
   programs.adb.enable = true;
 
-  # Enable GnuPG agent
+  # Install GnuPG agent.
   programs.gnupg.agent.enable = true;
 }

@@ -5,19 +5,18 @@
   ## General
   ##############################################################################
 
-  # Set hostname
+  # Set hostname.
   networking.hostName = "HPx";
 
   # The 32-bit host ID of this machine, formatted as 8 hexadecimal characters.
-  # generated via "head -c 8 /etc/machine-id"
-  # this is required by ZFS
+  # This is generated via `head -c 8 /etc/machine-id` and required by ZFS.
   networking.hostId = "97e4f3b3";
 
-  # Configure systemd-boot
+  # Enable systemd-boot and set timeout.
   boot.loader.systemd-boot.enable = true;
   boot.loader.timeout = 1;
 
-  # Enable weekly TRIM on ZFS
+  # Enable weekly TRIM on ZFS.
   services.zfs.trim.enable = true;
 
 
@@ -29,11 +28,11 @@
   services.xserver.enable = true;
   services.xserver.autorun = true;
 
-  # Configure TLP
+  # Configure tlp.
   services.tlp.enable = true;
   services.tlp.extraConfig = "RUNTIME_PM_BLACKLIST='02:00.0'"; # Blacklist wifi card
 
-  # Undervolting
+  # Configure undervolting service for Intel CPUs.
   services.undervolt = {
     enable = true;
     coreOffset = "-100";
@@ -47,10 +46,10 @@
   ## Kernel & Modules
   ##############################################################################
 
-  # Install wifi kernel module
+  # Install wifi kernel module.
   boot.extraModulePackages = [ pkgs.linuxPackages.rtl8821ce ];
 
-  # Blacklist sensor kernel modules
+  # Blacklist sensor kernel modules.
   boot.blacklistedKernelModules = [ "intel_ishtp_hid" "intel_ish_ipc" ];
 
 
@@ -61,7 +60,7 @@
   # Enable touchpad support.
   services.xserver.libinput.enable = true;
 
-  # Enable touch scrolling in Firefox
+  # Enable touch scrolling in Firefox.
   environment.variables = { MOZ_USE_XINPUT2 = "1"; };
 
 
@@ -73,7 +72,7 @@
   # are also installed.
   services.xserver.videoDrivers = [ "modesetting" ];
 
-  # Add custom resolutions (for playing games at lower resolutions)
+  # Add custom resolutions (for playing games at lower resolutions).
   services.xserver.xrandrHeads = [
     {
       output = "eDP-1";
@@ -97,7 +96,7 @@
   ## Audio
   ##############################################################################
 
-  # Create a systemd service to fix audio crackling on startup/resume
+  # Create a systemd service to fix audio crackling on startup/resume.
   # https://bugs.launchpad.net/ubuntu/+source/alsa-driver/+bug/1648183/comments/31
   systemd.services.fixaudio = {
     description = "Audio crackling fix for Realtek ALC295";
@@ -114,13 +113,13 @@
   ## Other hardware
   ##############################################################################
 
-  # Enable Bluetooth support
+  # Enable Bluetooth support.
   hardware.bluetooth.enable = true;
 
-  # Install libraries for VA-API
+  # Install libraries for VA-API.
   hardware.opengl.extraPackages = [ pkgs.vaapiIntel ];
   hardware.opengl.extraPackages32 = [ pkgs.pkgsi686Linux.vaapiIntel ];
 
-  # Enable CPU microcode updates
+  # Enable CPU microcode updates.
   hardware.cpu.intel.updateMicrocode = true;
 }

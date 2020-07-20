@@ -44,7 +44,7 @@ stdenv.mkDerivation {
     rm -f $out/share/mpv/scripts/README.md
   '';
 
-  # Needed by mpv wrapper
+  # Needed by mpv wrapper.
   passthru.scriptName = "sponsorblock.lua";
 
   meta = with stdenv.lib; {

@@ -5,19 +5,18 @@
   ## General
   ##############################################################################
 
-  # Set hostname
+  # Set hostname.
   networking.hostName = "R3600";
 
   # The 32-bit host ID of this machine, formatted as 8 hexadecimal characters.
-  # generated via "head -c 8 /etc/machine-id"
-  # this is required by ZFS
+  # This is generated via `head -c 8 /etc/machine-id` and required by ZFS.
   networking.hostId = "db43f9bb";
 
-  # Configure systemd-boot
+  # Enable systemd-boot and set timeout.
   boot.loader.systemd-boot.enable = true;
   boot.loader.timeout = 3;
 
-  # Enable weekly TRIM on ZFS
+  # Enable weekly TRIM on ZFS.
   services.zfs.trim.enable = true;
 
 
@@ -34,10 +33,10 @@
   ## Kernel & Modules
   ##############################################################################
 
-  # Use experimental Linux kernel
+  # Use experimental Linux kernel.
   boot.kernelPackages = pkgs.unstable.linuxPackages_5_7;
 
-  # Add ddcci module for controlling the monitor through DDC
+  # Add ddcci module for controlling the monitor through DDC.
   boot.extraModulePackages = [ pkgs.unstable.linuxPackages_5_7.ddcci-driver ];
   boot.kernelModules = [ "ddcci" ];
 
@@ -46,17 +45,18 @@
   ## GPU
   ##############################################################################
 
-  # Use the amdgpu video driver
+  # Use the amdgpu video driver.
   services.xserver.videoDrivers = [ "amdgpu" ];
 
-  # Install AMDVLK driver, some games have graphical glitches when using RADV
-  # Can be enabled by setting VK_ICD_FILENAMES=/run/current-system/sw/share/amdvlk/icd.d/amd_icd64.json
+  # Install AMDVLK driver, some games have graphical glitches when using RADV.
+  # Can be enabled by setting
+  # VK_ICD_FILENAMES=/run/current-system/sw/share/amdvlk/icd.d/amd_icd64.json
   environment.systemPackages = [ pkgs.amdvlk_noDefault ];
 
-  # Use ACO shader compiler globally
+  # Use ACO shader compiler globally.
   environment.variables = { RADV_PERFTEST = "aco"; };
 
-  # Enable Freesync and TearFree (hardware vsync)
+  # Enable Freesync and TearFree (hardware vsync).
   services.xserver.deviceSection = ''
     Option "VariableRefresh" "true"
     Option "TearFree" "true"
@@ -67,12 +67,12 @@
   ## Other hardware
   ##############################################################################
 
-  # Enable Bluetooth support
+  # Enable Bluetooth support.
   hardware.bluetooth.enable = true;
 
-  # Enable CPU microcode updates
+  # Enable CPU microcode updates.
   hardware.cpu.amd.updateMicrocode = true;
 
-  # Needed for the time to stay in sync when dual booting Linux and Windows
+  # Needed for the time to stay in sync when dual booting Linux and Windows.
   time.hardwareClockInLocalTime = true;
 }

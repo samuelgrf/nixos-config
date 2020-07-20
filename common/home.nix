@@ -8,14 +8,14 @@
   # Read the release notes before changing this.
   home.stateVersion = "20.03";
 
-  # Needed to get the GPG password dialog to work
+  # Needed to get the GPG password dialog to work.
   # https://github.com/NixOS/nixpkgs/issues/73332
   services.gpg-agent = {
     enable = true;
     pinentryFlavor = "curses";
   };
 
-  # Configure Git
+  # Set Git configuration.
   programs.git = {
     enable = true;
     userName = "Samuel Gräfenstein";

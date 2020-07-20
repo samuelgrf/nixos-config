@@ -1,28 +1,28 @@
 { config, pkgs, ... }:
 
 {
-  # Use X keyboard configuration on console
+  # Use X keyboard configuration on console.
   console.useXkbConfig = true;
 
-  # Set Zsh as default shell
+  # Set Zsh as default shell.
   users.defaultUserShell = pkgs.zsh;
 
-  # Configure Zsh
+  # Configure Zsh.
   programs.zsh = {
     enable = true;
     ohMyZsh.enable = true;
-    ohMyZsh.package = pkgs.unstable.oh-my-zsh; # TODO Remove on 20.09
+    ohMyZsh.package = pkgs.unstable.oh-my-zsh; # TODO Remove on 20.09.
     autosuggestions.enable = true;
     syntaxHighlighting.enable = true;
     interactiveShellInit = ''
-      # Use powerlevel10k theme
+      # Use powerlevel10k theme.
       source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
 
-      # Use zsh instead of bash for nix-shell
+      # Use Zsh instead of bash for nix-shell.
       # TODO Remove "unstable." on 20.09
       source ${pkgs.unstable.zsh-nix-shell}/share/zsh-nix-shell/nix-shell.plugin.zsh
 
-      # Run nixos-rebuild as root and reload zsh when needed
+      # Run nixos-rebuild as root and reload Zsh when needed.
       nixos-rebuild () {
         if [ "$1" = "switch" -o "$1" = "test" ]; then
           sudo nixos-rebuild "$@" &&
@@ -34,7 +34,7 @@
         fi
       }
 
-      # Run nix-collect-garbage as root when needed
+      # Run nix-collect-garbage as root when needed.
       nix-collect-garbage () {
         if [ "$1" = "-d" -o \
              "$1" = "--delete-old" -o \
@@ -52,15 +52,15 @@
     ];
   };
 
-  # Set environment variables
+  # Set environment variables.
   environment.variables = {
-    # Used for WIP changes (push changes to $SYSTEMCONFIG by running 'applyconfig')
+    # Used for WIP changes (push changes to $SYSTEMCONFIG by running `applyconfig`).
     USERCONFIG = "/home/samuel/git-repos/nixconfig";
-    # Used for finished configuration (set $USERCONFIG as remote)
+    # Used for finished configuration (set $USERCONFIG as remote).
     SYSTEMCONFIG = "/etc/nixos";
   };
 
-  # Set shell aliases
+  # Set shell aliases.
   environment.shellAliases = {
     # NixOS & Nix
     applyconfig = ''(

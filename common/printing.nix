@@ -1,20 +1,20 @@
 { config, pkgs, ... }:
 
 {
-  # Setup CUPS for printing documents
+  # Setup CUPS for printing documents.
   services.printing.enable = true;
   services.printing.drivers = with pkgs; [ hplip mfcl2700dncupswrapper ];
 
-  # Add printers
+  # Add printers to CUPS.
   hardware.printers.ensurePrinters = [
     {
       name = "Brother_MFC-L2700DW";
       description = "Brother MFC-L2700DW";
       location = "Office Upstairs";
       deviceUri = "ipp://192.168.178.37/ipp";
-      # Get installed PPD files by running "lpinfo -m"
+      # Get installed PPD files by running `lpinfo -m`.
       model = "brother-MFCL2700DN-cups-en.ppd";
-      # Get options by running "lpoptions -p Brother_MFC-L2700DW -l"
+      # Get options by running `lpoptions -p Brother_MFC-L2700DW -l`.
       ppdOptions = {
         "PageSize" = "A4";
         "BrMediaType" = "PLAIN";
@@ -23,7 +23,7 @@
         "Duplex" = "None";
         "TonerSaveMode" = "OFF";
         # Timeout before going to sleep after printing.
-        # Can be "PrinterDefault", "2minutes", "10minutes" or "30minutes"
+        # Can be "PrinterDefault", "2minutes", "10minutes" or "30minutes".
         "Sleep" = "PrinterDefault";
       };
     }
@@ -37,7 +37,7 @@
         "PageSize" = "A3";
         "ColorModel" = "RGB";
         "MediaType" = "Plain";
-        "OutputMode" = "Normal"; # Quality, can be "Normal", "FastDraft", "Best" or "Photo"
+        "OutputMode" = "Normal"; # Quality, can be "Normal", "FastDraft", "Best" or "Photo".
         "InputSlot" = "Upper"; # Scanning?
         "Duplex" = "None";
       };

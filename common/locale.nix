@@ -1,13 +1,13 @@
 { config, ... }:
 
 {
-  # Set locale
+  # Set locale.
   i18n.defaultLocale = "en_IE.UTF-8";
 
-  # Set time zone
+  # Set time zone.
   time.timeZone = "Europe/Berlin";
 
-  # Set keyboard layout
+  # Set keyboard layout.
   services.xserver = {
     layout = "us";
     xkbVariant = "altgr-intl";

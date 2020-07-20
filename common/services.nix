@@ -4,7 +4,7 @@ let
   trueIfX = config.services.xserver.enable;
 in
 {
-  # Enable KDE Plasma 5
+  # Enable the KDE Plasma desktop environment.
   services.xserver.desktopManager.plasma5.enable = trueIfX;
   services.xserver.displayManager.sddm = {
     enable = trueIfX;
@@ -12,7 +12,7 @@ in
     autoLogin.user = "samuel";
   };
 
-  # Hides the mouse cursor if it isn’t being moved
+  # Hides the mouse cursor if it isn’t being moved.
   systemd.user.services.unclutter = {
     description = "unclutter-xfixes";
     script = "${pkgs.unclutter-xfixes}/bin/unclutter";
@@ -20,16 +20,16 @@ in
     partOf = [ "graphical-session.target" ];
   };
 
-  # Configure Emacs
+  # Configure Emacs daemon.
   services.emacs = {
     enable = true;
     defaultEditor = true;
     package = with pkgs; (if trueIfX then emacs else emacs-nox);
   };
 
-  # Enable Early OOM
+  # Enable Early OOM deamon.
   services.earlyoom.enable = true;
 
-  # Enable the OpenSSH daemon.
+  # Enable OpenSSH daemon.
   # services.openssh.enable = true;
 }
