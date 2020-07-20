@@ -10,8 +10,11 @@
   # Configure Zsh.
   programs.zsh = {
     enable = true;
-    ohMyZsh.enable = true;
-    ohMyZsh.package = pkgs.unstable.oh-my-zsh; # TODO Remove on 20.09.
+    ohMyZsh = {
+      enable = true;
+      package = pkgs.unstable.oh-my-zsh; # TODO Remove on 20.09.
+      plugins = [ "git" ];
+    };
     autosuggestions.enable = true;
     syntaxHighlighting.enable = true;
     interactiveShellInit = ''
