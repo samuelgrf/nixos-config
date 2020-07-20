@@ -23,4 +23,30 @@
     signing.key = "FF2458328FAF466018C6186EEF76A063F15C63C8";
     signing.signByDefault = true;
   };
+
+  # Set default applications.
+  xdg.mimeApps = let
+    kate = "org.kde.kate.desktop";
+    firefox = "firefox.desktop";
+    gwenview = "org.kde.gwenview.desktop";
+  in {
+    enable = true;
+    associations.added = {
+      "application/xml" = "${kate}";
+
+      "image/svg+xml" = "${gwenview}";
+    };
+    defaultApplications = {
+      "application/xhtml+xml" = "${firefox}";
+      "application/xml" = "${kate}";
+
+      "image/svg+xml" = "${gwenview}";
+
+      "text/html" = "${firefox}";
+      "text/plain" = "${kate}";
+
+      "x-scheme-handler/http" = "${firefox}";
+      "x-scheme-handler/https" = "${firefox}";
+    };
+  };
 }
