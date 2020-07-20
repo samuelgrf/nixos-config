@@ -49,9 +49,6 @@
   # Install wifi kernel module.
   boot.extraModulePackages = [ pkgs.linuxPackages.rtl8821ce ];
 
-  # Blacklist sensor kernel modules.
-  boot.blacklistedKernelModules = [ "intel_ishtp_hid" "intel_ish_ipc" ];
-
 
   ##############################################################################
   ## Input devices
