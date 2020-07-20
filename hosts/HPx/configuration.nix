@@ -28,7 +28,7 @@
   services.xserver.enable = true;
   services.xserver.autorun = true;
 
-  # Configure tlp.
+  # Configure TLP.
   services.tlp.enable = true;
   services.tlp.extraConfig = "RUNTIME_PM_BLACKLIST='02:00.0'"; # Blacklist wifi card
 
