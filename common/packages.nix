@@ -63,6 +63,7 @@
         openjdk
         partition-manager
         pavucontrol
+        unstable.protontricks
         spectacle
         unstable.steam
         torbrowser
