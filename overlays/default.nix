@@ -43,6 +43,9 @@
         ];
       };
 
+      # Protonfixes requires cabextract to install MS core fonts.
+      steam = super.steam.override { extraPkgs = pkgs: [ self.cabextract ]; };
+
     })
   ];
 }
