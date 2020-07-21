@@ -55,7 +55,7 @@
         keepassxc
         konsole
         libreoffice
-        lutris
+        unstable.lutris
         unstable.mpv_sponsorblock # Use unstable channel because of youtube-dl.
         multimc
         # TODO Remove "unstable." on 20.09.
