@@ -15,6 +15,7 @@
         gnupg
         htop
         imagemagick
+        killall
         lm_sensors
         lolcat
         lshw
