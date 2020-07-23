@@ -17,6 +17,8 @@
     };
     autosuggestions.enable = true;
     syntaxHighlighting.enable = true;
+
+    # Zshrc
     interactiveShellInit = ''
       # Use powerlevel10k theme.
       source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
@@ -55,34 +57,16 @@
     ];
   };
 
-  # Set environment variables.
-  environment.variables = {
-    # Used for WIP changes (push changes to $SYSTEMCONFIG by running `applyconfig`).
-    USERCONFIG = "/home/samuel/git-repos/nixconfig";
-    # Used for finished configuration (set $USERCONFIG as remote).
-    SYSTEMCONFIG = "/etc/nixos";
-  };
-
   # Set shell aliases.
   environment.shellAliases = {
     # NixOS & Nix
-    applyconfig = ''(
-      cd $SYSTEMCONFIG &&
-      sudo git fetch &&
-      git diff master origin/master &&
-      sudo git reset --hard origin/master)\
-    '';
-    testconfig = ''
-      nixos-rebuild test \
-        -I nixos-config=$USERCONFIG/configuration.nix\
+    nix-stray-roots = ''
+      nix-store --gc --print-roots | \
+        grep -Ev "^(/nix/var|/run/\w+-system|\{memory|\{censored)"\
     '';
     nixos-upgrade = ''
       sudo nix-channel --update &&
       nixos-rebuild\
-    '';
-    nix-stray-roots = ''
-      nix-store --gc --print-roots | \
-        grep -Ev "^(/nix/var|/run/\w+-system|\{memory|\{censored)"\
     '';
     pks = "nix search";
 
