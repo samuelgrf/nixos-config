@@ -28,6 +28,7 @@
         pciutils
         python3
         sysstat
+        trash-cli
         tuir
         unar
         usbutils
