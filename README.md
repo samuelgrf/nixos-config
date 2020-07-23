@@ -1,11 +1,18 @@
 nixos-config
 ============
 
-My [NixOS][] configuration.  Clone to `/etc/nixos` and symlink the host-specific
-directory to `/etc/nixos/host`.
+My [NixOS][] configuration.
 
-Home Manager
-============
+Instructions
+------------
+
+#### Clone and create host symlink:
+```
+git clone https://gitlab.com/samuelgrf/nixos-config.git /etc/nixos
+ln -s /etc/nixos/hosts/<name> /etc/nixos/host
+```
+
+#### Setup Home Manager:
 
 Symlink home.nix:
 ```
