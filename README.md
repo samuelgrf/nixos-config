@@ -1,19 +1,28 @@
 nixconfig
-========
+=========
 
 My [NixOS][] configuration.  Clone to `/etc/nixos` and symlink the host-specific
 directory to `/etc/nixos/host`.
 
-Add channels and update by running: 
-```
-sudo nix-channel --add https://channels.nixos.org/nixos-unstable nixos-unstable
-sudo nix-channel --add https://github.com/rycee/home-manager/archive/master.tar.gz home-manager
-sudo nix-channel --update
-```
-For getting a specific revision from GitHub: 
-`https://github.com/nixos/nixpkgs-channels/archive/<revision>.tar.gz`.
+Home Manager
+============
 
-Install Home Manager by running: 
-`nix-shell '<home-manager>' -A install`.
+Symlink home.nix:
+```
+mkdir -p ~/.config/nixpkgs
+ln -s /etc/nixos/common/home.nix ~/.config/nixpkgs
+```
+
+Add channel and update:
+```
+nix-channel --add https://github.com/rycee/home-manager/archive/release-20.03.tar.gz home-manager
+nix-channel --update
+```
+
+Install Home Manager and activate configuration:
+```
+nix-shell '<home-manager>' -A install
+home-manager switch
+```
 
 [NixOS]: https://nixos.org
