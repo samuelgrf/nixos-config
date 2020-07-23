@@ -8,6 +8,7 @@ Instructions
 
 #### Clone and create host symlink:
 ```
+mv /etc/nixos /etc/nixos.bak
 git clone https://gitlab.com/samuelgrf/nixos-config.git /etc/nixos
 ln -s /etc/nixos/hosts/<name> /etc/nixos/host
 ```
