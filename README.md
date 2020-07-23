@@ -1,5 +1,5 @@
-nixconfig
-=========
+nixos-config
+============
 
 My [NixOS][] configuration.  Clone to `/etc/nixos` and symlink the host-specific
 directory to `/etc/nixos/host`.
