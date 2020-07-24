@@ -8,7 +8,7 @@ Instructions
 
 ### Note: Run all commands as the default user!
 
-#### Set nixos_host variable to name from nixos-config/hosts:
+#### Set nixos_host variable to a folder in nixos-config/hosts:
 ```
 nixos_host=<name>
 ```
