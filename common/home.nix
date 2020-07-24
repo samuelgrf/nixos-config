@@ -1,6 +1,9 @@
-{ config, ... }:
+{ config, lib, ... }:
 
 {
+  # Import host configuration if it exists.
+  imports = if lib.pathExists ../host/home.nix then [ ../host/home.nix ] else [ ];
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
