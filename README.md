@@ -31,5 +31,4 @@ ln -s /etc/nixos/common/home.nix ~/.config/nixpkgs
 nix-channel --add https://github.com/rycee/home-manager/archive/release-20.03.tar.gz home-manager
 nix-channel --update
 nix-shell '<home-manager>' -A install
-home-manager switch
 ```
