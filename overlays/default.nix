@@ -44,6 +44,22 @@
         ];
       };
 
+      # Change some Oh My Zsh defaults.
+      # This overlay is needed, since oh-my-zsh is loaded after
+      # "programs.zsh.interactiveShellInit".
+      oh-my-zsh = super.oh-my-zsh.overrideAttrs (oldAttrs: {
+        installPhase = oldAttrs.installPhase + ''
+          cat >> oh-my-zsh.sh <<- EOF
+          # less: Enable smart case-insensitive search, quit if one screen
+          # and handle control characters.
+          export LESS="-i -F -R"
+
+          # less: Disable history.
+          export LESSHISTSIZE=0
+          EOF
+        '';
+      });
+
       # Protonfixes requires cabextract to install MS core fonts.
       steam = super.steam.override { extraPkgs = pkgs: [ self.cabextract ]; };
 
