@@ -40,6 +40,7 @@
       mpv = super.mpv.override {
         scripts = [
           (super.callPackage ./mpv-scripts/sponsorblock.nix { })
+          (super.callPackage ./mpv-scripts/youtube-quality.nix { })
         ];
       };
 
