@@ -1,56 +1,54 @@
-{ stdenv, fetchgit, python3 }:
+{ stdenv, fetchFromGitHub, fetchpatch, python3 }:
 
 stdenv.mkDerivation {
-  pname = "sponsorblock-mpv-script";
-  version = "2020-06-21";
+  pname = "mpv_sponsorblock";
+  version = "unstable-2020-07-05";
 
-  src = fetchgit {
-    url = "https://github.com/po5/mpv_sponsorblock";
-    rev = "2548e6c5f503f6d5ed38bb27923696abde601d6d";
-    sha256 = "1iiqaka8wabham3aramiriviiisxyvd8raf7lhs84ni8wccccjj9";
+  src = fetchFromGitHub {
+    owner = "po5";
+    repo = "mpv_sponsorblock";
+    rev = "f71e49e0531350339134502e095721fdc66eac20";
+    sha256 = "1fr4cagzs26ygxyk8dxqvjw4n85fzv6is6cb1jhr2qnsjg6pa0p8";
   };
 
   dontBuild = true;
 
-  buildInputs = [ python3 ];
+  patches = [
+    # Use XDG_DATA_HOME and XDG_CACHE_HOME if defined for UID and DB
+    # Necessary to avoid sponsorblock to write in the nix store at runtime.
+    # https://github.com/po5/mpv_sponsorblock/pull/17
+    (fetchpatch {
+      url = "https://github.com/po5/mpv_sponsorblock/pull/17/commits/e65b360a7d03a3430b4829e457a6670b2f617b09.patch";
+      sha256 = "00wv0pvbz0dz2ibka66zhl2jk0pil4pyv6ipjfz37i81q6szyhs5";
+    })
+    (fetchpatch {
+      url = "https://github.com/po5/mpv_sponsorblock/pull/17/commits/3832304d959205e99120a14c0560ed3c37104b08.patch";
+      sha256 = "149ffvn714n2m3mqs8mgrbs24bcr74kqfkx7wyql36ndhm88xd2z";
+    })
+  ];
 
-  # The sponsorblock Python script tries to download the sponsor database into
-  # '~/.local/share/sponsorblock' (set in postPatch), this patch makes it create
-  # the directory before downloading.
-  patches = [ ./sponsorblock.patch ];
-
-  # Load python script from Nix store instead of the home directory.
-  # Save database and user ID in "~/.local/share/sponsorblock".
   postPatch = ''
     substituteInPlace sponsorblock.lua \
-      --replace 'skip_categories = "sponsor"' \
-        'skip_categories = "sponsor,intro,interaction,selfpromo"' \
-      --replace 'skip_once = true' \
-        'skip_once = false' \
-      --replace 'local_pattern = ""' \
-        'local_pattern = "-([%w-_]+)%.[mw][kpe][v4b]m?$"' \
-      \
-      --replace 'scripts_dir, "sponsorblock_shared/sponsorblock.py"' \
-        "\"$out/share/mpv/scripts\", \"sponsorblock_shared/sponsorblock.py\"" \
-      --replace 'scripts_dir, "sponsorblock_shared/sponsorblock.txt"' \
-        'os.getenv("HOME"), ".local/share/sponsorblock/sponsorblock.txt"' \
-      --replace 'scripts_dir, "sponsorblock_shared/sponsorblock.db"' \
-        'os.getenv("HOME"), ".local/share/sponsorblock/sponsorblock.db"'
+      --replace "python3" "${python3}/bin/python3" \
+      --replace 'mp.find_config_file("scripts")' "\"$out/share/mpv/scripts\""
   '';
 
+  # Usage:
+  # pkgs.mpv.override {
+  #   scripts = [ pkgs.mpvScripts.sponsorblock ];
+  # }
   installPhase = ''
     mkdir -p $out/share/mpv/scripts
-    cp -r . $out/share/mpv/scripts
-    rm -f $out/share/mpv/scripts/README.md
+    cp -r sponsorblock.lua sponsorblock_shared $out/share/mpv/scripts/
   '';
 
-  # Needed by mpv wrapper.
   passthru.scriptName = "sponsorblock.lua";
 
   meta = with stdenv.lib; {
-    description = "A fully-featured port of SponsorBlock for mpv.";
+    description = "mpv script to skip sponsored segments of YouTube videos";
     homepage = "https://github.com/po5/mpv_sponsorblock";
-    platforms = platforms.darwin ++ platforms.linux;
-    # maintainers = with maintainers; [ samuelgrf ];
+    license = licenses.gpl3;
+    platforms = platforms.all;
+    maintainers = with maintainers; [ pacien ];
   };
 }
