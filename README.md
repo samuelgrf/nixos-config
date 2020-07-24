@@ -1,32 +1,35 @@
 nixos-config
 ============
 
-My [NixOS][] configuration.
+My [NixOS](https://nixos.org) configuration.
 
 Instructions
 ------------
 
-#### Clone and create host symlink:
+### Note: Please run all commands as the default user
+
+#### Set nixos_host variable to name from nixos-config/hosts
 ```
-mv /etc/nixos /etc/nixos.bak
+nixos_host=<name>
+```
+
+#### Clone, take ownership and copy generated hardware.nix:
+```
+sudo mv /etc/nixos /etc/nixos.bak
+sudo mkdir /etc/nixos
+sudo chown -R $USER\:users /etc/nixos
 git clone https://gitlab.com/samuelgrf/nixos-config.git /etc/nixos
-ln -s /etc/nixos/hosts/<name> /etc/nixos/host
+ln -s \./hosts/$nixos_host /etc/nixos/host
+sudo nixos-generate-config --dir /etc/nixos.bak
+cp /etc/nixos.bak/hardware-configuration.nix /etc/nixos/host/hardware.nix
 ```
 
 #### Setup Home Manager:
-
 ```
-# Create symlink for home.nix.
 mkdir -p ~/.config/nixpkgs
 ln -s /etc/nixos/common/home.nix ~/.config/nixpkgs
-
-# Add channel and update.
 nix-channel --add https://github.com/rycee/home-manager/archive/release-20.03.tar.gz home-manager
 nix-channel --update
-
-# Install Home Manager and activate configuration.
 nix-shell '<home-manager>' -A install
 home-manager switch
 ```
-
-[NixOS]: https://nixos.org
