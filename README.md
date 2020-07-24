@@ -6,9 +6,9 @@ My [NixOS](https://nixos.org) configuration.
 Instructions
 ------------
 
-### Note: Please run all commands as the default user
+### Note: Run all commands as the default user!
 
-#### Set nixos_host variable to name from nixos-config/hosts
+#### Set nixos_host variable to name from nixos-config/hosts:
 ```
 nixos_host=<name>
 ```
