@@ -28,21 +28,21 @@
   in {
     enable = true;
     associations.added = {
-      "application/xml" = "${kate}";
+      "application/xml" = kate;
 
-      "image/svg+xml" = "${gwenview}";
+      "image/svg+xml" = gwenview;
     };
     defaultApplications = {
-      "application/xhtml+xml" = "${firefox}";
-      "application/xml" = "${kate}";
+      "application/xhtml+xml" = firefox;
+      "application/xml" = kate;
 
-      "image/svg+xml" = "${gwenview}";
+      "image/svg+xml" = gwenview;
 
-      "text/html" = "${firefox}";
-      "text/plain" = "${kate}";
+      "text/html" = firefox;
+      "text/plain" = kate;
 
-      "x-scheme-handler/http" = "${firefox}";
-      "x-scheme-handler/https" = "${firefox}";
+      "x-scheme-handler/http" = firefox;
+      "x-scheme-handler/https" = firefox;
     };
   };
 }
