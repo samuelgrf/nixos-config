@@ -22,27 +22,35 @@
 
   # Set default applications.
   xdg.mimeApps = let
+
+    # Applications
     kate = "org.kde.kate.desktop";
     firefox = "firefox.desktop";
     gwenview = "org.kde.gwenview.desktop";
+
+    # Formats
+    http = "x-scheme-handler/http";
+    https = "x-scheme-handler/https";
+    html = "text/html";
+    svg = "image/svg+xml";
+    txt = "text/plain";
+    xml = "application/xml";
+    xhtml = "application/xhtml+xml";
   in {
     enable = true;
-    associations.added = {
-      "application/xml" = kate;
 
-      "image/svg+xml" = gwenview;
+    associations.added = {
+      ${svg} = gwenview;
+      ${xml} = kate;
     };
     defaultApplications = {
-      "application/xhtml+xml" = firefox;
-      "application/xml" = kate;
-
-      "image/svg+xml" = gwenview;
-
-      "text/html" = firefox;
-      "text/plain" = kate;
-
-      "x-scheme-handler/http" = firefox;
-      "x-scheme-handler/https" = firefox;
+      ${html} = firefox;
+      ${http} = firefox;
+      ${https} = firefox;
+      ${svg} = gwenview;
+      ${txt} = kate;
+      ${xhtml} = firefox;
+      ${xml} = kate;
     };
   };
 }
