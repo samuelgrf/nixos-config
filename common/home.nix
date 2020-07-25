@@ -32,6 +32,7 @@
     http = "x-scheme-handler/http";
     https = "x-scheme-handler/https";
     html = "text/html";
+    ini = "application/x-wine-extension-ini";
     svg = "image/svg+xml";
     txt = "text/plain";
     xml = "application/xml";
@@ -40,6 +41,7 @@
     enable = true;
 
     associations.added = {
+      ${ini} = kate;
       ${svg} = gwenview;
       ${xml} = kate;
     };
@@ -47,6 +49,7 @@
       ${html} = firefox;
       ${http} = firefox;
       ${https} = firefox;
+      ${ini} = kate;
       ${svg} = gwenview;
       ${txt} = kate;
       ${xhtml} = firefox;
