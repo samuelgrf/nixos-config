@@ -1,3 +1,5 @@
+{ config, lib, ... }:
+
 {
   imports = [
     # All hosts
@@ -17,8 +19,17 @@
     ./host/configuration.nix
     ./host/hardware.nix
 
-    # Other
+    # Modules
+    <home-manager/nixos>
     ./modules/g810-led.nix
+
+    # Overlays
     ./overlays
   ];
+
+  # Home Manager
+  home-manager.useGlobalPkgs = true;
+  home-manager.users.samuel.imports = [
+    ./common/home.nix
+  ] ++ (if lib.pathExists ./host/home.nix then [ ./host/home.nix ] else [ ]);
 }

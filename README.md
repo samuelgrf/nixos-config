@@ -24,11 +24,8 @@ sudo nixos-generate-config --dir /etc/nixos.bak
 cp /etc/nixos.bak/hardware-configuration.nix /etc/nixos/host/hardware.nix
 ```
 
-#### Setup Home Manager:
+#### Add Home Manager channel:
 ```
-mkdir -p ~/.config/nixpkgs
-ln -s /etc/nixos/common/home.nix ~/.config/nixpkgs
-nix-channel --add https://github.com/rycee/home-manager/archive/release-20.03.tar.gz home-manager
-nix-channel --update
-nix-shell '<home-manager>' -A install
+sudo nix-channel --add https://github.com/rycee/home-manager/archive/master.tar.gz home-manager
+sudo nix-channel --update
 ```

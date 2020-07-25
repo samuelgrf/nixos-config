@@ -8,7 +8,7 @@
       ## Channel aliases
       ##########################################################################
 
-      # Alias for unstable channel
+      # Alias for unstable channel.
       unstable = import <nixos-unstable> {
         config = config.nixpkgs.config;
         overlays = config.nixpkgs.overlays;
@@ -16,6 +16,14 @@
         crossSystem = config.nixpkgs.crossSystem;
       };
 
+      # Unstable alias without overlays.
+      # Can be used inside overlays without causing infinite recursions.
+      unstableNoOverlays = import <nixos-unstable> {
+        config = config.nixpkgs.config;
+        overlays = [ ];
+        localSystem = config.nixpkgs.localSystem;
+        crossSystem = config.nixpkgs.crossSystem;
+      };
 
       ##########################################################################
       ## Packages
@@ -37,7 +45,10 @@
       hack_nerdfont = super.nerdfonts.override { fonts = [ "Hack" ]; };
       meslo-lg_nerdfont = super.nerdfonts.override { fonts = [ "Meslo" ]; };
 
-      mpv = super.mpv.override {
+      # Use unstable channel because of newer youtube-dl version and script support.
+      # This as done in an overlay to make sure Home Manager and NixOS use
+      # the same derivation.
+      mpv = self.unstableNoOverlays.mpv.override {
         scripts = [
           (super.callPackage ./mpv-scripts/sponsorblock.nix { })
           (super.callPackage ./mpv-scripts/youtube-quality.nix { })

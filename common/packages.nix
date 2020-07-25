@@ -57,7 +57,7 @@
         konsole
         libreoffice
         unstable.lutris
-        unstable.mpv # Use unstable channel because of youtube-dl.
+        mpv
         multimc
         # TODO Remove "unstable." on 20.09.
         unstable.nixos-artwork.wallpapers.nineish-dark-gray

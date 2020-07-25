@@ -1,12 +1,6 @@
-{ config, lib, ... }:
+{ config, ... }:
 
 {
-  # Import host configuration if it exists.
-  imports = if lib.pathExists ../host/home.nix then [ ../host/home.nix ] else [ ];
-
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
-
   # The NixOS release to be compatible with for stateful data such as databases.
   # Read the release notes before changing this.
   home.stateVersion = "20.03";
