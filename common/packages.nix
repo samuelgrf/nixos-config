@@ -66,6 +66,7 @@
         partition-manager
         pavucontrol
         unstable.protontricks
+        smartmontools
         spectacle
         unstable.steam
         torbrowser
