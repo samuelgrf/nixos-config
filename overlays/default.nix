@@ -18,7 +18,7 @@
 
       # Unstable alias without overlays.
       # Can be used inside overlays without causing infinite recursions.
-      unstableNoOverlays = import <nixos-unstable> {
+      unstableSuper = import <nixos-unstable> {
         config = config.nixpkgs.config;
         overlays = [ ];
         localSystem = config.nixpkgs.localSystem;
@@ -49,7 +49,7 @@
       # Use unstable channel because of newer youtube-dl version and script support.
       # This as done in an overlay to make sure Home Manager and NixOS use
       # the same derivation.
-      mpv = self.unstableNoOverlays.mpv.override {
+      mpv = self.unstableSuper.mpv.override {
         scripts = [
           (super.callPackage ./mpv-scripts/sponsorblock.nix { })
           (super.callPackage ./mpv-scripts/youtube-quality.nix { })
