@@ -50,7 +50,7 @@
         fi
       }
 
-      # Show SMART information for drives.
+      # Display SMART information for drives. Takes device path as argument.
       smart () {
         sudo smartctl -a "$@" | less
       }
