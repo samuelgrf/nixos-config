@@ -21,12 +21,14 @@
     kate = "org.kde.kate.desktop";
     firefox = "firefox.desktop";
     gwenview = "org.kde.gwenview.desktop";
+    okularPdf = "okularApplication_pdf.desktop";
 
     # Formats
     http = "x-scheme-handler/http";
     https = "x-scheme-handler/https";
     html = "text/html";
     ini = "application/x-wine-extension-ini";
+    pdf = "application/pdf";
     svg = "image/svg+xml";
     txt = "text/plain";
     xml = "application/xml";
@@ -44,6 +46,7 @@
       ${http} = firefox;
       ${https} = firefox;
       ${ini} = kate;
+      ${pdf} = okularPdf;
       ${svg} = gwenview;
       ${txt} = kate;
       ${xhtml} = firefox;
