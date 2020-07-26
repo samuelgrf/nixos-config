@@ -49,6 +49,11 @@
           command nix-collect-garbage "$@"
         fi
       }
+
+      # Show SMART information for drives.
+      smart () {
+        sudo smartctl -a "$@" | less
+      }
     '';
     setOptions = [
       "HIST_FCNTL_LOCK"
