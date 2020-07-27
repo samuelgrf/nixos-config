@@ -50,6 +50,11 @@
         fi
       }
 
+      # Get location of binary in the Nix store.
+      nix-where () {
+        readlink $(where "$@")
+      }
+
       # Display SMART information for drives. Takes device path as argument.
       smart () {
         sudo smartctl -a "$@" | less
