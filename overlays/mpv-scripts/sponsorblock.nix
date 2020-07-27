@@ -1,5 +1,6 @@
 { stdenv, fetchFromGitHub, fetchpatch, python3 }:
 
+# Usage: `pkgs.mpv.override { scripts = [ pkgs.mpvScripts.sponsorblock ]; }`
 stdenv.mkDerivation {
   pname = "mpv_sponsorblock";
   version = "unstable-2020-07-05";
@@ -33,10 +34,6 @@ stdenv.mkDerivation {
       --replace 'mp.find_config_file("scripts")' "\"$out/share/mpv/scripts\""
   '';
 
-  # Usage:
-  # pkgs.mpv.override {
-  #   scripts = [ pkgs.mpvScripts.sponsorblock ];
-  # }
   installPhase = ''
     mkdir -p $out/share/mpv/scripts
     cp -r sponsorblock.lua sponsorblock_shared $out/share/mpv/scripts/
