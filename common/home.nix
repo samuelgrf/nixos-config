@@ -31,6 +31,7 @@
     pdf = "application/pdf";
     svg = "image/svg+xml";
     txt = "text/plain";
+    url = "application/x-mswinurl";
     xml = "application/xml";
     xhtml = "application/xhtml+xml";
   in {
@@ -38,6 +39,7 @@
 
     associations.added = {
       ${ini} = kate;
+      ${url} = kate;
       ${svg} = gwenview;
       ${xml} = kate;
     };
@@ -49,6 +51,7 @@
       ${pdf} = okularPdf;
       ${svg} = gwenview;
       ${txt} = kate;
+      ${url} = kate;
       ${xhtml} = firefox;
       ${xml} = kate;
     };
