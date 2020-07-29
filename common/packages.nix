@@ -34,7 +34,7 @@
         usbutils
         wget
         whois
-        unstable.youtube-dl
+        youtube-dl
       ];
       noX = [
         openjdk_headless

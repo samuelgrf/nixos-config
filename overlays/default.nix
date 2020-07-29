@@ -46,9 +46,8 @@
       hack_nerdfont = super.nerdfonts.override { fonts = [ "Hack" ]; };
       meslo-lg_nerdfont = super.nerdfonts.override { fonts = [ "Meslo" ]; };
 
-      # Use unstable channel because of newer youtube-dl version and script support.
-      # This as done in an overlay to make sure Home Manager and NixOS use
-      # the same derivation.
+      # Use unstable channel because of script support, this is done in an
+      # overlay to make sure Home Manager and NixOS use the same derivation.
       mpv = self.unstableSuper.mpv.override {
         scripts = [
           (super.callPackage ./mpv-scripts/sponsorblock.nix { })
