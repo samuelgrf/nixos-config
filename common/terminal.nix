@@ -24,7 +24,7 @@
       source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
 
       # Use Zsh instead of bash for nix-shell.
-      # TODO Remove "unstable." on 20.09
+      # TODO Remove "unstable." on 20.09.
       source ${pkgs.unstable.zsh-nix-shell}/share/zsh-nix-shell/nix-shell.plugin.zsh
 
       # Run nixos-rebuild as root and reload Zsh when needed.

@@ -56,7 +56,7 @@
         keepassxc
         konsole
         libreoffice
-        unstable.lutris
+        lutris
         mpv
         multimc
         # TODO Remove "unstable." on 20.09.
@@ -65,15 +65,15 @@
         openjdk
         partition-manager
         pavucontrol
-        unstable.protontricks
+        protontricks
         smartmontools
         spectacle
-        unstable.steam
-        unstable.steam-run
+        steam
+        steam-run
         torbrowser
         unstable.ungoogled-chromium # TODO Remove "unstable." on 20.09.
-        unstable.wineWowPackages.staging # Comes with both x64 and x86 Wine.
-        unstable.winetricks
+        wineWowPackages.staging # Comes with both x64 and x86 Wine.
+        winetricks
         xclip
         xorg.xev
       ];
