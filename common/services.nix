@@ -1,14 +1,11 @@
 { config, pkgs, ... }:
 
-let
-  trueIfX = config.services.xserver.enable;
-in
 {
   # Enable the KDE Plasma desktop environment.
-  services.xserver.desktopManager.plasma5.enable = trueIfX;
+  services.xserver.desktopManager.plasma5.enable = true;
   services.xserver.displayManager.sddm = {
-    enable = trueIfX;
-    autoLogin.enable = trueIfX;
+    enable = true;
+    autoLogin.enable = true;
     autoLogin.user = "samuel";
   };
 
@@ -20,12 +17,9 @@ in
     partOf = [ "graphical-session.target" ];
   };
 
-  # Configure Emacs daemon.
-  services.emacs = {
-    enable = true;
-    defaultEditor = true;
-    package = with pkgs; (if trueIfX then emacs else emacs-nox);
-  };
+  # Enable Emacs daemon.
+  services.emacs.enable = true;
+  services.emacs.defaultEditor = true;
 
   # Enable Early OOM deamon.
   services.earlyoom.enable = true;
