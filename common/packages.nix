@@ -69,6 +69,7 @@
         smartmontools
         spectacle
         unstable.steam
+        unstable.steam-run
         torbrowser
         unstable.ungoogled-chromium # TODO Remove "unstable." on 20.09.
         unstable.wineWowPackages.staging # Comes with both x64 and x86 Wine.
