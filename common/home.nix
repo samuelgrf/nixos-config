@@ -24,11 +24,15 @@
     okularPdf = "okularApplication_pdf.desktop";
 
     # Formats
+    gif = "image/gif";
     http = "x-scheme-handler/http";
     https = "x-scheme-handler/https";
     html = "text/html";
+    ico = "image/x-ico";
     ini = "application/x-wine-extension-ini";
+    jpg = "image/jpeg";
     pdf = "application/pdf";
+    png = "image/png";
     svg = "image/svg+xml";
     txt = "text/plain";
     url = "application/x-mswinurl";
@@ -44,11 +48,15 @@
       ${xml} = kate;
     };
     defaultApplications = {
+      ${gif} = gwenview;
       ${html} = firefox;
       ${http} = firefox;
       ${https} = firefox;
+      ${ico} = gwenview;
       ${ini} = kate;
+      ${jpg} = gwenview;
       ${pdf} = okularPdf;
+      ${png} = gwenview;
       ${svg} = gwenview;
       ${txt} = kate;
       ${url} = kate;
