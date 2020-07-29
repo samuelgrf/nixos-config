@@ -51,7 +51,7 @@
       }
 
       # Get location of binary in the Nix store.
-      nix-where () {
+      where-nix () {
         readlink $(where "$@")
       }
 
