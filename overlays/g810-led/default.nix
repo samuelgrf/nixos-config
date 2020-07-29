@@ -16,15 +16,15 @@ stdenv.mkDerivation rec {
 
   installPhase = ''
     install -D bin/g810-led $out/bin/g810-led
-    ln -s $out/bin/g810-led $out/bin/g213-led
-    ln -s $out/bin/g810-led $out/bin/g410-led
-    ln -s $out/bin/g810-led $out/bin/g413-led
-    ln -s $out/bin/g810-led $out/bin/g512-led
-    ln -s $out/bin/g810-led $out/bin/g513-led
-    ln -s $out/bin/g810-led $out/bin/g610-led
-    ln -s $out/bin/g810-led $out/bin/g815-led
-    ln -s $out/bin/g810-led $out/bin/g910-led
-    ln -s $out/bin/g810-led $out/bin/gpro-led
+    ln -s \./g810-led $out/bin/g213-led
+    ln -s \./g810-led $out/bin/g410-led
+    ln -s \./g810-led $out/bin/g413-led
+    ln -s \./g810-led $out/bin/g512-led
+    ln -s \./g810-led $out/bin/g513-led
+    ln -s \./g810-led $out/bin/g610-led
+    ln -s \./g810-led $out/bin/g815-led
+    ln -s \./g810-led $out/bin/g910-led
+    ln -s \./g810-led $out/bin/gpro-led
 
     substituteInPlace udev/g810-led.rules \
       --replace "/usr" $out \
