@@ -18,7 +18,7 @@
     autosuggestions.enable = true;
     syntaxHighlighting.enable = true;
 
-    # Zshrc
+    # Add entries to zshrc.
     interactiveShellInit = ''
       # Use powerlevel10k theme.
       source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
@@ -26,6 +26,17 @@
       # Use Zsh instead of bash for nix-shell.
       # TODO Remove "unstable." on 20.09.
       source ${pkgs.unstable.zsh-nix-shell}/share/zsh-nix-shell/nix-shell.plugin.zsh
+
+      # Run nix-collect-garbage as root when needed.
+      nix-collect-garbage () {
+        if [ "$1" = "-d" -o \
+             "$1" = "--delete-old" -o \
+             "$1" = "--delete-older-than" ]; then
+          sudo nix-collect-garbage "$@"
+        else
+          command nix-collect-garbage "$@"
+        fi
+      }
 
       # Run nixos-rebuild as root and reload Zsh when needed.
       nixos-rebuild () {
@@ -39,15 +50,9 @@
         fi
       }
 
-      # Run nix-collect-garbage as root when needed.
-      nix-collect-garbage () {
-        if [ "$1" = "-d" -o \
-             "$1" = "--delete-old" -o \
-             "$1" = "--delete-older-than" ]; then
-          sudo nix-collect-garbage "$@"
-        else
-          command nix-collect-garbage "$@"
-        fi
+      # Display SMART information for drives. Takes device path as argument.
+      smart () {
+        sudo smartctl -a "$@" | less
       }
 
       # Get location of binary in the Nix store.
@@ -55,11 +60,39 @@
         readlink $(where "$@")
       }
 
-      # Display SMART information for drives. Takes device path as argument.
-      smart () {
-        sudo smartctl -a "$@" | less
-      }
+      # Disable less history.
+      export LESSHISTFILE=/dev/null
     '';
+
+    # Set shell aliases.
+    shellAliases = {
+      # Nix & NixOS
+      nix-stray-roots = ''
+        nix-store --gc --print-roots | \
+          grep -Ev "^(/nix/var|/run/\w+-system|\{memory|\{censored)"\
+      '';
+      nixos-upgrade = ''
+        sudo nix-channel --update &&
+        nixos-rebuild\
+      '';
+      pks = "nix search";
+
+      # Other
+      incognito = ''
+        if [ -n "$HISTFILE" ]; then
+          echo "Enabled incognito mode" &&
+          unset HISTFILE
+        else
+          echo "Disabled incognito mode" &&
+          exec zsh
+        fi\
+      '';
+      level = "echo $SHLVL";
+      reload = "exec zsh";
+      wttr = "curl wttr.in";
+    };
+
+    # Set Zsh options.
     setOptions = [
       "HIST_FCNTL_LOCK"
       "HIST_IGNORE_DUPS"
@@ -67,42 +100,6 @@
     ];
   };
 
-  # Set shell aliases.
-  environment.shellAliases = {
-    # NixOS & Nix
-    nix-stray-roots = ''
-      nix-store --gc --print-roots | \
-        grep -Ev "^(/nix/var|/run/\w+-system|\{memory|\{censored)"\
-    '';
-    nixos-upgrade = ''
-      sudo nix-channel --update &&
-      nixos-rebuild\
-    '';
-    pks = "nix search";
-
-    # Other
-    incognito = ''
-      if [ -n "$HISTFILE" ]; then
-        echo "Enabled incognito mode" &&
-        unset HISTFILE
-      else
-        echo "Disabled incognito mode" &&
-        exec zsh
-      fi\
-    '';
-    level = "echo $SHLVL";
-    reload = "exec zsh";
-    wttr = "curl wttr.in";
-  };
-
-  # Change some Oh My Zsh defaults.
-  environment.extraInit = ''
-    # less: Enable smart case-insensitive search, quit if one screen
-    # and handle control characters.
-    export LESS="-i -F -R"
-
-    # less: Disable history.
-    export LESSHISTSIZE=0
-    EOF
-  '';
+  # Override Oh My Zsh defaults.
+  environment.extraInit = "export LESS='-i -F -R'";
 }
