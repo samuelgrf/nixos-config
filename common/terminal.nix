@@ -94,4 +94,15 @@
     reload = "exec zsh";
     wttr = "curl wttr.in";
   };
+
+  # Change some Oh My Zsh defaults.
+  environment.extraInit = ''
+    # less: Enable smart case-insensitive search, quit if one screen
+    # and handle control characters.
+    export LESS="-i -F -R"
+
+    # less: Disable history.
+    export LESSHISTSIZE=0
+    EOF
+  '';
 }
