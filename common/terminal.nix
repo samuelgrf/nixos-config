@@ -27,36 +27,13 @@
       # TODO Remove "unstable." on 20.09.
       source ${pkgs.unstable.zsh-nix-shell}/share/zsh-nix-shell/nix-shell.plugin.zsh
 
-      # Run nix-collect-garbage as root when needed.
-      nix-collect-garbage () {
-        if [ "$1" = "-d" -o \
-             "$1" = "--delete-old" -o \
-             "$1" = "--delete-older-than" ]; then
-          sudo nix-collect-garbage "$@"
-        else
-          command nix-collect-garbage "$@"
-        fi
-      }
-
-      # Run nixos-rebuild as root and reload Zsh when needed.
-      nixos-rebuild () {
-        if [ "$1" = "switch" -o "$1" = "test" ]; then
-          sudo nixos-rebuild "$@" &&
-          exec zsh
-        elif [ "$1" = "boot" ]; then
-          sudo nixos-rebuild "$@"
-        else
-          command nixos-rebuild "$@"
-        fi
-      }
-
       # Display SMART information for drives. Takes device path as argument.
       smart () {
         sudo smartctl -a "$@" | less
       }
 
       # Get location of binary in the Nix store.
-      where-nix () {
+      nw () {
         readlink $(where "$@")
       }
 
@@ -67,15 +44,29 @@
     # Set shell aliases.
     shellAliases = {
       # Nix & NixOS
-      nix-stray-roots = ''
+      nc = "sudo nix-channel";
+      nca = "sudo nix-channel --add";
+      ncl = "sudo nix-channel --list";
+      ncr = "sudo nix-channel --remove";
+      ncro = "sudo nix-channel --rollback";
+      ng = "sudo nix-collect-garbage";
+      ngd = "sudo nix-collect-garbage -d";
+      np = "nix repl '<nixpkgs>'";
+      nr = "sudo nixos-rebuild";
+      nrb = "sudo nixos-rebuild boot";
+      nrbu = "nixos-rebuild build";
+      nrs = "sudo nixos-rebuild switch";
+      nrt = "sudo nixos-rebuild test";
+      nru = "sudo nix-channel --update && sudo nixos-rebuild";
+      nse = "nix search";
+      nsh = "nix-shell";
+      nshp = "nix-shell -p";
+      nsr = ''
         nix-store --gc --print-roots | \
           grep -Ev "^(/nix/var|/run/\w+-system|\{memory|\{censored)"\
       '';
-      nixos-upgrade = ''
-        sudo nix-channel --update &&
-        nixos-rebuild\
-      '';
-      pks = "nix search";
+      nv = "nixos-version";
+      nvr = "nixos-version --revision";
 
       # Other
       incognito = ''
