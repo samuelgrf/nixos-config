@@ -27,22 +27,13 @@
       # TODO Remove "unstable." on 20.09.
       source ${pkgs.unstable.zsh-nix-shell}/share/zsh-nix-shell/nix-shell.plugin.zsh
 
-      emc () {
-        emacsclient -c &
-      }
-
-      # Display SMART information for drives. Takes device path as argument.
-      smart () {
-        sudo smartctl -a "$@" | less
-      }
-
-      # Get location of binary in the Nix store.
-      nw () {
-        readlink $(where "$@")
-      }
-
       # Disable less history.
       export LESSHISTFILE=/dev/null
+
+      # Define functions.
+      emc () { emacsclient -c "$@" & }
+      nw () { readlink $(where "$@") }
+      smart () { sudo smartctl -a "$@" | less }
     '';
 
     # Set shell aliases.
