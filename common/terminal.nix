@@ -64,7 +64,7 @@
       nvr = "nixos-version --revision";
 
       # Other
-      ico = ''
+      inc = ''
         if [ -n "$HISTFILE" ]; then
           echo "Enabled incognito mode" &&
           unset HISTFILE
