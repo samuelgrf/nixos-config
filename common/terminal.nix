@@ -69,7 +69,7 @@
       nvr = "nixos-version --revision";
 
       # Other
-      incognito = ''
+      ico = ''
         if [ -n "$HISTFILE" ]; then
           echo "Enabled incognito mode" &&
           unset HISTFILE
@@ -78,9 +78,9 @@
           exec zsh
         fi\
       '';
-      level = "echo $SHLVL";
-      reload = "exec zsh";
-      wttr = "curl wttr.in";
+      lvl = "echo $SHLVL";
+      rld = "exec zsh";
+      wtr = "curl wttr.in";
     };
 
     # Set Zsh options.
