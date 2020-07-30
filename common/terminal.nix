@@ -27,6 +27,10 @@
       # TODO Remove "unstable." on 20.09.
       source ${pkgs.unstable.zsh-nix-shell}/share/zsh-nix-shell/nix-shell.plugin.zsh
 
+      emc () {
+        emacsclient -c &
+      }
+
       # Display SMART information for drives. Takes device path as argument.
       smart () {
         sudo smartctl -a "$@" | less
