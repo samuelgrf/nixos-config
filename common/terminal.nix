@@ -54,6 +54,7 @@
       ncu = "sudo nix-channel --update";
       ng = "nix-collect-garbage";
       ngd = "sudo nix-collect-garbage -d";
+      nlo = "nix-locate";
       np = "nix repl '<nixpkgs>'";
       nr = "sudo nixos-rebuild";
       nrb = "sudo nixos-rebuild boot";
