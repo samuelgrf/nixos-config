@@ -44,7 +44,7 @@
       ncl = "sudo nix-channel --list";
       ncr = "sudo nix-channel --remove";
       ncro = "sudo nix-channel --rollback";
-      ng = "sudo nix-collect-garbage";
+      ng = "nix-collect-garbage";
       ngd = "sudo nix-collect-garbage -d";
       np = "nix repl '<nixpkgs>'";
       nr = "sudo nixos-rebuild";
