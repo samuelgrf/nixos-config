@@ -30,9 +30,15 @@
       # Disable less history.
       export LESSHISTFILE=/dev/null
 
-      # Define functions.
-      emc () { emacsclient -c "$@" & }
+      # Define Nix & NixOS functions.
+      nrs () { sudo nixos-rebuild switch "$@" && exec zsh }
+      nrt () { sudo nixos-rebuild test "$@" && exec zsh }
+      nus () { sudo nix-channel --update && sudo nixos-rebuild switch "$@" && exec zsh }
+      nut () { sudo nix-channel --update && sudo nixos-rebuild test "$@" && exec zsh }
       nw () { readlink $(where "$@") }
+
+      # Define other functions.
+      emc () { emacsclient -c "$@" & }
       smart () { sudo smartctl -a "$@" | less }
     '';
 
@@ -51,13 +57,9 @@
       nr = "sudo nixos-rebuild";
       nrb = "sudo nixos-rebuild boot";
       nrbu = "nixos-rebuild build";
-      nrs = "sudo nixos-rebuild switch";
-      nrt = "sudo nixos-rebuild test";
       nu = "sudo nix-channel --update && sudo nixos-rebuild";
       nub = "sudo nix-channel --update && sudo nixos-rebuild boot";
       nubu = "sudo nix-channel --update && sudo nixos-rebuild build";
-      nus = "sudo nix-channel --update && sudo nixos-rebuild switch";
-      nut = "sudo nix-channel --update && sudo nixos-rebuild test";
       nse = "nix search";
       nsh = "nix-shell -p";
       nshe = "nix-shell";
