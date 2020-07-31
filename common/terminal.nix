@@ -50,6 +50,7 @@
       nca = "sudo nix-channel --add";
       ncl = "sudo nix-channel --list";
       ncr = "sudo nix-channel --remove";
+      ncu = "sudo nix-channel --update";
       ncro = "sudo nix-channel --rollback";
       ng = "nix-collect-garbage";
       ngd = "sudo nix-collect-garbage -d";
