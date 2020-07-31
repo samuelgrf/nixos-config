@@ -20,8 +20,7 @@ sudo mkdir /etc/nixos
 sudo chown -R $USER\:users /etc/nixos
 git clone https://gitlab.com/samuelgrf/nixos-config.git /etc/nixos
 ln -s \./hosts/$nixos_host /etc/nixos/host
-sudo nixos-generate-config --dir /etc/nixos.bak
-cp /etc/nixos.bak/hardware-configuration.nix /etc/nixos/host/hardware.nix
+nixos-generate-config --show-hardware-config > /etc/nixos/host/hardware.nix
 ```
 
 #### Add and update channels:
