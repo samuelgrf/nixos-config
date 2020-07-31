@@ -39,6 +39,7 @@
     # Set shell aliases.
     shellAliases = {
       # Nix & NixOS
+      n = "nix";
       nc = "sudo nix-channel";
       nca = "sudo nix-channel --add";
       ncl = "sudo nix-channel --list";
