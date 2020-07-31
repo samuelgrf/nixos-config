@@ -50,17 +50,14 @@
       nca = "sudo nix-channel --add";
       ncl = "sudo nix-channel --list";
       ncr = "sudo nix-channel --remove";
-      ncu = "sudo nix-channel --update";
       ncro = "sudo nix-channel --rollback";
+      ncu = "sudo nix-channel --update";
       ng = "nix-collect-garbage";
       ngd = "sudo nix-collect-garbage -d";
       np = "nix repl '<nixpkgs>'";
       nr = "sudo nixos-rebuild";
       nrb = "sudo nixos-rebuild boot";
       nrbu = "nixos-rebuild build";
-      nu = "sudo nix-channel --update && sudo nixos-rebuild";
-      nub = "sudo nix-channel --update && sudo nixos-rebuild boot";
-      nubu = "sudo nix-channel --update && sudo nixos-rebuild build";
       nse = "nix search";
       nsh = "nix-shell";
       nsp = "nix-shell -p";
@@ -68,6 +65,9 @@
         nix-store --gc --print-roots | \
           grep -Ev "^(/nix/var|/run/\w+-system|\{memory|\{censored)"\
       '';
+      nu = "sudo nix-channel --update && sudo nixos-rebuild";
+      nub = "sudo nix-channel --update && sudo nixos-rebuild boot";
+      nubu = "sudo nix-channel --update && sudo nixos-rebuild build";
       nv = "nixos-version";
       nvr = "nixos-version --revision";
 
