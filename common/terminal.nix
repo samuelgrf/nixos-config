@@ -69,6 +69,7 @@
       nvr = "nixos-version --revision";
 
       # Other
+      grl = "git reflog";
       inc = ''
         if [ -n "$HISTFILE" ]; then
           echo "Enabled incognito mode" &&
