@@ -52,7 +52,11 @@
       nrbu = "nixos-rebuild build";
       nrs = "sudo nixos-rebuild switch";
       nrt = "sudo nixos-rebuild test";
-      nru = "sudo nix-channel --update && sudo nixos-rebuild";
+      nu = "sudo nix-channel --update && sudo nixos-rebuild";
+      nub = "sudo nix-channel --update && sudo nixos-rebuild boot";
+      nubu = "sudo nix-channel --update && sudo nixos-rebuild build";
+      nus = "sudo nix-channel --update && sudo nixos-rebuild switch";
+      nut = "sudo nix-channel --update && sudo nixos-rebuild test";
       nse = "nix search";
       nsh = "nix-shell";
       nshp = "nix-shell -p";
