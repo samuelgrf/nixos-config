@@ -59,8 +59,8 @@
       nus = "sudo nix-channel --update && sudo nixos-rebuild switch";
       nut = "sudo nix-channel --update && sudo nixos-rebuild test";
       nse = "nix search";
-      nsh = "nix-shell";
-      nshp = "nix-shell -p";
+      nsh = "nix-shell -p";
+      nshe = "nix-shell";
       nsr = ''
         nix-store --gc --print-roots | \
           grep -Ev "^(/nix/var|/run/\w+-system|\{memory|\{censored)"\
