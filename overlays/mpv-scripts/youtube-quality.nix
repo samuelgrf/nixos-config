@@ -1,5 +1,6 @@
 { stdenv, fetchgit }:
 
+# Usage: `pkgs.mpv.override { scripts = [ pkgs.mpvScripts.sponsorblock ]; }`
 stdenv.mkDerivation {
   pname = "mpv-youtube-quality";
   version = "unstable-2020-02-11";
@@ -12,10 +13,6 @@ stdenv.mkDerivation {
 
   dontBuild = true;
 
-  # Usage:
-  # pkgs.mpv.override {
-  #   scripts = [ pkgs.mpvScripts.youtube-quality ];
-  # }
   installPhase = ''
     mkdir -p $out/share/mpv/scripts
     cp -r youtube-quality.lua $out/share/mpv/scripts/
