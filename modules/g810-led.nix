@@ -11,7 +11,7 @@ in
       type = types.bool;
       default = false;
       description = ''
-        Wether to apply a g810-led profile when a compatible keyboard
+        Whether to apply a g810-led profile when a compatible keyboard
         is connected.
       '';
     };
@@ -28,8 +28,8 @@ in
       type = types.bool;
       default = false;
       description = ''
-        Wether to turn off all LEDs on shutdown and reboot.
-        This is a workaround for keyboards that flash 3 times on boot.
+        Whether to turn off all LEDs on shutdown and reboot.
+        Enable this if your keyboard flashes 3 times on boot.
       '';
     };
   };
@@ -41,7 +41,7 @@ in
     ];
 
     # Workaround mentioned here:
-    # https://github.com/MatMoul/g810-led/blob/master/PROFILES.md
+    # https://github.com/MatMoul/g810-led/blob/14e331ad2ab7c5ffb546e0c14dd6164b517ff9ca/PROFILES.md
     systemd.services.g810-led-workaround = mkIf cfg.enableFlashingWorkaround {
       description = "Turn off all g810-led keys";
       script = "${pkgs.g810-led}/bin/g810-led -a 000000";
