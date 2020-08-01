@@ -59,9 +59,9 @@
         lutris
         mpv
         multimc
+        nix-index
         # TODO Remove "unstable." on 20.09.
         unstable.nixos-artwork.wallpapers.nineish-dark-gray
-        nix-index
         okular
         openjdk
         partition-manager
