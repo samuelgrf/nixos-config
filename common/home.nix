@@ -77,6 +77,15 @@
     # that was ran (including those from Steam and Lutris) the default
     # for multiple filetypes.
     associations.removed = {
+      ${gif} = "wine-extension-gif.desktop";
+      ${html} = "wine-extension-htm.desktop";
+      ${ini} = "wine-extension-ini.desktop";
+      ${jpg} = [ "wine-extension-jfif.desktop" "wine-extension-jpe.desktop" ];
+      ${pdf} = "wine-extension-pdf.desktop";
+      ${png} = "wine-extension-png.desktop";
+      ${txt} = "wine-extension-txt.desktop";
+      ${url} = "wine-extension-url.desktop";
+      ${xml} = "wine-extension-xml.desktop";
       "application/rtf" = "wine-extension-rtf.desktop";
       "application/vnd.ms-htmlhelp" = "wine-extension-chm.desktop";
       "application/winhlp" = "wine-extension-hlp.desktop";
@@ -90,15 +99,6 @@
       "application/x-wine-extension-msp" = "wine-extension-msp.desktop";
       "application/x-wine-extension-vbs" = "wine-extension-vbs.desktop";
       "application/xaml+xml" = "wine-extension-xaml.desktop";
-      ${gif} = "wine-extension-gif.desktop";
-      ${html} = "wine-extension-htm.desktop";
-      ${ini} = "wine-extension-ini.desktop";
-      ${jpg} = [ "wine-extension-jfif.desktop" "wine-extension-jpe.desktop" ];
-      ${pdf} = "wine-extension-pdf.desktop";
-      ${png} = "wine-extension-png.desktop";
-      ${txt} = "wine-extension-txt.desktop";
-      ${url} = "wine-extension-url.desktop";
-      ${xml} = "wine-extension-xml.desktop";
     };
   };
 }
