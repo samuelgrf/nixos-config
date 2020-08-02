@@ -7,9 +7,9 @@
   # Enable support for additional filesystems.
   boot.supportedFilesystems = [ "ntfs" "zfs" ];
 
-  # Enable zram and use more efficient zstd compression.
+  # Enable zram and use faster lzo conpression.
   zramSwap.enable = true;
-  zramSwap.algorithm = "zstd";
+  zramSwap.algorithm = "lzo";
 
   # Set swappiness to 80 due to improved performance of zram.
   # Can be up to 100, but will increase process queue on intense load such as boot.
