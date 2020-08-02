@@ -33,11 +33,9 @@
   ## Kernel & Modules
   ##############################################################################
 
-  # Use experimental Linux kernel.
-  boot.kernelPackages = pkgs.unstable.linuxPackages_5_7;
-
   # Add ddcci module for controlling the monitor through DDC.
-  boot.extraModulePackages = [ pkgs.unstable.linuxPackages_5_7.ddcci-driver ];
+  # TODO Remove "unstable." on 20.09.
+  boot.extraModulePackages = [ pkgs.unstable.linuxPackages_zen.ddcci-driver ];
   boot.kernelModules = [ "ddcci" ];
 
 
