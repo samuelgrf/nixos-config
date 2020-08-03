@@ -22,6 +22,7 @@
         lynx
         ncdu
         neofetch
+        nix-index
         nix-linter
         nixfmt
         patchelf
@@ -59,7 +60,6 @@
         lutris
         mpv
         multimc
-        nix-index
         # TODO Remove "unstable." on 20.09.
         unstable.nixos-artwork.wallpapers.nineish-dark-gray
         okular
