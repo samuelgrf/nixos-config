@@ -14,7 +14,6 @@
         git
         gnupg
         htop
-        imagemagick
         killall
         lm_sensors
         lolcat
@@ -50,6 +49,7 @@
         gimp
         gnome3.adwaita-icon-theme # Needed for caffeine-ng to display icons.
         gwenview
+        imagemagick
         inkscape
         jetbrains.idea-community
         kate
