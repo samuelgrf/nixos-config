@@ -48,7 +48,7 @@
 
   # Install wifi kernel module.
   # TODO Remove "unstable." on 20.09.
-  boot.extraModulePackages = [ pkgs.unstable.linuxPackages_zen.rtl8821ce ];
+  boot.extraModulePackages = with config.boot.kernelPackages; [ rtl8821ce ];
 
   # Blacklist sensor kernel modules.
   boot.blacklistedKernelModules = [ "intel_ishtp_hid" "intel_ish_ipc" ];
