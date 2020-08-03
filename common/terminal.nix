@@ -84,6 +84,7 @@
         fi\
       '';
       lvl = "echo $SHLVL";
+      msg = "kdialog --msgbox";
       rld = "exec zsh";
       rbt = "reboot";
       shd = "shutdown";
