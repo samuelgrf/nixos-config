@@ -87,6 +87,7 @@
       rld = "exec zsh";
       rbt = "reboot";
       shd = "shutdown";
+      shdn = "shutdown now";
       wtr = "curl wttr.in";
       ztr = "sudo zpool trim rpool && watch zpool status -t rpool";
     };
