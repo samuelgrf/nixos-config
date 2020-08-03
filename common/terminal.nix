@@ -86,6 +86,7 @@
       lvl = "echo $SHLVL";
       rld = "exec zsh";
       rbt = "reboot";
+      shd = "shutdown";
       wtr = "curl wttr.in";
     };
 
