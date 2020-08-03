@@ -88,6 +88,7 @@
       rbt = "reboot";
       shd = "shutdown";
       wtr = "curl wttr.in";
+      ztr = "sudo zpool trim rpool && watch zpool status -t rpool";
     };
 
     # Set Zsh options.
