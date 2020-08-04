@@ -57,7 +57,7 @@
         keepassxc
         konsole
         libreoffice
-        lutris
+        unstable.lutris # TODO Remove "unstable." on 20.09.
         mpv
         multimc
         # TODO Remove "unstable." on 20.09.
