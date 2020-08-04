@@ -39,6 +39,7 @@
 
       # Define other functions.
       e () { emacsclient -c "$@" > /dev/null & disown }
+      et () { emacsclient -t "$@" }
       smart () { sudo smartctl -a "$@" | less }
     '';
 
