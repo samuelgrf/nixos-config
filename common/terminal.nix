@@ -87,7 +87,7 @@
       lvl = "echo $SHLVL";
       msg = "kdialog --msgbox";
       rld = "exec zsh";
-      rbt = "reboot";
+      rbt = "shutdown -r";
       shd = "shutdown";
       shdn = "shutdown now";
       wtr = "curl wttr.in";
