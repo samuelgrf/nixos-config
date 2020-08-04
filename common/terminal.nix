@@ -38,7 +38,7 @@
       nw () { readlink $(where "$@") }
 
       # Define other functions.
-      emc () { emacsclient -c "$@" > /dev/null & disown }
+      e () { emacsclient -c "$@" > /dev/null & disown }
       smart () { sudo smartctl -a "$@" | less }
     '';
 
