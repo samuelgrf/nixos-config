@@ -88,6 +88,7 @@
       msg = "kdialog --msgbox";
       rld = "exec zsh";
       rbt = "shutdown -r";
+      rbtn = "shutdown -r now";
       shd = "shutdown";
       shdn = "shutdown now";
       wtr = "curl wttr.in";
