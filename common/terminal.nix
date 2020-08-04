@@ -87,10 +87,10 @@
       lvl = "echo $SHLVL";
       msg = "kdialog --msgbox";
       rld = "exec zsh";
-      rbt = "shutdown -r";
-      rbtn = "shutdown -r now";
-      shd = "shutdown";
-      shdn = "shutdown now";
+      rb = "shutdown -r";
+      rbn = "shutdown -r now";
+      sd = "shutdown";
+      sdn = "shutdown now";
       wtr = "curl wttr.in";
       ztr = "sudo zpool trim rpool && watch zpool status -t rpool";
     };
