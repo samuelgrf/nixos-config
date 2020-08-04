@@ -86,10 +86,10 @@
       '';
       lvl = "echo $SHLVL";
       msg = "kdialog --msgbox";
-      rld = "exec zsh";
       rb = "shutdown -r";
       rbc = "shutdown -c";
       rbn = "shutdown -r now";
+      rld = "exec zsh";
       sd = "shutdown";
       sdc = "shutdown -c";
       sdn = "shutdown now";
