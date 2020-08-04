@@ -88,8 +88,10 @@
       msg = "kdialog --msgbox";
       rld = "exec zsh";
       rb = "shutdown -r";
+      rbc = "shutdown -c";
       rbn = "shutdown -r now";
       sd = "shutdown";
+      sdc = "shutdown -c";
       sdn = "shutdown now";
       wtr = "curl wttr.in";
       ztr = "sudo zpool trim rpool && watch zpool status -t rpool";
