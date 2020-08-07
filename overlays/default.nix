@@ -77,6 +77,13 @@
           '';
         });
 
+      # Use 64-bit fork, workaround GTK2 errors on KDE Plasma and enable
+      # native optimizations.
+      pcsx2 = super.callPackage ./pcsx2 {
+        stdenv = self.nativeStdenv;
+        wxGTK = self.wxGTK30;
+      };
+
       # Needed for the rtl8821ce module to work on kernel v5.7.10+.
       rtl8821ce = super.rtl8821ce.overrideAttrs (oldAttrs: {
         src = super.fetchFromGitHub {
@@ -86,6 +93,9 @@
           sha256 = "1hsf8lqjnkrkvk0gps8yb3lx72mvws6xbgkbdmgdkz7qdxmha8bp";
         };
       });
+
+      # stdenv with native optimizations enabled.
+      nativeStdenv = super.impureUseNativeOptimizations super.stdenv;
 
       # Protonfixes requires cabextract to install MS core fonts.
       steam = super.steam.override { extraPkgs = pkgs: [ self.cabextract ]; };
