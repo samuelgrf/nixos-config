@@ -66,6 +66,7 @@
         openjdk
         partition-manager
         pavucontrol
+        pcsx2
         protontricks
         smartmontools
         spectacle
