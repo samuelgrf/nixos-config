@@ -92,6 +92,9 @@
     "steam-runtime"
   ];
 
+  # Allow packages for other architectures, needed for pcsx2.
+  nixpkgs.config.allowUnsupportedSystem = true;
+
   # Install ADB and fastboot.
   programs.adb.enable = true;
 

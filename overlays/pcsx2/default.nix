@@ -5,13 +5,13 @@
 
 stdenv.mkDerivation rec {
   pname = "pcsx2";
-  version = "unstable-2020-08-02";
+  version = "unstable-2020-08-07";
 
   src = fetchFromGitHub {
-    owner = "beaumanvienna";
+    owner = "PCSX2";
     repo = "pcsx2";
-    rev = "38ce40b71c497e7d0fb7997041599661648a364d";
-    sha256 = "1sd5pqfaakv4x5ib6h1a5sdzrhyyzx727s2by72698v3nxlx45vp";
+    rev = "60e075d6c902818b6cc979ab4ee8bc590fc58852";
+    sha256 = "0y87fgqjndaqv0xsxf6cxpcm68w2y66qv282qdbxzz3wwalhg5ag";
   };
 
   postPatch = "sed '1i#include \"x86intrin.h\"' -i common/src/x86emitter/cpudetect.cpp";
@@ -35,7 +35,6 @@ stdenv.mkDerivation rec {
     "-DGTK2_GDKCONFIG_INCLUDE_DIR=${gtk2.out}/lib/gtk-2.0/include"
     "-DGTK2_INCLUDE_DIRS=${gtk2.dev}/include/gtk-2.0"
     "-DGTK3_API=FALSE"
-    "-DENABLE_TESTS=FALSE" # Needed on 64-bit fork.
   ];
 
   postFixup = ''
@@ -81,6 +80,6 @@ stdenv.mkDerivation rec {
     # This might be solved in future, for now we should stick with
     # license.free
     license = licenses.free;
-    platforms = platforms.linux;
+    platforms = platforms.i686;
   };
 }

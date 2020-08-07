@@ -77,11 +77,10 @@
           '';
         });
 
-      # Use 64-bit fork, workaround GTK2 errors on KDE Plasma and enable
-      # native optimizations.
-      pcsx2 = super.callPackage ./pcsx2 {
-        stdenv = self.nativeStdenv;
-        wxGTK = self.wxGTK30;
+      # Workaround GTK2 errors on KDE Plasma and enable native optimizations.
+      pcsx2 = super.callPackage_i686 ./pcsx2 {
+        stdenv = self.pkgsi686Linux.nativeStdenv;
+        wxGTK = self.pkgsi686Linux.wxGTK30;
       };
 
       # Needed for the rtl8821ce module to work on kernel v5.7.10+.
