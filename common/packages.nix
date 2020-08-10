@@ -24,6 +24,7 @@
         nix-index
         nix-linter
         nixfmt
+        nixpkgs-review
         patchelf
         pciutils
         python3
