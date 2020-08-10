@@ -68,6 +68,7 @@
         pavucontrol
         pcsx2
         protontricks
+        qt5.qttools # Includes `qdbus` command, needed for `gray` alias.
         smartmontools
         spectacle
         steam

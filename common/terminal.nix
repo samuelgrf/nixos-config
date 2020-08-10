@@ -74,6 +74,23 @@
       nvr = "nixos-version --revision";
 
       # Other
+      gray = ''
+        GRAYSTATE=$(kreadconfig5 --file ~/.config/kwinrc --group Plugins \
+          --key kwin4_effect_grayscaleEnabled)
+
+        if [ "$GRAYSTATE" = "false" ]; then
+          kwriteconfig5 --file ~/.config/kwinrc --group Plugins \
+            --key kwin4_effect_grayscaleEnabled true
+          echo "Enabled grayscale mode"
+        else
+          kwriteconfig5 --file ~/.config/kwinrc --group Plugins \
+            --key kwin4_effect_grayscaleEnabled false
+          echo "Disabled grayscale mode"
+        fi
+
+        qdbus org.kde.KWin /KWin reconfigure
+        unset GRAYSTATE
+      '';
       grl = "git reflog";
       inc = ''
         if [ -n "$HISTFILE" ]; then
