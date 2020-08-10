@@ -77,6 +77,9 @@
           '';
         });
 
+      # stdenv with native optimizations enabled.
+      nativeStdenv = super.impureUseNativeOptimizations super.stdenv;
+
       # Workaround GTK2 errors on KDE Plasma and enable native optimizations.
       pcsx2 = super.callPackage_i686 ./pcsx2 {
         stdenv = self.pkgsi686Linux.nativeStdenv;
@@ -92,9 +95,6 @@
           sha256 = "1hsf8lqjnkrkvk0gps8yb3lx72mvws6xbgkbdmgdkz7qdxmha8bp";
         };
       });
-
-      # stdenv with native optimizations enabled.
-      nativeStdenv = super.impureUseNativeOptimizations super.stdenv;
 
       # Protonfixes requires cabextract to install MS core fonts.
       steam = super.steam.override { extraPkgs = pkgs: [ self.cabextract ]; };
