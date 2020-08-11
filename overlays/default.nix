@@ -86,16 +86,6 @@
         wxGTK = self.pkgsi686Linux.wxGTK30;
       };
 
-      # Needed for the rtl8821ce module to work on kernel v5.7.10+.
-      rtl8821ce = super.rtl8821ce.overrideAttrs (oldAttrs: {
-        src = super.fetchFromGitHub {
-          owner = "tomaspinho";
-          repo = "rtl8821ce";
-          rev = "8d7edbe6a78fd79cfab85d599dad9dc34138abd1";
-          sha256 = "1hsf8lqjnkrkvk0gps8yb3lx72mvws6xbgkbdmgdkz7qdxmha8bp";
-        };
-      });
-
       # Protonfixes requires cabextract to install MS core fonts.
       steam = super.steam.override { extraPkgs = pkgs: [ self.cabextract ]; };
 
