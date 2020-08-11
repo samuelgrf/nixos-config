@@ -34,7 +34,6 @@
   ##############################################################################
 
   # Add ddcci module for controlling the monitor through DDC.
-  # TODO Remove "unstable." on 20.09.
   boot.extraModulePackages = with config.boot.kernelPackages; [ ddcci-driver ];
   boot.kernelModules = [ "ddcci" ];
 
