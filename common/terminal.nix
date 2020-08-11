@@ -78,7 +78,7 @@
         GRAYSTATE=$(kreadconfig5 --file ~/.config/kwinrc --group Plugins \
           --key kwin4_effect_grayscaleEnabled)
 
-        if [ "$GRAYSTATE" = "false" ]; then
+        if [ $GRAYSTATE = "false" ]; then
           kwriteconfig5 --file ~/.config/kwinrc --group Plugins \
             --key kwin4_effect_grayscaleEnabled true
           echo "Enabled grayscale mode"
