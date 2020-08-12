@@ -56,7 +56,7 @@
       ng = "nix-collect-garbage";
       ngd = "sudo nix-collect-garbage -d";
       nlo = "nix-locate";
-      np = "nix repl '<nixpkgs>'";
+      np = "nix repl";
       nr = "sudo nixos-rebuild";
       nrb = "sudo nixos-rebuild boot";
       nrbu = "nixos-rebuild build";
