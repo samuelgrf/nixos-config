@@ -1,17 +1,17 @@
-{ alsaLib, cmake, fetchFromGitHub, glib, gettext, gtk2, harfbuzz, lib, libaio
-, libpng, libpcap, libxml2, makeWrapper, perl, pkgconfig, portaudio
-, SDL2, soundtouch, stdenv, udev, wxGTK, zlib
+{ alsaLib, cmake, fetchFromGitHub, gettext, glib, gtk2, harfbuzz, libaio
+, libpcap, libpng, libxml2, makeWrapper, perl, pkgconfig, portaudio, SDL2
+, soundtouch, stdenv, udev, wxGTK, zlib
 }:
 
 stdenv.mkDerivation rec {
   pname = "pcsx2";
-  version = "unstable-2020-08-07";
+  version = "1.6.0";
 
   src = fetchFromGitHub {
     owner = "PCSX2";
     repo = "pcsx2";
-    rev = "60e075d6c902818b6cc979ab4ee8bc590fc58852";
-    sha256 = "0y87fgqjndaqv0xsxf6cxpcm68w2y66qv282qdbxzz3wwalhg5ag";
+    rev = "v${version}";
+    sha256 = "0528kh3275285lvfsykycdhc35c1z8pmccl2s7dfi3va2cp4x8wa";
   };
 
   postPatch = "sed '1i#include \"x86intrin.h\"' -i common/src/x86emitter/cpudetect.cpp";
@@ -65,7 +65,7 @@ stdenv.mkDerivation rec {
 
   meta = with stdenv.lib; {
     description = "Playstation 2 emulator";
-    longDescription= ''
+    longDescription = ''
       PCSX2 is an open-source PlayStation 2 (AKA PS2) emulator. Its purpose
       is to emulate the PS2 hardware, using a combination of MIPS CPU
       Interpreters, Recompilers and a Virtual Machine which manages hardware
