@@ -22,7 +22,6 @@
         ncdu
         neofetch
         nix-index
-        nix-linter
         nixfmt
         nixpkgs-review
         patchelf
