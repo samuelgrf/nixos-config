@@ -38,7 +38,9 @@
       DefaultSearchProviderSuggestURL = "https://duckduckgo.com/ac/?q={searchTerms}&type=list";
       DefaultSearchProviderNewTabURL = "https://duckduckgo.com/chrome_newtab";
       MetricsReportingEnabled = false;
+      PasswordLeakDetectionEnabled = false;
       PasswordManagerEnabled = false;
+      PaymentMethodQueryEnabled = false;
       SafeBrowsingExtendedReportingEnabled = false;
       SafeBrowsingProtectionLevel = 0;
       SpellCheckServiceEnabled = false;
