@@ -15,11 +15,8 @@
     extensions = [
       "eimadpbcbfnmbkopoojfekhnkhdbieeh" # Dark Reader
       "eekailopagacbcdloonjhbiecobagjci" # Go Back With Backspace
-      "aleakchihdccplidncghkekgioiakgal" # h264ify
       "aghfnjkcakhmadgdomlmlhhaocbkloab" # Just Black (theme)
       "mnjggcdmjocbbbhaepdhchncahnbgone" # SponsorBlock
-      "iaiomicjabeggjcfkbimgmglanimpnae" # Tab Session Manager
-      "klbibkeccnjlkjkiokjodocebajanakg" # The Great Suspender
       "cjpalhdlnbpafiamejdnhcphjbkeiagm" # uBlock Origin
       "nffaoalbilbmmfgbnbgppjihopabppdk" # Video Speed Controller
     ];
