@@ -29,18 +29,12 @@
     chrome = "google-chrome-beta.desktop";
     gwenview = "org.kde.gwenview.desktop";
     kate = "org.kde.kate.desktop";
-    okularPdf = "okularApplication_pdf.desktop";
 
     # Formats
-    gif = "image/gif";
     html = "text/html";
     http = "x-scheme-handler/http";
     https = "x-scheme-handler/https";
-    ico = "image/x-ico";
     ini = "application/x-wine-extension-ini";
-    jpg = "image/jpeg";
-    pdf = "application/pdf";
-    png = "image/png";
     svg = "image/svg+xml";
     txt = "text/plain";
     url = "application/x-mswinurl";
@@ -56,15 +50,10 @@
       ${xml} = kate;
     };
     defaultApplications = {
-      ${gif} = gwenview;
       ${html} = chrome;
       ${http} = chrome;
       ${https} = chrome;
-      ${ico} = gwenview;
       ${ini} = kate;
-      ${jpg} = gwenview;
-      ${pdf} = okularPdf;
-      ${png} = gwenview;
       ${svg} = gwenview;
       ${txt} = kate;
       ${url} = kate;
@@ -77,15 +66,12 @@
     # that was ran (including those from Steam and Lutris) the default
     # for multiple filetypes.
     associations.removed = {
-      ${gif} = "wine-extension-gif.desktop";
       ${html} = "wine-extension-htm.desktop";
       ${ini} = "wine-extension-ini.desktop";
-      ${jpg} = [ "wine-extension-jfif.desktop" "wine-extension-jpe.desktop" ];
-      ${pdf} = "wine-extension-pdf.desktop";
-      ${png} = "wine-extension-png.desktop";
       ${txt} = "wine-extension-txt.desktop";
       ${url} = "wine-extension-url.desktop";
       ${xml} = "wine-extension-xml.desktop";
+      "application/pdf" = "wine-extension-pdf.desktop";
       "application/rtf" = "wine-extension-rtf.desktop";
       "application/vnd.ms-htmlhelp" = "wine-extension-chm.desktop";
       "application/winhlp" = "wine-extension-hlp.desktop";
@@ -99,6 +85,9 @@
       "application/x-wine-extension-msp" = "wine-extension-msp.desktop";
       "application/x-wine-extension-vbs" = "wine-extension-vbs.desktop";
       "application/xaml+xml" = "wine-extension-xaml.desktop";
+      "image/gif" = "wine-extension-gif.desktop";
+      "image/jpeg" = [ "wine-extension-jfif.desktop" "wine-extension-jpe.desktop" ];
+      "image/png" = "wine-extension-png.desktop";
     };
   };
 }
