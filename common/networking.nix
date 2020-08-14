@@ -40,7 +40,7 @@
       MetricsReportingEnabled = false;
       PasswordManagerEnabled = false;
       SafeBrowsingExtendedReportingEnabled = false;
-      SafeBrowsingProtectionLevel = 1;
+      SafeBrowsingProtectionLevel = 0;
       SpellCheckServiceEnabled = false;
       SyncDisabled = true;
       TranslateEnabled = false;
