@@ -60,9 +60,6 @@
   # Enable touchpad support.
   services.xserver.libinput.enable = true;
 
-  # Enable touch scrolling in Firefox.
-  environment.variables = { MOZ_USE_XINPUT2 = "1"; };
-
 
   ##############################################################################
   ## GPU & Display

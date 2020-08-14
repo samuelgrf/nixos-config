@@ -45,7 +45,6 @@
         ark
         caffeine-ng
         filezilla
-        firefox-beta-bin
         gimp
         gnome3.adwaita-icon-theme # Needed for caffeine-ng to display icons.
         unstable.google-chrome-beta
@@ -85,8 +84,6 @@
   # Select allowed unfree packages.
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
     "android-studio-stable"
-    "firefox-beta-bin"
-    "firefox-beta-bin-unwrapped"
     "google-chrome-beta"
     "mfcl2700dnlpr"
     "steam"
