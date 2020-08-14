@@ -30,6 +30,7 @@
       BackgroundModeEnabled = false;
       BlockThirdPartyCookies = true;
       BrowserSignin = 0;
+      DefaultNotificationsSetting = 2;
       DefaultSearchProviderEnabled = true;
       DefaultSearchProviderName = "DuckDuckGo";
       DefaultSearchProviderKeyword = "duckduckgo.com";
