@@ -48,6 +48,7 @@
         firefox-beta-bin
         gimp
         gnome3.adwaita-icon-theme # Needed for caffeine-ng to display icons.
+        unstable.google-chrome-beta
         gwenview
         imagemagick
         inkscape
@@ -74,7 +75,6 @@
         steam
         steam-run
         torbrowser
-        unstable.ungoogled-chromium # TODO Remove "unstable." on 20.09.
         wineWowPackages.staging # Comes with both x64 and x86 Wine.
         winetricks
         xclip
@@ -87,6 +87,7 @@
     "android-studio-stable"
     "firefox-beta-bin"
     "firefox-beta-bin-unwrapped"
+    "google-chrome-beta"
     "mfcl2700dnlpr"
     "steam"
     "steam-original"
