@@ -26,7 +26,7 @@
   xdg.mimeApps = let
 
     # Applications
-    firefox = "firefox.desktop";
+    chrome = "google-chrome-beta.desktop";
     gwenview = "org.kde.gwenview.desktop";
     kate = "org.kde.kate.desktop";
     okularPdf = "okularApplication_pdf.desktop";
@@ -57,9 +57,9 @@
     };
     defaultApplications = {
       ${gif} = gwenview;
-      ${html} = firefox;
-      ${http} = firefox;
-      ${https} = firefox;
+      ${html} = chrome;
+      ${http} = chrome;
+      ${https} = chrome;
       ${ico} = gwenview;
       ${ini} = kate;
       ${jpg} = gwenview;
@@ -68,7 +68,7 @@
       ${svg} = gwenview;
       ${txt} = kate;
       ${url} = kate;
-      ${xhtml} = firefox;
+      ${xhtml} = chrome;
       ${xml} = kate;
     };
 
