@@ -20,6 +20,7 @@
       "cjpalhdlnbpafiamejdnhcphjbkeiagm" # uBlock Origin
       "nffaoalbilbmmfgbnbgppjihopabppdk" # Video Speed Controller
     ];
+
     # Official policy list (incomplete): https://cloud.google.com/docs/chrome-enterprise/policies
     # Look here for a complete up-to-date list:
     # https://source.chromium.org/chromium/chromium/src/+/master:components/policy/resources/policy_templates.json
@@ -32,15 +33,39 @@
     # Search provider data found in:
     # https://source.chromium.org/chromium/chromium/src/+/master:components/search_engines/prepopulated_engines.json?q=prepopulated_engines.json
     extraOpts = {
+
+      # Google data-sharing
       AlternateErrorPagesEnabled = false;
-      AutofillAddressEnabled = false;
-      AutofillCreditCardEnabled = false;
-      BackgroundModeEnabled = false;
-      BlockThirdPartyCookies = true;
       BrowserSignin = 0;
       ClickToCallEnabled = false;
       # Also downloads and updates `Origin Trials`.
       ComponentUpdatesEnabled = false;
+      LocalDiscoveryEnabled = false;
+      MetricsReportingEnabled = false;
+      PasswordLeakDetectionEnabled = false;
+      PaymentMethodQueryEnabled = false;
+      PrinterTypeDenyList = [ "cloud" ];
+      ReportExtensionsAndPluginsData = false;
+      ReportMachineIDData = false;
+      ReportPolicyData = false;
+      ReportUserIDData = false;
+      ReportVersionData = false;
+      SafeBrowsingExtendedReportingEnabled = false;
+      SafeBrowsingProtectionLevel = 0;
+      SendFilesForMalwareCheck = 0;
+      SharedClipboardEnabled = false;
+      SpellCheckServiceEnabled = false;
+      SyncDisabled = true;
+      TranslateEnabled = false;
+      UnsafeEventsReportingEnabled = false;
+      UrlKeyedAnonymizedDataCollectionEnabled = false;
+      WebRtcEventLogCollectionAllowed = false;
+
+      # Customization
+      AutofillAddressEnabled = false;
+      AutofillCreditCardEnabled = false;
+      BackgroundModeEnabled = false;
+      BlockThirdPartyCookies = true;
       DefaultNotificationsSetting = 2;
       DefaultSearchProviderEnabled = true;
       DefaultSearchProviderName = "DuckDuckGo";
@@ -51,30 +76,10 @@
       DefaultSearchProviderNewTabURL = "https://duckduckgo.com/chrome_newtab";
       # Results in significant CPU and battery savings.
       IntensiveWakeUpThrottlingEnabled = true;
-      LocalDiscoveryEnabled = false;
-      MetricsReportingEnabled = false;
-      PasswordLeakDetectionEnabled = false;
       PasswordManagerEnabled = false;
-      PaymentMethodQueryEnabled = false;
-      PrinterTypeDenyList = [ "cloud" ];
       PromotionalTabsEnabled = false;
-      ReportExtensionsAndPluginsData = false;
-      ReportMachineIDData = false;
-      ReportPolicyData = false;
-      ReportUserIDData = false;
-      ReportVersionData = false;
-      SafeBrowsingExtendedReportingEnabled = false;
-      SafeBrowsingProtectionLevel = 0;
-      SendFilesForMalwareCheck = 0;
-      SharedClipboardEnabled = false;
       ShowAppsShortcutInBookmarkBar = false;
-      SpellCheckServiceEnabled = false;
-      SyncDisabled = true;
-      TranslateEnabled = false;
-      UnsafeEventsReportingEnabled = false;
-      UrlKeyedAnonymizedDataCollectionEnabled = false;
       UserFeedbackAllowed = false;
-      WebRtcEventLogCollectionAllowed = false;
     };
   };
 
