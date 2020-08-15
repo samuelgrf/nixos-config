@@ -39,6 +39,8 @@
       BlockThirdPartyCookies = true;
       BrowserSignin = 0;
       ClickToCallEnabled = false;
+      # Also downloads and updates `Origin Trials`.
+      ComponentUpdatesEnabled = false;
       DefaultNotificationsSetting = 2;
       DefaultSearchProviderEnabled = true;
       DefaultSearchProviderName = "DuckDuckGo";
@@ -47,6 +49,8 @@
       DefaultSearchProviderSearchURL = "https://duckduckgo.com/?q={searchTerms}";
       DefaultSearchProviderSuggestURL = "https://duckduckgo.com/ac/?q={searchTerms}&type=list";
       DefaultSearchProviderNewTabURL = "https://duckduckgo.com/chrome_newtab";
+      # Results in significant CPU and battery savings.
+      IntensiveWakeUpThrottlingEnabled = true;
       LocalDiscoveryEnabled = false;
       MetricsReportingEnabled = false;
       PasswordLeakDetectionEnabled = false;
@@ -62,6 +66,8 @@
       SafeBrowsingExtendedReportingEnabled = false;
       SafeBrowsingProtectionLevel = 0;
       SendFilesForMalwareCheck = 0;
+      SharedClipboardEnabled = false;
+      ShowAppsShortcutInBookmarkBar = false;
       SpellCheckServiceEnabled = false;
       SyncDisabled = true;
       TranslateEnabled = false;
