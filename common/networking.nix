@@ -20,9 +20,17 @@
       "cjpalhdlnbpafiamejdnhcphjbkeiagm" # uBlock Origin
       "nffaoalbilbmmfgbnbgppjihopabppdk" # Video Speed Controller
     ];
-    # Policy list: https://cloud.google.com/docs/chrome-enterprise/policies
+    # Official policy list (incomplete): https://cloud.google.com/docs/chrome-enterprise/policies
+    # Look here for a complete up-to-date list:
+    # https://source.chromium.org/chromium/chromium/src/+/master:components/policy/resources/policy_templates.json
+    # Note: Policies in here are tagged based on what they do, there's also
+    # the `google-sharing` tag, which as the name suggests includes options
+    # that share data with Google, though it seems like that tag is not set
+    # for all the offending options.
+    # chrome://policy shows policies that have been/can be applied and also
+    # shows syntax errors.
     # Search provider data found in:
-    # https://github.com/chromium/chromium/blob/fdb6dc24cc/components/search_engines/prepopulated_engines.json#L94
+    # https://source.chromium.org/chromium/chromium/src/+/master:components/search_engines/prepopulated_engines.json?q=prepopulated_engines.json
     extraOpts = {
       AlternateErrorPagesEnabled = false;
       AutofillAddressEnabled = false;
@@ -30,6 +38,7 @@
       BackgroundModeEnabled = false;
       BlockThirdPartyCookies = true;
       BrowserSignin = 0;
+      ClickToCallEnabled = false;
       DefaultNotificationsSetting = 2;
       DefaultSearchProviderEnabled = true;
       DefaultSearchProviderName = "DuckDuckGo";
@@ -44,12 +53,22 @@
       PasswordManagerEnabled = false;
       PaymentMethodQueryEnabled = false;
       PrinterTypeDenyList = [ "cloud" ];
+      PromotionalTabsEnabled = false;
+      ReportExtensionsAndPluginsData = false;
+      ReportMachineIDData = false;
+      ReportPolicyData = false;
+      ReportUserIDData = false;
+      ReportVersionData = false;
       SafeBrowsingExtendedReportingEnabled = false;
       SafeBrowsingProtectionLevel = 0;
+      SendFilesForMalwareCheck = 0;
       SpellCheckServiceEnabled = false;
       SyncDisabled = true;
       TranslateEnabled = false;
+      UnsafeEventsReportingEnabled = false;
       UrlKeyedAnonymizedDataCollectionEnabled = false;
+      UserFeedbackAllowed = false;
+      WebRtcEventLogCollectionAllowed = false;
     };
   };
 
