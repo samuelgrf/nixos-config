@@ -77,7 +77,6 @@
           '';
         });
 
-      # stdenv with native optimizations enabled.
       nativeStdenv = super.impureUseNativeOptimizations super.stdenv;
 
       # Workaround GTK2 errors on KDE Plasma and enable native optimizations.
