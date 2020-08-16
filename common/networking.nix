@@ -74,6 +74,8 @@
       DefaultSearchProviderSearchURL = "https://duckduckgo.com/?q={searchTerms}";
       DefaultSearchProviderSuggestURL = "https://duckduckgo.com/ac/?q={searchTerms}&type=list";
       DefaultSearchProviderNewTabURL = "https://duckduckgo.com/chrome_newtab";
+      ExtensionInstallBlacklist = [ "*" ];
+      ExtensionInstallWhitelist = config.programs.chromium.extensions;
       # Results in significant CPU and battery savings.
       IntensiveWakeUpThrottlingEnabled = true;
       PasswordManagerEnabled = false;
