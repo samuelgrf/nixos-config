@@ -82,6 +82,25 @@
       PromotionalTabsEnabled = false;
       ShowAppsShortcutInBookmarkBar = false;
       UserFeedbackAllowed = false;
+
+      # uBlock Origin
+      "3rdparty".extensions.cjpalhdlnbpafiamejdnhcphjbkeiagm.adminSettings = ''{
+        "selectedFilterLists": [
+          "user-filters",
+          "ublock-filters",
+          "ublock-badware",
+          "ublock-privacy",
+          "ublock-abuse",
+          "ublock-unbreak",
+          "easylist",
+          "easyprivacy",
+          "urlhaus-1",
+          "adguard-annoyance",
+          "ublock-annoyances",
+          "plowe-0"
+        ],
+        "userFilters": "www.reddit.com##.jEUbSHJJx8vISKpWirlfx\nwww.reddit.com###email-collection-tooltip-id\n"
+      }'';
     };
   };
 
