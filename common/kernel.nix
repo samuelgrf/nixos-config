@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  # Use zen kernel for better desktop performance.
+  # Use Zen kernel for better interactive performance.
   # TODO Remove "unstable." on 20.09.
   boot.kernelPackages = pkgs.unstable.linuxPackages_zen;
 
