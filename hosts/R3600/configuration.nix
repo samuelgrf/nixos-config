@@ -45,13 +45,16 @@
   # Use the amdgpu video driver.
   services.xserver.videoDrivers = [ "amdgpu" ];
 
-  # Install AMDVLK driver, some games have graphical glitches when using RADV.
+  # Install AMDVLK driver, since some games have graphical glitches when using RADV.
   # Can be enabled by setting
-  # VK_ICD_FILENAMES=/run/current-system/sw/share/amdvlk/icd.d/amd_icd64.json
-  environment.systemPackages = [ pkgs.amdvlk_noDefault ];
+  # VK_ICD_FILENAMES=/run/opengl-driver/share/vulkan/icd.d/amd_icd64.json
+  hardware.opengl.extraPackages = [ pkgs.unstable.amdvlk ];
 
-  # Use ACO shader compiler globally.
-  environment.variables = { RADV_PERFTEST = "aco"; };
+  # Set global environment variables.
+  environment.variables = {
+    RADV_PERFTEST = "aco";
+    VK_ICD_FILENAMES = "/run/opengl-driver/share/vulkan/icd.d/radeon_icd.x86_64.json:/run/opengl-driver-32/share/vulkan/icd.d/radeon_icd.i686.json";
+  };
 
   # Enable Freesync and TearFree (hardware vsync).
   services.xserver.deviceSection = ''
