@@ -45,6 +45,10 @@
   # Use the amdgpu video driver.
   services.xserver.videoDrivers = [ "amdgpu" ];
 
+  # Get Mesa from unstable.
+  hardware.opengl.package = pkgs.unstable.mesa.drivers;
+  hardware.opengl.package32 = pkgs.unstable.pkgsi686Linux.mesa.drivers;
+
   # Install AMDVLK driver, since some games have graphical glitches when using RADV.
   # Can be enabled by setting
   # VK_ICD_FILENAMES=/run/opengl-driver/share/vulkan/icd.d/amd_icd64.json
