@@ -72,7 +72,6 @@
         smartmontools
         spectacle
         steam
-        steam-run
         torbrowser
         wineWowPackages.staging # Comes with both x64 and x86 Wine.
         winetricks
