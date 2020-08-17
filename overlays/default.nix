@@ -42,6 +42,16 @@
       hack_nerdfont = super.nerdfonts.override { fonts = [ "Hack" ]; };
       meslo-lg_nerdfont = super.nerdfonts.override { fonts = [ "Meslo" ]; };
 
+      linux_zen = super.callPackage ./kernels/linux-zen.nix {
+        kernelPatches = [
+          self.kernelPatches.bridge_stp_helper
+          self.kernelPatches.request_key_helper
+          self.kernelPatches.export_kernel_fpu_functions."5.3"
+        ];
+      };
+
+      linuxPackages_zen = super.recurseIntoAttrs (super.linuxPackagesFor self.linux_zen);
+
       # Use unstable channel because of script support, this is done in an
       # overlay to make sure Home Manager and NixOS use the same derivation.
       mpv = self.unstableSuper.mpv.override {
