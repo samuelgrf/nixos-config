@@ -42,6 +42,7 @@
       hack_nerdfont = super.nerdfonts.override { fonts = [ "Hack" ]; };
       meslo-lg_nerdfont = super.nerdfonts.override { fonts = [ "Meslo" ]; };
 
+      # TODO Remove on 20.09.
       linux_zen = super.callPackage ./kernels/linux-zen.nix {
         kernelPatches = [
           self.kernelPatches.bridge_stp_helper
@@ -54,6 +55,7 @@
 
       # Use unstable channel because of script support, this is done in an
       # overlay to make sure Home Manager and NixOS use the same derivation.
+      # TODO Remove "unstableSuper" on 20.09.
       mpv = self.unstableSuper.mpv.override {
         scripts = [
           self.mpv_sponsorblock
@@ -62,6 +64,7 @@
       };
 
       # Override some mpv_sponsorblock default options.
+      # TODO Remove "unstableSuper" on 20.09.
       mpv_sponsorblock = self.unstableSuper.mpvScripts.sponsorblock.overrideAttrs (oldAttrs: {
         postPatch = (oldAttrs.postPatch or "") + ''
           substituteInPlace sponsorblock.lua \
