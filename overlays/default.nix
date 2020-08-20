@@ -56,22 +56,21 @@
       # overlay to make sure Home Manager and NixOS use the same derivation.
       mpv = self.unstableSuper.mpv.override {
         scripts = [
-          (self.mpv_sponsorblock)
+          self.mpv_sponsorblock
           (super.callPackage ./mpv-scripts/youtube-quality.nix { })
         ];
       };
 
       # Override some mpv_sponsorblock default options.
-      mpv_sponsorblock = (super.callPackage ./mpv-scripts/sponsorblock.nix { }).
-        overrideAttrs (oldAttrs: {
-          postPatch = (oldAttrs.postPatch or "") + ''
-            substituteInPlace sponsorblock.lua \
-              --replace 'skip_categories = "sponsor"' \
-                'skip_categories = "sponsor,intro,interaction,selfpromo"' \
-              --replace 'local_pattern = ""' \
-                'local_pattern = "-([%w-_]+)%.[mw][kpe][v4b]m?$"'
-          '';
-        });
+      mpv_sponsorblock = self.unstableSuper.mpvScripts.sponsorblock.overrideAttrs (oldAttrs: {
+        postPatch = (oldAttrs.postPatch or "") + ''
+          substituteInPlace sponsorblock.lua \
+            --replace 'skip_categories = "sponsor"' \
+              'skip_categories = "sponsor,intro,interaction,selfpromo"' \
+            --replace 'local_pattern = ""' \
+              'local_pattern = "-([%w-_]+)%.[mw][kpe][v4b]m?$"'
+        '';
+      });
 
       nativeStdenv = super.impureUseNativeOptimizations super.stdenv;
 
