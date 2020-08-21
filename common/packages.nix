@@ -47,7 +47,8 @@
         filezilla
         gimp
         gnome3.adwaita-icon-theme # Needed for caffeine-ng to display icons.
-        google-chrome-beta
+        # TODO Remove "unstable." on 20.09.
+        unstable.google-chrome-beta
         gwenview
         imagemagick
         inkscape
