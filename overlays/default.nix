@@ -32,13 +32,6 @@
 
       g810-led = super.callPackage ./g810-led { };
 
-      # TODO Remove once https://github.com/NixOS/nixpkgs/pull/95389 is merged.
-      google-chrome-beta = super.callPackage ./google-chrome {
-        channel = "beta";
-        chromium = self.chromiumBeta;
-        gconf = self.gnome2.GConf;
-      };
-
       hack_nerdfont = super.nerdfonts.override { fonts = [ "Hack" ]; };
       meslo-lg_nerdfont = super.nerdfonts.override { fonts = [ "Meslo" ]; };
 
