@@ -35,12 +35,16 @@
   # Configure undervolting service for Intel CPUs.
   services.undervolt = {
     enable = true;
-    coreOffset = "-100";
-    gpuOffset = "-100";
-    uncoreOffset = "-100";
-    analogioOffset = "-100";
+    coreOffset = -100;
+    gpuOffset = -100;
+    uncoreOffset = -100;
+    analogioOffset = -100;
   };
 
+  # Get undervolt module from unstable.
+  # TODO Remove on 20.09.
+  disabledModules = [ "services/hardware/undervolt.nix" ];
+  imports = [ <nixos-unstable/nixos/modules/services/hardware/undervolt.nix> ];
 
   ##############################################################################
   ## Kernel & Modules
