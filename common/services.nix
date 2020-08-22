@@ -9,13 +9,8 @@
     autoLogin.user = "samuel";
   };
 
-  # Hides the mouse cursor if it isn’t being moved.
-  systemd.user.services.unclutter = {
-    description = "unclutter-xfixes";
-    script = "${pkgs.unclutter-xfixes}/bin/unclutter";
-    wantedBy = [ "graphical-session.target" ];
-    partOf = [ "graphical-session.target" ];
-  };
+  # Enable unclutter-xfixes to hide the mouse cursor when inactive.
+  services.unclutter-xfixes.enable = true;
 
   # Enable Emacs daemon.
   services.emacs.enable = true;
