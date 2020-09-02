@@ -119,6 +119,7 @@
 
   # Install libraries for VA-API.
   hardware.opengl.extraPackages = [ pkgs.vaapiIntel ];
+  hardware.opengl.extraPackages32 = [ pkgs.pkgsi686Linux.vaapiIntel ];
 
   # Enable CPU microcode updates.
   hardware.cpu.intel.updateMicrocode = true;
