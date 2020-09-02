@@ -56,7 +56,7 @@
         ];
       };
 
-      # Override some mpv_sponsorblock default options.
+      # mpv_sponsorblock: Override some default options.
       mpv_sponsorblock = super.mpvScripts.sponsorblock.overrideAttrs (oldAttrs: {
         postPatch = (oldAttrs.postPatch or "") + ''
           substituteInPlace sponsorblock.lua \
@@ -69,7 +69,7 @@
 
       nativeStdenv = super.impureUseNativeOptimizations super.stdenv;
 
-      # Enable native optimizations and workaround GTK2 errors on KDE Plasma.
+      # pcsx2: Enable native optimizations and workaround GTK2 errors on KDE Plasma.
       pcsx2 = (super.pcsx2.override { stdenv = self.pkgsi686Linux.nativeStdenv; })
 
         .overrideAttrs (oldAttrs: {
@@ -83,7 +83,7 @@
           '';
       });
 
-      # Protonfixes requires cabextract to install MS core fonts.
+      # steam: Add cabextract, needed for Protontricks to install MS core fonts.
       steam = super.steam.override { extraPkgs = pkgs: [ self.cabextract ]; };
 
     })
