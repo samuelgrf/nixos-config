@@ -12,7 +12,6 @@
   ];
 
   # Set default fonts.
-  console.font = "Lat2-Terminus16";
   fonts.fontconfig.defaultFonts = {
     sansSerif = [
       "Noto Sans"
