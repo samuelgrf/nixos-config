@@ -27,7 +27,6 @@
   ];
 
   # Home Manager
-  home-manager.useGlobalPkgs = true;
   home-manager.users.samuel.imports = [
     ./common/home.nix
   ] ++ (if lib.pathExists ./host/home.nix then [ ./host/home.nix ] else [ ]);
