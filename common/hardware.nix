@@ -12,6 +12,9 @@
   hardware.opengl.driSupport32Bit = true;
   hardware.pulseaudio.support32Bit = true;
 
+  # Enable DDC support in Plasma 5.
+  services.xserver.desktopManager.plasma5.supportDDC = true;
+
   # Enable sound.
   sound.enable = true;
   hardware.pulseaudio.enable = true;

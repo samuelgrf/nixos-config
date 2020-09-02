@@ -47,8 +47,7 @@
         filezilla
         gimp
         gnome3.adwaita-icon-theme # Needed for caffeine-ng to display icons.
-        # TODO Remove "unstable." on 20.09.
-        unstable.google-chrome-beta
+        google-chrome-beta
         gwenview
         imagemagick
         inkscape
@@ -59,12 +58,11 @@
         konsole
         kwin-dynamic-workspaces
         libreoffice
-        unstable.lutris # TODO Remove "unstable." on 20.09.
+        lutris
         lxqt.pavucontrol-qt
         mpv
         multimc
-        # TODO Remove "unstable." on 20.09.
-        unstable.nixos-artwork.wallpapers.nineish-dark-gray
+        nixos-artwork.wallpapers.nineish-dark-gray
         okular
         openjdk
         partition-manager

@@ -2,8 +2,7 @@
 
 {
   # Use Zen kernel for better interactive performance.
-  # TODO Remove "unstable." on 20.09.
-  boot.kernelPackages = pkgs.unstable.linuxPackages_zen;
+  boot.kernelPackages = pkgs.linuxPackages_zen;
 
   # Load kernel module for ddcutil.
   boot.kernelModules = [ "i2c-dev" ];

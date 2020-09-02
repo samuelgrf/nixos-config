@@ -3,7 +3,7 @@
 {
   # The NixOS release to be compatible with for stateful data such as databases.
   # Read the release notes before changing this.
-  home.stateVersion = "20.03";
+  home.stateVersion = "20.09";
 
   # Don't install any packages except for the manual.
   home.packages = lib.mkForce [
