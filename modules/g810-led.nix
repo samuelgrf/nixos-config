@@ -53,4 +53,7 @@ in
       before = [ "shutdown.target" "reboot.target" "halt.target" ];
     };
   };
+
+  meta.maintainers = [ maintainers.samuelgrf ];
+
 }
