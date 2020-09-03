@@ -1,6 +1,6 @@
 { stdenv, fetchgit }:
 
-# Usage: `pkgs.mpv.override { scripts = [ pkgs.mpvScripts.sponsorblock ]; }`
+# Usage: `pkgs.mpv.override { scripts = [ pkgs.mpvScripts.youtube-quality ]; }`
 stdenv.mkDerivation {
   pname = "mpv-youtube-quality";
   version = "unstable-2020-02-11";
@@ -21,9 +21,9 @@ stdenv.mkDerivation {
   passthru.scriptName = "youtube-quality.lua";
 
   meta = with stdenv.lib; {
-    description = "mpv script for changing YouTube video quality (ytdl-format) on the fly.";
+    description = "mpv script for changing YouTube video quality (ytdl-format) on the fly";
     homepage = "https://github.com/jgreco/mpv-youtube-quality";
+    maintainers = [ maintainers.samuelgrf ];
     platforms = platforms.all;
-    # maintainers = with maintainers; [ samuelgrf ];
   };
 }
