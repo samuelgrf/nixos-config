@@ -59,6 +59,7 @@
         konsole
         libreoffice
         unstable.lutris # TODO Remove "unstable." on 20.09.
+        lxqt.pavucontrol-qt
         mpv
         multimc
         # TODO Remove "unstable." on 20.09.
@@ -66,7 +67,6 @@
         okular
         openjdk
         partition-manager
-        pavucontrol
         pcsx2
         protontricks
         qt5.qttools # Includes `qdbus` command, needed for `gray` alias.
