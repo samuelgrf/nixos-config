@@ -1,12 +1,14 @@
-{ config, lib, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   # The NixOS release to be compatible with for stateful data such as databases.
   # Read the release notes before changing this.
   home.stateVersion = "20.03";
 
-  # Never install packages.
-  home.packages = lib.mkForce [ ];
+  # Don't install any packages except for the manual.
+  home.packages = lib.mkForce [
+    (import <home-manager/doc> { inherit lib pkgs; }).manPages
+  ];
 
   # Set Git configuration.
   programs.git = {
