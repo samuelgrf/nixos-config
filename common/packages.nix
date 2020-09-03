@@ -57,6 +57,7 @@
         kdialog
         keepassxc
         konsole
+        kwin-dynamic-workspaces
         libreoffice
         unstable.lutris # TODO Remove "unstable." on 20.09.
         lxqt.pavucontrol-qt
