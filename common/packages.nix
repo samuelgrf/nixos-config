@@ -27,6 +27,7 @@
         patchelf
         pciutils
         python3
+        strace
         sysstat
         trash-cli
         tuir
