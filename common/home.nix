@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   # The NixOS release to be compatible with for stateful data such as databases.
