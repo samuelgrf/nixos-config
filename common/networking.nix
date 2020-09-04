@@ -74,8 +74,8 @@
       DefaultSearchProviderSearchURL = "https://duckduckgo.com/?q={searchTerms}";
       DefaultSearchProviderSuggestURL = "https://duckduckgo.com/ac/?q={searchTerms}&type=list";
       DefaultSearchProviderNewTabURL = "https://duckduckgo.com/chrome_newtab";
-      ExtensionInstallBlacklist = [ "*" ];
-      ExtensionInstallWhitelist = config.programs.chromium.extensions;
+      ExtensionInstallBlocklist = [ "*" ];
+      ExtensionInstallAllowlist = config.programs.chromium.extensions;
       # Results in significant CPU and battery savings.
       IntensiveWakeUpThrottlingEnabled = true;
       PasswordManagerEnabled = false;
@@ -119,7 +119,7 @@
         # https://bugs.chromium.org/p/chromium/issues/detail?id=1087109
         # or https://github.com/NixOS/nixpkgs/issues/89512
         # are resolved.
-        commandLineArgs = "--force-device-scale-factor=1 --ignore-gpu-blacklist \\
+        commandLineArgs = "--force-device-scale-factor=1 --ignore-gpu-blocklist \\
           --enable-gpu-rasterization --enable-oop-rasterization --enable-zero-copy \\
           --force-dark-mode --enable-features=WebUIDarkMode";
       };
