@@ -46,9 +46,6 @@
       hack_nerdfont = super.nerdfonts.override { fonts = [ "Hack" ]; };
       meslo-lg_nerdfont = super.nerdfonts.override { fonts = [ "Meslo" ]; };
 
-      kwin-dynamic-workspaces =
-        super.libsForQt5.callPackage ./kwin-scripts/dynamic-workspaces.nix { };
-
       mpv = super.mpv.override {
         scripts = [
           self.mpv_sponsorblock
