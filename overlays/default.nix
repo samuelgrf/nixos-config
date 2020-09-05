@@ -30,17 +30,6 @@
       ## Packages
       ##########################################################################
 
-      # google-chrome-beta: Update to newest version.
-      google-chrome-beta = super.google-chrome-beta.overrideAttrs (oldAttrs: rec {
-        name = "google-chrome-beta";
-        version = "86.0.4240.22";
-
-        src = super.fetchurl {
-          url = "https://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-beta/google-chrome-beta_${version}-1_amd64.deb";
-          sha256 = "05qdzkq9daqjliqj7zxsa03903rv3kwaj627192ls6m33bacz9gp";
-        };
-      });
-
       g810-led = super.callPackage ./g810-led { };
 
       hack_nerdfont = super.nerdfonts.override { fonts = [ "Hack" ]; };
