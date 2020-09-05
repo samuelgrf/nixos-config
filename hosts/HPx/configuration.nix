@@ -30,7 +30,7 @@
 
   # Configure TLP.
   services.tlp.enable = true;
-  services.tlp.extraConfig = "RUNTIME_PM_BLACKLIST='02:00.0'"; # Blacklist wifi card
+  services.tlp.settings.RUNTIME_PM_BLACKLIST="02:00.0"; # Blacklist wifi card
 
   # Configure undervolting service for Intel CPUs.
   services.undervolt = {
@@ -41,10 +41,6 @@
     analogioOffset = -100;
   };
 
-  # Get undervolt module from unstable.
-  # TODO Remove on 20.09.
-  disabledModules = [ "services/hardware/undervolt.nix" ];
-  imports = [ <nixos-unstable/nixos/modules/services/hardware/undervolt.nix> ];
 
   ##############################################################################
   ## Kernel & Modules

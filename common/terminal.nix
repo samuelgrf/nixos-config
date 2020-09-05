@@ -10,11 +10,8 @@
   # Configure Zsh.
   programs.zsh = {
     enable = true;
-    ohMyZsh = {
-      enable = true;
-      package = pkgs.unstable.oh-my-zsh; # TODO Remove on 20.09.
-      plugins = [ "git" ];
-    };
+    ohMyZsh.enable = true;
+    ohMyZsh.plugins = [ "git" ];
     autosuggestions.enable = true;
     syntaxHighlighting.enable = true;
 
@@ -24,8 +21,7 @@
       source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
 
       # Use Zsh instead of bash for nix-shell.
-      # TODO Remove "unstable." on 20.09.
-      source ${pkgs.unstable.zsh-nix-shell}/share/zsh-nix-shell/nix-shell.plugin.zsh
+      source ${pkgs.zsh-nix-shell}/share/zsh-nix-shell/nix-shell.plugin.zsh
 
       # Disable less history.
       export LESSHISTFILE=/dev/null

@@ -39,6 +39,5 @@
       }
     ];
 
-  nix.maxJobs = lib.mkDefault 8; # TODO Remove on 20.09.
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
 }

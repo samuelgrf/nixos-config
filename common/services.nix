@@ -3,10 +3,12 @@
 {
   # Enable the KDE Plasma desktop environment.
   services.xserver.desktopManager.plasma5.enable = true;
-  services.xserver.displayManager.sddm = {
+  services.xserver.displayManager.sddm.enable = true;
+
+  # Enable automatic login.
+  services.xserver.displayManager.autoLogin = {
     enable = true;
-    autoLogin.enable = true;
-    autoLogin.user = "samuel";
+    user = "samuel";
   };
 
   # Enable unclutter-xfixes to hide the mouse cursor when inactive.
