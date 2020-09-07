@@ -47,7 +47,6 @@
         caffeine-ng
         filezilla
         gimp
-        gnome3.adwaita-icon-theme # Needed for caffeine-ng to display icons.
         google-chrome-beta
         gwenview
         imagemagick
