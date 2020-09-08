@@ -66,6 +66,7 @@
       AutofillCreditCardEnabled = false;
       BackgroundModeEnabled = false;
       BlockThirdPartyCookies = true;
+      CookiesAllowedForUrls = [ "login.microsoftonline.com" ]; # Fixes MS Teams.
       DefaultNotificationsSetting = 2;
       DefaultSearchProviderEnabled = true;
       DefaultSearchProviderName = "DuckDuckGo";
