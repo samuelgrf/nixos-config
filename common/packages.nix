@@ -74,6 +74,7 @@
         torbrowser
         wineWowPackages.staging # Comes with both x64 and x86 Wine.
         winetricks
+        wirelesstools # Comes with `iwlist` and `iwconfig`.
         xclip
         xorg.xev
       ];
