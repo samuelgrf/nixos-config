@@ -4,6 +4,9 @@
   # Enable NetworkManager.
   networking.networkmanager.enable = true;
 
+  # Don't respond to IPv4 pings.
+  networking.firewall.allowPing = false;
+
   # Open ports needed for Steam In-Home Streaming.
   # https://support.steampowered.com/kb_article.php?ref=8571-GLVN-8711
   networking.firewall.allowedTCPPorts = [ 27036 ];
