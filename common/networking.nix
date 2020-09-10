@@ -40,6 +40,7 @@
       # Google data-sharing
       AlternateErrorPagesEnabled = false;
       BrowserSignin = 0;
+      ChromeVariations = 2;
       ClickToCallEnabled = false;
       # Also downloads and updates `Origin Trials`.
       ComponentUpdatesEnabled = false;
