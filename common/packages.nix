@@ -89,6 +89,9 @@
     "steam-runtime"
   ];
 
+  # Don't install optional default packages.
+  environment.defaultPackages = [ ];
+
   # Install ADB and fastboot.
   programs.adb.enable = true;
 
