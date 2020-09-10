@@ -82,6 +82,7 @@
       '';
       lvl = "echo $SHLVL";
       msg = "kdialog --msgbox";
+      o = "xdg-open";
       rb = "shutdown -r";
       rbc = "shutdown -c";
       rbn = "shutdown -r now";
