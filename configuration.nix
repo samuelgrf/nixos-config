@@ -26,8 +26,11 @@
     ./overlays
   ];
 
-  # Home Manager
+  # Home directory
   home-manager.users.samuel.imports = [
     ./common/home.nix
   ] ++ (if lib.pathExists ./host/home.nix then [ ./host/home.nix ] else [ ]);
+
+  # Nix Channels
+  home-manager.users.root.home.file.".nix-channels".source = ./nix-channels;
 }
