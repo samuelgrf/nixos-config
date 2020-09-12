@@ -1,12 +1,13 @@
-{ stdenv, fetchgit }:
+{ stdenv, fetchFromGitHub, mpv-unwrapped }:
 
 # Usage: `pkgs.mpv.override { scripts = [ pkgs.mpvScripts.youtube-quality ]; }`
-stdenv.mkDerivation {
+stdenv.mkDerivation rec {
   pname = "mpv-youtube-quality";
   version = "unstable-2020-02-11";
 
-  src = fetchgit {
-    url = "https://github.com/jgreco/mpv-youtube-quality.git";
+  src = fetchFromGitHub {
+    owner = "jgreco";
+    repo = pname;
     rev = "1f8c31457459ffc28cd1c3f3c2235a53efad7148";
     sha256 = "09z6dkypg0ajvlx02270p3zmax58c0pkqkh6kh8gy2mhs3r4z0xy";
   };
@@ -22,8 +23,8 @@ stdenv.mkDerivation {
 
   meta = with stdenv.lib; {
     description = "mpv script for changing YouTube video quality (ytdl-format) on the fly";
-    homepage = "https://github.com/jgreco/mpv-youtube-quality";
+    homepage = src.meta.homepage;
+    platforms = mpv-unwrapped.meta.platforms;
     maintainers = [ maintainers.samuelgrf ];
-    platforms = platforms.all;
   };
 }
