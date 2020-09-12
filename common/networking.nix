@@ -97,30 +97,39 @@
       UserFeedbackAllowed = false;
 
       # uBlock Origin
-      "3rdparty".extensions.cjpalhdlnbpafiamejdnhcphjbkeiagm.adminSettings = ''
-        ${builtins.toJSON {
-          selectedFilterLists = [
-            "user-filters"
-            "ublock-filters"
-            "ublock-badware"
-            "ublock-privacy"
-            "ublock-abuse"
-            "ublock-unbreak"
-            "easylist"
-            "easyprivacy"
-            "urlhaus-1"
-            "adguard-annoyance"
-            "ublock-annoyances"
-            "plowe-0"
+      "3rdparty".extensions.cjpalhdlnbpafiamejdnhcphjbkeiagm.adminSettings =
+        let
+          externalLists = [
+            "https://raw.githubusercontent.com/StevenBlack/hosts/master/extensions/porn/clefspeare13/hosts"
+            "https://raw.githubusercontent.com/StevenBlack/hosts/master/extensions/porn/sinfonietta/hosts"
+            "https://raw.githubusercontent.com/StevenBlack/hosts/master/extensions/porn/sinfonietta-snuff/hosts"
+            "https://raw.githubusercontent.com/StevenBlack/hosts/master/extensions/porn/tiuxo/hosts"
           ];
-          userFilters = ''
-            ! Reddit: Hide 'Get Coins' button
-            www.reddit.com##.jEUbSHJJx8vISKpWirlfx
-            ! Reddit: Hide account information
-            www.reddit.com###email-collection-tooltip-id
-          '';
-        }
-      }'';
+        in ''
+          ${builtins.toJSON {
+            selectedFilterLists = [
+              "user-filters"
+              "ublock-filters"
+              "ublock-badware"
+              "ublock-privacy"
+              "ublock-abuse"
+              "ublock-unbreak"
+              "easylist"
+              "easyprivacy"
+              "urlhaus-1"
+              "adguard-annoyance"
+              "ublock-annoyances"
+              "plowe-0"
+            ] ++ externalLists;
+            userSettings.externalLists = builtins.concatStringsSep "\n" externalLists;
+            userFilters = ''
+              ! Reddit: Hide 'Get Coins' button
+              www.reddit.com##.jEUbSHJJx8vISKpWirlfx
+              ! Reddit: Hide account information
+              www.reddit.com###email-collection-tooltip-id
+            '';
+          }
+        }'';
     };
   };
 
