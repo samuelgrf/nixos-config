@@ -1,6 +1,13 @@
 { config, lib, ... }:
 
 {
+  # Nix channels
+  home-manager.users.root.home.file.".nix-channels".text = ''
+    https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
+    https://channels.nixos.org/nixos-20.09 nixos
+    https://channels.nixos.org/nixos-unstable nixos-unstable
+  '';
+
   imports = [
     # All hosts
     ./common/fonts.nix
@@ -30,7 +37,4 @@
   home-manager.users.samuel.imports = [
     ./common/home.nix
   ] ++ (if lib.pathExists ./host/home.nix then [ ./host/home.nix ] else [ ]);
-
-  # Nix Channels
-  home-manager.users.root.home.file.".nix-channels".source = ./nix-channels;
 }
