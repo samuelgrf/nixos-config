@@ -35,6 +35,8 @@
       hack_nerdfont = super.nerdfonts.override { fonts = [ "Hack" ]; };
       meslo-lg_nerdfont = super.nerdfonts.override { fonts = [ "Meslo" ]; };
 
+      manix = super.callPackage <manix> { };
+
       mpv = super.mpv.override {
         scripts = [
           self.mpv_sponsorblock

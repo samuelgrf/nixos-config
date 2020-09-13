@@ -19,6 +19,7 @@
         lolcat
         lshw
         lynx
+        manix
         ncdu
         neofetch
         nix-index
