@@ -30,7 +30,7 @@
 
   # Configure TLP.
   services.tlp.enable = true;
-  services.tlp.settings.RUNTIME_PM_BLACKLIST="02:00.0"; # Blacklist wifi card
+  services.tlp.settings.RUNTIME_PM_BLACKLIST = "02:00.0"; # Blacklist wifi card
 
   # Configure undervolting service for Intel CPUs.
   services.undervolt = {
