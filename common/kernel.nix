@@ -10,7 +10,7 @@
   # Enable support for additional filesystems.
   boot.supportedFilesystems = [ "ntfs" "zfs" ];
 
-  # Enable zram and use faster lzo conpression.
+  # Enable zram and use faster lzo compression.
   zramSwap.enable = true;
   zramSwap.algorithm = "lzo";
 
