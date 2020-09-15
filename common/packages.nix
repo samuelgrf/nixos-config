@@ -8,7 +8,7 @@
         apktool
         bat
         bind
-        cod
+        unstable.cod # TODO Remove "unstable." on 21.03.
         ddgr
         fd
         file

@@ -30,9 +30,6 @@
       ## Packages
       ##########################################################################
 
-      # Tool for generating Bash/Zsh autocompletions based on `--help` output.
-      cod = super.callPackage ./cod { };
-
       g810-led = super.callPackage ./g810-led { };
 
       hack_nerdfont = super.nerdfonts.override { fonts = [ "Hack" ]; };
