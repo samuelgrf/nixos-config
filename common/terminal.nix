@@ -23,6 +23,9 @@
       # Use Zsh instead of bash for nix-shell.
       source ${pkgs.zsh-nix-shell}/share/zsh-nix-shell/nix-shell.plugin.zsh
 
+      # Automatically generate completions based on `--help` output.
+      source <(cod init $$ zsh)
+
       # Disable less history.
       export LESSHISTFILE=/dev/null
 
