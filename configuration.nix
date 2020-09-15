@@ -4,7 +4,6 @@
   # Nix channels
   home-manager.users.root.home.file.".nix-channels".text = ''
     https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
-    https://github.com/mlvzk/manix/archive/master.tar.gz manix
     https://channels.nixos.org/nixos-20.09 nixos
     https://channels.nixos.org/nixos-unstable nixos-unstable
   '';
