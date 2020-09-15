@@ -8,6 +8,7 @@
         apktool
         bat
         bind
+        cod
         ddgr
         fd
         file
