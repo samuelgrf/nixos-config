@@ -20,7 +20,7 @@
         lolcat
         lshw
         lynx
-        manix
+        unstable.manix # TODO Remove "unstable." on 21.03.
         ncdu
         neofetch
         nix-index
