@@ -73,6 +73,7 @@
         protontricks
         smartmontools
         spectacle
+        sqlectron
         steam
         torbrowser
         wineWowPackages.staging # Comes with both x64 and x86 Wine.
