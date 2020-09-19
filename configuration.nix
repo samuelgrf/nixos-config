@@ -5,7 +5,7 @@
   home-manager.users.root.home.file.".nix-channels".text = ''
     https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
     https://channels.nixos.org/nixos-20.09 nixos
-    https://channels.nixos.org/nixos-unstable nixos-unstable
+    https://channels.nixos.org/nixos-unstable-small nixos-unstable
   '';
 
   imports = [
