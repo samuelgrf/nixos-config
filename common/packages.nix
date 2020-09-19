@@ -68,7 +68,7 @@
         nixos-artwork.wallpapers.nineish-dark-gray
         okular
         openjdk
-        partition-manager
+        # partition-manager (currently fails to build)
         pcsx2
         protontricks
         smartmontools
