@@ -16,7 +16,7 @@ stdenv.mkDerivation rec {
   installPhase = ''
     mkdir -p $out/{bin,share/sqlectron}
 
-    cp -r * $out/share/sqlectron
+    cp -r . $out/share/sqlectron
     cp -r share/. $out/share
     rm -r $out/share/sqlectron/{build,share}
 
