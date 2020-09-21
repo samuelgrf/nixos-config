@@ -45,6 +45,7 @@
       X = [
         android-studio
         anki
+        appimage-run
         ark
         caffeine-ng
         filezilla
@@ -75,6 +76,7 @@
         spectacle
         sqlectron
         steam
+        steam-run
         torbrowser
         wineWowPackages.staging # Comes with both x64 and x86 Wine.
         winetricks
