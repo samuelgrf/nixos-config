@@ -86,6 +86,7 @@
       lvl = "echo $SHLVL";
       msg = "kdialog --msgbox";
       o = "xdg-open";
+      qr = "qrencode -t UTF8";
       rb = "shutdown -r";
       rbc = "shutdown -c";
       rbn = "shutdown -r now";
