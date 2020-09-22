@@ -15,6 +15,7 @@
         git
         gnupg
         htop
+        iw
         killall
         lm_sensors
         lolcat
@@ -29,6 +30,7 @@
         patchelf
         pciutils
         python3
+        smartmontools
         strace
         sysstat
         trash-cli
@@ -54,7 +56,6 @@
         gwenview
         imagemagick
         inkscape
-        iw
         jetbrains.idea-community
         kate
         kdialog
@@ -72,7 +73,6 @@
         # partition-manager (currently fails to build)
         pcsx2
         protontricks
-        smartmontools
         spectacle
         sqlectron
         steam
