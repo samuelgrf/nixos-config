@@ -30,6 +30,7 @@
         patchelf
         pciutils
         python3
+        qrencode
         smartmontools
         strace
         sysstat
