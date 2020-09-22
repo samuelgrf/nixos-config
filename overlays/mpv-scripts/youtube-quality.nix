@@ -25,6 +25,6 @@ stdenv.mkDerivation rec {
     description = "mpv script for changing YouTube video quality (ytdl-format) on the fly";
     homepage = src.meta.homepage;
     platforms = mpv-unwrapped.meta.platforms;
-    maintainers = [ maintainers.samuelgrf ];
+    maintainers = with maintainers; [ samuelgrf ];
   };
 }

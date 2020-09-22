@@ -38,6 +38,6 @@ stdenv.mkDerivation rec {
     homepage = src.meta.homepage;
     license = licenses.gpl3;
     platforms = platforms.linux;
-    maintainers = [ maintainers.samuelgrf ];
+    maintainers = with maintainers; [ samuelgrf ];
   };
 }
