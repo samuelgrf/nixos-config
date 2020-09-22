@@ -137,6 +137,7 @@
   nixpkgs.overlays = [
     (self: super: {
       google-chrome-beta = super.google-chrome-beta.override {
+
         # TODO Remove `--force-device-scale-factor=1` when
         # https://bugs.chromium.org/p/chromium/issues/detail?id=1087109
         # or https://github.com/NixOS/nixpkgs/issues/89512
