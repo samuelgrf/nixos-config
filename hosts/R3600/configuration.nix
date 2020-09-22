@@ -47,7 +47,7 @@
 
   # Get Mesa from unstable.
   hardware.opengl.package = pkgs.unstable.mesa.drivers;
-  hardware.opengl.package32 = pkgs.unstable.pkgsi686Linux.mesa.drivers;
+  hardware.opengl.package32 = pkgs.unstable.driversi686Linux.mesa.drivers;
 
   # Install AMDVLK driver, since some games have graphical glitches when using RADV.
   # Can be enabled by setting
