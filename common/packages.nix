@@ -27,6 +27,7 @@
         nix-index
         nixfmt
         nixpkgs-review
+        p7zip
         patchelf
         pciutils
         python3
@@ -36,7 +37,6 @@
         sysstat
         trash-cli
         tuir
-        unar
         usbutils
         wget
         whois
