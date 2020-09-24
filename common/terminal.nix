@@ -30,6 +30,11 @@
       export LESSHISTFILE=/dev/null
 
       # Define Nix & NixOS functions.
+      ncr () {
+        sudo nix-env \
+          -p /nix/var/nix/profiles/per-user/root/channels \
+          -e $(readlink /nix/var/nix/profiles/per-user/root/channels/$1)
+      }
       nrs () { sudo nixos-rebuild switch "$@" && exec zsh }
       nrt () { sudo nixos-rebuild test "$@" && exec zsh }
       nus () { sudo nix-channel --update && sudo nixos-rebuild switch "$@" && exec zsh }
@@ -49,7 +54,6 @@
       nc = "sudo nix-channel";
       nca = "sudo nix-channel --add";
       ncl = "sudo nix-channel --list";
-      ncr = "sudo nix-channel --remove";
       ncro = "sudo nix-channel --rollback";
       ncu = "sudo nix-channel --update";
       ng = "nix-collect-garbage";
