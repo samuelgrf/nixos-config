@@ -31,7 +31,7 @@ stdenv.mkDerivation rec {
     })
   ];
 
-  phases = "installPhase";
+  dontUnpack = true;
 
   installPhase = ''
     mkdir -p $out/share
