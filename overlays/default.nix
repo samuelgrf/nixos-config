@@ -35,6 +35,10 @@
       hack_nerdfont = super.nerdfonts.override { fonts = [ "Hack" ]; };
       meslo-lg_nerdfont = super.nerdfonts.override { fonts = [ "Meslo" ]; };
 
+      mangohud = super.callPackage ./mangohud/combined.nix {
+        libXNVCtrl = config.boot.kernelPackages.nvidia_x11.settings.libXNVCtrl;
+      };
+
       mpv = super.mpv.override {
         scripts = [
           self.mpv_sponsorblock
