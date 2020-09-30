@@ -9,18 +9,12 @@
       ##########################################################################
 
       # Alias for unstable channel
-      unstable = import <nixos-unstable> {
-        config = config.nixpkgs.config;
-        localSystem = config.nixpkgs.localSystem;
-        crossSystem = config.nixpkgs.crossSystem;
-      };
+      unstable = import <nixos-unstable> { config = config.nixpkgs.config; };
 
       # Unstable alias with overlays
       unstableFinal = import <nixos-unstable> {
         config = config.nixpkgs.config;
         overlays = config.nixpkgs.overlays;
-        localSystem = config.nixpkgs.localSystem;
-        crossSystem = config.nixpkgs.crossSystem;
       };
 
 
