@@ -68,12 +68,12 @@
       sqlectron = prev.callPackage ./sqlectron { };
 
       # steam: Add cabextract, needed for Protontricks to install MS core fonts.
-      steam = prev.steam.override { extraPkgs = pkgs: [ final.cabextract ]; };
+      steam = prev.steam.override { extraPkgs = pkgs: [ prev.cabextract ]; };
 
       stevenblack-hosts-porn-extension = prev.callPackage ./hosts/stevenblack-porn-extension.nix { };
 
       # winetricks: Use Wine staging with both 32-bit and 64-bit support.
-      winetricks = prev.winetricks.override { wine = final.wineWowPackages.staging; };
+      winetricks = prev.winetricks.override { wine = prev.wineWowPackages.staging; };
 
     })
   ];
