@@ -2,7 +2,7 @@
 
 {
   nixpkgs.overlays = [
-    (self: super: {
+    (final: prev: {
 
       ##########################################################################
       ## Channel aliases
@@ -18,7 +18,7 @@
 
       # Unstable alias without overlays.
       # Can be used inside overlays without causing infinite recursions.
-      unstableSuper = import <nixos-unstable> {
+      unstablePrev = import <nixos-unstable> {
         config = config.nixpkgs.config;
         overlays = [ ];
         localSystem = config.nixpkgs.localSystem;
@@ -30,24 +30,24 @@
       ## Packages
       ##########################################################################
 
-      g810-led = super.callPackage ./g810-led { };
+      g810-led = prev.callPackage ./g810-led { };
 
-      hack_nerdfont = super.nerdfonts.override { fonts = [ "Hack" ]; };
-      meslo-lg_nerdfont = super.nerdfonts.override { fonts = [ "Meslo" ]; };
+      hack_nerdfont = prev.nerdfonts.override { fonts = [ "Hack" ]; };
+      meslo-lg_nerdfont = prev.nerdfonts.override { fonts = [ "Meslo" ]; };
 
-      mangohud = super.callPackage ./mangohud/combined.nix {
+      mangohud = prev.callPackage ./mangohud/combined.nix {
         libXNVCtrl = config.boot.kernelPackages.nvidia_x11.settings.libXNVCtrl;
       };
 
-      mpv = super.mpv.override {
+      mpv = prev.mpv.override {
         scripts = [
-          self.mpv_sponsorblock
-          (super.callPackage ./mpv-scripts/youtube-quality.nix { })
+          final.mpv_sponsorblock
+          (prev.callPackage ./mpv-scripts/youtube-quality.nix { })
         ];
       };
 
       # mpv_sponsorblock: Override some default options.
-      mpv_sponsorblock = super.mpvScripts.sponsorblock.overrideAttrs (oldAttrs: {
+      mpv_sponsorblock = prev.mpvScripts.sponsorblock.overrideAttrs (oldAttrs: {
         postPatch = (oldAttrs.postPatch or "") + ''
           substituteInPlace sponsorblock.lua \
             --replace 'skip_categories = "sponsor"' \
@@ -57,13 +57,13 @@
         '';
       });
 
-      nativeStdenv = super.impureUseNativeOptimizations super.stdenv;
+      nativeStdenv = prev.impureUseNativeOptimizations prev.stdenv;
 
       # pcsx2: Enable native optimizations and workaround GTK2 errors on KDE Plasma.
-      pcsx2 = (super.pcsx2.override { stdenv = self.pkgsi686Linux.nativeStdenv; })
+      pcsx2 = (prev.pcsx2.override { stdenv = final.pkgsi686Linux.nativeStdenv; })
 
         .overrideAttrs (oldAttrs: {
-          cmakeFlags = super.lib.remove "-DDISABLE_ADVANCE_SIMD=TRUE"
+          cmakeFlags = prev.lib.remove "-DDISABLE_ADVANCE_SIMD=TRUE"
             oldAttrs.cmakeFlags;
 
           postFixup = ''
@@ -73,15 +73,15 @@
           '';
       });
 
-      sqlectron = super.callPackage ./sqlectron { };
+      sqlectron = prev.callPackage ./sqlectron { };
 
       # steam: Add cabextract, needed for Protontricks to install MS core fonts.
-      steam = super.steam.override { extraPkgs = pkgs: [ self.cabextract ]; };
+      steam = prev.steam.override { extraPkgs = pkgs: [ final.cabextract ]; };
 
-      stevenblack-hosts-porn-extension = super.callPackage ./hosts/stevenblack-porn-extension.nix { };
+      stevenblack-hosts-porn-extension = prev.callPackage ./hosts/stevenblack-porn-extension.nix { };
 
       # winetricks: Use Wine staging with both 32-bit and 64-bit support.
-      winetricks = super.winetricks.override { wine = self.wineWowPackages.staging; };
+      winetricks = prev.winetricks.override { wine = final.wineWowPackages.staging; };
 
     })
   ];

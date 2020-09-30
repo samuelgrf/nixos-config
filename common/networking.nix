@@ -135,8 +135,8 @@
 
   # Add command line arguments to Google Chrome.
   nixpkgs.overlays = [
-    (self: super: {
-      google-chrome-beta = super.google-chrome-beta.override {
+    (final: prev: {
+      google-chrome-beta = prev.google-chrome-beta.override {
 
         # TODO Remove `--force-device-scale-factor=1` when
         # https://bugs.chromium.org/p/chromium/issues/detail?id=1087109
