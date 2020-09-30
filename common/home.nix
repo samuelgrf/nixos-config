@@ -10,6 +10,9 @@
     (import <home-manager/doc> { inherit lib pkgs; }).manPages
   ];
 
+  # Allow running unfree software via nix-shell.
+  home.file.".config/nixpkgs/config.nix".text = "{ allowUnfree = true; }";
+
   # Set Git configuration.
   programs.git = {
     enable = true;
