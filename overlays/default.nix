@@ -8,19 +8,17 @@
       ## Channel aliases
       ##########################################################################
 
-      # Alias for unstable channel.
+      # Alias for unstable channel
       unstable = import <nixos-unstable> {
         config = config.nixpkgs.config;
-        overlays = config.nixpkgs.overlays;
         localSystem = config.nixpkgs.localSystem;
         crossSystem = config.nixpkgs.crossSystem;
       };
 
-      # Unstable alias without overlays.
-      # Can be used inside overlays without causing infinite recursions.
-      unstablePrev = import <nixos-unstable> {
+      # Unstable alias with overlays
+      unstableFinal = import <nixos-unstable> {
         config = config.nixpkgs.config;
-        overlays = [ ];
+        overlays = config.nixpkgs.overlays;
         localSystem = config.nixpkgs.localSystem;
         crossSystem = config.nixpkgs.crossSystem;
       };
