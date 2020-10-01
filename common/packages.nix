@@ -59,6 +59,7 @@
         imagemagick
         inkscape
         jetbrains.idea-community
+        jpexs
         kate
         kdialog
         keepassxc
