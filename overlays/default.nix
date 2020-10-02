@@ -27,8 +27,6 @@
       hack_nerdfont = prev.nerdfonts.override { fonts = [ "Hack" ]; };
       meslo-lg_nerdfont = prev.nerdfonts.override { fonts = [ "Meslo" ]; };
 
-      jpexs = prev.callPackage ./jpexs { };
-
       mangohud = prev.callPackage ./mangohud/combined.nix {
         libXNVCtrl = config.boot.kernelPackages.nvidia_x11.settings.libXNVCtrl;
       };

@@ -59,7 +59,7 @@
         imagemagick
         inkscape
         jetbrains.idea-community
-        jpexs
+        unstable.jpexs # TODO Remove "unstable." on 21.03.
         kate
         kdialog
         keepassxc
