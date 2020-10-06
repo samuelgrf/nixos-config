@@ -31,10 +31,9 @@
 
     # Overlays
     ./overlays
-
+  ]
     # Secrets
-    ./secrets
-  ];
+    ++ (if lib.pathExists ./secrets then [ ./secrets ] else [ ]);
 
   # Home directory
   home-manager.users.samuel.imports = [
