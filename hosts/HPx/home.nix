@@ -1,4 +1,4 @@
-{ config, ... }:
+{ ... }:
 
 {
   # Enable VA-API hardware decoder in mpv.

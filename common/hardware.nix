@@ -1,4 +1,4 @@
-{ config, ... }:
+{ ... }:
 
 {
   # Enable g810-led and set profile.
