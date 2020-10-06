@@ -38,6 +38,7 @@
         sysstat
         trash-cli
         tuir
+        units
         usbutils
         wget
         whois
