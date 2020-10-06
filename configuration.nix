@@ -31,6 +31,9 @@
 
     # Overlays
     ./overlays
+
+    # Secrets
+    ./secrets
   ];
 
   # Home directory
