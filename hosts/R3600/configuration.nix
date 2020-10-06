@@ -58,7 +58,8 @@
   # Set global environment variables.
   environment.variables = {
     RADV_PERFTEST = "aco";
-    VK_ICD_FILENAMES = "/run/opengl-driver/share/vulkan/icd.d/radeon_icd.x86_64.json:/run/opengl-driver-32/share/vulkan/icd.d/radeon_icd.i686.json";
+    VK_ICD_FILENAMES =
+      "/run/opengl-driver/share/vulkan/icd.d/radeon_icd.x86_64.json:/run/opengl-driver-32/share/vulkan/icd.d/radeon_icd.i686.json";
   };
 
   # Enable Freesync and TearFree (hardware vsync).
