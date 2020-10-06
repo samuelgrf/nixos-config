@@ -78,7 +78,7 @@
         # partition-manager (currently fails to build)
         pcsx2
         protontricks
-        spectacle
+        spectacle # TODO Remove on 21.03.
         sqlectron
         steam
         steam-run
