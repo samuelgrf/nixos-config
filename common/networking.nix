@@ -12,14 +12,6 @@
   networking.firewall.allowedTCPPorts = [ 27036 ];
   networking.firewall.allowedUDPPortRanges = [ { from = 27031; to = 27036; } ];
 
-  # Add blocklists to hosts file.
-  networking.hostFiles = with pkgs; [
-    "${stevenblack-hosts-porn-extension}/share/clefspeare13"
-    "${stevenblack-hosts-porn-extension}/share/sinfonietta"
-    "${stevenblack-hosts-porn-extension}/share/sinfonietta-snuff"
-    "${stevenblack-hosts-porn-extension}/share/tiuxo"
-  ];
-
   # Set Chromium/Chrome configuration.
   programs.chromium = {
     enable = true;
