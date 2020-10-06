@@ -26,6 +26,7 @@
         ncdu
         neofetch
         nix-index
+        nix-linter
         nixfmt
         nixpkgs-review
         p7zip
