@@ -24,9 +24,6 @@
 
       g810-led = prev.callPackage ./g810-led { };
 
-      hack_nerdfont = prev.nerdfonts.override { fonts = [ "Hack" ]; };
-      meslo-lg_nerdfont = prev.nerdfonts.override { fonts = [ "Meslo" ]; };
-
       mangohud = prev.callPackage ./mangohud/combined.nix {
         libXNVCtrl = config.boot.kernelPackages.nvidia_x11.settings.libXNVCtrl;
       };
@@ -50,6 +47,11 @@
       });
 
       nativeStdenv = prev.impureUseNativeOptimizations prev.stdenv;
+
+      nerdfonts = prev.recurseIntoAttrs {
+        hack = prev.nerdfonts.override { fonts = [ "Hack" ]; };
+        meslo-lg = prev.nerdfonts.override { fonts = [ "Meslo" ]; };
+      };
 
       # pcsx2: Enable native optimizations and build with GTK3.
       pcsx2 = (prev.callPackage ./pcsx2 {

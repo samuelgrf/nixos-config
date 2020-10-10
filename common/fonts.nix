@@ -3,9 +3,9 @@
 {
   # Set system-wide fonts.
   fonts.fonts = with pkgs; [
-    hack_nerdfont # Emacs
     liberation_ttf # Free replacement for MS Fonts.
-    meslo-lg_nerdfont
+    nerdfonts.hack # Emacs
+    nerdfonts.meslo-lg
     noto-fonts
     noto-fonts-cjk
     noto-fonts-emoji
