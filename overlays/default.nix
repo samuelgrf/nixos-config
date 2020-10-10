@@ -51,18 +51,14 @@
 
       nativeStdenv = prev.impureUseNativeOptimizations prev.stdenv;
 
-      # pcsx2: Enable native optimizations and workaround GTK2 errors on KDE Plasma.
-      pcsx2 = (prev.pcsx2.override { stdenv = final.pkgsi686Linux.nativeStdenv; })
-
+      # pcsx2: Enable native optimizations and build with GTK3.
+      pcsx2 = (prev.callPackage ./pcsx2 {
+        stdenv = final.nativeStdenv;
+        wxGTK = prev.wxGTK30-gtk3;
+      })
         .overrideAttrs (oldAttrs: {
           cmakeFlags = prev.lib.remove "-DDISABLE_ADVANCE_SIMD=TRUE"
             oldAttrs.cmakeFlags;
-
-          postFixup = ''
-            wrapProgram $out/bin/PCSX2 \
-              --set __GL_THREADED_OPTIMIZATIONS 1 \
-              --set GTK2_RC_FILES ""
-          '';
       });
 
       sqlectron = prev.callPackage ./sqlectron { };
