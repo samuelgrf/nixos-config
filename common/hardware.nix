@@ -1,9 +1,13 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   # Enable g810-led and set profile.
   hardware.g810-led.enable = true;
-  hardware.g810-led.profile = ../modules/g810-led_profile;
+  hardware.g810-led.profile = pkgs.writeText "g810-led_profile" ''
+    # Set all keys to orange-red
+    a ff3000
+    c
+  '';
 
   # Enable Steam hardware for additional controller support.
   hardware.steam-hardware.enable = true;
