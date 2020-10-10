@@ -63,8 +63,6 @@
             oldAttrs.cmakeFlags;
       });
 
-      sqlectron = prev.callPackage ./sqlectron { };
-
       # steam: Add cabextract, needed for Protontricks to install MS core fonts.
       steam = prev.steam.override { extraPkgs = pkgs: [ prev.cabextract ]; };
 

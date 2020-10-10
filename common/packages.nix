@@ -80,7 +80,6 @@
         pcsx2
         protontricks
         spectacle # TODO Remove on 21.03.
-        sqlectron
         steam
         steam-run
         torbrowser
