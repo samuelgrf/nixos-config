@@ -27,11 +27,7 @@
 
     # Modules
     <home-manager/nixos>
-    # g810-led (https://github.com/NixOS/nixpkgs/pull/92124)
-    (builtins.fetchurl {
-      url = "https://raw.githubusercontent.com/NixOS/nixpkgs/992b26bf5774c74cfba5b4611116328292c51236/nixos/modules/hardware/g810-led.nix";
-      sha256 = "1iirh5mcwf4swlnmhv5jf1v3h25mm872vf05h3v8z67cf5lgm55f";
-    })
+    ./modules/g810-led.nix
 
     # Overlays
     ./overlays
