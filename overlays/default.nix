@@ -9,12 +9,18 @@
       ##########################################################################
 
       # Alias for unstable channel
-      unstable = import <nixos-unstable> { config = config.nixpkgs.config; };
+      unstable = import flake:nixos-unstable {
+        config = config.nixpkgs.config;
+        localSystem = config.nixpkgs.localSystem;
+        crossSystem = config.nixpkgs.crossSystem;
+      };
 
       # Unstable alias with overlays
-      unstableFinal = import <nixos-unstable> {
+      unstableFinal = import flake:nixos-unstable {
         config = config.nixpkgs.config;
         overlays = config.nixpkgs.overlays;
+        localSystem = config.nixpkgs.localSystem;
+        crossSystem = config.nixpkgs.crossSystem;
       };
 
 
@@ -52,6 +58,16 @@
         hack = prev.nerdfonts.override { fonts = [ "Hack" ]; };
         meslo-lg = prev.nerdfonts.override { fonts = [ "Meslo" ]; };
       };
+
+      # nix-zsh-completions: Add experimental flake support.
+      nix-zsh-completions = prev.nix-zsh-completions.overrideAttrs (oldAttrs: {
+        src = prev.fetchFromGitHub {
+          owner = "Ma27";
+          repo = "nix-zsh-completions";
+          rev = "939c48c182e9d018eaea902b1ee9d00a415dba86";
+          hash = "sha256-3HVYez/wt7EP8+TlhTppm968Wl8x5dXuGU0P+8xNDpo=";
+        };
+      });
 
       # pcsx2: Enable native optimizations and build with GTK3.
       pcsx2 = (prev.callPackage ./pcsx2 {
