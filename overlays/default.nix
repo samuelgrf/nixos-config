@@ -4,30 +4,6 @@
   nixpkgs.overlays = [
     (final: prev: {
 
-      ##########################################################################
-      ## Channel aliases
-      ##########################################################################
-
-      # Alias for unstable channel
-      unstable = import flake:nixos-unstable {
-        config = config.nixpkgs.config;
-        localSystem = config.nixpkgs.localSystem;
-        crossSystem = config.nixpkgs.crossSystem;
-      };
-
-      # Unstable alias with overlays
-      unstableFinal = import flake:nixos-unstable {
-        config = config.nixpkgs.config;
-        overlays = config.nixpkgs.overlays;
-        localSystem = config.nixpkgs.localSystem;
-        crossSystem = config.nixpkgs.crossSystem;
-      };
-
-
-      ##########################################################################
-      ## Packages
-      ##########################################################################
-
       g810-led = prev.callPackage ./g810-led { };
 
       mangohud = prev.callPackage ./mangohud/combined.nix {

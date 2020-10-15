@@ -16,7 +16,18 @@
           ./hosts/HPx/hardware.nix
           home-manager.nixosModules.home-manager
 
-          ({ ... }: {
+          ({ config, ... }: {
+
+            nixpkgs.overlays = [
+              (final: prev: {
+                unstable = import nixos-unstable {
+                  config = config.nixpkgs.config;
+                  localSystem = config.nixpkgs.localSystem;
+                  crossSystem = config.nixpkgs.crossSystem;
+                };
+              })
+            ];
+
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
 
@@ -27,6 +38,7 @@
           })
         ];
       };
+
       R3600 = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
