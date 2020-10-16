@@ -1,11 +1,12 @@
 {
   inputs = {
     home-manager.url = "github:nix-community/home-manager/release-20.09";
-    nixos-unstable.url = "github:NixOS/nixpkgs/nixos-unstable-small";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-20.09";
+    nixpkgs-master.url = "github:NixOS/nixpkgs";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable-small";
   };
 
-  outputs = { self, nixpkgs, nixos-unstable, home-manager }: {
+  outputs = { self, nixpkgs, nixpkgs-master, nixpkgs-unstable, home-manager }: {
     nixosConfigurations = {
 
       HPx = nixpkgs.lib.nixosSystem {
@@ -20,11 +21,16 @@
 
             nixpkgs.overlays = [
               (final: prev: {
-                unstable = import nixos-unstable {
-                  config = config.nixpkgs.config;
-                  localSystem = config.nixpkgs.localSystem;
-                  crossSystem = config.nixpkgs.crossSystem;
-                };
+
+                pkgsImport = pkgs:
+                  import pkgs {
+                    config = config.nixpkgs.config;
+                    system = config.nixpkgs.system;
+                  };
+
+                master = final.pkgsImport nixpkgs-master;
+                unstable = final.pkgsImport nixpkgs-unstable;
+
               })
             ];
 
