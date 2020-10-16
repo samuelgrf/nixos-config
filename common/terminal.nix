@@ -30,16 +30,17 @@
       export LESSHISTFILE=/dev/null
 
       # Define Nix & NixOS functions.
-      ncr () {
-        sudo nix-env \
-          -p /nix/var/nix/profiles/per-user/root/channels \
-          -e $(readlink /nix/var/nix/profiles/per-user/root/channels/$1)
-      }
       nrs () { sudo nixos-rebuild switch "$@" && exec zsh }
       nrt () { sudo nixos-rebuild test "$@" && exec zsh }
-      nus () { sudo nix-channel --update && sudo nixos-rebuild switch "$@" && exec zsh }
-      nut () { sudo nix-channel --update && sudo nixos-rebuild test "$@" && exec zsh }
+      nsh () { nix shell nixpkgs#"$@" }
+      nshm () { nix shell nixpkgs-master#"$@" }
+      nshu () { nix shell nixpkgs-unstable#"$@" }
+      nus () { cd /etc/nixos && nix flake update --commit-lock-file && sudo nixos-rebuild switch "$@" && exec zsh }
+      nut () { cd /etc/nixos && nix flake update --commit-lock-file && sudo nixos-rebuild test "$@" && exec zsh }
       nw () { readlink $(where "$@") }
+      run () { nix run nixpkgs#"$@" }
+      runm () { nix run nixpkgs-master#"$@" }
+      runu () { nix run nixpkgs-unstable#"$@" }
 
       # Define other functions.
       e () { emacsclient -c "$@" > /dev/null & disown }
@@ -51,28 +52,25 @@
     shellAliases = {
       # Nix & NixOS
       n = "nix";
-      nc = "sudo nix-channel";
-      nca = "sudo nix-channel --add";
-      ncl = "sudo nix-channel --list";
-      ncro = "sudo nix-channel --rollback";
-      ncu = "sudo nix-channel --update";
+      nb = "nix build";
+      nf = "nix flake";
+      nfc = "nix flake check";
+      nfu = "nix flake update";
       ng = "nix-collect-garbage";
       ngd = "sudo nix-collect-garbage -d";
       nlo = "nix-locate";
       np = "nix repl";
-      nr = "sudo nixos-rebuild";
       nrb = "sudo nixos-rebuild boot";
       nrbu = "nixos-rebuild build";
-      nse = "nix search";
-      nsh = "nix-shell";
-      nsp = "nix-shell -p";
+      nse = "nix search nixpkgs";
+      nsem = "nix search nixpkgs-master";
+      nseu = "nix search nixpkgs-unstable";
       nsr = ''
         nix-store --gc --print-roots | \
           grep -Ev "^(/nix/var|/run/\w+-system|\{memory|\{censored)"\
       '';
-      nu = "sudo nix-channel --update && sudo nixos-rebuild";
-      nub = "sudo nix-channel --update && sudo nixos-rebuild boot";
-      nubu = "sudo nix-channel --update && sudo nixos-rebuild build";
+      nub = "cd /etc/nixos && nix flake update --commit-lock-file && sudo nixos-rebuild boot";
+      nubu = "cd /etc/nixos && nix flake update --commit-lock-file && sudo nixos-rebuild build";
       nv = "nixos-version";
       nvr = "nixos-version --revision";
 
