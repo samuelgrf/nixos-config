@@ -19,7 +19,5 @@
 
     # Overlays
     ./overlays
-  ]
-    # Secrets
-    ++ (with lib; optional (pathExists ./secrets) [ ./secrets ]);
+  ];
 }
