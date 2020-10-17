@@ -5,14 +5,6 @@
   # Read the release notes before changing this.
   home.stateVersion = "20.09";
 
-  # Don't install any packages except for the manual.
-  home.packages = lib.mkForce [
-    (import <home-manager/doc> { inherit lib pkgs; }).manPages
-  ];
-
-  # Allow running unfree software via nix-shell.
-  home.file.".config/nixpkgs/config.nix".text = "{ allowUnfree = true; }";
-
   # Set Git configuration.
   programs.git = {
     enable = true;

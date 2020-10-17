@@ -1,0 +1,93 @@
+{
+  "nodes": {
+    "home-manager": {
+      "inputs": {
+        "nixpkgs": "nixpkgs"
+      },
+      "locked": {
+        "lastModified": 1602452024,
+        "narHash": "sha256-UZ8YYjSFKMlv4Wb4Qaq4TYewuLH2qBXkZE9JFo7SUTo=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "7339784e07217ed0232e08d1ea33b610c94657d8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "ref": "release-20.09",
+        "repo": "home-manager",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1602230526,
+        "narHash": "sha256-3/ucBPYg42P+1ji5/7q227Ek/Eq2C7zeiB9sZl5UpIY=",
+        "path": "/nix/store/a4svi29pmh2qips8h6649vvzhk5nk5qd-source",
+        "rev": "0b8799ecaaf0dc6b4c11583a3c96ca5b40fcfdfb",
+        "type": "path"
+      },
+      "original": {
+        "id": "nixpkgs",
+        "type": "indirect"
+      }
+    },
+    "nixpkgs-master": {
+      "locked": {
+        "lastModified": 1602898930,
+        "narHash": "sha256-SfvogGJken/KTUmUdbHjQ5rLAL7v/3Vl6hS8lTFz61U=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "8e11d8ae7e2d91ce47c118bc98ba9715f0f1455f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs-unstable": {
+      "locked": {
+        "lastModified": 1602440113,
+        "narHash": "sha256-Wjy9mD//KmKDamRsX7ngIlIy2TYWPparKFKDiBVD+sc=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "8294af02845210169290240e6fd356f6b7ea3f11",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable-small",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1602363692,
+        "narHash": "sha256-9V8jl1Lzgw+QMqpEWz4+TjRmXktBWLZjqr3yBWBLL1g=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "51aaa3fa1b69559456f9bd4968bd5b179a784f67",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-20.09",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "home-manager": "home-manager",
+        "nixpkgs": "nixpkgs_2",
+        "nixpkgs-master": "nixpkgs-master",
+        "nixpkgs-unstable": "nixpkgs-unstable"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
