@@ -10,8 +10,19 @@
     nixosConfigurations =
     let
       defaultModules = [
-        ./configuration.nix
         home-manager.nixosModules.home-manager
+        ./modules/g810-led.nix
+        ./common/fonts.nix
+        ./common/general.nix
+        ./common/hardware.nix
+        ./common/kernel.nix
+        ./common/misc.nix
+        ./common/networking.nix
+        ./common/packages.nix
+        ./common/printing.nix
+        ./common/services.nix
+        ./common/terminal.nix
+        ./overlays
 
         ({ config, ... }: {
           nixpkgs.overlays = [
