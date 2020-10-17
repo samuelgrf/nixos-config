@@ -7,60 +7,64 @@
   };
 
   outputs = { self, nixpkgs, nixpkgs-master, nixpkgs-unstable, home-manager }: {
-    nixosConfigurations = {
+    nixosConfigurations =
+    let
+      defaultModules = [
+        ./configuration.nix
+        home-manager.nixosModules.home-manager
 
+        ({ config, ... }: {
+          nixpkgs.overlays = [
+            (final: prev: {
+
+              pkgsImport = pkgs:
+                import pkgs {
+                  config = config.nixpkgs.config;
+                  system = config.nixpkgs.system;
+                };
+
+              master = final.pkgsImport nixpkgs-master;
+              unstable = final.pkgsImport nixpkgs-unstable;
+            })
+          ];
+
+          nix.registry = {
+            nixpkgs.flake = nixpkgs;
+            nixpkgs-master.flake = nixpkgs-master;
+            nixpkgs-unstable.flake = nixpkgs-unstable;
+          };
+
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+
+          home-manager.users.samuel.imports = [
+            ./common/home.nix
+          ];
+        })
+      ];
+    in
+    {
       HPx = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ./configuration.nix
           ./hosts/HPx/configuration.nix
           ./hosts/HPx/hardware.nix
-          home-manager.nixosModules.home-manager
 
-          ({ config, ... }: {
-
-            nixpkgs.overlays = [
-              (final: prev: {
-
-                pkgsImport = pkgs:
-                  import pkgs {
-                    config = config.nixpkgs.config;
-                    system = config.nixpkgs.system;
-                  };
-
-                master = final.pkgsImport nixpkgs-master;
-                unstable = final.pkgsImport nixpkgs-unstable;
-
-              })
-            ];
-
-            nix.registry = {
-              nixpkgs.flake = nixpkgs;
-              nixpkgs-master.flake = nixpkgs-master;
-              nixpkgs-unstable.flake = nixpkgs-unstable;
-            };
-
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-
+          ({ ... }: {
             home-manager.users.samuel.imports = [
-              ./common/home.nix
               ./hosts/HPx/home.nix
             ];
           })
-        ];
+        ] ++ defaultModules;
       };
 
       R3600 = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ./configuration.nix
-          ./hosts/HPx/configuration.nix
-          ./hosts/HPx/hardware.nix
-          home-manager.nixosModules.home-manager
-        ];
+          ./hosts/R3600/configuration.nix
+          ./hosts/R3600/hardware.nix
+        ] ++ defaultModules;
       };
-
     };
   };
 }
