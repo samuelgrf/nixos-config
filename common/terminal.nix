@@ -72,6 +72,7 @@
         nix-store --gc --print-roots | \
           grep -Ev "^(/nix/var|/run/\w+-system|\{memory|\{censored)"\
       '';
+      nu = "cd /etc/nixos && nix flake update --commit-lock-file";
       nub = "cd /etc/nixos && nix flake update --commit-lock-file && sudo nixos-rebuild boot";
       nubu = "cd /etc/nixos && nix flake update --commit-lock-file && sudo nixos-rebuild build";
       nv = "nixos-version";
