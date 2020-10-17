@@ -5,9 +5,6 @@
   # Read the release notes before changing this.
   home.stateVersion = "20.09";
 
-  # Allow running unfree software via nix-shell.
-  home.file.".config/nixpkgs/config.nix".text = "{ allowUnfree = true; }";
-
   # Set Git configuration.
   programs.git = {
     enable = true;
