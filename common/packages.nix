@@ -65,7 +65,6 @@
         kate
         kdialog
         keepassxc
-        konsole
         kwin-dynamic-workspaces
         libreoffice
         lutris
