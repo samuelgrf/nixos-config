@@ -32,15 +32,15 @@
       # Define Nix & NixOS functions.
       nrs () { sudo nixos-rebuild switch "$@" && exec zsh }
       nrt () { sudo nixos-rebuild test "$@" && exec zsh }
-      nsh () { nix shell nixpkgs#"$@" }
-      nshm () { nix shell nixpkgs-master#"$@" }
-      nshu () { nix shell nixpkgs-unstable#"$@" }
+      nsh () { NIXPKGS_ALLOW_UNFREE=1 nix shell --impure nixpkgs#"$@" }
+      nshm () { NIXPKGS_ALLOW_UNFREE=1 nix shell --impure nixpkgs-master#"$@" }
+      nshu () { NIXPKGS_ALLOW_UNFREE=1 nix shell --impure nixpkgs-unstable#"$@" }
       nus () { cd /etc/nixos && nix flake update --commit-lock-file && sudo nixos-rebuild switch "$@" && exec zsh }
       nut () { cd /etc/nixos && nix flake update --commit-lock-file && sudo nixos-rebuild test "$@" && exec zsh }
       nw () { readlink $(where "$@") }
-      run () { nix run nixpkgs#"$@" }
-      runm () { nix run nixpkgs-master#"$@" }
-      runu () { nix run nixpkgs-unstable#"$@" }
+      run () { NIXPKGS_ALLOW_UNFREE=1 nix run --impure nixpkgs#"$@" }
+      runm () { NIXPKGS_ALLOW_UNFREE=1 nix run --impure nixpkgs-master#"$@" }
+      runu () { NIXPKGS_ALLOW_UNFREE=1 nix run --impure nixpkgs-unstable#"$@" }
 
       # Define other functions.
       e () { emacsclient -c "$@" > /dev/null & disown }
@@ -52,7 +52,7 @@
     shellAliases = {
       # Nix & NixOS
       n = "nix";
-      nb = "nix build";
+      nb = "NIXPKGS_ALLOW_UNFREE=1 nix build --impure";
       nf = "nix flake";
       nfc = "nix flake check";
       nfu = "nix flake update";
