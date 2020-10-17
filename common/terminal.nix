@@ -23,6 +23,9 @@
       # Use Zsh instead of bash for nix-shell.
       source ${pkgs.zsh-nix-shell}/share/zsh-nix-shell/nix-shell.plugin.zsh
 
+      # Load the nix-index `command-not-found` replacement.
+      source ${pkgs.nix-index}/etc/profile.d/command-not-found.sh
+
       # Automatically generate completions based on `--help` output.
       source <(cod init $$ zsh)
 
@@ -110,4 +113,7 @@
 
   # Override Oh My Zsh defaults.
   environment.extraInit = "export LESS='-i -F -R'";
+
+  # Disable the default `command-not-found` script (no flake support).
+  programs.command-not-found.enable = false;
 }
