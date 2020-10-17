@@ -34,6 +34,12 @@
               })
             ];
 
+            nix.registry = {
+              nixpkgs.flake = nixpkgs;
+              nixpkgs-master.flake = nixpkgs-master;
+              nixpkgs-unstable.flake = nixpkgs-unstable;
+            };
+
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
 
