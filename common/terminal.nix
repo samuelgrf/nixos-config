@@ -33,13 +33,13 @@
       export LESSHISTFILE=/dev/null
 
       # Define Nix & NixOS functions.
-      nrs () { sudo nixos-rebuild switch "$@" && exec zsh }
-      nrt () { sudo nixos-rebuild test "$@" && exec zsh }
+      nrs () { sudo nixos-rebuild -v "$@" switch && exec zsh }
+      nrt () { sudo nixos-rebuild -v "$@" test && exec zsh }
       nsh () { NIXPKGS_ALLOW_UNFREE=1 nix shell --impure nixpkgs#"$@" }
       nshm () { NIXPKGS_ALLOW_UNFREE=1 nix shell --impure nixpkgs-master#"$@" }
       nshu () { NIXPKGS_ALLOW_UNFREE=1 nix shell --impure nixpkgs-unstable#"$@" }
-      nus () { if [ -d /etc/nixos ]; then cd /etc/nixos; fi; nix flake update --recreate-lock-file --commit-lock-file && sudo nixos-rebuild switch "$@" && exec zsh }
-      nut () { if [ -d /etc/nixos ]; then cd /etc/nixos; fi; nix flake update --recreate-lock-file --commit-lock-file && sudo nixos-rebuild test "$@" && exec zsh }
+      nus () { if [ -d /etc/nixos ]; then cd /etc/nixos; fi; nix flake update --recreate-lock-file --commit-lock-file && sudo nixos-rebuild -v "$@" switch && exec zsh }
+      nut () { if [ -d /etc/nixos ]; then cd /etc/nixos; fi; nix flake update --recreate-lock-file --commit-lock-file && sudo nixos-rebuild -v "$@" test && exec zsh }
       nw () { readlink $(where "$@") }
       run () { NIXPKGS_ALLOW_UNFREE=1 nix run --impure nixpkgs#"$@" }
       runm () { NIXPKGS_ALLOW_UNFREE=1 nix run --impure nixpkgs-master#"$@" }
@@ -63,8 +63,8 @@
       ngd = "sudo nix-collect-garbage -d";
       nlo = "nix-locate";
       np = "nix repl";
-      nrb = "sudo nixos-rebuild boot";
-      nrbu = "nixos-rebuild build";
+      nrb = "sudo nixos-rebuild -v boot";
+      nrbu = "nixos-rebuild -v build";
       nse = "nix search nixpkgs";
       nsem = "nix search nixpkgs-master";
       nseu = "nix search nixpkgs-unstable";
@@ -73,8 +73,8 @@
           grep -Ev "^(/nix/var|/run/\w+-system|\{memory|\{censored)"\
       '';
       nu = "if [ -d /etc/nixos ]; then cd /etc/nixos; fi; nix flake update --recreate-lock-file --commit-lock-file";
-      nub = "if [ -d /etc/nixos ]; then cd /etc/nixos; fi; nix flake update --recreate-lock-file --commit-lock-file && sudo nixos-rebuild boot";
-      nubu = "if [ -d /etc/nixos ]; then cd /etc/nixos; fi; nix flake update --recreate-lock-file --commit-lock-file && sudo nixos-rebuild build";
+      nub = "if [ -d /etc/nixos ]; then cd /etc/nixos; fi; nix flake update --recreate-lock-file --commit-lock-file && sudo nixos-rebuild -v boot";
+      nubu = "if [ -d /etc/nixos ]; then cd /etc/nixos; fi; nix flake update --recreate-lock-file --commit-lock-file && sudo nixos-rebuild -v build";
       nv = "nixos-version";
       nvr = "nixos-version --revision";
 
