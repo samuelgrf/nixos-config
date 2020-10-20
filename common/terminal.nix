@@ -38,8 +38,8 @@
       nsh () { NIXPKGS_ALLOW_UNFREE=1 nix shell --impure nixpkgs#"$@" }
       nshm () { NIXPKGS_ALLOW_UNFREE=1 nix shell --impure nixpkgs-master#"$@" }
       nshu () { NIXPKGS_ALLOW_UNFREE=1 nix shell --impure nixpkgs-unstable#"$@" }
-      nus () { if [ -d /etc/nixos ]; then cd /etc/nixos; fi; nix flake update --commit-lock-file && sudo nixos-rebuild switch "$@" && exec zsh }
-      nut () { if [ -d /etc/nixos ]; then cd /etc/nixos; fi; nix flake update --commit-lock-file && sudo nixos-rebuild test "$@" && exec zsh }
+      nus () { if [ -d /etc/nixos ]; then cd /etc/nixos; fi; nix flake update --recreate-lock-file --commit-lock-file && sudo nixos-rebuild switch "$@" && exec zsh }
+      nut () { if [ -d /etc/nixos ]; then cd /etc/nixos; fi; nix flake update --recreate-lock-file --commit-lock-file && sudo nixos-rebuild test "$@" && exec zsh }
       nw () { readlink $(where "$@") }
       run () { NIXPKGS_ALLOW_UNFREE=1 nix run --impure nixpkgs#"$@" }
       runm () { NIXPKGS_ALLOW_UNFREE=1 nix run --impure nixpkgs-master#"$@" }
@@ -72,9 +72,9 @@
         nix-store --gc --print-roots | \
           grep -Ev "^(/nix/var|/run/\w+-system|\{memory|\{censored)"\
       '';
-      nu = "if [ -d /etc/nixos ]; then cd /etc/nixos; fi; nix flake update --commit-lock-file";
-      nub = "if [ -d /etc/nixos ]; then cd /etc/nixos; fi; nix flake update --commit-lock-file && sudo nixos-rebuild boot";
-      nubu = "if [ -d /etc/nixos ]; then cd /etc/nixos; fi; nix flake update --commit-lock-file && sudo nixos-rebuild build";
+      nu = "if [ -d /etc/nixos ]; then cd /etc/nixos; fi; nix flake update --recreate-lock-file --commit-lock-file";
+      nub = "if [ -d /etc/nixos ]; then cd /etc/nixos; fi; nix flake update --recreate-lock-file --commit-lock-file && sudo nixos-rebuild boot";
+      nubu = "if [ -d /etc/nixos ]; then cd /etc/nixos; fi; nix flake update --recreate-lock-file --commit-lock-file && sudo nixos-rebuild build";
       nv = "nixos-version";
       nvr = "nixos-version --revision";
 
