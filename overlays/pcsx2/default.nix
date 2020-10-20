@@ -1,17 +1,17 @@
-{ alsaLib, cmake, fetchFromGitHub, glib, gettext, gtk3, harfbuzz, lib, libaio
-, libpng, libpcap, libxml2, makeWrapper, perl, pkgconfig, portaudio
-, SDL2, soundtouch, stdenv, udev, wrapGAppsHook, wxGTK, zlib
+{ alsaLib, cmake, fetchFromGitHub, fmt, gcc-unwrapped, gettext, glib, gtk3
+, harfbuzz, libaio, libpcap, libpng, libxml2, makeWrapper, perl, pkgconfig
+, portaudio, SDL2, soundtouch, stdenv, udev, wrapGAppsHook, wxGTK, zlib
 }:
 
-stdenv.mkDerivation rec {
+stdenv.mkDerivation {
   pname = "pcsx2";
-  version = "unstable-2020-10-10";
+  version = "unstable-2020-10-20";
 
   src = fetchFromGitHub {
     owner = "PCSX2";
     repo = "pcsx2";
-    rev = "7e2ccd64e8e6049b6059141e8767037463421c33";
-    sha256 = "0c7m74ch68p4y9xlld34a9r38kb2py6wlkg4vranc6dicxvi1b3r";
+    rev = "9bb9037e4251f4c360ce87b9e8422bfb22e9466b";
+    hash = "sha256-poVc1Tgk3hSgyUfTvzoQgmQkELsrKXXXmT6nLeIPSNs=";
   };
 
   cmakeFlags = [
@@ -21,15 +21,25 @@ stdenv.mkDerivation rec {
     "-DDOC_DIR=${placeholder "out"}/share/doc/pcsx2"
     "-DGAMEINDEX_DIR=${placeholder "out"}/share/pcsx2"
     "-DGLSL_SHADER_DIR=${placeholder "out"}/share/pcsx2"
-    "-DwxWidgets_LIBRARIES=${wxGTK}/lib"
-    "-DwxWidgets_INCLUDE_DIRS=${wxGTK}/include"
-    "-DwxWidgets_CONFIG_EXECUTABLE=${wxGTK}/bin/wx-config"
+    "-DGTK3_API=TRUE"
     "-DPACKAGE_MODE=TRUE"
     "-DPLUGIN_DIR=${placeholder "out"}/lib/pcsx2"
     "-DREBUILD_SHADER=TRUE"
+    "-DUSE_LTO=TRUE"
+    "-DwxWidgets_CONFIG_EXECUTABLE=${wxGTK}/bin/wx-config"
+    "-DwxWidgets_INCLUDE_DIRS=${wxGTK}/include"
+    "-DwxWidgets_LIBRARIES=${wxGTK}/lib"
     "-DXDG_STD=TRUE"
-    "-DGTK3_API=TRUE"
   ];
+
+  patches = [ ./system-fmt.patch ];
+
+  postPatch = ''
+    substituteInPlace cmake/BuildParameters.cmake \
+      --replace /usr/bin/gcc-ar ${gcc-unwrapped}/bin/gcc-ar \
+      --replace /usr/bin/gcc-nm ${gcc-unwrapped}/bin/gcc-nm \
+      --replace /usr/bin/gcc-ranlib ${gcc-unwrapped}/bin/gcc-ranlib
+  '';
 
   postFixup = ''
     wrapProgram $out/bin/PCSX2 \
@@ -40,8 +50,9 @@ stdenv.mkDerivation rec {
 
   buildInputs = [
     alsaLib
-    glib
+    fmt
     gettext
+    glib
     gtk3
     harfbuzz
     libaio
