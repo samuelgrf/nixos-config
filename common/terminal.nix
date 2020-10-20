@@ -8,7 +8,7 @@
   users.defaultUserShell = pkgs.zsh;
 
   # Configure Zsh.
-  programs.zsh = {
+  programs.zsh = rec {
     enable = true;
     ohMyZsh.enable = true;
     ohMyZsh.plugins = [ "git" ];
@@ -16,7 +16,7 @@
     syntaxHighlighting.enable = true;
 
     # Add entries to zshrc.
-    interactiveShellInit = ''
+    interactiveShellInit = with shellAliases; ''
       # Use powerlevel10k theme.
       source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
 
@@ -38,8 +38,8 @@
       nsh () { NIXPKGS_ALLOW_UNFREE=1 nix shell --impure nixpkgs#"$@" }
       nshm () { NIXPKGS_ALLOW_UNFREE=1 nix shell --impure nixpkgs-master#"$@" }
       nshu () { NIXPKGS_ALLOW_UNFREE=1 nix shell --impure nixpkgs-unstable#"$@" }
-      nus () { if [ -d /etc/nixos ]; then cd /etc/nixos; fi; nix flake update --recreate-lock-file --commit-lock-file && sudo nixos-rebuild -v "$@" switch && exec zsh }
-      nut () { if [ -d /etc/nixos ]; then cd /etc/nixos; fi; nix flake update --recreate-lock-file --commit-lock-file && sudo nixos-rebuild -v "$@" test && exec zsh }
+      nus () { ${nu} && sudo nixos-rebuild -v "$@" switch && exec zsh }
+      nut () { ${nu} && sudo nixos-rebuild -v "$@" test && exec zsh }
       nw () { readlink $(where "$@") }
       run () { NIXPKGS_ALLOW_UNFREE=1 nix run --impure nixpkgs#"$@" }
       runm () { NIXPKGS_ALLOW_UNFREE=1 nix run --impure nixpkgs-master#"$@" }
@@ -72,22 +72,25 @@
         nix-store --gc --print-roots | \
           grep -Ev "^(/nix/var|/run/\w+-system|\{memory|\{censored)"\
       '';
-      nu = "if [ -d /etc/nixos ]; then cd /etc/nixos; fi; nix flake update --recreate-lock-file --commit-lock-file";
-      nub = "if [ -d /etc/nixos ]; then cd /etc/nixos; fi; nix flake update --recreate-lock-file --commit-lock-file && sudo nixos-rebuild -v boot";
-      nubu = "if [ -d /etc/nixos ]; then cd /etc/nixos; fi; nix flake update --recreate-lock-file --commit-lock-file && sudo nixos-rebuild -v build";
+      nu = ''
+        [ -d /etc/nixos ] && cd /etc/nixos
+        nix flake update --recreate-lock-file --commit-lock-file\
+      '';
+      nub = "nu && sudo nixos-rebuild -v boot";
+      nubu = "nu && sudo nixos-rebuild -v build";
       nv = "nixos-version";
       nvr = "nixos-version --revision";
 
       # Other
       grl = "git reflog";
       inc = ''
-        if [ -n "$HISTFILE" ]; then
+        [ -n "$HISTFILE" ] && {
           echo "Enabled incognito mode" &&
           unset HISTFILE
-        else
+        } || {
           echo "Disabled incognito mode" &&
           exec zsh
-        fi\
+        }\
       '';
       lvl = "echo $SHLVL";
       msg = "kdialog --msgbox";
