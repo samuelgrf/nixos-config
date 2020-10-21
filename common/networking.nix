@@ -74,7 +74,7 @@
       DefaultNotificationsSetting = 2;
       DefaultSearchProviderEnabled = true;
       DefaultSearchProviderName = "DuckDuckGo";
-      DefaultSearchProviderKeyword = "duckduckgo.com";
+      DefaultSearchProviderKeyword = "duck.com";
       DefaultSearchProviderIconURL = "https://duckduckgo.com/favicon.ico";
       DefaultSearchProviderSearchURL = "https://duckduckgo.com/?q={searchTerms}";
       DefaultSearchProviderSuggestURL = "https://duckduckgo.com/ac/?q={searchTerms}&type=list";
