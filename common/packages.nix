@@ -76,7 +76,7 @@
         okular
         openjdk
         # partition-manager (currently fails to build)
-        pcsx2
+        master.pcsx2
         protontricks
         spectacle # TODO Remove on 21.03.
         steam

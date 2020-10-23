@@ -45,9 +45,8 @@
         };
       });
 
-      # pcsx2: Enable native optimizations and build with GTK3.
+      # pcsx2: Enable native optimizations.
       pcsx2 = (prev.callPackage ./pcsx2 {
-        fmt = prev.callPackage ./fmt { };
         stdenv = final.nativeStdenv;
         wxGTK = prev.wxGTK30-gtk3;
       })
