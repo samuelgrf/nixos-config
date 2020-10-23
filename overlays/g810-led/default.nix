@@ -10,7 +10,7 @@ stdenv.mkDerivation rec {
     owner = "MatMoul";
     repo = pname;
     rev = "v${version}";
-    sha256 = "1ymkp7i7nc1ig2r19wz0pcxfnpawkjkgq7vrz6801xz428cqwmhl";
+    hash = "sha256-FFaOGRLk9wCQ+Xkf/KacXF3rOrvg8xSyeDEwe+K5s/o=";
   };
 
   buildInputs = [ hidapi ];

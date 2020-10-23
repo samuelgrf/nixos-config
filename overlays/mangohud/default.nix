@@ -25,7 +25,7 @@ stdenv.mkDerivation rec {
     owner = "flightlessmango";
     repo = "MangoHud";
     rev = "v${version}";
-    sha256 = "04v2ps8n15ph2smjgnssax5hq88bszw2kbcff37cnd5c8yysvfi6";
+    sha256 = "sha256-JrqtvUesNMvOcI6tKfjXCyEMS1da2yerFvCWYJG+YhM=";
     fetchSubmodules = true;
   };
 
@@ -33,7 +33,7 @@ stdenv.mkDerivation rec {
     (fetchpatch {
       # FIXME obsolete in >=0.5.0
       url = "https://patch-diff.githubusercontent.com/raw/flightlessmango/MangoHud/pull/208.patch";
-      sha256 = "1i6x6sr4az1zv0p6vpw99n947c7awgbbv087fghjlczhry676nmh";
+      sha256 = "sha256-sFpzjM/wMyrhcweBvdbj6rBDkk2J320u2D98RbI23cQ=";
     })
   ];
 
