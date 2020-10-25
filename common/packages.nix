@@ -54,7 +54,9 @@
         appimage-run
         ark
         caffeine-ng
-        chromium
+        # TODO Keep this on the most stable channel with official build settings.
+        # https://github.com/NixOS/nixpkgs/pull/101467
+        master.chromium
         filezilla
         gimp
         gwenview
