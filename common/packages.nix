@@ -83,7 +83,8 @@
         spectacle # TODO Remove on 21.03.
         steam
         steam-run
-        torbrowser
+        # TODO Uncomment after https://github.com/NixOS/nixpkgs/pull/101640 is backported.
+        # torbrowser
         wineWowPackages.staging # Comes with both x64 and x86 Wine.
         winetricks
         xclip
