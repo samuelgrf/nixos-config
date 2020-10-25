@@ -4,6 +4,20 @@
   nixpkgs.overlays = [
     (final: prev: {
 
+      # chromium: Add command line arguments.
+      chromium = prev.chromium.override {
+        commandLineArgs = "--ignore-gpu-blocklist --enable-gpu-rasterization \\
+          --enable-oop-rasterization --enable-zero-copy \\
+          --force-dark-mode --enable-features=WebUIDarkMode"
+
+            # TODO Remove `--force-device-scale-factor=1` when
+            # https://bugs.chromium.org/p/chromium/issues/detail?id=1087109
+            # or https://github.com/NixOS/nixpkgs/issues/89512
+            # are resolved.
+            + (prev.lib.optionalString (config.networking.hostName == "HPx")
+              " --enable-accelerated-video-decode --force-device-scale-factor=1");
+      };
+
       g810-led = prev.callPackage ./g810-led { };
 
       mangohud = prev.callPackage ./mangohud/combined.nix {

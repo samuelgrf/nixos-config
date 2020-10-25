@@ -54,9 +54,9 @@
         appimage-run
         ark
         caffeine-ng
+        chromium
         filezilla
         gimp
-        google-chrome-beta
         gwenview
         imagemagick
         inkscape
@@ -92,7 +92,6 @@
   # Select allowed unfree packages.
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
     "android-studio-stable"
-    "google-chrome-beta"
     "mfcl2700dnlpr"
     "steam"
     "steam-original"

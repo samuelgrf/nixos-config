@@ -124,23 +124,4 @@
         }'';
     };
   };
-
-  # Add command line arguments to Google Chrome.
-  nixpkgs.overlays = [
-    (final: prev: {
-      google-chrome-beta = prev.google-chrome-beta.override {
-
-        # TODO Remove `--force-device-scale-factor=1` when
-        # https://bugs.chromium.org/p/chromium/issues/detail?id=1087109
-        # or https://github.com/NixOS/nixpkgs/issues/89512
-        # are resolved.
-        commandLineArgs = "--ignore-gpu-blocklist --enable-gpu-rasterization \\
-          --enable-oop-rasterization --enable-zero-copy \\
-          --force-dark-mode --enable-features=WebUIDarkMode"
-          + (if config.networking.hostName == "HPx"
-             then " --force-device-scale-factor=1"
-             else "");
-      };
-    })
-  ];
 }

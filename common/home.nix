@@ -27,7 +27,7 @@
   xdg.mimeApps = let
 
     # Applications
-    chrome = "google-chrome-beta.desktop";
+    chromium = "chromium-browser.desktop";
     gwenview = "org.kde.gwenview.desktop";
     kate = "org.kde.kate.desktop";
 
@@ -51,14 +51,14 @@
       ${xml} = kate;
     };
     defaultApplications = {
-      ${html} = chrome;
-      ${http} = chrome;
-      ${https} = chrome;
+      ${html} = chromium;
+      ${http} = chromium;
+      ${https} = chromium;
       ${ini} = kate;
       ${svg} = gwenview;
       ${txt} = kate;
       ${url} = kate;
-      ${xhtml} = chrome;
+      ${xhtml} = chromium;
       ${xml} = kate;
     };
 
