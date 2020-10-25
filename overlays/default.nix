@@ -60,7 +60,7 @@
       });
 
       # pcsx2: Enable native optimizations.
-      pcsx2 = (prev.callPackage ./pcsx2 {
+      pcsx2 = (prev.pcsx2.override {
         stdenv = final.nativeStdenv;
         wxGTK = prev.wxGTK30-gtk3;
       })
