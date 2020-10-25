@@ -48,6 +48,7 @@
       MetricsReportingEnabled = false;
       PasswordLeakDetectionEnabled = false;
       PaymentMethodQueryEnabled = false;
+      # TODO Remove after Google Cloud Print EOL.
       PrinterTypeDenyList = [ "cloud" ];
       ReportExtensionsAndPluginsData = false;
       ReportMachineIDData = false;
