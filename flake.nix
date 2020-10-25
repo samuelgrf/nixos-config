@@ -3,7 +3,7 @@
     home-manager.url = "github:nix-community/home-manager/release-20.09";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-20.09";
     nixpkgs-master.url = "github:NixOS/nixpkgs";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable-small";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
   };
 
   outputs = { self, nixpkgs, nixpkgs-master, nixpkgs-unstable, home-manager }: {
