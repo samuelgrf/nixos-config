@@ -55,7 +55,7 @@
     shellAliases = {
       # Nix & NixOS
       n = "nix";
-      nb = "NIXPKGS_ALLOW_UNFREE=1 nix build --impure --print-build-logs -vf";
+      nb = "nix build --print-build-logs -vf";
       nf = "nix flake";
       nfc = "nix flake check";
       nfu = "nix flake update";
