@@ -56,7 +56,7 @@
         caffeine-ng
         # TODO Keep this on the most stable channel with official build settings.
         # https://github.com/NixOS/nixpkgs/pull/101467
-        master.chromium
+        unstable.chromium
         filezilla
         gimp
         gwenview
@@ -78,7 +78,9 @@
         okular
         openjdk
         # partition-manager (currently fails to build)
-        master.pcsx2
+        # TODO Keep this on the most stable channel with LTO.
+        # https://github.com/NixOS/nixpkgs/pull/100162
+        unstable.pcsx2
         protontricks
         spectacle # TODO Remove on 21.03.
         steam
