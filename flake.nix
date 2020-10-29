@@ -1,6 +1,9 @@
 {
   inputs = {
-    home-manager.url = "github:nix-community/home-manager/release-20.09";
+    home-manager = {
+      url = "github:nix-community/home-manager/release-20.09";
+      inputs.nixpkgs.follows = "/nixpkgs";
+    };
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-20.09";
     nixpkgs-master.url = "github:NixOS/nixpkgs";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
