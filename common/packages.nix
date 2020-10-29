@@ -82,7 +82,6 @@
         # https://github.com/NixOS/nixpkgs/pull/100162
         unstable.pcsx2
         protontricks
-        spectacle # TODO Remove on 21.03.
         steam
         steam-run
         torbrowser
