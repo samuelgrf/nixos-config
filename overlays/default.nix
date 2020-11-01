@@ -13,7 +13,7 @@
             # TODO Remove `--force-device-scale-factor=1` when
             # https://bugs.chromium.org/p/chromium/issues/detail?id=1087109
             # or https://github.com/NixOS/nixpkgs/issues/89512
-            # are resolved.
+            # is resolved.
             + (prev.lib.optionalString (config.networking.hostName == "HPx")
               " --enable-accelerated-video-decode --force-device-scale-factor=1");
       };
