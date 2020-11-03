@@ -68,7 +68,7 @@
         kdialog
         keepassxc
         kwin-dynamic-workspaces
-        unstable.libreoffice # TODO Get from stable once it builds again.
+        libreoffice
         lutris
         lxqt.pavucontrol-qt
         mangohud
