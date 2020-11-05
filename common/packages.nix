@@ -38,6 +38,7 @@
         strace
         sysstat
         trash-cli
+        tree
         tuir
         units
         usbutils
