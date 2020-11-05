@@ -14,6 +14,7 @@
         fd
         file
         git
+        gitAndTools.delta
         gnupg
         htop
         iw
