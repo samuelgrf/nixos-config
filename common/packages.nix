@@ -76,6 +76,7 @@
         mangohud
         mpv
         multimc
+        nix-prefetch-git
         nixos-artwork.wallpapers.nineish-dark-gray
         okular
         openjdk
