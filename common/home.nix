@@ -15,10 +15,7 @@
     extraConfig = {
       pull.ff = "only";
       core.pager = "delta";
-      delta = {
-        line-numbers = true;
-        side-by-side = true;
-      };
+      delta.line-numbers = true;
     };
   };
 
