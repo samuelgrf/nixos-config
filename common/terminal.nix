@@ -38,6 +38,7 @@
       nsh () { NIXPKGS_ALLOW_UNFREE=1 nix shell --impure nixpkgs#"$@" }
       nshm () { NIXPKGS_ALLOW_UNFREE=1 nix shell --impure nixpkgs-master#"$@" }
       nshu () { NIXPKGS_ALLOW_UNFREE=1 nix shell --impure nixpkgs-unstable#"$@" }
+      nsd () { nix show-derivation "$@" | bat -l nix }
       nus () { ${nu} && sudo nixos-rebuild -v "$@" switch && exec zsh }
       nut () { ${nu} && sudo nixos-rebuild -v "$@" test && exec zsh }
       nw () { readlink $(where "$@") }
