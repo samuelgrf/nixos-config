@@ -36,14 +36,14 @@
       nrs () { sudo nixos-rebuild -v "$@" switch && exec zsh }
       nrt () { sudo nixos-rebuild -v "$@" test && exec zsh }
       nsh () { NIXPKGS_ALLOW_UNFREE=1 nix shell --impure nixpkgs#"$@" }
-      nshm () { NIXPKGS_ALLOW_UNFREE=1 nix shell --impure nixpkgs-master#"$@" }
+      nshm () { NIXPKGS_ALLOW_UNFREE=1 nix shell --impure github:NixOS/nixpkgs#"$@" }
       nshu () { NIXPKGS_ALLOW_UNFREE=1 nix shell --impure nixpkgs-unstable#"$@" }
       nsd () { nix show-derivation "$@" | bat -l nix }
       nus () { ${nu} && sudo nixos-rebuild -v "$@" switch && exec zsh }
       nut () { ${nu} && sudo nixos-rebuild -v "$@" test && exec zsh }
       nw () { readlink $(where "$@") }
       run () { NIXPKGS_ALLOW_UNFREE=1 nix run --impure nixpkgs#"$@" }
-      runm () { NIXPKGS_ALLOW_UNFREE=1 nix run --impure nixpkgs-master#"$@" }
+      runm () { NIXPKGS_ALLOW_UNFREE=1 nix run --impure github:NixOS/nixpkgs#"$@" }
       runu () { NIXPKGS_ALLOW_UNFREE=1 nix run --impure nixpkgs-unstable#"$@" }
 
       # Define other functions.
@@ -68,7 +68,7 @@
       nrb = "sudo nixos-rebuild -v boot";
       nrbu = "nixos-rebuild -v build";
       nse = "nix search nixpkgs";
-      nsem = "nix search nixpkgs-master";
+      nsem = "nix search github:NixOS/nixpkgs";
       nseu = "nix search nixpkgs-unstable";
       nsr = ''
         nix-store --gc --print-roots | \
