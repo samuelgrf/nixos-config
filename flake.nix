@@ -9,7 +9,7 @@
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-master, nixpkgs-unstable, home-manager }: {
+  outputs = { self, home-manager, nixpkgs, nixpkgs-master, nixpkgs-unstable }: {
     nixosConfigurations =
     let
       defaultModules = [
