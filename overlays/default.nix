@@ -60,14 +60,10 @@
       });
 
       # pcsx2: Enable native optimizations.
-      pcsx2 = (prev.pcsx2.override {
+      pcsx2 = prev.callPackage ./pcsx2 {
         stdenv = final.nativeStdenv;
         wxGTK = prev.wxGTK30-gtk3;
-      })
-        .overrideAttrs (oldAttrs: {
-          cmakeFlags = prev.lib.remove "-DDISABLE_ADVANCE_SIMD=TRUE"
-            oldAttrs.cmakeFlags;
-      });
+      };
 
       # steam: Add cabextract, needed for Protontricks to install MS core fonts.
       steam = prev.steam.override { extraPkgs = pkgs: [ prev.cabextract ]; };

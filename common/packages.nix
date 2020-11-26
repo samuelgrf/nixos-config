@@ -81,8 +81,6 @@
         okular
         openjdk
         # partition-manager (currently fails to build)
-        # TODO Keep this on the most stable channel with LTO.
-        # https://github.com/NixOS/nixpkgs/pull/100162
         unstable.pcsx2
         protontricks
         steam
