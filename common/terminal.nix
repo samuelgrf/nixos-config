@@ -56,8 +56,8 @@
     shellAliases = {
       # Nix & NixOS
       n = "nix";
-      nb = "nix build --print-build-logs -vf";
-      nbd = "nix build --dry-run -vf";
+      nb = "nix build --print-build-logs -v";
+      nbd = "nix build --dry-run -v";
       nf = "nix flake";
       nfc = "nix flake check";
       nfu = "nix flake update";
