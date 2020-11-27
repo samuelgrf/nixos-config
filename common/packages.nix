@@ -15,6 +15,7 @@
         file
         git
         gitAndTools.delta
+        gitAndTools.gh
         gnupg
         htop
         iw
