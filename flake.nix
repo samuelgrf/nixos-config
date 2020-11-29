@@ -27,33 +27,33 @@
         ./common/terminal.nix
         ./overlays
 
-        ({ config, ... }: {
-          nixpkgs.overlays = [
-            (final: prev: {
+        ({ config, ... }:
+        let
+          pkgsImport = pkgs:
+            import pkgs {
+              config = config.nixpkgs.config;
+              overlays = config.nixpkgs.overlays;
+              system = config.nixpkgs.system;
+            };
+        in {
+          config = {
+            _module.args = {
+              master = pkgsImport nixpkgs-master;
+              unstable = pkgsImport nixpkgs-unstable;
+            };
 
-              pkgsImport = pkgs:
-                import pkgs {
-                  config = config.nixpkgs.config;
-                  overlays = config.nixpkgs.overlays;
-                  system = config.nixpkgs.system;
-                };
+            nix.registry = {
+              nixpkgs.flake = nixpkgs;
+              nixpkgs-unstable.flake = nixpkgs-unstable;
+            };
 
-              master = final.pkgsImport nixpkgs-master;
-              unstable = final.pkgsImport nixpkgs-unstable;
-            })
-          ];
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
 
-          nix.registry = {
-            nixpkgs.flake = nixpkgs;
-            nixpkgs-unstable.flake = nixpkgs-unstable;
+            home-manager.users.samuel.imports = [
+              ./common/home.nix
+            ];
           };
-
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-
-          home-manager.users.samuel.imports = [
-            ./common/home.nix
-          ];
         })
       ];
     in
