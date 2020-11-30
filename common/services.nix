@@ -6,10 +6,8 @@
   services.xserver.displayManager.sddm.enable = true;
 
   # Enable automatic login.
-  services.xserver.displayManager.autoLogin = {
-    enable = true;
-    user = "samuel";
-  };
+  services.xserver.displayManager.autoLogin.enable = true;
+  services.xserver.displayManager.autoLogin.user = "samuel";
 
   # Enable unclutter-xfixes to hide the mouse cursor when inactive.
   services.unclutter-xfixes.enable = true;

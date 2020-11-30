@@ -47,12 +47,11 @@
               nixpkgs-unstable.flake = nixpkgs-unstable;
             };
 
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-
-            home-manager.users.samuel.imports = [
-              ./common/home.nix
-            ];
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.samuel.imports = [ ./common/home.nix ];
+            };
           };
         })
       ];
@@ -63,12 +62,7 @@
         modules = [
           ./hosts/HPx/configuration.nix
           ./hosts/HPx/hardware.nix
-
-          ({ ... }: {
-            home-manager.users.samuel.imports = [
-              ./hosts/HPx/home.nix
-            ];
-          })
+          { home-manager.users.samuel.imports = [ ./hosts/HPx/home.nix ]; }
         ] ++ defaultModules;
       };
 
