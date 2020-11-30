@@ -20,14 +20,8 @@
       # Use powerlevel10k theme.
       source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
 
-      # Use Zsh instead of bash for nix-shell.
-      source ${pkgs.zsh-nix-shell}/share/zsh-nix-shell/nix-shell.plugin.zsh
-
       # Load the nix-index `command-not-found` replacement.
       source ${pkgs.nix-index}/etc/profile.d/command-not-found.sh
-
-      # Automatically generate completions based on `--help` output.
-      source <(cod init $$ zsh)
 
       # Disable less history.
       export LESSHISTFILE=/dev/null

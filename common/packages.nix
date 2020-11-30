@@ -8,7 +8,6 @@
         apktool
         bat
         bind
-        unstable.cod # TODO Remove "unstable." on 21.03.
         ddgr
         dos2unix
         fd
