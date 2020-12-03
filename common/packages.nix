@@ -67,6 +67,7 @@
         torbrowser
         wineWowPackages.staging # Comes with both x64 and x86 Wine.
         winetricks
+        xdotool
       ];
       noX = [ ];
     in common ++ (if config.services.xserver.enable then X else noX);
