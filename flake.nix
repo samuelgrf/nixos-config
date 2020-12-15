@@ -50,7 +50,7 @@
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              users.samuel.imports = [ ./common/home.nix ];
+              users.samuel.imports = [ ./home ];
             };
           };
         })
