@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   # Use X keyboard configuration on console.
@@ -17,8 +17,9 @@
 
     # Add entries to zshrc.
     interactiveShellInit = with config.programs.zsh.shellAliases; ''
-      # Use Powerlevel10K theme.
+      # Setup Powerlevel10K theme.
       source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
+      source ${./p10k.zsh}
 
       # Load the nix-index `command-not-found` replacement.
       source ${pkgs.nix-index}/etc/profile.d/command-not-found.sh
@@ -44,6 +45,12 @@
       e () { emacsclient -c "$@" > /dev/null & disown }
       et () { emacsclient -t "$@" }
       smart () { sudo smartctl -a "$@" | less }
+    '';
+
+    # Add entries to zshenv.
+    shellInit = ''
+      # Disable newuser setup (runs if no ~/.zsh* files exist).
+      zsh-newuser-install() {}
     '';
 
     # Set shell aliases.
@@ -110,6 +117,14 @@
       "SHARE_HISTORY"
     ];
   };
+
+  # Add entries to top of zshrc.
+  environment.etc.zshrc.text = lib.mkBefore ''
+    # Enable Powerlevel10k instant prompt.
+    if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
+      source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
+    fi
+  '';
 
   # Override Oh My Zsh defaults.
   environment.extraInit = "export LESS='-i -F -R'";
