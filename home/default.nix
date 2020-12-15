@@ -28,6 +28,7 @@
   };
 
   # Set default applications.
+  xdg.dataFile."applications/mimeapps.list".force = true;
   xdg.mimeApps = let
 
     # Applications
