@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   # Use X keyboard configuration on console.
@@ -8,7 +8,7 @@
   users.defaultUserShell = pkgs.zsh;
 
   # Configure Zsh.
-  programs.zsh = rec {
+  programs.zsh = {
     enable = true;
     ohMyZsh.enable = true;
     ohMyZsh.plugins = [ "git" ];
@@ -16,8 +16,8 @@
     syntaxHighlighting.enable = true;
 
     # Add entries to zshrc.
-    interactiveShellInit = with shellAliases; ''
-      # Use powerlevel10k theme.
+    interactiveShellInit = with config.programs.zsh.shellAliases; ''
+      # Use Powerlevel10K theme.
       source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
 
       # Load the nix-index `command-not-found` replacement.
@@ -80,11 +80,11 @@
       # Other
       grl = "git reflog";
       inc = ''
-        [ -n "$HISTFILE" ] && {
-          echo "Enabled incognito mode" &&
+        [ -n "$HISTFILE" ] && {\
+          echo "Enabled incognito mode"
           unset HISTFILE
-        } || {
-          echo "Disabled incognito mode" &&
+        } || {\
+          echo "Disabled incognito mode"
           exec zsh
         }\
       '';
