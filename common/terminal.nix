@@ -103,6 +103,11 @@
       rbc = "shutdown -c";
       rbn = "shutdown -r now";
       rld = "exec zsh";
+      rldh = ''
+        sudo systemctl restart home-manager-\*.service
+        sudo systemctl status home-manager-\*.service\
+      '';
+      rldp = "kquitapp5 plasmashell && kstart5 plasmashell";
       sd = "shutdown";
       sdc = "shutdown -c";
       sdn = "shutdown now";
