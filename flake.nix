@@ -50,7 +50,11 @@
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              users.samuel.imports = [ ./home ];
+              users.samuel.imports = [
+                ./home/modules/kde.nix
+                ./home/default.nix
+                ./home/kde.nix
+              ];
             };
           };
         })
