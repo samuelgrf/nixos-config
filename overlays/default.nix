@@ -20,6 +20,19 @@
 
       g810-led = prev.callPackage ./g810-led { };
 
+      # kwin: Apply low latency patch
+      # Patch files can be found here: https://tildearrow.org/storage/kwin-lowlatency
+      plasma5 = prev.plasma5 // {
+        kwin = prev.plasma5.kwin.overrideAttrs (oldAttrs: {
+          patches = (oldAttrs.patches or [ ]) ++ [
+            (prev.fetchpatch {
+              url = "https://tildearrow.org/storage/kwin-lowlatency/kwin-lowlatency-5.18.5-3.patch";
+              sha256 = "sha256-HaHw7CDayhtlTA8qs8maUsz4qjHTVUsYaFg9IFxjGhM=";
+            })
+          ];
+        });
+      };
+
       mpv = prev.mpv.override {
         scripts = [
           final.mpv_sponsorblock
