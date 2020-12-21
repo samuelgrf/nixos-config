@@ -111,6 +111,7 @@
       sd = "shutdown";
       sdc = "shutdown -c";
       sdn = "shutdown now";
+      t = "tree";
       wtr = "curl wttr.in";
       ztr = "sudo zpool trim rpool && watch zpool status -t rpool";
     };
