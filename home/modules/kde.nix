@@ -9,24 +9,16 @@ let
     (mapAttrsRecursive (p: v: p ++ [v]) cfg.config);
 
   commandList = map
-    (v:
-      [ "${pkgs.kdeFrameworks.kconfig}/bin/kwriteconfig5" ] ++
-      # File
-      [ "--file" ] ++ [ "\"${head v}\"" ] ++
-      # Groups
-      map (v: "--group " + "\"${v}\"")  (sublist 1 (length v - 3) v) ++
-      # Key
-      [ "--key" ] ++ [ "\"${elemAt (reverseList v) 1}\"" ] ++
-      # Value
-      [ "\"${
-        if isBool (elemAt (reverseList v) 0)
-        then boolToString (elemAt (reverseList v) 0)
-        else toString (elemAt (reverseList v) 0)
-      }\"" ]
-    )
+    (v: ''
+      ${pkgs.kdeFrameworks.kconfig}/bin/kwriteconfig5 \
+        --file "${head v}" \
+        ${toString (map (v: "--group \"${v}\"") (sublist 1 (length v - 3) v))} \
+        --key "${elemAt (reverseList v) 1}" \
+        "${if isBool (last v) then boolToString (last v) else toString (last v)}"
+    '')
     settingsLists;
 
-  commandString = toString (flatten (map (v: v ++ [ "\n" ]) commandList));
+  commandString = concatStrings commandList;
 in
 {
   options.programs.kde = {
