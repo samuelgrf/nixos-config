@@ -124,6 +124,9 @@
       # Disable lockscreen media controls
       kscreenlockerrc.Greeter.LnF.General.showMediaControls = false;
 
+      # Remove help button from titlebar
+      kwinrc."org.kde.kdecoration2".ButtonsOnRight = "IAX";
+
       # Disable animations
       kdeglobals.KDE.AnimationDurationFactor = 0;
       "gtk-3.0/settings.ini".Settings.gtk-enable-animations = 0;
