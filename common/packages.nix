@@ -56,6 +56,7 @@
         libreoffice
         lutris
         lxqt.pavucontrol-qt
+        mangohud
         mpv
         multimc
         nixos-artwork.wallpapers.nineish-dark-gray

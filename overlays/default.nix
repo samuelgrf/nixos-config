@@ -33,6 +33,10 @@
         });
       };
 
+      mangohud = prev.callPackage ./mangohud/combined.nix {
+        libXNVCtrl = config.boot.kernelPackages.nvidia_x11.settings.libXNVCtrl;
+      };
+
       mpv = prev.mpv.override {
         scripts = [
           final.mpv_sponsorblock
