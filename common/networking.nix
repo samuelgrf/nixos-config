@@ -47,7 +47,6 @@
       LocalDiscoveryEnabled = false;
       MetricsReportingEnabled = false;
       PasswordLeakDetectionEnabled = false;
-      PaymentMethodQueryEnabled = false;
       # TODO Remove after Google Cloud Print EOL.
       PrinterTypeDenyList = [ "cloud" ];
       ReportExtensionsAndPluginsData = false;
@@ -85,6 +84,7 @@
       # Results in significant CPU and battery savings.
       IntensiveWakeUpThrottlingEnabled = true;
       PasswordManagerEnabled = false;
+      PaymentMethodQueryEnabled = false;
       PromotionalTabsEnabled = false;
       ShowAppsShortcutInBookmarkBar = false;
       UserFeedbackAllowed = false;
