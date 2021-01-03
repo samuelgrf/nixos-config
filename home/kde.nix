@@ -21,7 +21,7 @@
         Appearance.Font = "MesloLGS Nerd Font,11,-1,5,50,0,0,0,0,0";
         "Cursor Options".CursorShape = 1;
         General.Name = "Profile 1";
-        General.Parent =  "FALLBACK/";
+        General.Parent = "FALLBACK/";
         Scrolling.HistorySize = 100000;
         "Terminal Features".BlinkingCursorEnabled = true;
       };
