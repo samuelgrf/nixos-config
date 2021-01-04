@@ -19,6 +19,19 @@
             " --enable-accelerated-video-decode --force-device-scale-factor=1");
       };
 
+      # kwin: Apply low latency patch
+      # Patch files can be found here: https://tildearrow.org/storage/kwin-lowlatency
+      plasma5 = prev.plasma5 // {
+        kwin = prev.plasma5.kwin.overrideAttrs (oldAttrs: {
+          patches = (oldAttrs.patches or [ ]) ++ [
+            (prev.fetchpatch {
+              url = "https://tildearrow.org/storage/kwin-lowlatency/kwin-lowlatency-5.18.5-3.patch";
+              sha256 = "sha256-HaHw7CDayhtlTA8qs8maUsz4qjHTVUsYaFg9IFxjGhM=";
+            })
+          ];
+        });
+      };
+
       g810-led = prev.callPackage ./g810-led { };
 
       mangohud = prev.callPackage ./mangohud/combined.nix {
@@ -64,19 +77,6 @@
       pcsx2 = prev.callPackage ./pcsx2 {
         stdenv = final.nativeStdenv;
         wxGTK = prev.wxGTK30-gtk3;
-      };
-
-      # kwin: Apply low latency patch
-      # Patch files can be found here: https://tildearrow.org/storage/kwin-lowlatency
-      plasma5 = prev.plasma5 // {
-        kwin = prev.plasma5.kwin.overrideAttrs (oldAttrs: {
-          patches = (oldAttrs.patches or [ ]) ++ [
-            (prev.fetchpatch {
-              url = "https://tildearrow.org/storage/kwin-lowlatency/kwin-lowlatency-5.18.5-3.patch";
-              sha256 = "sha256-HaHw7CDayhtlTA8qs8maUsz4qjHTVUsYaFg9IFxjGhM=";
-            })
-          ];
-        });
       };
 
       # steam: Add cabextract, needed for Protontricks to install MS core fonts.
