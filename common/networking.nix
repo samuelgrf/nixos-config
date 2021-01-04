@@ -15,62 +15,14 @@
   # Set Chromium/Chrome configuration.
   programs.chromium = {
     enable = true;
-    extensions = [
-      "eimadpbcbfnmbkopoojfekhnkhdbieeh" # Dark Reader
-      "eekailopagacbcdloonjhbiecobagjci" # Go Back With Backspace
-      "aghfnjkcakhmadgdomlmlhhaocbkloab" # Just Black (theme)
-      "mnjggcdmjocbbbhaepdhchncahnbgone" # SponsorBlock
-      "cjpalhdlnbpafiamejdnhcphjbkeiagm" # uBlock Origin
-      "nffaoalbilbmmfgbnbgppjihopabppdk" # Video Speed Controller
-    ];
 
-    # Official policy list (incomplete): https://cloud.google.com/docs/chrome-enterprise/policies
-    # Look here for a complete up-to-date list:
-    # https://source.chromium.org/chromium/chromium/src/+/master:components/policy/resources/policy_templates.json
-    # Note: Policies in here are tagged based on what they do, there's also
-    # the `google-sharing` tag, which as the name suggests includes options
-    # that share data with Google, though it seems like that tag is not set
-    # for all the offending options.
-    # chrome://policy shows policies that have been/can be applied and also
-    # shows syntax errors.
-    # Search provider data found in:
-    # https://source.chromium.org/chromium/chromium/src/+/master:components/search_engines/prepopulated_engines.json?q=prepopulated_engines.json
+    # Enterprise policy list: https://cloud.google.com/docs/chrome-enterprise/policies
+    # chrome://policy shows applied policies and syntax errors.
     extraOpts = {
 
-      # Google data-sharing
-      AlternateErrorPagesEnabled = false;
-      BrowserSignin = 0;
-      ChromeVariations = 2;
-      ClickToCallEnabled = false;
-      # Also downloads and updates `Origin Trials`.
-      ComponentUpdatesEnabled = false;
-      LocalDiscoveryEnabled = false;
-      MetricsReportingEnabled = false;
-      PasswordLeakDetectionEnabled = false;
-      # TODO Remove after Google Cloud Print EOL.
-      PrinterTypeDenyList = [ "cloud" ];
-      ReportExtensionsAndPluginsData = false;
-      ReportMachineIDData = false;
-      ReportPolicyData = false;
-      ReportUserIDData = false;
-      ReportVersionData = false;
-      SafeBrowsingExtendedReportingEnabled = false;
-      SafeBrowsingProtectionLevel = 0;
-      SendFilesForMalwareCheck = 0;
-      SharedClipboardEnabled = false;
-      SpellCheckServiceEnabled = false;
-      SyncDisabled = true;
-      TranslateEnabled = false;
-      UnsafeEventsReportingEnabled = false;
-      UrlKeyedAnonymizedDataCollectionEnabled = false;
-      WebRtcEventLogCollectionAllowed = false;
-
-      # Customization
-      AutofillAddressEnabled = false;
-      AutofillCreditCardEnabled = false;
-      BackgroundModeEnabled = false;
-      BlockThirdPartyCookies = true;
+      # Settings
       CookiesAllowedForUrls = [ "login.microsoftonline.com" ]; # Fixes MS Teams.
+      DefaultCookiesSetting = 1;
       DefaultNotificationsSetting = 2;
       DefaultSearchProviderEnabled = true;
       DefaultSearchProviderName = "DuckDuckGo";
@@ -78,16 +30,9 @@
       DefaultSearchProviderIconURL = "https://duckduckgo.com/favicon.ico";
       DefaultSearchProviderSearchURL = "https://duckduckgo.com/?q={searchTerms}";
       DefaultSearchProviderSuggestURL = "https://duckduckgo.com/ac/?q={searchTerms}&type=list";
-      DefaultSearchProviderNewTabURL = "https://duckduckgo.com/chrome_newtab";
-      ExtensionInstallBlocklist = [ "*" ];
-      ExtensionInstallAllowlist = config.programs.chromium.extensions;
+      HideWebStoreIcon = true;
       # Results in significant CPU and battery savings.
       IntensiveWakeUpThrottlingEnabled = true;
-      PasswordManagerEnabled = false;
-      PaymentMethodQueryEnabled = false;
-      PromotionalTabsEnabled = false;
-      ShowAppsShortcutInBookmarkBar = false;
-      UserFeedbackAllowed = false;
 
       # uBlock Origin
       "3rdparty".extensions.cjpalhdlnbpafiamejdnhcphjbkeiagm.adminSettings = let
@@ -120,6 +65,40 @@
           www.reddit.com###email-collection-tooltip-id
         '';
       }}";
+
+      # Bookmarks for installing extensions
+      ManagedBookmarks = let
+        mkExtUrl = extId:
+          "javascript:location.href="
+          + "'https://clients2.google.com/service/update2/crx?response=redirect&acceptformat=crx2,crx3'"
+          + "+'&prodversion='+(navigator.appVersion.match(/Chrome\\/(\\S+)/)[1])"
+          + "+'&x=id%'+'3D'+'${extId}'"
+          + "+'%'+'26installsource%'+'3Dondemand%'+'26uc'";
+      in [
+        { toplevel_name = "Extensions"; }
+
+        { name = "Chromium Web Store";
+          url = "https://github.com/NeverDecaf/chromium-web-store/releases";
+        }
+        { name = "Dark Reader";
+          url = mkExtUrl "eimadpbcbfnmbkopoojfekhnkhdbieeh";
+        }
+        { name = "Go Back with Backspace";
+          url = mkExtUrl "eekailopagacbcdloonjhbiecobagjci";
+        }
+        { name = "Just Black";
+          url = mkExtUrl "aghfnjkcakhmadgdomlmlhhaocbkloab";
+        }
+        { name = "SponsorBlock";
+          url = mkExtUrl "mnjggcdmjocbbbhaepdhchncahnbgone";
+        }
+        { name = "uBlock Origin";
+          url = mkExtUrl "cjpalhdlnbpafiamejdnhcphjbkeiagm";
+        }
+        { name = "Video Speed Controller";
+          url = mkExtUrl "nffaoalbilbmmfgbnbgppjihopabppdk";
+        }
+      ];
     };
   };
 }

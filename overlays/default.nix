@@ -4,12 +4,15 @@
   nixpkgs.overlays = [
     (final: prev: {
 
-      # chromium: Add command line arguments.
-      chromium = prev.chromium.override {
+      # ungoogled-chromium: Add command line arguments.
+      ungoogled-chromium = prev.ungoogled-chromium.override {
         commandLineArgs = ''
           --ignore-gpu-blocklist --enable-gpu-rasterization \
           --enable-oop-rasterization --enable-zero-copy \
-          --force-dark-mode --enable-features=WebUIDarkMode''
+          --force-dark-mode --enable-features=WebUIDarkMode \
+          --extension-mime-request-handling=always-prompt-for-install \
+          --show-avatar-button=incognito-and-guest \
+          --disable-search-engine-collection''
 
           # TODO Remove `--force-device-scale-factor=1` when
           # https://bugs.chromium.org/p/chromium/issues/detail?id=1087109
