@@ -43,9 +43,7 @@
       appimage-run
       ark
       caffeine-ng
-      # TODO Keep this on the most stable channel with official build settings.
-      # https://github.com/NixOS/nixpkgs/pull/101467
-      unstable.chromium
+      chromium
       gimp
       gwenview
       imagemagick
