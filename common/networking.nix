@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib', ... }:
 
 {
   # Enable NetworkManager.
@@ -67,20 +67,12 @@
       }}";
 
       # Bookmarks for installing extensions
-      ManagedBookmarks = let
-        mkWebstoreUrl = id:
-          "javascript:location.href="
-          + "'https://clients2.google.com/service/update2/crx?response=redirect&acceptformat=crx2,crx3'"
-          + "+'&prodversion='+(navigator.appVersion.match(/Chrome\\/(\\S+)/)[1])"
-          + "+'&x=id%'+'3D'+'${id}'+'%'+'26installsource%'+'3Dondemand%'+'26uc'";
-        mkWebstoreBookmarks = exts:
-          lib.mapAttrsToList (n: id: { name = n; url = mkWebstoreUrl id; }) exts;
-      in [
+      ManagedBookmarks = [
         { toplevel_name = "Extensions"; }
         { name = "Chromium Web Store";
           url = "https://github.com/NeverDecaf/chromium-web-store/releases";
         }
-      ] ++ mkWebstoreBookmarks {
+      ] ++ lib'.mkWebstoreBookmarks {
         "Dark Reader" = "eimadpbcbfnmbkopoojfekhnkhdbieeh";
         "Go Back with Backspace" = "eekailopagacbcdloonjhbiecobagjci";
         "Just Black" = "aghfnjkcakhmadgdomlmlhhaocbkloab";

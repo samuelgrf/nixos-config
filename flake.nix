@@ -25,21 +25,14 @@
         ./common/printing.nix
         ./common/services.nix
         ./common/terminal.nix
-        ./overlays
 
-        ({ config, ... }:
-        let
-          pkgsImport = pkgs:
-            import pkgs {
-              config = config.nixpkgs.config;
-              overlays = config.nixpkgs.overlays;
-              system = config.nixpkgs.system;
-            };
-        in {
+        ({ config, lib, lib', ... }:
+        {
           config = {
             _module.args = {
-              master = pkgsImport nixpkgs-master;
-              unstable = pkgsImport nixpkgs-unstable;
+              lib' = (import ./lib { inherit config lib; });
+              master = lib'.pkgsImport nixpkgs-master;
+              unstable = lib'.pkgsImport nixpkgs-unstable;
             };
 
             nix.registry = {
