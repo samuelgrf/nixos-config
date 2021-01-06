@@ -15,16 +15,16 @@
       defaultModules = [
         home-manager.nixosModules.home-manager
         ./modules/g810-led.nix
-        ./common/fonts.nix
-        ./common/general.nix
-        ./common/hardware.nix
-        ./common/kernel.nix
-        ./common/misc.nix
-        ./common/networking.nix
-        ./common/packages.nix
-        ./common/printing.nix
-        ./common/services.nix
-        ./common/terminal.nix
+        ./main/fonts.nix
+        ./main/general.nix
+        ./main/hardware.nix
+        ./main/kernel.nix
+        ./main/misc.nix
+        ./main/networking.nix
+        ./main/packages.nix
+        ./main/printing.nix
+        ./main/services.nix
+        ./main/terminal.nix
 
         ({ config, lib, lib', ... }:
         {
@@ -61,17 +61,17 @@
       HPx = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ./hosts/HPx/configuration.nix
-          ./hosts/HPx/hardware.nix
-          { home-manager.users.samuel.imports = [ ./hosts/HPx/home.nix ]; }
+          ./machines/HPx/configuration.nix
+          ./machines/HPx/hardware.nix
+          { home-manager.users.samuel.imports = [ ./machines/HPx/home.nix ]; }
         ] ++ defaultModules;
       };
 
       R3600 = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ./hosts/R3600/configuration.nix
-          ./hosts/R3600/hardware.nix
+          ./machines/R3600/configuration.nix
+          ./machines/R3600/hardware.nix
         ] ++ defaultModules;
       };
     };
