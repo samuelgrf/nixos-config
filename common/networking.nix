@@ -1,4 +1,4 @@
-{ config, ... }:
+{ lib, ... }:
 
 {
   # Enable NetworkManager.
@@ -68,40 +68,27 @@
 
       # Bookmarks for installing extensions
       ManagedBookmarks = let
-        mkExtUrl = extId:
+        mkWebstoreUrl = id:
           "javascript:location.href="
           + "'https://clients2.google.com/service/update2/crx?response=redirect&acceptformat=crx2,crx3'"
           + "+'&prodversion='+(navigator.appVersion.match(/Chrome\\/(\\S+)/)[1])"
-          + "+'&x=id%'+'3D'+'${extId}'"
-          + "+'%'+'26installsource%'+'3Dondemand%'+'26uc'";
+          + "+'&x=id%'+'3D'+'${id}'+'%'+'26installsource%'+'3Dondemand%'+'26uc'";
+        mkWebstoreBookmarks = exts:
+          lib.mapAttrsToList (n: id: { name = n; url = mkWebstoreUrl id; }) exts;
       in [
         { toplevel_name = "Extensions"; }
-
         { name = "Chromium Web Store";
           url = "https://github.com/NeverDecaf/chromium-web-store/releases";
         }
-        { name = "Dark Reader";
-          url = mkExtUrl "eimadpbcbfnmbkopoojfekhnkhdbieeh";
-        }
-        { name = "Go Back with Backspace";
-          url = mkExtUrl "eekailopagacbcdloonjhbiecobagjci";
-        }
-        { name = "Just Black";
-          url = mkExtUrl "aghfnjkcakhmadgdomlmlhhaocbkloab";
-        }
-        { name = "Not yet, AV1";
-          url = mkExtUrl "dcmllfkiihingappljlkffafnlhdpbai";
-        }
-        { name = "SponsorBlock";
-          url = mkExtUrl "mnjggcdmjocbbbhaepdhchncahnbgone";
-        }
-        { name = "uBlock Origin";
-          url = mkExtUrl "cjpalhdlnbpafiamejdnhcphjbkeiagm";
-        }
-        { name = "Video Speed Controller";
-          url = mkExtUrl "nffaoalbilbmmfgbnbgppjihopabppdk";
-        }
-      ];
+      ] ++ mkWebstoreBookmarks {
+        "Dark Reader" = "eimadpbcbfnmbkopoojfekhnkhdbieeh";
+        "Go Back with Backspace" = "eekailopagacbcdloonjhbiecobagjci";
+        "Just Black" = "aghfnjkcakhmadgdomlmlhhaocbkloab";
+        "Not yet, AV1" = "dcmllfkiihingappljlkffafnlhdpbai";
+        "SponsorBlock" = "mnjggcdmjocbbbhaepdhchncahnbgone";
+        "uBlock Origin" = "cjpalhdlnbpafiamejdnhcphjbkeiagm";
+        "Video Speed Controller" = "nffaoalbilbmmfgbnbgppjihopabppdk";
+      };
     };
   };
 }
