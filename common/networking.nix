@@ -89,6 +89,9 @@
         { name = "Just Black";
           url = mkExtUrl "aghfnjkcakhmadgdomlmlhhaocbkloab";
         }
+        { name = "Not yet, AV1";
+          url = mkExtUrl "dcmllfkiihingappljlkffafnlhdpbai";
+        }
         { name = "SponsorBlock";
           url = mkExtUrl "mnjggcdmjocbbbhaepdhchncahnbgone";
         }
