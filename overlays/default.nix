@@ -1,21 +1,34 @@
 final: prev: {
 
   # ungoogled-chromium: Add command line arguments.
-  # TODO Remove `--force-device-scale-factor=1` when
-  # https://bugs.chromium.org/p/chromium/issues/detail?id=1087109
-  # or https://github.com/NixOS/nixpkgs/issues/89512
-  # is resolved.
   ungoogled-chromium = prev.ungoogled-chromium.override {
-    commandLineArgs = ''
-      --ignore-gpu-blocklist --enable-gpu-rasterization \
-      --enable-oop-rasterization --enable-zero-copy \
-      --force-dark-mode --enable-features=WebUIDarkMode \
-      --extension-mime-request-handling=always-prompt-for-install \
-      --show-avatar-button=incognito-and-guest \
-      --disable-search-engine-collection \
-      $( [ $HOSTNAME = HPx ] && printf %s \
-        "--enable-accelerated-video-decode --force-device-scale-factor=1" )\
-    '';
+    commandLineArgs = toString [
+      # Performance
+      "--enable-gpu-rasterization"
+      "--enable-oop-rasterization"
+      "--enable-zero-copy"
+      "--ignore-gpu-blocklist"
+
+      # Dark Mode
+      "--enable-features=WebUIDarkMode"
+      "--force-dark-mode"
+
+      # Misc
+      "--disable-search-engine-collection"
+      "--extension-mime-request-handling=always-prompt-for-install"
+      "--show-avatar-button=incognito-and-guest"
+
+      # TODO Remove `--force-device-scale-factor=1` when
+      # https://bugs.chromium.org/p/chromium/issues/detail?id=1087109
+      # or https://github.com/NixOS/nixpkgs/issues/89512
+      # is resolved.
+      "$( [ $HOSTNAME = HPx ] && printf %s"
+        "'${toString [
+          "--enable-accelerated-video-decode"
+          "--force-device-scale-factor=1"
+        ]}'"
+      ")"
+    ];
   };
 
   # kwin: Apply low latency patch
