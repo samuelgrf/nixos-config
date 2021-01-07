@@ -63,9 +63,7 @@
       steam
       steam-run
       torbrowser
-      # TODO Keep this on the most stable channel with official build settings.
-      # https://github.com/NixOS/nixpkgs/pull/101467
-      unstable.ungoogled-chromium
+      ungoogled-chromium
       wineWowPackages.staging # Comes with both x64 and x86 Wine.
       winetricks
       xdotool

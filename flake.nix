@@ -4,7 +4,7 @@
       url = "github:nix-community/home-manager/release-20.09";
       inputs.nixpkgs.follows = "/nixpkgs";
     };
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-20.09";
+    nixpkgs.url = "github:NixOS/nixpkgs/0ad09f9656769e2fb6b967f247dfeaaf5fdc9daa";
     nixpkgs-master.url = "github:NixOS/nixpkgs";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
   };
