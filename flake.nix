@@ -30,7 +30,7 @@
         {
           config = {
             _module.args = {
-              lib' = (import ./lib { inherit config lib; });
+              lib' = lib // import ./lib { inherit config lib; };
               master = lib'.pkgsImport nixpkgs-master;
               unstable = lib'.pkgsImport nixpkgs-unstable;
             };
