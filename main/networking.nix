@@ -69,6 +69,9 @@
       # Bookmarks for installing extensions
       ManagedBookmarks = [
         { toplevel_name = "Extensions"; }
+        { name = "Extensions";
+          url = "chrome://extensions";
+        }
         { name = "Chromium Web Store";
           url = "https://github.com/NeverDecaf/chromium-web-store/releases";
         }
