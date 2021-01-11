@@ -16,6 +16,8 @@ stdenv.mkDerivation rec {
   buildInputs = [ hidapi ];
 
   installPhase = ''
+    runHook preInstall
+
     install -D bin/g810-led $out/bin/g810-led
     ln -s \./g810-led $out/bin/g213-led
     ln -s \./g810-led $out/bin/g410-led
@@ -31,6 +33,8 @@ stdenv.mkDerivation rec {
       --replace "/usr" $out \
       --replace "/etc/g810-led/profile" "${profile}"
     install -D udev/g810-led.rules $out/etc/udev/rules.d/90-g810-led.rules
+
+    runHook postInstall
   '';
 
   meta = with stdenv.lib; {
