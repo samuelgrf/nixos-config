@@ -1,5 +1,5 @@
 { alsaLib, cmake, fetchFromGitHub, fmt, gcc-unwrapped, gettext, glib, gtk3
-, harfbuzz, libaio, libpcap, libpng, libpulseaudio, libsamplerate, libxml2
+, harfbuzz, lib, libaio, libpcap, libpng, libpulseaudio, libsamplerate, libxml2
 , makeWrapper, perl, pkgconfig, portaudio, SDL2, soundtouch, stdenv, udev
 , wrapGAppsHook, wxGTK, zlib
 }:
@@ -67,7 +67,7 @@ stdenv.mkDerivation {
     zlib
   ];
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "Playstation 2 emulator";
     longDescription = ''
       PCSX2 is an open-source PlayStation 2 (AKA PS2) emulator. Its purpose

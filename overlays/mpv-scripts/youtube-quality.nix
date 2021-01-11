@@ -1,4 +1,4 @@
-{ stdenv, fetchFromGitHub, mpv-unwrapped }:
+{ stdenv, lib, fetchFromGitHub, mpv-unwrapped }:
 
 # Usage: `pkgs.mpv.override { scripts = [ pkgs.mpvScripts.youtube-quality ]; }`
 stdenv.mkDerivation rec {
@@ -21,7 +21,7 @@ stdenv.mkDerivation rec {
 
   passthru.scriptName = "youtube-quality.lua";
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "mpv script for changing YouTube video quality (ytdl-format) on the fly";
     homepage = src.meta.homepage;
     platforms = mpv-unwrapped.meta.platforms;
