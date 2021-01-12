@@ -46,10 +46,6 @@ final: prev: {
 
   g810-led = prev.callPackage ./g810-led { };
 
-  mangohud = prev.callPackage ./mangohud/combined.nix {
-    libXNVCtrl = prev.linuxPackages.nvidia_x11.settings.libXNVCtrl;
-  };
-
   mpv = prev.mpv.override {
     scripts = [
       final.mpv_sponsorblock
