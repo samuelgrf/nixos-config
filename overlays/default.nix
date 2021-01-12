@@ -92,9 +92,13 @@ final: prev: {
   };
 
   # steam: Add cabextract, needed for Protontricks to install MS core fonts.
-  steam = prev.steam.override { extraPkgs = _: [ prev.cabextract ]; };
+  steam = prev.steam.override {
+    extraPkgs = _: [ prev.cabextract ];
+  };
 
   # winetricks: Use Wine staging with both 32-bit and 64-bit support.
-  winetricks = prev.winetricks.override { wine = prev.wineWowPackages.staging; };
+  winetricks = prev.winetricks.override {
+    wine = prev.wineWowPackages.staging;
+  };
 
 }
