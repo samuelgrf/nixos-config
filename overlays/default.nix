@@ -46,6 +46,10 @@ final: prev: {
 
   g810-led = prev.callPackage ./g810-led { };
 
+  libstrangle = prev.callPackage ./libstrangle {
+    stdenv = prev.stdenv_32bit;
+  };
+
   mpv = prev.mpv.override {
     scripts = [
       final.mpv_sponsorblock

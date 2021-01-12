@@ -51,6 +51,7 @@
       keepassxc
       kwin-dynamic-workspaces
       libreoffice
+      libstrangle
       lutris
       lxqt.pavucontrol-qt
       mpv
