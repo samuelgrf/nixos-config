@@ -23,8 +23,8 @@ stdenv.mkDerivation rec {
 
   meta = with lib; {
     description = "mpv script for changing YouTube video quality (ytdl-format) on the fly";
-    homepage = src.meta.homepage;
-    platforms = mpv-unwrapped.meta.platforms;
+    inherit (src.meta) homepage;
+    inherit (mpv-unwrapped.meta) platforms;
     maintainers = with maintainers; [ samuelgrf ];
   };
 }
