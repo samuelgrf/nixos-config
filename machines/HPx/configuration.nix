@@ -69,25 +69,6 @@
   # are also installed.
   services.xserver.videoDrivers = [ "modesetting" ];
 
-  # Add custom resolutions (for playing games at lower resolutions).
-  services.xserver.xrandrHeads = [
-    {
-      output = "eDP-1";
-      monitorConfig = ''
-        Modeline "1600x900"  118.25  1600 1696 1856 2112  900 903 908 934 -hsync +vsync
-        Modeline "1366x768"   85.25  1366 1440 1576 1784  768 771 781 798 -hsync +vsync
-        Modeline "1280x720"   74.50  1280 1344 1472 1664  720 723 728 748 -hsync +vsync
-      '';
-    }
-    {
-      output = "HDMI-1";
-      monitorConfig = ''
-        Modeline "1600x900"  118.25  1600 1696 1856 2112  900 903 908 934 -hsync +vsync
-        Modeline "1366x768"   85.25  1366 1440 1576 1784  768 771 781 798 -hsync +vsync
-      '';
-    }
-  ];
-
 
   ##############################################################################
   ## Audio
