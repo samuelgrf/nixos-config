@@ -79,7 +79,7 @@
   ];
 
   # Select allowed unfree packages.
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+  nixpkgs.config.allowUnfreePredicate = pkg: lib.elem (lib.getName pkg) [
     "mfcl2700dnlpr"
     "steam"
     "steam-original"
