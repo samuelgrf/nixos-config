@@ -70,11 +70,6 @@ final: prev: {
 
   nativeStdenv = prev.impureUseNativeOptimizations prev.stdenv;
 
-  nerdfonts = prev.recurseIntoAttrs {
-    hack = prev.nerdfonts.override { fonts = [ "Hack" ]; };
-    meslo-lg = prev.nerdfonts.override { fonts = [ "Meslo" ]; };
-  };
-
   # nix-zsh-completions: Add experimental flake support.
   nix-zsh-completions = prev.nix-zsh-completions.overrideAttrs (_: {
     src = prev.fetchFromGitHub {
