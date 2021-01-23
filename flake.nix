@@ -9,7 +9,7 @@
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
   };
 
-  outputs = { self, home-manager, nixpkgs, nixpkgs-master, nixpkgs-unstable }: {
+  outputs = { self, home-manager, nixpkgs, nixpkgs-master, nixpkgs-unstable } @inputs: {
     nixosConfigurations =
     let
       defaultModules = [
@@ -26,19 +26,18 @@
         ./main/services.nix
         ./main/terminal.nix
 
-        ({ config, lib, lib', ... }:
+        ({ config, lib, lib', ... }: with lib';
         {
           config = {
             _module.args = {
               lib' = lib // import ./lib { inherit config lib; };
-              master = lib'.pkgsImport nixpkgs-master;
-              unstable = lib'.pkgsImport nixpkgs-unstable;
+              master = pkgsImport nixpkgs-master;
+              unstable = pkgsImport nixpkgs-unstable;
             };
 
-            nix.registry = {
-              nixpkgs.flake = nixpkgs;
-              nixpkgs-unstable.flake = nixpkgs-unstable;
-            };
+            nix.registry = mapAttrs (id: flake: {
+              from = { type = "indirect"; inherit id; }; inherit flake;
+            }) inputs;
 
             nixpkgs.overlays = [
               (import ./overlays)
