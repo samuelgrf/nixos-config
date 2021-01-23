@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, flakes, lib, pkgs, ... }:
 
 {
   # Use X keyboard configuration on console.
@@ -66,7 +66,10 @@
       ng = "nix-collect-garbage";
       ngd = "sudo nix-collect-garbage -d";
       nlo = "nix-locate";
-      np = "nix repl";
+      np = "nix repl ${flakes.nixpkgs}";
+      npp = "nix repl";
+      npm = "nix repl ${flakes.nixpkgs-master}";
+      npu = "nix repl ${flakes.nixpkgs-unstable}";
       nrb = "sudo nixos-rebuild -v boot";
       nrbu = "nixos-rebuild -v build";
       nse = "nix search nixpkgs";

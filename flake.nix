@@ -30,6 +30,7 @@
         {
           config = {
             _module.args = {
+              flakes = inputs;
               lib' = lib // import ./lib { inherit config lib; };
               master = pkgsImport nixpkgs-master;
               unstable = pkgsImport nixpkgs-unstable;
