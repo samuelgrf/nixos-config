@@ -55,6 +55,7 @@
 
     # Set shell aliases.
     shellAliases = {
+
       # Nix & NixOS
       n = "nix";
       nb = "nix build --print-build-logs -v";
