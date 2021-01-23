@@ -16,7 +16,7 @@
       lm_sensors
       lolcat
       lshw
-      unstable.manix # TODO Remove "unstable." on 21.03.
+      unstable.manix # TODO Remove "unstable." on 21.05.
       ncdu
       neofetch
       nix-index
@@ -73,7 +73,7 @@
 
   # System-wide fonts to install.
   fonts.fonts = with pkgs; [
-    # TODO Remove "unstable." on 21.03.
+    # TODO Remove "unstable." on 21.05.
     unstable.meslo-lgs-nf
     noto-fonts-cjk
   ];
