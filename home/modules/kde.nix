@@ -12,7 +12,7 @@ let
     (v: ''
       ${pkgs.kdeFrameworks.kconfig}/bin/kwriteconfig5 \
         --file "${head v}" \
-        ${toString (map (v: "--group \"${v}\"") (sublist 1 (length v - 3) v))} \
+        ${toString (map (v: ''--group "${v}"'') (sublist 1 (length v - 3) v))} \
         --key "${elemAt (reverseList v) 1}" \
         "${if isBool (last v) then boolToString (last v) else toString (last v)}"
     '')

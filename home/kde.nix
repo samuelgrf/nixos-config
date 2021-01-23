@@ -83,7 +83,7 @@
         Active = true;
         Mode = "Times";
         EveningBeginFixed = 1800;
-        MorningBeginFixed = 0600;
+        MorningBeginFixed = "0600";
       };
 
       # Keyboard shortcuts
@@ -100,8 +100,7 @@
           "Window One Desktop to the Right" = "Meta+Shift+S,none,Window One Desktop to the Right";
         };
         kded5."Show System Activity" = ",Ctrl+Esc,Show System Activity";
-        khotkeys."{f3242e9b-1c88-455f-be32-f9d50105551a}" =
-          "Ctrl+Esc,none,Launch KSysGuard";
+        khotkeys."{f3242e9b-1c88-455f-be32-f9d50105551a}" = "Ctrl+Esc,none,Launch KSysGuard";
       };
       khotkeysrc = {
         Data.DataCount = 4;
