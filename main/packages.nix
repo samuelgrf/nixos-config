@@ -71,6 +71,13 @@
     noX = [ ];
   in common ++ (if config.services.xserver.enable then X else noX);
 
+  # System-wide fonts to install.
+  fonts.fonts = with pkgs; [
+    # TODO Remove "unstable." on 21.03.
+    unstable.meslo-lgs-nf
+    noto-fonts-cjk
+  ];
+
   # Select allowed unfree packages.
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
     "mfcl2700dnlpr"
