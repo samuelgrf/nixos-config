@@ -25,17 +25,20 @@
         ./main/services.nix
         ./main/terminal.nix
 
-        ({ config, lib, lib', ... }: with lib';
+        ({ config, lib, ... }:
         {
           config = {
-            _module.args = {
+            _module.args = let
+              pkgsImport = pkgs:
+                import pkgs { inherit (config.nixpkgs) config overlays system; };
+            in {
               flakes = inputs;
-              lib' = lib // import ./lib { inherit config lib; };
+              lib' = lib // import ./lib { inherit lib; };
               master = pkgsImport nixpkgs-master;
               unstable = pkgsImport nixpkgs-unstable;
             };
 
-            nix.registry = mapAttrs (id: flake: {
+            nix.registry = lib.mapAttrs (id: flake: {
               from = { type = "indirect"; inherit id; }; inherit flake;
             }) inputs;
 

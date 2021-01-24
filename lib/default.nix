@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ lib }:
 
 with lib; rec {
 
@@ -10,12 +10,5 @@ with lib; rec {
 
   mkWebstoreBookmarks = exts:
     mapAttrsToList (n: id: { name = n; url = mkWebstoreUrl id; }) exts;
-
-  pkgsImport = pkgs:
-    import pkgs {
-      config = config.nixpkgs.config;
-      overlays = config.nixpkgs.overlays;
-      system = config.nixpkgs.system;
-    };
 
 }
