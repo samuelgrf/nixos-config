@@ -1,4 +1,4 @@
-{ lib', ... }:
+{ lib, ... }:
 
 {
   # Enable NetworkManager.
@@ -75,7 +75,7 @@
         { name = "Chromium Web Store";
           url = "https://github.com/NeverDecaf/chromium-web-store/releases";
         }
-      ] ++ lib'.mkWebstoreBookmarks {
+      ] ++ lib.mkWebstoreBookmarks {
         "Dark Reader" = "eimadpbcbfnmbkopoojfekhnkhdbieeh";
         "Go Back with Backspace" = "eekailopagacbcdloonjhbiecobagjci";
         "Just Black" = "aghfnjkcakhmadgdomlmlhhaocbkloab";

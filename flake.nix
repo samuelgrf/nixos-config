@@ -12,6 +12,9 @@
   outputs = { self, home-manager, nixpkgs, nixpkgs-master, nixpkgs-unstable } @inputs: {
     nixosConfigurations =
     let
+      lib = nixpkgs.lib;
+      specialArgs.lib = lib // import ./lib { inherit lib; };
+
       defaultModules = [
         home-manager.nixosModules.home-manager
         ./modules/g810-led.nix
@@ -33,7 +36,6 @@
                 import pkgs { inherit (config.nixpkgs) config overlays system; };
             in {
               flakes = inputs;
-              lib' = lib // import ./lib { inherit lib; };
               master = pkgsImport nixpkgs-master;
               unstable = pkgsImport nixpkgs-unstable;
             };
@@ -60,8 +62,9 @@
       ];
     in
     {
-      HPx = nixpkgs.lib.nixosSystem {
+      HPx = lib.nixosSystem {
         system = "x86_64-linux";
+        inherit specialArgs;
         modules = [
           ./machines/HPx/configuration.nix
           ./machines/HPx/hardware.nix
@@ -69,8 +72,9 @@
         ] ++ defaultModules;
       };
 
-      R3600 = nixpkgs.lib.nixosSystem {
+      R3600 = lib.nixosSystem {
         system = "x86_64-linux";
+        inherit specialArgs;
         modules = [
           ./machines/R3600/configuration.nix
           ./machines/R3600/hardware.nix
