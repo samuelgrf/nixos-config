@@ -21,7 +21,6 @@
     extraOpts = {
 
       # Settings
-      CookiesAllowedForUrls = [ "login.microsoftonline.com" ]; # Fixes MS Teams.
       DefaultCookiesSetting = 1;
       DefaultNotificationsSetting = 2;
       DefaultSearchProviderEnabled = true;
@@ -84,6 +83,12 @@
         "uBlock Origin" = "cjpalhdlnbpafiamejdnhcphjbkeiagm";
         "Video Speed Controller" = "nffaoalbilbmmfgbnbgppjihopabppdk";
       };
+
+      # MS Teams
+      CookiesAllowedForUrls = [
+        "assignments.onenote.com"
+        "login.microsoftonline.com"
+      ];
     };
   };
 }
