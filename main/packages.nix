@@ -43,6 +43,7 @@
       appimage-run
       ark
       caffeine-ng
+      unstable.ghidra-bin
       gimp
       gwenview
       imagemagick
