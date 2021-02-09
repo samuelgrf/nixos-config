@@ -7,6 +7,7 @@
     common = [
       bat
       dos2unix
+      exiftool
       fd
       file
       git
