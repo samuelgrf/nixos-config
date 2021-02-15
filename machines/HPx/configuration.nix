@@ -90,4 +90,7 @@
 
   # Enable CPU microcode updates.
   hardware.cpu.intel.updateMicrocode = true;
+
+  # Configure lm_sensors.
+  environment.etc."sysconfig/lm_sensors".text = "HWMON_MODULES=coretemp";
 }
