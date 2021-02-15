@@ -79,6 +79,7 @@
         modules = [
           ./machines/R3600/configuration.nix
           ./machines/R3600/hardware.nix
+          { nixpkgs.overlays = [ (import ./machines/R3600/overlays) ]; }
         ] ++ defaultModules;
       };
     };

@@ -1,4 +1,4 @@
-{ unstable, ... }:
+{ pkgs, pkgsi686Linux, ... }:
 
 {
   ##############################################################################
@@ -36,15 +36,15 @@
   # Use the amdgpu video driver.
   services.xserver.videoDrivers = [ "amdgpu" ];
 
-  # Get Mesa from unstable.
-  hardware.opengl.package = unstable.mesa.drivers;
-  hardware.opengl.package32 = unstable.driversi686Linux.mesa.drivers;
+  # Get Mesa from overlay.
+  hardware.opengl.package = pkgs._mesa.drivers;
+  hardware.opengl.package32 = pkgsi686Linux._mesa.drivers;
 
   # Install AMDVLK driver, since some games have graphical glitches when using RADV.
   # Can be enabled by setting
   # VK_ICD_FILENAMES=/run/opengl-driver/share/vulkan/icd.d/amd_icd64.json:/run/opengl-driver-32/share/vulkan/icd.d/amd_icd32.json
-  hardware.opengl.extraPackages = with unstable; [ amdvlk ];
-  hardware.opengl.extraPackages32 = with unstable.driversi686Linux; [ amdvlk ];
+  hardware.opengl.extraPackages = with pkgs; [ amdvlk ];
+  hardware.opengl.extraPackages32 = with pkgsi686Linux; [ amdvlk ];
 
   # Set global environment variables.
   environment.variables = {
