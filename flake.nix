@@ -28,7 +28,7 @@
         ./main/services.nix
         ./main/terminal.nix
 
-        ({ config, lib, ... }:
+        ({ config, lib, pkgs, ... }:
         {
           config = {
             _module.args = let
@@ -38,6 +38,7 @@
               flakes = inputs;
               master = pkgsImport nixpkgs-master;
               unstable = pkgsImport nixpkgs-unstable;
+              pkgsi686Linux = pkgs.pkgsi686Linux;
             };
 
             nix.registry = lib.mapAttrs (id: flake: {

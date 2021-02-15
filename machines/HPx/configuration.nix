@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, pkgsi686Linux, ... }:
 
 {
   ##############################################################################
@@ -86,7 +86,7 @@
 
   # Install libraries for VA-API.
   hardware.opengl.extraPackages = with pkgs; [ vaapiIntel ];
-  hardware.opengl.extraPackages32 = with pkgs.driversi686Linux; [ vaapiIntel ];
+  hardware.opengl.extraPackages32 = with pkgsi686Linux; [ vaapiIntel ];
 
   # Enable CPU microcode updates.
   hardware.cpu.intel.updateMicrocode = true;
