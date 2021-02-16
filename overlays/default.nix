@@ -44,6 +44,13 @@ final: prev: {
     });
   };
 
+  # linux_zen: Add HID driver for the PS5 DualSense controller
+  linuxPackages_zen = with prev; linuxPackages_zen // {
+    hid-playstation = callPackage ./hid-playstation {
+      inherit (linuxPackages_zen) kernel stdenv;
+    };
+  };
+
   g810-led = prev.callPackage ./g810-led { };
 
   libstrangle = prev.callPackage ./libstrangle {

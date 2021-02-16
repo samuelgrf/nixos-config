@@ -1,8 +1,8 @@
-{ pkgs, ... }:
+{ unstable, ... }:
 
 {
   # Use Zen kernel for better interactive performance.
-  boot.kernelPackages = pkgs.linuxPackages_zen;
+  boot.kernelPackages = unstable.linuxPackages_zen;
 
   # Load kernel module for ddcutil.
   boot.kernelModules = [ "i2c-dev" ];

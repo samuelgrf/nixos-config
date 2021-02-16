@@ -1,4 +1,4 @@
-{ pkgs, pkgsi686Linux, ... }:
+{ pkgs, pkgsi686Linux, unstable, ... }:
 
 {
   ##############################################################################
@@ -27,6 +27,16 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   services.xserver.autorun = true;
+
+
+  ##############################################################################
+  ## Kernel & Modules
+  ##############################################################################
+
+  # Install kernel modules.
+  boot.extraModulePackages = with unstable.linuxPackages_zen; [
+    hid-playstation
+  ];
 
 
   ##############################################################################

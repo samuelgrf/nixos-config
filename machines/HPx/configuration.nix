@@ -1,4 +1,4 @@
-{ config, pkgs, pkgsi686Linux, ... }:
+{ pkgs, pkgsi686Linux, unstable, ... }:
 
 {
   ##############################################################################
@@ -46,8 +46,11 @@
   ## Kernel & Modules
   ##############################################################################
 
-  # Install wifi kernel module.
-  boot.extraModulePackages = with config.boot.kernelPackages; [ rtl8821ce ];
+  # Install kernel modules.
+  boot.extraModulePackages = with unstable.linuxPackages_zen; [
+    hid-playstation
+    rtl8821ce
+  ];
 
   # Blacklist sensor kernel modules.
   boot.blacklistedKernelModules = [ "intel_ishtp_hid" "intel_ish_ipc" ];
