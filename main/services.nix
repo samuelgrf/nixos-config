@@ -19,6 +19,6 @@
   # Enable Early OOM deamon.
   services.earlyoom.enable = true;
 
-  # Enable OpenSSH daemon.
-  # services.openssh.enable = true;
+  # Enable OpenSSH agent.
+  programs.ssh.startAgent = true;
 }
