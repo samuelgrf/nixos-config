@@ -68,7 +68,7 @@
         inherit specialArgs;
         modules = [
           ./machines/HPx/configuration.nix
-          ./machines/HPx/hardware.nix
+          ./machines/HPx/hardware-generated.nix
           { home-manager.users.samuel.imports = [ ./machines/HPx/home.nix ]; }
         ] ++ defaultModules;
       };
@@ -78,7 +78,7 @@
         inherit specialArgs;
         modules = [
           ./machines/R3600/configuration.nix
-          ./machines/R3600/hardware.nix
+          ./machines/R3600/hardware-generated.nix
           { nixpkgs.overlays = [ (import ./machines/R3600/overlays) ]; }
         ] ++ defaultModules;
       };
