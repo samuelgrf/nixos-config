@@ -12,10 +12,14 @@
     userEmail = "git@samuelgrf.com";
     signing.key = "FF2458328FAF466018C6186EEF76A063F15C63C8";
     signing.signByDefault = true;
+
     extraConfig = {
-      pull.ff = "only";
       core.pager = "delta";
       delta.line-numbers = true;
+
+      pull.ff = "only";
+      url."ssh://git@github.com/".pushInsteadOf = https://github.com/;
+      url."ssh://git@gitlab.com/".pushInsteadOf = https://gitlab.com/;
     };
   };
 
