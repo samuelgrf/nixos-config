@@ -79,7 +79,13 @@
         modules = [
           ./machines/R3600/configuration.nix
           ./machines/R3600/hardware-generated.nix
-          { nixpkgs.overlays = [ (import ./machines/R3600/overlays) ]; }
+          {
+            nixpkgs.overlays = [
+              (import ./machines/R3600/overlays {
+                unstable = inputs.nixpkgs-unstable;
+              })
+            ];
+          }
         ] ++ defaultModules;
       };
     };
