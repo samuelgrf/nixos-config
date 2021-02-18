@@ -36,7 +36,7 @@
       nsd () { nix show-derivation "$@" | bat -l nix }
       nus () { ${nu} && sudo nixos-rebuild -v "$@" switch && exec zsh }
       nut () { ${nu} && sudo nixos-rebuild -v "$@" test && exec zsh }
-      nw () { readlink $(where "$@") }
+      nw () { readlink "$(where "$@")" }
       run () { NIXPKGS_ALLOW_UNFREE=1 nix run --impure nixpkgs#"$@" }
       runm () { NIXPKGS_ALLOW_UNFREE=1 nix run --impure github:NixOS/nixpkgs#"$@" }
       runu () { NIXPKGS_ALLOW_UNFREE=1 nix run --impure nixpkgs-unstable#"$@" }
