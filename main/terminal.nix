@@ -75,10 +75,8 @@
       nse = "nix search nixpkgs";
       nsem = "nix search github:NixOS/nixpkgs";
       nseu = "nix search nixpkgs-unstable";
-      nsr = ''
-        nix-store --gc --print-roots | \
-          grep -Ev "^(/nix/var|/run/\w+-system|\{memory|\{censored)"\
-      '';
+      nsr = "nix-store --gc --print-roots | cut -f 1 -d ' ' | grep /result$";
+      nsrr = "nsr | xargs rm -v";
       nu = ''
         [ -d /etc/nixos ] && cd /etc/nixos
         nix flake update --recreate-lock-file --commit-lock-file\
