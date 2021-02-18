@@ -87,6 +87,7 @@
       nvr = "nixos-version --revision";
 
       # Other
+      clean = "nsrr ; ngd && nrb && ztr";
       grl = "git reflog";
       inc = ''
         [ -n "$HISTFILE" ] && {\
