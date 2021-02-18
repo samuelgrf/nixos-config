@@ -1,4 +1,4 @@
-final: prev: {
+{ flakes }: final: prev: {
 
   # ungoogled-chromium: Add command line arguments.
   ungoogled-chromium = prev.ungoogled-chromium.override {
@@ -43,6 +43,16 @@ final: prev: {
       ];
     });
   };
+
+  amdvlk_unstable = prev.callPackage
+    "${flakes.nixpkgs-unstable}/pkgs/development/libraries/amdvlk" { };
+
+  mesa_unstable = with prev; callPackage
+    "${flakes.nixpkgs-unstable}/pkgs/development/libraries/mesa" {
+      llvmPackages = llvmPackages_latest;
+      inherit (darwin.apple_sdk.frameworks) OpenGL;
+      inherit (darwin.apple_sdk.libs) Xplugin;
+    };
 
   # linux_zen: Add HID driver for the PS5 DualSense controller
   linuxPackages_zen = with prev; linuxPackages_zen // {

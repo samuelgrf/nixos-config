@@ -28,7 +28,7 @@
         ./main/services.nix
         ./main/terminal.nix
 
-        ({ config, lib, pkgs, ... }:
+        ({ config, flakes, lib, pkgs, ... }:
         {
           config = {
             _module.args = let
@@ -46,7 +46,7 @@
             }) inputs;
 
             nixpkgs.overlays = [
-              (import ./overlays)
+              (import ./overlays { inherit flakes; })
             ];
 
             home-manager = {
@@ -79,13 +79,6 @@
         modules = [
           ./machines/R3600/configuration.nix
           ./machines/R3600/hardware-generated.nix
-          {
-            nixpkgs.overlays = [
-              (import ./machines/R3600/overlays {
-                unstable = inputs.nixpkgs-unstable;
-              })
-            ];
-          }
         ] ++ defaultModules;
       };
     };
