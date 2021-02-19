@@ -92,7 +92,4 @@
 
   # Install ADB and fastboot.
   programs.adb.enable = true;
-
-  # Install GnuPG agent.
-  programs.gnupg.agent.enable = true;
 }

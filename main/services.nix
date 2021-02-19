@@ -21,4 +21,7 @@
 
   # Enable OpenSSH agent.
   programs.ssh.startAgent = true;
+
+  # Enable GnuPG agent.
+  programs.gnupg.agent.enable = true;
 }
