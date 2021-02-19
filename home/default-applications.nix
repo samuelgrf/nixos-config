@@ -1,44 +1,6 @@
-{ pkgs, ... }:
+{ ... }:
 
 {
-  # The NixOS release to be compatible with for stateful data such as databases.
-  # Read the release notes before changing this.
-  home.stateVersion = "20.09";
-
-  # Set Git configuration.
-  programs.git = {
-    enable = true;
-    userName = "Samuel Gräfenstein";
-    userEmail = "git@samuelgrf.com";
-    signing.key = "FF2458328FAF466018C6186EEF76A063F15C63C8";
-    signing.signByDefault = true;
-
-    delta.enable = true;
-    delta.options.line-numbers = true;
-
-    extraConfig = {
-      pull.ff = "only";
-      url."ssh://git@github.com/".pushInsteadOf = https://github.com/;
-      url."ssh://git@gitlab.com/".pushInsteadOf = https://gitlab.com/;
-    };
-  };
-
-  # Set mpv configuration.
-  programs.mpv = {
-    enable = true;
-    config.keep-open = true; # Keep mpv open after playback is finished.
-    config.ytdl-format = # Prefer VP9 and Opus codecs for youtube-dl streams.
-      "(bestvideo[vcodec=vp9]/bestvideo)+(bestaudio[acodec=opus]/bestaudio)/best";
-  };
-
-  # Install GloriousEggroll's custom Proton build.
-  home.file.".local/share/Steam/compatibilitytools.d/Proton-GE".source = let
-    version = "6.1-GE-1";
-  in pkgs.fetchzip {
-    url = "https://github.com/GloriousEggroll/proton-ge-custom/releases/download/${version}/Proton-${version}.tar.gz";
-    hash = "sha256-S1buBkL2xdk+zUkJcMcb84q8wwVkSxtQVtrbT/KmgTk=";
-  };
-
   # Set default applications.
   xdg.dataFile."applications/mimeapps.list".force = true;
   xdg.mimeApps = let

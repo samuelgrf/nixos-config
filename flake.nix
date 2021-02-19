@@ -12,6 +12,9 @@
   outputs = { self, home-manager, nixpkgs, nixpkgs-master, nixpkgs-unstable } @inputs: {
     nixosConfigurations =
     let
+      # The NixOS release to be compatible with for stateful data such as databases.
+      stateVersion = "20.09";
+
       lib = nixpkgs.lib;
       specialArgs.lib = lib // import ./lib { inherit lib; };
 
@@ -49,13 +52,19 @@
               (import ./overlays { inherit flakes; })
             ];
 
+            system = { inherit stateVersion; };
+
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
               users.samuel.imports = [
+                { home = { inherit stateVersion; }; }
                 ./home/modules/kde.nix
-                ./home/default.nix
+                ./home/default-applications.nix
+                ./home/git.nix
                 ./home/kde.nix
+                ./home/mpv.nix
+                ./home/proton.nix
               ];
             };
           };

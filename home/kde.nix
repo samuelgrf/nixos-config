@@ -1,6 +1,7 @@
 { ... }:
 
 {
+  # Set KDE configuration.
   programs.kde = {
     enable = true;
     config = let

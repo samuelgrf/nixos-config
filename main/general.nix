@@ -1,9 +1,6 @@
 { pkgs, ... }:
 
 {
-  # The NixOS release to be compatible with for stateful data such as databases.
-  system.stateVersion = "20.09";
-
   # Automatically optimize the Nix store.
   nix.autoOptimiseStore = true;
 
