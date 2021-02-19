@@ -11,7 +11,6 @@
       fd
       file
       git
-      gitAndTools.delta
       htop
       killall
       lm_sensors
