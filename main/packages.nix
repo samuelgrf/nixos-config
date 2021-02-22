@@ -53,7 +53,7 @@
       kwin-dynamic-workspaces
       libreoffice
       libstrangle
-      lutris
+      unstable.lutris # TODO Remove "unstable." on 21.05.
       lxqt.pavucontrol-qt
       mpv
       multimc
