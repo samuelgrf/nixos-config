@@ -76,7 +76,7 @@
       nsem = "nix search github:NixOS/nixpkgs";
       nseu = "nix search nixpkgs-unstable";
       nsr = "nix-store --gc --print-roots | cut -f 1 -d ' ' | grep /result$";
-      nsrr = "nsr | xargs rm -v";
+      nsrr = "rm -v $(nsr)";
       nu = ''
         [ -d /etc/nixos ] && cd /etc/nixos
         nix flake update --recreate-lock-file --commit-lock-file\
@@ -87,7 +87,7 @@
       nvr = "nixos-version --revision";
 
       # Other
-      clean = "nsrr ; ngd && nrb && ztr";
+      clean = "nsrr; ngd && nrb && ztr";
       grl = "git reflog";
       inc = ''
         [ -n "$HISTFILE" ] && {\
