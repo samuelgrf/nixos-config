@@ -78,7 +78,7 @@
       nsr = "nix-store --gc --print-roots | cut -f 1 -d ' ' | grep /result$";
       nsrr = "rm -v $(nsr)";
       nu = ''
-        [ -d /etc/nixos ] && cd /etc/nixos
+        cd $(dirname $(readlink -m /etc/nixos/flake.nix))
         nix flake update --recreate-lock-file --commit-lock-file\
       '';
       nub = "nu && sudo nixos-rebuild -v boot";
