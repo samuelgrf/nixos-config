@@ -64,7 +64,6 @@
       simple-scan
       steam
       steam-run
-      torbrowser
       ungoogled-chromium
       wineWowPackages.staging # Comes with both x64 and x86 Wine.
       winetricks
