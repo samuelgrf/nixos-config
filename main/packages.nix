@@ -61,6 +61,7 @@
       okular
       unstable.pcsx2
       protontricks
+      simple-scan
       steam
       steam-run
       torbrowser

@@ -28,6 +28,7 @@
         ./main/networking.nix
         ./main/packages.nix
         ./main/printing.nix
+        ./main/scanning.nix
         ./main/services.nix
         ./main/terminal.nix
 
