@@ -87,7 +87,13 @@
       nvr = "nixos-version --revision";
 
       # Other
-      clean = "nsrr; ngd && nrb && ztr";
+      clean = ''
+        rm -v $(nsr)
+        sudo nix-collect-garbage -d &&\
+        echo "deleting unused boot entries..." &&\
+        sudo /nix/var/nix/profiles/system/bin/switch-to-configuration boot &&\
+        ztr\
+      '';
       grl = "git reflog";
       inc = ''
         [ -n "$HISTFILE" ] && {\
