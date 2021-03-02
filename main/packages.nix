@@ -74,8 +74,7 @@
 
   # System-wide fonts to install.
   fonts.fonts = with pkgs; [
-    # TODO Remove "unstable." on 21.05.
-    unstable.meslo-lgs-nf
+    unstable.meslo-lgs-nf # TODO Remove "unstable." on 21.05.
     noto-fonts-cjk
   ];
 
