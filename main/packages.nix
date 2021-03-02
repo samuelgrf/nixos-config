@@ -43,7 +43,7 @@
       appimage-run
       ark
       caffeine-ng
-      unstable.ghidra-bin
+      unstable.ghidra-bin # TODO Remove "unstable." on 21.05.
       gimp
       gwenview
       imagemagick

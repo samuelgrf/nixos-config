@@ -54,6 +54,7 @@
       inherit (darwin.apple_sdk.libs) Xplugin;
     };
 
+  # TODO Remove on 21.05.
   # linux_zen: Add HID driver for the PS5 DualSense controller
   linuxPackages_zen = with prev; linuxPackages_zen // {
     hid-playstation = callPackage ./hid-playstation {

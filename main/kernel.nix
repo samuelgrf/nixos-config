@@ -2,6 +2,7 @@
 
 {
   # Use Zen kernel for better interactive performance.
+  # TODO Remove "unstable." on 21.05.
   boot.kernelPackages = unstable.linuxPackages_zen;
 
   # Load kernel module for ddcutil.
