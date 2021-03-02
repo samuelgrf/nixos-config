@@ -2,12 +2,12 @@
 
 stdenv.mkDerivation rec {
   pname = "hid-playstation-${kernel.version}";
-  version = "unstable-2021-02-07";
+  version = "unstable-2021-02-25";
 
   src = fetchgit {
     url = "https://aur.archlinux.org/hid-playstation-dkms.git";
-    rev = "afac0ba15393af6db9572e329127ce73eb143888";
-    sha256 = "sha256-7Q/wBGzekgHiFlLMUfcFKhG6VZV5q7VGwjBvInlXwi8=";
+    rev = "91d7194235d5d1116c038edf40fc2720f14353ec";
+    sha256 = "sha256-Uv1Wd8Fkho2EYSkwFhqQ0c6zE6W/sjHqOHnS2caOc4A=";
   };
 
   patches = [ "${src}/disable-ff-enabled-check.patch" ];
