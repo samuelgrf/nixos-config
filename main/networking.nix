@@ -41,7 +41,7 @@
           "https://raw.githubusercontent.com/StevenBlack/hosts/master/extensions/porn/sinfonietta-snuff/hosts"
           "https://raw.githubusercontent.com/StevenBlack/hosts/master/extensions/porn/tiuxo/hosts"
         ];
-      in "${builtins.toJSON {
+      in builtins.toJSON {
         selectedFilterLists = [
           "user-filters"
           "ublock-filters"
@@ -63,7 +63,7 @@
           ! Reddit: Hide account information
           www.reddit.com###email-collection-tooltip-id
         '';
-      }}";
+      };
 
       # Bookmarks for installing extensions
       ManagedBookmarks = [

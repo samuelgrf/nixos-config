@@ -141,7 +141,6 @@
 
       # Enable natural scrolling on HPx
       touchpadxlibinputrc."SYNA328B:00 06CB:CD50 Touchpad".naturalScroll = true;
-
     };
   };
 }

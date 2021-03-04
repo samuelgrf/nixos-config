@@ -10,8 +10,8 @@
   };
 
   outputs = { self, home-manager, nixpkgs, nixpkgs-master, nixpkgs-unstable } @inputs: {
-    nixosConfigurations =
-    let
+    nixosConfigurations = let
+
       # The NixOS release to be compatible with for stateful data such as databases.
       stateVersion = "20.09";
 
@@ -71,8 +71,8 @@
           };
         })
       ];
-    in
-    {
+    in {
+
       HPx = lib.nixosSystem {
         system = "x86_64-linux";
         inherit specialArgs;

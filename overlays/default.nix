@@ -1,4 +1,6 @@
-{ flakes }: final: prev: {
+{ flakes }:
+
+final: prev: {
 
   # ungoogled-chromium: Add command line arguments.
   ungoogled-chromium = prev.ungoogled-chromium.override {
@@ -22,12 +24,10 @@
       # https://bugs.chromium.org/p/chromium/issues/detail?id=1087109
       # or https://github.com/NixOS/nixpkgs/issues/89512
       # is resolved.
-      "$( [ $HOSTNAME = HPx ] && printf %s"
-        "'${toString [
-          "--enable-accelerated-video-decode"
-          "--force-device-scale-factor=1"
-        ]}'"
-      ")"
+      "$([ $HOSTNAME = HPx ] && printf %s '${toString [
+        "--enable-accelerated-video-decode"
+        "--force-device-scale-factor=1"
+      ]}')"
     ];
   };
 
