@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, kdeFrameworks, ... }:
 
 with lib;
 
@@ -10,7 +10,7 @@ let
 
   commandList = map
     (v: ''
-      ${pkgs.kdeFrameworks.kconfig}/bin/kwriteconfig5 \
+      ${kdeFrameworks.kconfig}/bin/kwriteconfig5 \
         --file "${head v}" \
         ${toString (map (v: ''--group "${v}"'') (sublist 1 (length v - 3) v))} \
         --key "${elemAt (reverseList v) 1}" \

@@ -1,4 +1,4 @@
-{ pkgs, pkgsi686Linux, unstable, ... }:
+{ pkgsi686Linux, unstable, alsaTools, vaapiIntel, ... }:
 
 {
   ##############################################################################
@@ -70,8 +70,8 @@
   systemd.services.fixaudio = {
     description = "Audio crackling fix for Realtek ALC295";
     script = ''
-      ${pkgs.alsaTools}/bin/hda-verb /dev/snd/hwC[[:print:]]*D0 0x20 SET_COEF_INDEX 0x67
-      ${pkgs.alsaTools}/bin/hda-verb /dev/snd/hwC[[:print:]]*D0 0x20 SET_PROC_COEF 0x3000
+      ${alsaTools}/bin/hda-verb /dev/snd/hwC[[:print:]]*D0 0x20 SET_COEF_INDEX 0x67
+      ${alsaTools}/bin/hda-verb /dev/snd/hwC[[:print:]]*D0 0x20 SET_PROC_COEF 0x3000
     '';
     wantedBy = [ "multi-user.target" "post-resume.target" ];
     after = [ "post-resume.target" ];
@@ -89,7 +89,7 @@
   hardware.bluetooth.enable = true;
 
   # Install libraries for VA-API.
-  hardware.opengl.extraPackages = with pkgs; [ vaapiIntel ];
+  hardware.opengl.extraPackages = [ vaapiIntel ];
   hardware.opengl.extraPackages32 = with pkgsi686Linux; [ vaapiIntel ];
 
   # Enable CPU microcode updates.

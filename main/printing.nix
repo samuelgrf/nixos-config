@@ -1,9 +1,9 @@
-{ pkgs, ... }:
+{ hplip, mfcl2700dncupswrapper, ... }:
 
 {
   # Setup CUPS for printing documents.
   services.printing.enable = true;
-  services.printing.drivers = with pkgs; [ hplip mfcl2700dncupswrapper ];
+  services.printing.drivers = [ hplip mfcl2700dncupswrapper ];
 
   # Add printers to CUPS.
   hardware.printers.ensurePrinters = [

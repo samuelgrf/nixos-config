@@ -1,11 +1,11 @@
-{ config, flakes, lib, pkgs, ... }:
+{ config, flakes, lib, nix-index, zsh, zsh-powerlevel10k, ... }:
 
 {
   # Use X keyboard configuration on console.
   console.useXkbConfig = true;
 
   # Set Zsh as default shell.
-  users.defaultUserShell = pkgs.zsh;
+  users.defaultUserShell = zsh;
 
   # Configure Zsh.
   programs.zsh = {
@@ -18,11 +18,11 @@
     # Add entries to zshrc.
     interactiveShellInit = with config.programs.zsh.shellAliases; ''
       # Setup Powerlevel10K theme.
-      source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
+      source ${zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
       source ${./p10k.zsh}
 
       # Load the nix-index `command-not-found` replacement.
-      source ${pkgs.nix-index}/etc/profile.d/command-not-found.sh
+      source ${nix-index}/etc/profile.d/command-not-found.sh
 
       # Disable less history.
       export LESSHISTFILE=/dev/null

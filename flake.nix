@@ -32,17 +32,16 @@
         ./main/services.nix
         ./main/terminal.nix
 
-        ({ config, flakes, lib, pkgs, ... }:
-        {
+        ({ config, flakes, lib, ... }:
+        let
+          pkgsImport = pkgs:
+            import pkgs { inherit (config.nixpkgs) config overlays system; };
+        in {
           config = {
-            _module.args = let
-              pkgsImport = pkgs:
-                import pkgs { inherit (config.nixpkgs) config overlays system; };
-            in {
+            _module.args = pkgsImport nixpkgs // {
               flakes = inputs;
               master = pkgsImport nixpkgs-master;
               unstable = pkgsImport nixpkgs-unstable;
-              pkgsi686Linux = pkgs.pkgsi686Linux;
             };
 
             nix.registry = lib.mapAttrs (id: flake: {
@@ -59,6 +58,7 @@
               useGlobalPkgs = true;
               useUserPackages = true;
               users.samuel.imports = [
+                { _module.args = pkgsImport nixpkgs; }
                 { home = { inherit stateVersion; }; }
                 ./home/modules/kde.nix
                 ./home/default-applications.nix

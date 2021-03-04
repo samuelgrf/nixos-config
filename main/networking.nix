@@ -56,7 +56,7 @@
           "ublock-annoyances"
           "plowe-0"
         ] ++ externalLists;
-        userSettings.externalLists = builtins.concatStringsSep "\n" externalLists;
+        userSettings.externalLists = lib.concatStringsSep "\n" externalLists;
         userFilters = ''
           ! Reddit: Hide 'Get Coins' button
           www.reddit.com##.jEUbSHJJx8vISKpWirlfx
