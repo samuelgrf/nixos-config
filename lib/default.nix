@@ -8,7 +8,7 @@ with lib; rec {
     + "+'&prodversion='+(navigator.appVersion.match(/Chrome\\/(\\S+)/)[1])"
     + "+'&x=id%'+'3D'+'${id}'+'%'+'26installsource%'+'3Dondemand%'+'26uc'";
 
-  mkWebstoreBookmarks = exts:
-    mapAttrsToList (n: id: { name = n; url = mkWebstoreUrl id; }) exts;
+  mkWebstoreBookmarks =
+    mapAttrsToList (name: id: { inherit name; url = mkWebstoreUrl id; });
 
 }
