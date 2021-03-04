@@ -44,10 +44,10 @@
     });
   };
 
-  amdvlk_unstable = prev.callPackage
+  amdvlkUnstable = prev.callPackage
     "${flakes.nixpkgs-unstable}/pkgs/development/libraries/amdvlk" { };
 
-  mesa_unstable = with prev; callPackage
+  mesaUnstable = with prev; callPackage
     "${flakes.nixpkgs-unstable}/pkgs/development/libraries/mesa" {
       llvmPackages = llvmPackages_latest;
       inherit (darwin.apple_sdk.frameworks) OpenGL;
