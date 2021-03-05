@@ -66,8 +66,8 @@
         steam
         steam-run
         ungoogled-chromium
-        wineWowPackages.staging # Comes with both x64 and x86 Wine.
         winetricks
+        wineWowPackages.staging # Comes with both x64 and x86 Wine.
         xdotool
       ];
       noX = [ ];
