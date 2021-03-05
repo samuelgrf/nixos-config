@@ -1,4 +1,4 @@
-{ config, lib, pkgs, unstable, ... }:
+{ config, lib, pkgs, unstable, master, ... }:
 
 {
   # System-wide packages to install.
@@ -62,6 +62,7 @@
         okular
         unstable.pcsx2
         protontricks
+        master.python3Packages.adb-enhanced # TODO "master." -> "unstable." soon.
         simple-scan
         steam
         steam-run
