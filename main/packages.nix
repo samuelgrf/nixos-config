@@ -26,6 +26,7 @@
       p7zip
       patchelf
       pciutils
+      pre-commit
       python3
       qrencode
       smartmontools
