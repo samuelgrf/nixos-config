@@ -1,6 +1,7 @@
 repos:
 - repo: local
   hooks:
+
   - id: nixfmt
     name: nixfmt
     description: Format Nix code with nixfmt.
@@ -10,5 +11,19 @@ repos:
     exclude: |
       (?x)^(
         machines/(HPx|R3600)/configuration.nix|
+        machines/.*/hardware-generated.nix
+      )$
+
+  - id: nix-linter
+    name: nix-linter
+    description: Analyze Nix code with nix-linter.
+    entry: >
+      nix shell nixpkgs#nix-linter --command
+        nix-linter -W BetaReduction -W UnneededAntiquote
+    language: system
+    files: \.nix$
+    exclude: |
+      (?x)^(
+        flake.nix|
         machines/.*/hardware-generated.nix
       )$
