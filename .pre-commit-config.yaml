@@ -1,0 +1,14 @@
+repos:
+- repo: local
+  hooks:
+  - id: nixfmt
+    name: nixfmt
+    description: Format Nix code with nixfmt.
+    entry: nix run nixpkgs#nixfmt
+    language: system
+    files: \.nix$
+    exclude: |
+      (?x)^(
+        machines/(HPx|R3600)/configuration.nix|
+        machines/.*/hardware-generated.nix
+      )$
