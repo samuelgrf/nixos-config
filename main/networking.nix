@@ -10,7 +10,10 @@
   # Open ports needed for Steam In-Home Streaming.
   # https://support.steampowered.com/kb_article.php?ref=8571-GLVN-8711
   networking.firewall.allowedTCPPorts = [ 27036 ];
-  networking.firewall.allowedUDPPortRanges = [ { from = 27031; to = 27036; } ];
+  networking.firewall.allowedUDPPortRanges = [{
+    from = 27031;
+    to = 27036;
+  }];
 
   # Set Chromium/Chrome configuration.
   programs.chromium = {
@@ -27,8 +30,10 @@
       DefaultSearchProviderName = "DuckDuckGo";
       DefaultSearchProviderKeyword = "duck.com";
       DefaultSearchProviderIconURL = "https://duckduckgo.com/favicon.ico";
-      DefaultSearchProviderSearchURL = "https://duckduckgo.com/?q={searchTerms}";
-      DefaultSearchProviderSuggestURL = "https://duckduckgo.com/ac/?q={searchTerms}&type=list";
+      DefaultSearchProviderSearchURL =
+        "https://duckduckgo.com/?q={searchTerms}";
+      DefaultSearchProviderSuggestURL =
+        "https://duckduckgo.com/ac/?q={searchTerms}&type=list";
       HideWebStoreIcon = true;
       # Results in significant CPU and battery savings.
       IntensiveWakeUpThrottlingEnabled = true;
@@ -68,10 +73,12 @@
       # Bookmarks for installing extensions
       ManagedBookmarks = [
         { toplevel_name = "Extensions"; }
-        { name = "Extensions";
+        {
+          name = "Extensions";
           url = "chrome://extensions";
         }
-        { name = "Chromium Web Store";
+        {
+          name = "Chromium Web Store";
           url = "https://github.com/NeverDecaf/chromium-web-store/releases";
         }
       ] ++ lib.mkWebstoreBookmarks {
@@ -85,10 +92,8 @@
       };
 
       # MS Teams
-      CookiesAllowedForUrls = [
-        "assignments.onenote.com"
-        "login.microsoftonline.com"
-      ];
+      CookiesAllowedForUrls =
+        [ "assignments.onenote.com" "login.microsoftonline.com" ];
     };
   };
 }

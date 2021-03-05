@@ -37,7 +37,8 @@
         "PageSize" = "A3";
         "ColorModel" = "RGB";
         "MediaType" = "Plain";
-        "OutputMode" = "Normal"; # Quality, can be "Normal", "FastDraft", "Best" or "Photo".
+        "OutputMode" =
+          "Normal"; # Quality, can be "Normal", "FastDraft", "Best" or "Photo".
         "InputSlot" = "Upper"; # Scanning?
         "Duplex" = "None";
       };

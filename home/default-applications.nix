@@ -58,15 +58,18 @@
       "application/x-ms-application" = "wine-extension-application.desktop";
       "application/x-ms-xbap" = "wine-extension-xbap.desktop";
       "application/x-mswrite" = "wine-extension-wri.desktop";
-      "application/x-wine-extension-appref-ms" = "wine-extension-appref-ms.desktop";
-      "application/x-wine-extension-compositefont" = "wine-extension-compositefont.desktop";
+      "application/x-wine-extension-appref-ms" =
+        "wine-extension-appref-ms.desktop";
+      "application/x-wine-extension-compositefont" =
+        "wine-extension-compositefont.desktop";
       "application/x-wine-extension-crd" = "wine-extension-crd.desktop";
       "application/x-wine-extension-crds" = "wine-extension-crds.desktop";
       "application/x-wine-extension-msp" = "wine-extension-msp.desktop";
       "application/x-wine-extension-vbs" = "wine-extension-vbs.desktop";
       "application/xaml+xml" = "wine-extension-xaml.desktop";
       "image/gif" = "wine-extension-gif.desktop";
-      "image/jpeg" = [ "wine-extension-jfif.desktop" "wine-extension-jpe.desktop" ];
+      "image/jpeg" =
+        [ "wine-extension-jfif.desktop" "wine-extension-jpe.desktop" ];
       "image/png" = "wine-extension-png.desktop";
     };
   };

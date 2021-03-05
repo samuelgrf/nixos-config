@@ -126,11 +126,7 @@
     };
 
     # Set Zsh options.
-    setOptions = [
-      "HIST_FCNTL_LOCK"
-      "HIST_IGNORE_DUPS"
-      "SHARE_HISTORY"
-    ];
+    setOptions = [ "HIST_FCNTL_LOCK" "HIST_IGNORE_DUPS" "SHARE_HISTORY" ];
   };
 
   # Add entries to top of zshrc.

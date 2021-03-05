@@ -22,7 +22,8 @@ stdenv.mkDerivation rec {
   passthru.scriptName = "youtube-quality.lua";
 
   meta = with lib; {
-    description = "mpv script for changing YouTube video quality (ytdl-format) on the fly";
+    description =
+      "mpv script for changing YouTube video quality (ytdl-format) on the fly";
     inherit (src.meta) homepage;
     inherit (mpv-unwrapped.meta) platforms;
     maintainers = with maintainers; [ samuelgrf ];

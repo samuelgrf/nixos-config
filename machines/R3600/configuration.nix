@@ -35,9 +35,8 @@
 
   # Install kernel modules.
   # TODO Remove "unstable." on 21.05.
-  boot.extraModulePackages = with unstable.linuxPackages_zen; [
-    hid-playstation
-  ];
+  boot.extraModulePackages = with unstable.linuxPackages_zen;
+    [ hid-playstation ];
 
 
   ##############################################################################

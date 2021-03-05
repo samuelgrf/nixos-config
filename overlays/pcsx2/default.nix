@@ -1,8 +1,7 @@
 { alsaLib, cmake, fetchFromGitHub, fmt, gcc-unwrapped, gettext, glib, gtk3
 , harfbuzz, lib, libaio, libpcap, libpng, libpulseaudio, libsamplerate, libxml2
 , makeWrapper, perl, pkgconfig, portaudio, SDL2, soundtouch, stdenv, udev
-, wrapGAppsHook, wxGTK, zlib
-}:
+, wrapGAppsHook, wxGTK, zlib }:
 
 stdenv.mkDerivation {
   pname = "pcsx2";

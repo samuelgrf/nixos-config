@@ -23,7 +23,8 @@ stdenv.mkDerivation rec {
 
   meta = with lib; {
     description = "Sony's official HID driver for the PS5 DualSense controller";
-    homepage = "https://patchwork.kernel.org/project/linux-input/list/?series=429573";
+    homepage =
+      "https://patchwork.kernel.org/project/linux-input/list/?series=429573";
     license = licenses.gpl2;
     platforms = platforms.linux;
     maintainers = with maintainers; [ samuelgrf ];

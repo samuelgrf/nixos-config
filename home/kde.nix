@@ -5,15 +5,17 @@
   programs.kde = {
     enable = true;
     config = let
-      wallpaper = "file:///run/current-system/sw/share/wallpapers/nineish-dark-gray-2020-07-02/contents/images/nix-wallpaper-nineish-dark-gray.png";
+      wallpaper =
+        "file:///run/current-system/sw/share/wallpapers/nineish-dark-gray-2020-07-02/contents/images/nix-wallpaper-nineish-dark-gray.png";
     in {
 
       # Set desktop wallpaper
-      "plasma-org.kde.plasma.desktop-appletsrc".
-        Containments."1".Wallpaper."org.kde.image".General.Image = wallpaper;
+      "plasma-org.kde.plasma.desktop-appletsrc".Containments."1".Wallpaper."org.kde.image".General.Image =
+        wallpaper;
 
       # Set lockscreen wallpaper
-      kscreenlockerrc.Greeter.Wallpaper."org.kde.image".General.Image = wallpaper;
+      kscreenlockerrc.Greeter.Wallpaper."org.kde.image".General.Image =
+        wallpaper;
 
       # Konsole configuration
       konsolerc.KonsoleWindow.ShowMenuBarByDefault = false;
@@ -70,8 +72,8 @@
       katerc."KTextEditor Renderer".Schema = "KDE";
 
       # Dolphin: Show hidden files
-      "$HOME/.local/share/dolphin/view_properties/global/.directory".
-        Settings.HiddenFilesShown = true;
+      "$HOME/.local/share/dolphin/view_properties/global/.directory".Settings.HiddenFilesShown =
+        true;
 
       # Ark: Open destination folder after extracting
       arkrc.Extraction.openDestinationFolderAfterExtraction = true;
@@ -90,18 +92,24 @@
       # Keyboard shortcuts
       kglobalshortcutsrc = {
         kwin = {
-          "Switch One Desktop to the Left" = "Meta+A,Meta+Ctrl+Left,Switch One Desktop to the Left";
-          "Switch One Desktop to the Right" = "Meta+S,Meta+Ctrl+Right,Switch One Desktop to the Right";
+          "Switch One Desktop to the Left" =
+            "Meta+A,Meta+Ctrl+Left,Switch One Desktop to the Left";
+          "Switch One Desktop to the Right" =
+            "Meta+S,Meta+Ctrl+Right,Switch One Desktop to the Right";
           "stop current activity" = ",Meta+S,Stop Current Activity";
           "Window Minimize" = "Meta+Down,Meta+PgDown,Minimize Window";
-          "Window Quick Tile Bottom" = ",Meta+Down,Quick Tile Window to the Bottom";
+          "Window Quick Tile Bottom" =
+            ",Meta+Down,Quick Tile Window to the Bottom";
           "Window Maximize" = "Meta+Up,Meta+PgUp,Maximize Window";
           "Window Quick Tile Top" = ",Meta+Up,Quick Tile Window to the Top";
-          "Window One Desktop to the Left" = "Meta+Shift+A,none,Window One Desktop to the Left";
-          "Window One Desktop to the Right" = "Meta+Shift+S,none,Window One Desktop to the Right";
+          "Window One Desktop to the Left" =
+            "Meta+Shift+A,none,Window One Desktop to the Left";
+          "Window One Desktop to the Right" =
+            "Meta+Shift+S,none,Window One Desktop to the Right";
         };
         kded5."Show System Activity" = ",Ctrl+Esc,Show System Activity";
-        khotkeys."{f3242e9b-1c88-455f-be32-f9d50105551a}" = "Ctrl+Esc,none,Launch KSysGuard";
+        khotkeys."{f3242e9b-1c88-455f-be32-f9d50105551a}" =
+          "Ctrl+Esc,none,Launch KSysGuard";
       };
       khotkeysrc = {
         Data.DataCount = 4;
@@ -130,8 +138,8 @@
       # Disable animations
       kdeglobals.KDE.AnimationDurationFactor = 0;
       "gtk-3.0/settings.ini".Settings.gtk-enable-animations = 0;
-      "glib-2.0/settings/keyfile".
-        "org/gnome/desktop/interface".enable-animations = false;
+      "glib-2.0/settings/keyfile"."org/gnome/desktop/interface".enable-animations =
+        false;
 
       # Use OpenGL 3 rendering backend
       kwinrc.Compositing.GLCore = true;

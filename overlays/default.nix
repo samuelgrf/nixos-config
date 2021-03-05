@@ -24,10 +24,12 @@ final: prev: {
       # https://bugs.chromium.org/p/chromium/issues/detail?id=1087109
       # or https://github.com/NixOS/nixpkgs/issues/89512
       # is resolved.
-      "$([ $HOSTNAME = HPx ] && printf %s '${toString [
-        "--enable-accelerated-video-decode"
-        "--force-device-scale-factor=1"
-      ]}')"
+      "$([ $HOSTNAME = HPx ] && printf %s '${
+        toString [
+          "--enable-accelerated-video-decode"
+          "--force-device-scale-factor=1"
+        ]
+      }')"
     ];
   };
 
@@ -37,7 +39,8 @@ final: prev: {
     kwin = prev.plasma5.kwin.overrideAttrs (oldAttrs: {
       patches = (oldAttrs.patches or [ ]) ++ [
         (prev.fetchpatch {
-          url = "https://tildearrow.org/storage/kwin-lowlatency/kwin-lowlatency-5.18.5-3.patch";
+          url =
+            "https://tildearrow.org/storage/kwin-lowlatency/kwin-lowlatency-5.18.5-3.patch";
           sha256 = "sha256-HaHw7CDayhtlTA8qs8maUsz4qjHTVUsYaFg9IFxjGhM=";
         })
       ];
@@ -47,8 +50,8 @@ final: prev: {
   amdvlkUnstable = prev.callPackage
     "${flakes.nixpkgs-unstable}/pkgs/development/libraries/amdvlk" { };
 
-  mesaUnstable = with prev; callPackage
-    "${flakes.nixpkgs-unstable}/pkgs/development/libraries/mesa" {
+  mesaUnstable = with prev;
+    callPackage "${flakes.nixpkgs-unstable}/pkgs/development/libraries/mesa" {
       llvmPackages = llvmPackages_latest;
       inherit (darwin.apple_sdk.frameworks) OpenGL;
       inherit (darwin.apple_sdk.libs) Xplugin;
@@ -56,17 +59,16 @@ final: prev: {
 
   # TODO Remove on 21.05.
   # linux_zen: Add HID driver for the PS5 DualSense controller
-  linuxPackages_zen = with prev; linuxPackages_zen // {
-    hid-playstation = callPackage ./hid-playstation {
-      inherit (linuxPackages_zen) kernel stdenv;
+  linuxPackages_zen = with prev;
+    linuxPackages_zen // {
+      hid-playstation = callPackage ./hid-playstation {
+        inherit (linuxPackages_zen) kernel stdenv;
+      };
     };
-  };
 
   g810-led = prev.callPackage ./g810-led { };
 
-  libstrangle = prev.callPackage ./libstrangle {
-    stdenv = prev.stdenv_32bit;
-  };
+  libstrangle = prev.callPackage ./libstrangle { stdenv = prev.stdenv_32bit; };
 
   mpv = prev.mpv.override {
     scripts = [
@@ -105,13 +107,10 @@ final: prev: {
   };
 
   # steam: Add cabextract, needed for Protontricks to install MS core fonts.
-  steam = prev.steam.override {
-    extraPkgs = _: [ prev.cabextract ];
-  };
+  steam = prev.steam.override { extraPkgs = _: [ prev.cabextract ]; };
 
   # winetricks: Use Wine staging with both 32-bit and 64-bit support.
-  winetricks = prev.winetricks.override {
-    wine = prev.wineWowPackages.staging;
-  };
+  winetricks =
+    prev.winetricks.override { wine = prev.wineWowPackages.staging; };
 
 }
