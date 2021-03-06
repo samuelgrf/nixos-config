@@ -1,4 +1,4 @@
-{ pkgsi686Linux, unstable, amdvlkUnstable, mesaUnstable, ... }:
+{ amdvlkUnstable, mesaUnstable, pkgsi686Linux, unstable, ... }:
 
 {
   ##############################################################################

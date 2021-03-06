@@ -1,4 +1,4 @@
-{ stdenv, lib, fetchFromGitHub, mpv-unwrapped }:
+{ fetchFromGitHub, lib, mpv-unwrapped, stdenv }:
 
 # Usage: `pkgs.mpv.override { scripts = [ pkgs.mpvScripts.youtube-quality ]; }`
 stdenv.mkDerivation rec {

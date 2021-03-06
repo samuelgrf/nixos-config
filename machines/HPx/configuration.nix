@@ -1,4 +1,4 @@
-{ pkgsi686Linux, unstable, alsaTools, vaapiIntel, ... }:
+{ alsaTools, pkgsi686Linux, unstable, vaapiIntel, ... }:
 
 {
   ##############################################################################

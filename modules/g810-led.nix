@@ -1,4 +1,4 @@
-{ config, lib, g810-led, ... }:
+{ config, g810-led, lib, ... }:
 
 with lib;
 

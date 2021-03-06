@@ -10,7 +10,7 @@
   };
 
   outputs =
-    { self, home-manager, nixpkgs, nixpkgs-master, nixpkgs-unstable }@inputs: {
+    { home-manager, nixpkgs, nixpkgs-master, nixpkgs-unstable, self }@inputs: {
       nixosConfigurations = let
 
         # The NixOS release to be compatible with for stateful data such as databases.

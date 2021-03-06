@@ -1,4 +1,4 @@
-{ config, lib, kdeFrameworks, ... }:
+{ config, kdeFrameworks, lib, ... }:
 
 with lib;
 

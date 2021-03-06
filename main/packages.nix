@@ -1,4 +1,4 @@
-{ config, lib, pkgs, unstable, master, ... }:
+{ config, lib, master, pkgs, unstable, ... }:
 
 {
   # System-wide packages to install.

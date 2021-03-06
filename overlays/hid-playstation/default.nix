@@ -1,4 +1,4 @@
-{ lib, stdenv, fetchgit, kernel }:
+{ fetchgit, kernel, lib, stdenv }:
 
 stdenv.mkDerivation rec {
   pname = "hid-playstation-${kernel.version}";

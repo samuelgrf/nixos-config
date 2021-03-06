@@ -1,4 +1,4 @@
-{ stdenv, lib, fetchFromGitHub, hidapi, profile ? "/etc/g810-led/profile" }:
+{ fetchFromGitHub, hidapi, lib, profile ? "/etc/g810-led/profile", stdenv }:
 
 stdenv.mkDerivation rec {
   pname = "g810-led";
