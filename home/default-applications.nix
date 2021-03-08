@@ -7,6 +7,7 @@
 
     # Applications
     chromium = "chromium-browser.desktop";
+    gimp = "gimp.desktop";
     gwenview = "org.kde.gwenview.desktop";
     kate = "org.kde.kate.desktop";
 
@@ -18,6 +19,7 @@
     svg = "image/svg+xml";
     txt = "text/plain";
     url = "application/x-mswinurl";
+    xcf = "image/x-xcf";
     xhtml = "application/xhtml+xml";
     xml = "application/xml";
 
@@ -37,6 +39,7 @@
       ${svg} = gwenview;
       ${txt} = kate;
       ${url} = kate;
+      ${xcf} = gimp;
       ${xhtml} = chromium;
       ${xml} = kate;
     };
