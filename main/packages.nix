@@ -55,7 +55,7 @@
         libreoffice
         libstrangle
         unstable.lutris # TODO Remove "unstable." on 21.05.
-        lxqt.pavucontrol-qt
+        unstable.lxqt.pavucontrol-qt # TODO Remove "unstable." on 21.05.
         mpv
         multimc
         nixos-artwork.wallpapers.nineish-dark-gray
