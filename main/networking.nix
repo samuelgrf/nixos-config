@@ -24,6 +24,7 @@
     extraOpts = {
 
       # Settings
+      BlockThirdPartyCookies = true;
       DefaultCookiesSetting = 1;
       DefaultNotificationsSetting = 2;
       DefaultSearchProviderEnabled = true;
