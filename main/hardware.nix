@@ -1,4 +1,4 @@
-{ ... }:
+{ pulseaudio-modules-bt, ... }:
 
 {
   # Enable g810-led and set profile.
@@ -21,4 +21,7 @@
   # Enable sound.
   sound.enable = true;
   hardware.pulseaudio.enable = true;
+
+  # Add LDAC, aptX, aptX HD, AAC codec support for Bluetooth playback.
+  hardware.pulseaudio.extraModules = [ pulseaudio-modules-bt ];
 }
