@@ -6,6 +6,8 @@
   services.printing.drivers = [ hplip mfcl2700dncupswrapper ];
 
   # Add printers to CUPS.
+  # TODO Use AirPrint driver when https://github.com/OpenPrinting/cups/pull/126
+  # is in nixpkgs.
   hardware.printers.ensureDefaultPrinter = "Brother_MFC-L2700DW";
   hardware.printers.ensurePrinters = [
     {
