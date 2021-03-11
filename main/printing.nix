@@ -6,6 +6,7 @@
   services.printing.drivers = [ hplip mfcl2700dncupswrapper ];
 
   # Add printers to CUPS.
+  hardware.printers.ensureDefaultPrinter = "Brother_MFC-L2700DW";
   hardware.printers.ensurePrinters = [
     {
       name = "Brother_MFC-L2700DW";
