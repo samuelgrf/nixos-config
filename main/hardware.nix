@@ -23,5 +23,7 @@
   hardware.pulseaudio.enable = true;
 
   # Add LDAC, aptX, aptX HD, AAC codec support for Bluetooth playback.
+  # TODO Remove when https://gitlab.freedesktop.org/pulseaudio/pulseaudio/-/merge_requests/473
+  # is merged and in nixpkgs.
   hardware.pulseaudio.extraModules = [ pulseaudio-modules-bt ];
 }
