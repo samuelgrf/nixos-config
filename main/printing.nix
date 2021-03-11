@@ -20,7 +20,7 @@
         "PageSize" = "A4";
         "BrMediaType" = "PLAIN";
         "Resolution" = "600dpi";
-        "InputSlot" = "TRAY1"; # Scanning?
+        "InputSlot" = "TRAY1";
         "Duplex" = "None";
         "TonerSaveMode" = "OFF";
         # Timeout before going to sleep after printing.
@@ -38,9 +38,9 @@
         "PageSize" = "A3";
         "ColorModel" = "RGB";
         "MediaType" = "Plain";
-        "OutputMode" =
-          "Normal"; # Quality, can be "Normal", "FastDraft", "Best" or "Photo".
-        "InputSlot" = "Upper"; # Scanning?
+        # Quality, can be "Normal", "FastDraft", "Best" or "Photo".
+        "OutputMode" = "Normal";
+        "InputSlot" = "Upper";
         "Duplex" = "None";
       };
     }
