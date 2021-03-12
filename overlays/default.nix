@@ -19,6 +19,7 @@ final: prev: {
       "--disable-search-engine-collection"
       "--enable-features=TabSearch"
       "--extension-mime-request-handling=always-prompt-for-install"
+      "--popups-to-tabs"
       "--show-avatar-button=incognito-and-guest"
 
       # TODO Remove `--force-device-scale-factor=1` when
