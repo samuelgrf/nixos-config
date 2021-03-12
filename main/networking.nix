@@ -36,8 +36,6 @@
       DefaultSearchProviderSuggestURL =
         "https://duckduckgo.com/ac/?q={searchTerms}&type=list";
       HideWebStoreIcon = true;
-      # Results in significant CPU and battery savings.
-      IntensiveWakeUpThrottlingEnabled = true;
 
       # uBlock Origin
       "3rdparty".extensions.cjpalhdlnbpafiamejdnhcphjbkeiagm.adminSettings = let
