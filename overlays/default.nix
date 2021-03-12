@@ -17,6 +17,7 @@ final: prev: {
 
       # Misc
       "--disable-search-engine-collection"
+      "--enable-features=TabSearch"
       "--extension-mime-request-handling=always-prompt-for-install"
       "--show-avatar-button=incognito-and-guest"
 
