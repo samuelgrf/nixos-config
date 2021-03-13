@@ -1,8 +1,11 @@
 { fetchFromGitHub, kernel, lib, stdenv }:
 
-stdenv.mkDerivation {
+let
+  modDestDir =
+    "$out/lib/modules/${kernel.modDirVersion}/kernel/drivers/net/wireless/realtek/rtw88";
+in stdenv.mkDerivation {
   pname = "rtw88";
-  version = "unstable-2020-03-09";
+  version = "unstable-2021-03-09";
 
   src = fetchFromGitHub {
     owner = "lwfinger";
@@ -11,25 +14,27 @@ stdenv.mkDerivation {
     hash = "sha256-mVh47rnoC526D3VkZmDgi39ZPU0n5PZKznzk7HxyoDQ=";
   };
 
-  makeFlags = [
-    "KVER=${kernel.modDirVersion}"
-    "KSRC=${kernel.dev}/lib/modules/${kernel.modDirVersion}/build"
-    "FIRMWAREDIR=\${out}/lib/firmware"
-    "MODDESTDIR=\${out}/lib/modules/${kernel.modDirVersion}/kernel/drivers/net/wireless/realtek/rtw88"
-  ];
+  makeFlags =
+    [ "KSRC=${kernel.dev}/lib/modules/${kernel.modDirVersion}/build" ];
 
-  preInstall = ''
-    mkdir -p "$out/lib/modules/${kernel.modDirVersion}/kernel/drivers/net/wireless/realtek/rtw88"
-    substituteInPlace ./Makefile \
-      --replace depmod \#
+  enableParallelBuilding = true;
+
+  installPhase = ''
+    runHook preInstall
+
+    mkdir -p ${modDestDir}
+    find . -name '*.ko' -exec cp --parents {} ${modDestDir} \;
+    find ${modDestDir} -name '*.ko' -exec xz -f {} \;
+
+    runHook postInstall
   '';
 
   meta = with lib; {
     description = "The newest Realtek rtlwifi codes";
     homepage = "https://github.com/lwfinger/rtw88";
-    # Firmware blobs are installed to "$out/lib/firmware/rtw88".
-    license = licenses.unfreeRedistributableFirmware;
+    license = licenses.gpl2;
     platforms = platforms.linux;
-    maintainers = with maintainers; [ samuelgrf ];
+    maintainers = with maintainers; [ samuelgrf tvorog ];
+    priority = -1;
   };
 }

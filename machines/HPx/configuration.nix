@@ -51,6 +51,7 @@
   boot.extraModulePackages = with unstable.linuxPackages_zen; [
     hid-playstation
     rtw88
+    rtw88-firmware
   ];
 
   # Blacklist sensor kernel modules.
