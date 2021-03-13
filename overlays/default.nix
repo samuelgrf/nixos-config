@@ -66,6 +66,8 @@ final: prev: {
       hid-playstation = callPackage ./hid-playstation {
         inherit (linuxPackages_zen) kernel stdenv;
       };
+      rtw88 =
+        callPackage ./rtw88 { inherit (linuxPackages_zen) kernel stdenv; };
     };
 
   g810-led = prev.callPackage ./g810-led { };
