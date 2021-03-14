@@ -55,7 +55,10 @@
                   inherit flake;
                 }) inputs;
 
-                nixpkgs.overlays = [ (import ./overlays { inherit flakes; }) ];
+                nixpkgs.overlays = [
+                  (import ./overlays { inherit flakes; })
+                  (import ./overlays/aliases.nix)
+                ];
 
                 system = { inherit stateVersion; };
 

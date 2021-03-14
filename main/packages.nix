@@ -42,24 +42,24 @@
       X = [
         anki
         appimage-run
-        ark
         caffeine-ng
         unstable.ghidra-bin # TODO Remove "unstable." on 21.05.
         gimp
-        gwenview
         imagemagick
-        kate
-        kdialog
+        kdeApplications.ark
+        kdeApplications.gwenview
+        kdeApplications.kate
+        kdeApplications.kdialog
+        kdeApplications.okular
         keepassxc
-        kwin-dynamic-workspaces
         libreoffice
+        libsForQt5.kwin-dynamic-workspaces # TODO Get from plasma5Packages on 21.05.
         libstrangle
         unstable.lutris # TODO Remove "unstable." on 21.05.
         unstable.lxqt.pavucontrol-qt # TODO Remove "unstable." on 21.05.
         mpv
         multimc
         nixos-artwork.wallpapers.nineish-dark-gray
-        okular
         unstable.pcsx2
         protontricks
         unstable.python3Packages.adb-enhanced # TODO Remove "unstable." on 21.05.
@@ -91,6 +91,9 @@
 
   # Don't install optional default packages.
   environment.defaultPackages = [ ];
+
+  # Don't allow package aliases.
+  nixpkgs.config.allowAliases = false;
 
   # Install ADB and fastboot.
   programs.adb.enable = true;
