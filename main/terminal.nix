@@ -57,6 +57,7 @@
     shellAliases = {
 
       # Nix & NixOS
+      c = "cd $(dirname $(readlink -m /etc/nixos/flake.nix))";
       n = "nix";
       nb = "nix build --print-build-logs -v";
       nbd = "nix build --dry-run -v";
@@ -77,10 +78,8 @@
       nseu = "nix search nixpkgs-unstable";
       nsr = "nix-store --gc --print-roots | cut -f 1 -d ' ' | grep /result$";
       nsrr = "rm -v $(nsr)";
-      nu = ''
-        cd $(dirname $(readlink -m /etc/nixos/flake.nix))
-        nix flake update --commit-lock-file\
-      '';
+      nu = "c && nix flake update --commit-lock-file";
+      nui = "c && nix flake lock --commit-lock-file --update-input";
       nub = "nu && sudo nixos-rebuild -v boot";
       nubu = "nu && sudo nixos-rebuild -v build";
       nv = "nixos-version";
