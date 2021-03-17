@@ -1,4 +1,4 @@
-{ config, flakes, lib, nix-index, zsh, zsh-powerlevel10k, ... }:
+{ flakes, lib, nix-index, zsh, zsh-powerlevel10k, ... }:
 
 {
   # Use X keyboard configuration on console.
@@ -16,7 +16,7 @@
     syntaxHighlighting.enable = true;
 
     # Add entries to zshrc.
-    interactiveShellInit = with config.programs.zsh.shellAliases; ''
+    interactiveShellInit = ''
       # Setup Powerlevel10K theme.
       source ${zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
       source ${./p10k.zsh}
@@ -28,14 +28,19 @@
       export LESSHISTFILE=/dev/null
 
       # Define Nix & NixOS functions.
+      c () { cd $(dirname $(readlink -m /etc/nixos/flake.nix)) };
       nrs () { sudo nixos-rebuild -v "$@" switch && exec zsh }
       nrt () { sudo nixos-rebuild -v "$@" test && exec zsh }
+      nsd () { nix show-derivation "$@" | bat -l nix }
       nsh () { NIXPKGS_ALLOW_UNFREE=1 nix shell --impure nixpkgs#"$@" }
       nshm () { NIXPKGS_ALLOW_UNFREE=1 nix shell --impure github:NixOS/nixpkgs#"$@" }
       nshu () { NIXPKGS_ALLOW_UNFREE=1 nix shell --impure nixpkgs-unstable#"$@" }
-      nsd () { nix show-derivation "$@" | bat -l nix }
-      nus () { ${nu} && sudo nixos-rebuild -v "$@" switch && exec zsh }
-      nut () { ${nu} && sudo nixos-rebuild -v "$@" test && exec zsh }
+      nu () { c && nix flake update --commit-lock-file }
+      nub () { nu && sudo nixos-rebuild -v boot }
+      nubu () { nu && sudo nixos-rebuild -v build }
+      nui () { c && nix flake lock --commit-lock-file --update-input }
+      nus () { nu && sudo nixos-rebuild -v "$@" switch && exec zsh }
+      nut () { nu && sudo nixos-rebuild -v "$@" test && exec zsh }
       nw () { readlink "$(where "$@")" }
       run () { NIXPKGS_ALLOW_UNFREE=1 nix run --impure nixpkgs#"$@" }
       runm () { NIXPKGS_ALLOW_UNFREE=1 nix run --impure github:NixOS/nixpkgs#"$@" }
@@ -57,7 +62,6 @@
     shellAliases = {
 
       # Nix & NixOS
-      c = "cd $(dirname $(readlink -m /etc/nixos/flake.nix))";
       n = "nix";
       nb = "nix build --print-build-logs -v";
       nbd = "nix build --dry-run -v";
@@ -78,10 +82,6 @@
       nseu = "nix search nixpkgs-unstable";
       nsr = "nix-store --gc --print-roots | cut -f 1 -d ' ' | grep /result$";
       nsrr = "rm -v $(nsr)";
-      nu = "c && nix flake update --commit-lock-file";
-      nui = "c && nix flake lock --commit-lock-file --update-input";
-      nub = "nu && sudo nixos-rebuild -v boot";
-      nubu = "nu && sudo nixos-rebuild -v build";
       nv = "nixos-version";
       nvr = "nixos-version --revision";
 
