@@ -1,32 +1,38 @@
-{ fetchFromGitLab, lib, libGL, libX11, stdenv }:
+_: prev: {
 
-stdenv.mkDerivation rec {
-  pname = "libstrangle";
-  version = "0.1.1";
+  libstrangle = prev.callPackage (
 
-  buildInputs = [ libGL libX11 ];
+    { fetchFromGitLab, lib, libGL, libX11, stdenv_32bit }:
 
-  src = fetchFromGitLab {
-    owner = "torkel104";
-    repo = pname;
-    rev = version;
-    sha256 = "135icr544w5ynlxfnxqgjn794bsm9i703rh9jfnracjb7jgnha4w";
-  };
+    stdenv_32bit.mkDerivation rec {
+      pname = "libstrangle";
+      version = "0.1.1";
 
-  makeFlags = [ "prefix=" "DESTDIR=$(out)" ];
+      buildInputs = [ libGL libX11 ];
 
-  patches = [ ./nixos.patch ];
+      src = fetchFromGitLab {
+        owner = "torkel104";
+        repo = pname;
+        rev = version;
+        sha256 = "135icr544w5ynlxfnxqgjn794bsm9i703rh9jfnracjb7jgnha4w";
+      };
 
-  postPatch = ''
-    substituteAllInPlace src/strangle.sh
-    substituteAllInPlace src/stranglevk.sh
-  '';
+      makeFlags = [ "prefix=" "DESTDIR=$(out)" ];
 
-  meta = with lib; {
-    description = "Frame rate limiter for Linux/OpenGL";
-    inherit (src.meta) homepage;
-    license = licenses.gpl3;
-    platforms = [ "x86_64-linux" ];
-    maintainers = with maintainers; [ aske ];
-  };
+      patches = [ ./nixos.patch ];
+
+      postPatch = ''
+        substituteAllInPlace src/strangle.sh
+        substituteAllInPlace src/stranglevk.sh
+      '';
+
+      meta = with lib; {
+        description = "Frame rate limiter for Linux/OpenGL";
+        inherit (src.meta) homepage;
+        license = licenses.gpl3;
+        platforms = [ "x86_64-linux" ];
+        maintainers = with maintainers; [ aske ];
+      };
+    }) { };
+
 }
