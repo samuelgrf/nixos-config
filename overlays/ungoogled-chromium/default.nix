@@ -25,7 +25,7 @@ _: prev: {
       # is resolved.
       "$([ $HOSTNAME = HPx ] && printf %s '${
         toString [
-          "--enable-accelerated-video-decode"
+          "--enable-features=VaapiVideoDecoder"
           "--force-device-scale-factor=1"
         ]
       }')"
