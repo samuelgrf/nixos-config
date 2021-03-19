@@ -5,13 +5,13 @@ let
     "$out/lib/modules/${kernel.modDirVersion}/kernel/drivers/net/wireless/realtek/rtw88";
 in stdenv.mkDerivation {
   pname = "rtw88";
-  version = "unstable-2021-03-09";
+  version = "unstable-2021-03-19";
 
   src = fetchFromGitHub {
     owner = "lwfinger";
     repo = "rtw88";
-    rev = "ac0f6cb850962937b21a47ede9b7377113fe6186";
-    hash = "sha256-mVh47rnoC526D3VkZmDgi39ZPU0n5PZKznzk7HxyoDQ=";
+    rev = "ca416103d04fcb4a7ed01f09779f17601faf58c0";
+    hash = "sha256-R9MquLfKqSnESWdMfXXnHhpjrUZXo8+njkiy+xaAz9Q=";
   };
 
   makeFlags =
