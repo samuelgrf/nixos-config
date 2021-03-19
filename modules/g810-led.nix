@@ -4,6 +4,7 @@ with lib;
 
 let cfg = config.hardware.g810-led;
 in {
+
   options.hardware.g810-led = {
     enable = mkOption {
       type = types.bool;

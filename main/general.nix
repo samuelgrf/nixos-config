@@ -1,6 +1,5 @@
-{ nixUnstable, ... }:
+{ nixUnstable, ... }: {
 
-{
   # Automatically optimize the Nix store.
   nix.autoOptimiseStore = true;
 
@@ -27,4 +26,5 @@
     xkbVariant = "altgr-intl";
     xkbOptions = "caps:escape";
   };
+
 }

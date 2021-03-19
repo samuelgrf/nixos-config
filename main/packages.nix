@@ -1,6 +1,5 @@
-{ config, lib, pkgs, unstable, ... }:
+{ config, lib, pkgs, unstable, ... }: {
 
-{
   # System-wide packages to install.
   environment.systemPackages = with pkgs;
     let
@@ -97,4 +96,5 @@
 
   # Install ADB and fastboot.
   programs.adb.enable = true;
+
 }

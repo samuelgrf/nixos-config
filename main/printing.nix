@@ -1,6 +1,5 @@
-{ hplip, mfcl2700dncupswrapper, ... }:
+{ hplip, mfcl2700dncupswrapper, ... }: {
 
-{
   # Setup CUPS for printing documents.
   services.printing.enable = true;
   services.printing.drivers = [ hplip mfcl2700dncupswrapper ];
@@ -47,4 +46,5 @@
       };
     }
   ];
+
 }

@@ -18,6 +18,7 @@ let
 
   commandString = concatStrings commandList;
 in {
+
   options.programs.kde = {
     enable = mkEnableOption "KDE";
 
@@ -33,4 +34,5 @@ in {
     home.activation.kdeConfig =
       hm.dag.entryAfter [ "writeBoundary" ] commandString;
   };
+
 }

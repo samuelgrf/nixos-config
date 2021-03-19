@@ -1,6 +1,5 @@
-{ alsaTools, pkgsi686Linux, unstable, vaapiIntel, ... }:
+{ alsaTools, pkgsi686Linux, unstable, vaapiIntel, ... }: {
 
-{
   ##############################################################################
   ## General
   ##############################################################################
@@ -98,4 +97,5 @@
 
   # Configure lm_sensors.
   environment.etc."sysconfig/lm_sensors".text = "HWMON_MODULES=coretemp";
+
 }

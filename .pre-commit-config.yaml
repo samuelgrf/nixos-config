@@ -19,7 +19,7 @@ repos:
     description: Analyze Nix code with nix-linter.
     entry: >
       nix shell nixpkgs#nix-linter --command
-        nix-linter -W BetaReduction -W UnneededAntiquote
+        nix-linter -W BetaReduction -W EmptyVariadicParamSet -W UnneededAntiquote
     language: system
     files: \.nix$
     exclude: |

@@ -1,6 +1,5 @@
-{ ... }:
-
 {
+
   # Set KDE configuration.
   programs.kde = {
     enable = true;
@@ -151,4 +150,5 @@
       touchpadxlibinputrc."SYNA328B:00 06CB:CD50 Touchpad".naturalScroll = true;
     };
   };
+
 }

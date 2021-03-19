@@ -1,6 +1,5 @@
-{ pulseaudio-modules-bt, ... }:
+{ pulseaudio-modules-bt, ... }: {
 
-{
   # Enable g810-led and set profile.
   hardware.g810-led.enable = true;
   hardware.g810-led.profile = builtins.toFile "g810-led-profile" ''
@@ -26,4 +25,5 @@
   # TODO Remove when https://gitlab.freedesktop.org/pulseaudio/pulseaudio/-/merge_requests/473
   # is merged and in nixpkgs.
   hardware.pulseaudio.extraModules = [ pulseaudio-modules-bt ];
+
 }

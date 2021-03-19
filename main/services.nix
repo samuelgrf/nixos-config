@@ -1,6 +1,5 @@
-{ ... }:
-
 {
+
   # Enable the KDE Plasma desktop environment.
   services.xserver.desktopManager.plasma5.enable = true;
   services.xserver.displayManager.sddm.enable = true;
@@ -24,4 +23,5 @@
 
   # Enable GnuPG agent.
   programs.gnupg.agent.enable = true;
+
 }

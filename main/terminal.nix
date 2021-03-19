@@ -1,6 +1,5 @@
-{ flakes, lib, nix-index, zsh, zsh-powerlevel10k, ... }:
+{ flakes, lib, nix-index, zsh, zsh-powerlevel10k, ... }: {
 
-{
   # Use X keyboard configuration on console.
   console.useXkbConfig = true;
 
@@ -141,4 +140,5 @@
 
   # Disable the default `command-not-found` script (no flake support).
   programs.command-not-found.enable = false;
+
 }

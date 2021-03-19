@@ -1,6 +1,5 @@
-{ ... }:
-
 {
+
   # Disable GUI password prompt when using SSH.
   programs.ssh.askPassword = "";
 
@@ -9,4 +8,5 @@
 
   # Wipe /tmp on boot.
   boot.cleanTmpDir = true;
+
 }

@@ -1,6 +1,5 @@
-{ lib, ... }:
+{ lib, ... }: {
 
-{
   # Enable NetworkManager.
   networking.networkmanager.enable = true;
 
@@ -95,4 +94,5 @@
         [ "assignments.onenote.com" "login.microsoftonline.com" ];
     };
   };
+
 }

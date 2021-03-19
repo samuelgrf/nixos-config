@@ -1,6 +1,5 @@
-{ amdvlkUnstable, mesaUnstable, pkgsi686Linux, unstable, ... }:
+{ amdvlkUnstable, mesaUnstable, pkgsi686Linux, unstable, ... }: {
 
-{
   ##############################################################################
   ## General
   ##############################################################################
@@ -82,4 +81,5 @@
 
   # Configure lm_sensors.
   environment.etc."sysconfig/lm_sensors".text = "HWMON_MODULES=nct6775";
+
 }

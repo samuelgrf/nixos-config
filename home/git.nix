@@ -1,6 +1,5 @@
-{ ... }:
-
 {
+
   # Set Git configuration.
   programs.git = {
     enable = true;
@@ -18,4 +17,5 @@
       url."ssh://git@gitlab.com/".pushInsteadOf = "https://gitlab.com/";
     };
   };
+
 }

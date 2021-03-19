@@ -11,4 +11,5 @@ with prev; {
     rtw88 = callPackage ./rtw88 { inherit (linuxPackages_zen) kernel stdenv; };
     rtw88-firmware = callPackage ./rtw88/firmware.nix { };
   };
+
 }
