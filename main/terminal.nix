@@ -27,17 +27,12 @@
       export LESSHISTFILE=/dev/null
 
       # Define Nix & NixOS functions.
-      c () { cd $(dirname $(readlink -m /etc/nixos/flake.nix)) };
       nrs () { sudo nixos-rebuild -v "$@" switch && exec zsh }
       nrt () { sudo nixos-rebuild -v "$@" test && exec zsh }
       nsd () { nix show-derivation "$@" | bat -l nix }
       nsh () { NIXPKGS_ALLOW_UNFREE=1 nix shell --impure nixpkgs#"$@" }
       nshm () { NIXPKGS_ALLOW_UNFREE=1 nix shell --impure github:NixOS/nixpkgs#"$@" }
       nshu () { NIXPKGS_ALLOW_UNFREE=1 nix shell --impure nixpkgs-unstable#"$@" }
-      nu () { c && nix flake update --commit-lock-file }
-      nub () { nu && sudo nixos-rebuild -v boot }
-      nubu () { nu && sudo nixos-rebuild -v build }
-      nui () { c && nix flake lock --commit-lock-file --update-input }
       nus () { nu && sudo nixos-rebuild -v "$@" switch && exec zsh }
       nut () { nu && sudo nixos-rebuild -v "$@" test && exec zsh }
       nw () { readlink "$(where "$@")" }
@@ -58,9 +53,10 @@
     '';
 
     # Set shell aliases.
-    shellAliases = {
+    shellAliases = rec {
 
       # Nix & NixOS
+      c = "cd $(dirname $(readlink -m /etc/nixos/flake.nix))";
       n = "nix";
       nb = "nix build --print-build-logs -v";
       nbd = "nix build --dry-run -v";
@@ -81,6 +77,10 @@
       nseu = "nix search nixpkgs-unstable";
       nsr = "nix-store --gc --print-roots | cut -f 1 -d ' ' | grep /result$";
       nsrr = "rm -v $(nsr)";
+      nu = "${c} && nix flake update --commit-lock-file";
+      nub = "${nu} && sudo nixos-rebuild -v boot";
+      nubu = "${nu} && sudo nixos-rebuild -v build";
+      nui = "${c} && nix flake lock --commit-lock-file --update-input";
       nv = "nixos-version";
       nvr = "nixos-version --revision";
 
