@@ -1,20 +1,17 @@
-{
+{ nixos-artwork, ... }: {
 
   # Set KDE configuration.
   programs.kde = {
     enable = true;
-    config = let
-      wallpaper =
-        "file:///run/current-system/sw/share/wallpapers/nineish-dark-gray-2020-07-02/contents/images/nix-wallpaper-nineish-dark-gray.png";
-    in {
+    config = {
 
       # Set desktop wallpaper
       "plasma-org.kde.plasma.desktop-appletsrc".Containments."1".Wallpaper."org.kde.image".General.Image =
-        wallpaper;
+        "file://${nixos-artwork.wallpapers.nineish-dark-gray}/share/backgrounds/nixos/nix-wallpaper-nineish-dark-gray.png";
 
       # Set lockscreen wallpaper
       kscreenlockerrc.Greeter.Wallpaper."org.kde.image".General.Image =
-        wallpaper;
+        "file://${nixos-artwork.wallpapers.nineish-dark-gray}/share/backgrounds/nixos/nix-wallpaper-nineish-dark-gray.png";
 
       # Konsole configuration
       konsolerc.KonsoleWindow.ShowMenuBarByDefault = false;

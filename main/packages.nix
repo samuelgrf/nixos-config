@@ -58,7 +58,6 @@
         unstable.lxqt.pavucontrol-qt # TODO Remove "unstable." on 21.05.
         mpv
         multimc
-        nixos-artwork.wallpapers.nineish-dark-gray
         unstable.pcsx2
         protontricks
         unstable.python3Packages.adb-enhanced # TODO Remove "unstable." on 21.05.
