@@ -1,4 +1,4 @@
-{ flakes, lib, nix-index, zsh, zsh-powerlevel10k, ... }: {
+{ flakes, lib, nix-index, vlc, zsh, zsh-powerlevel10k, ... }: {
 
   # Use X keyboard configuration on console.
   console.useXkbConfig = true;
@@ -106,6 +106,7 @@
       msg = "kdialog --msgbox";
       o = "xdg-open";
       qr = "qrencode -t UTF8";
+      radio = "${vlc}/bin/vlc ${./radio.m3u}";
       rb = "shutdown -r";
       rbc = "shutdown -c";
       rbn = "shutdown -r now";
@@ -119,6 +120,7 @@
       sdc = "shutdown -c";
       sdn = "shutdown now";
       t = "tree";
+      tv = "${vlc}/bin/vlc ${./tv.m3u}";
       wtr = "curl wttr.in";
       ztr = "sudo zpool trim rpool && watch zpool status -t rpool";
     };
