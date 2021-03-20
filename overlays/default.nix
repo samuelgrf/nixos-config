@@ -8,6 +8,9 @@
   # linuxPackages*.hid-playstation: Init
   (import ./linuxPackages)
 
+  # mpv: Add playlistmanager script.
+  (import ./mpv)
+
   # plasma5.kwin: Apply low latency patch.
   (import ./kwin)
 
