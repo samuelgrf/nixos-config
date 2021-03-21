@@ -6,9 +6,6 @@
   # g810-led: LED controller for Logitech keyboards
   (import ./g810-led)
 
-  # kwin: Apply low latency patch.
-  (import ./kwin)
-
   # TODO Remove on 21.05.
   # linuxPackages_zen: Add kernel modules (hid-playstation & rtw88).
   (import ./linuxPackages_zen)
@@ -30,6 +27,9 @@
 
   # pcsx2: Build with native compiler optimizations.
   (import ./pcsx2)
+
+  # plasma5.kwin: Apply low latency patch.
+  (import ./plasma5/kwin.nix)
 
   # steam: Add cabextract, needed for protontricks to install MS core fonts.
   (import ./steam)
