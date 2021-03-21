@@ -9,9 +9,6 @@
   # kwin: Apply low latency patch.
   (import ./kwin)
 
-  # libstrangle: Frame rate limiter for OpenGL/Vulkan
-  (import ./libstrangle)
-
   # TODO Remove on 21.05.
   # linuxPackages_zen: Add kernel modules (hid-playstation & rtw88).
   (import ./linuxPackages_zen)
