@@ -6,6 +6,10 @@
   # g810-led: LED controller for Logitech keyboards
   (import ./g810-led)
 
+  # TODO Get from unstable when available.
+  # libstrangle: Get from nixpkgs master.
+  (import ./libstrangle { inherit flakes; })
+
   # TODO Remove on 21.05.
   # linuxPackages_zen: Add kernel modules (hid-playstation & rtw88).
   (import ./linuxPackages_zen)
@@ -13,7 +17,7 @@
   # mesaUnstable: Alias for mesa from nixpkgs unstable
   (import ./mesaUnstable { inherit flakes; })
 
-  # mpv: Add custom scripts to mpv.
+  # mpv: Add custom scripts.
   (import ./mpv)
 
   # mpvScripts.sponsorblock: Change default options.

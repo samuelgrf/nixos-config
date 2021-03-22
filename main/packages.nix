@@ -1,4 +1,4 @@
-{ config, lib, master, pkgs, unstable, ... }: {
+{ config, lib, pkgs, unstable, ... }: {
 
   # System-wide packages to install.
   environment.systemPackages = with pkgs;
@@ -53,7 +53,7 @@
         keepassxc
         libreoffice
         libsForQt5.kwin-dynamic-workspaces # TODO Get from plasma5Packages on 21.05.
-        master.libstrangle # TODO Get from unstable when available.
+        libstrangle
         unstable.lutris # TODO Remove "unstable." on 21.05.
         unstable.lxqt.pavucontrol-qt # TODO Remove "unstable." on 21.05.
         mpv
