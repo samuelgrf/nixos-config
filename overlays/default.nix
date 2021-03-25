@@ -6,8 +6,8 @@
   # g810-led: LED controller for Logitech keyboards
   (import ./g810-led)
 
-  # TODO Get from unstable when available.
-  # libstrangle: Get from nixpkgs master.
+  # TODO Remove on 21.05.
+  # libstrangle: Get from nixpkgs unstable.
   (import ./libstrangle { inherit flakes; })
 
   # TODO Remove on 21.05.

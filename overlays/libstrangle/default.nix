@@ -3,7 +3,7 @@
 _: prev: {
 
   libstrangle =
-    prev.callPackage "${flakes.nixpkgs-master}/pkgs/tools/X11/libstrangle" {
+    prev.callPackage "${flakes.nixpkgs-unstable}/pkgs/tools/X11/libstrangle" {
       stdenv = prev.stdenv_32bit;
     };
 
