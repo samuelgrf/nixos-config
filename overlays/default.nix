@@ -35,6 +35,10 @@
   # plasma5.kwin: Apply low latency patch.
   (import ./plasma5/kwin.nix)
 
+  # TODO Remove on 21.05.
+  # plasma5Packages: Alias for packages related to Plasma 5.
+  (import ./plasma5Packages)
+
   # steam: Add cabextract, needed for protontricks to install MS core fonts.
   (import ./steam)
 
