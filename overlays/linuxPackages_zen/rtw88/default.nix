@@ -5,13 +5,13 @@ let
     "$out/lib/modules/${kernel.modDirVersion}/kernel/drivers/net/wireless/realtek/rtw88";
 in stdenv.mkDerivation {
   pname = "rtw88";
-  version = "unstable-2021-03-19";
+  version = "unstable-2021-03-21";
 
   src = fetchFromGitHub {
     owner = "lwfinger";
     repo = "rtw88";
-    rev = "ca416103d04fcb4a7ed01f09779f17601faf58c0";
-    hash = "sha256-R9MquLfKqSnESWdMfXXnHhpjrUZXo8+njkiy+xaAz9Q=";
+    rev = "fb2d8d2be9b33328eaf391926c502b34f6367b01";
+    hash = "sha256-NjB0eooI6j6IDtD572ZkairPdJwc/x+pxITLb7ujoS8=";
   };
 
   makeFlags =
@@ -33,8 +33,9 @@ in stdenv.mkDerivation {
     description = "The newest Realtek rtlwifi codes";
     homepage = "https://github.com/lwfinger/rtw88";
     license = licenses.gpl2;
-    platforms = platforms.linux;
     maintainers = with maintainers; [ samuelgrf tvorog ];
+    platforms = platforms.linux;
+    broken = kernel.kernelOlder "4.14";
     priority = -1;
   };
 }

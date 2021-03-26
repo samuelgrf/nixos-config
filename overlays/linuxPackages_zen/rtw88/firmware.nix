@@ -19,7 +19,7 @@ stdenv.mkDerivation {
     description = "Firmware for the newest Realtek rtlwifi codes";
     homepage = "https://github.com/lwfinger/rtw88";
     license = licenses.unfreeRedistributableFirmware;
-    platforms = platforms.linux;
     maintainers = with maintainers; [ samuelgrf tvorog ];
+    platforms = platforms.linux;
   };
 }
