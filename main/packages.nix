@@ -45,20 +45,20 @@
         unstable.ghidra-bin # TODO Remove "unstable." on 21.05.
         gimp
         imagemagick
-        kdeApplications.ark
-        kdeApplications.gwenview
-        kdeApplications.kate
-        kdeApplications.kdialog
-        kdeApplications.okular
         keepassxc
         libreoffice
-        libsForQt5.kwin-dynamic-workspaces # TODO Get from plasma5Packages on 21.05.
         libstrangle
         unstable.lutris # TODO Remove "unstable." on 21.05.
         unstable.lxqt.pavucontrol-qt # TODO Remove "unstable." on 21.05.
         mpv
         multimc
         unstable.pcsx2
+        plasma5Packages.ark
+        plasma5Packages.gwenview
+        plasma5Packages.kate
+        plasma5Packages.kdialog
+        plasma5Packages.kwin-dynamic-workspaces
+        plasma5Packages.okular
         protontricks
         unstable.python3Packages.adb-enhanced # TODO Remove "unstable." on 21.05.
         simple-scan
