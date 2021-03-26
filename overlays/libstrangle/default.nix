@@ -1,10 +1,11 @@
 { flakes }:
 
-_: prev: {
+_: prev:
+with prev; {
 
   libstrangle =
-    prev.callPackage "${flakes.nixpkgs-unstable}/pkgs/tools/X11/libstrangle" {
-      stdenv = prev.stdenv_32bit;
+    callPackage "${flakes.nixpkgs-unstable}/pkgs/tools/X11/libstrangle" {
+      stdenv = stdenv_32bit;
     };
 
 }

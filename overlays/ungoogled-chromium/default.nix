@@ -1,6 +1,7 @@
-_: prev: {
+_: prev:
+with prev; {
 
-  ungoogled-chromium = prev.ungoogled-chromium.override {
+  ungoogled-chromium = ungoogled-chromium.override {
     commandLineArgs = toString [
       # Performance
       "--enable-gpu-rasterization"

@@ -1,6 +1,7 @@
-_: prev: {
+_: prev:
+with prev; {
 
-  g810-led = prev.callPackage (
+  g810-led = callPackage (
 
     { fetchFromGitHub, hidapi, lib, profile ? "/etc/g810-led/profile", stdenv }:
 

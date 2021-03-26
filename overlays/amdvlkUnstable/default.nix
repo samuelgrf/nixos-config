@@ -1,8 +1,10 @@
 { flakes }:
 
-_: prev: {
+_: prev:
+with prev; {
 
-  amdvlkUnstable = prev.callPackage
-    "${flakes.nixpkgs-unstable}/pkgs/development/libraries/amdvlk" { };
+  amdvlkUnstable =
+    callPackage "${flakes.nixpkgs-unstable}/pkgs/development/libraries/amdvlk"
+    { };
 
 }

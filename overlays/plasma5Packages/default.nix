@@ -1,5 +1,6 @@
-_: prev: {
+_: prev:
+with prev; {
 
-  plasma5Packages = prev.kdeApplications // prev.libsForQt5;
+  plasma5Packages = kdeApplications // libsForQt5;
 
 }

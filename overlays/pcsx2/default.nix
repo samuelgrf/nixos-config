@@ -1,12 +1,10 @@
-_: prev: {
+_: prev:
+with prev; {
 
-  pcsx2 = (prev.pcsx2.override {
-    stdenv = (prev.impureUseNativeOptimizations prev.stdenv);
-  })
+  pcsx2 = (pcsx2.override { stdenv = (impureUseNativeOptimizations stdenv); })
 
     .overrideAttrs (oldAttrs: {
-      cmakeFlags =
-        prev.lib.remove "-DDISABLE_ADVANCE_SIMD=TRUE" oldAttrs.cmakeFlags;
+      cmakeFlags = lib.remove "-DDISABLE_ADVANCE_SIMD=TRUE" oldAttrs.cmakeFlags;
     });
 
 }

@@ -1,8 +1,9 @@
-_: prev: {
+_: prev:
+with prev; {
 
-  mpvScripts = prev.mpvScripts // {
+  mpvScripts = mpvScripts // {
 
-    youtube-quality = prev.callPackage (
+    youtube-quality = callPackage (
 
       { fetchFromGitHub, lib, mpv-unwrapped, stdenv }:
 

@@ -1,6 +1,7 @@
-final: prev: {
+final: prev:
+with prev; {
 
-  mpv = prev.mpv.override {
+  mpv = mpv.override {
     scripts = with final.mpvScripts; [ sponsorblock youtube-quality ];
   };
 

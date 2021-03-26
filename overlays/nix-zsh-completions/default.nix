@@ -1,7 +1,8 @@
-_: prev: {
+_: prev:
+with prev; {
 
-  nix-zsh-completions = prev.nix-zsh-completions.overrideAttrs (_: {
-    src = prev.fetchFromGitHub {
+  nix-zsh-completions = nix-zsh-completions.overrideAttrs (_: {
+    src = fetchFromGitHub {
       owner = "Ma27";
       repo = "nix-zsh-completions";
       rev = "939c48c182e9d018eaea902b1ee9d00a415dba86";

@@ -1,8 +1,9 @@
-_: prev: {
+_: prev:
+with prev; {
 
-  mpvScripts = prev.mpvScripts // {
+  mpvScripts = mpvScripts // {
 
-    sponsorblock = prev.mpvScripts.sponsorblock.overrideAttrs (oldAttrs: {
+    sponsorblock = mpvScripts.sponsorblock.overrideAttrs (oldAttrs: {
       postPatch = (oldAttrs.postPatch or "") + ''
         substituteInPlace sponsorblock.lua \
           --replace 'skip_categories = "sponsor"' \

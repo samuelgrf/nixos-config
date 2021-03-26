@@ -1,5 +1,6 @@
-_: prev: {
+_: prev:
+with prev; {
 
-  steam = prev.steam.override { extraPkgs = _: [ prev.cabextract ]; };
+  steam = steam.override { extraPkgs = _: [ cabextract ]; };
 
 }

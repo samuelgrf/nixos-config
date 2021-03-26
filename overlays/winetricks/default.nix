@@ -1,6 +1,6 @@
-_: prev: {
+_: prev:
+with prev; {
 
-  winetricks =
-    prev.winetricks.override { wine = prev.wineWowPackages.staging; };
+  winetricks = winetricks.override { wine = wineWowPackages.staging; };
 
 }
