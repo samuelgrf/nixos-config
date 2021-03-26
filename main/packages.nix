@@ -15,7 +15,6 @@
         lm_sensors
         lolcat
         lshw
-        unstable.manix # TODO Remove "unstable." on 21.05.
         ncdu
         neofetch
         nix-index
@@ -37,38 +36,40 @@
         wget
         whois
         youtube-dl
-      ];
+      ] ++ (with unstable; [ manix ]);
       X = [
         anki
         appimage-run
         caffeine-ng
-        unstable.ghidra-bin # TODO Remove "unstable." on 21.05.
         gimp
         imagemagick
         keepassxc
         libreoffice
         libstrangle
-        unstable.lutris # TODO Remove "unstable." on 21.05.
-        unstable.lxqt.pavucontrol-qt # TODO Remove "unstable." on 21.05.
         mpv
         multimc
-        unstable.pcsx2
-        plasma5Packages.ark
-        plasma5Packages.gwenview
-        plasma5Packages.kate
-        plasma5Packages.kdialog
-        plasma5Packages.kwin-dynamic-workspaces
-        plasma5Packages.okular
         protontricks
-        unstable.python3Packages.adb-enhanced # TODO Remove "unstable." on 21.05.
         simple-scan
         steam
         steam-run
         ungoogled-chromium
         winetricks
-        wineWowPackages.staging # Comes with both x64 and x86 Wine.
+        wineWowPackages.staging
         xdotool
-      ];
+      ] ++ (with plasma5Packages; [
+        ark
+        gwenview
+        kate
+        kdialog
+        kwin-dynamic-workspaces
+        okular
+      ]) ++ (with unstable; [
+        ghidra-bin
+        lutris
+        lxqt.pavucontrol-qt
+        pcsx2
+        python3Packages.adb-enhanced
+      ]);
       noX = [ ];
     in common ++ (if config.services.xserver.enable then X else noX);
 
