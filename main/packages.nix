@@ -32,6 +32,7 @@
         sysstat
         trash-cli
         tree
+        unrar
         usbutils
         wget
         whois
@@ -86,6 +87,7 @@
       "steam"
       "steam-original"
       "steam-runtime"
+      "unrar"
     ];
 
   # Don't install optional default packages.
