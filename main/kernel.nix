@@ -8,7 +8,7 @@
   boot.kernelModules = [ "i2c-dev" ];
 
   # Enable support for additional filesystems.
-  boot.supportedFilesystems = [ "ntfs" "zfs" ];
+  boot.supportedFilesystems = [ "exfat" "ntfs" "zfs" ];
 
   # Enable zram and use faster lzo compression.
   zramSwap.enable = true;
