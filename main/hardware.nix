@@ -1,12 +1,5 @@
 { pulseaudio-modules-bt, ... }: {
 
-  # Enable g810-led and set profile.
-  hardware.g810-led.enable = true;
-  hardware.g810-led.profile = builtins.toFile "g810-led-profile" ''
-    a ff3000 # Set all keys to orange-red.
-    c # Commit changes.
-  '';
-
   # Enable Steam hardware for additional controller support.
   hardware.steam-hardware.enable = true;
 

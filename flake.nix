@@ -22,7 +22,6 @@
 
         defaultModules = [
           home-manager.nixosModules.home-manager
-          ./modules/g810-led.nix
           ./main/general.nix
           ./main/hardware.nix
           ./main/kernel.nix
