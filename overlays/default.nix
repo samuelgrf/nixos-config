@@ -8,15 +8,6 @@
   # linuxPackages_zen: Add kernel modules (hid-playstation & rtw88).
   (import ./linuxPackages_zen)
 
-  # mpv: Add custom scripts.
-  (import ./mpv)
-
-  # mpvScripts.sponsorblock: Change default options.
-  (import ./mpv/sponsorblock.nix)
-
-  # mpvScripts.youtube-quality: Init
-  (import ./mpv/youtube-quality.nix)
-
   # nix-zsh-completions: Add experimental flake support.
   (import ./nix-zsh-completions)
 
