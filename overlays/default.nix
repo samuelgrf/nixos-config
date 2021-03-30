@@ -8,9 +8,6 @@
   # linuxPackages_zen: Add kernel modules (hid-playstation & rtw88).
   (import ./linuxPackages_zen)
 
-  # pcsx2: Build with native compiler optimizations.
-  (import ./pcsx2)
-
   # plasma5.kwin: Apply low latency patch.
   (import ./kwin)
 
