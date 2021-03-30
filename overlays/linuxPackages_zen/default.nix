@@ -8,9 +8,6 @@ with prev; {
 
     hid-playstation = callPackage ./hid-playstation { };
 
-    rtw88 = callPackage ./rtw88 { };
-    rtw88-firmware = callPackage ./rtw88/firmware.nix { };
-
   };
 
 }
