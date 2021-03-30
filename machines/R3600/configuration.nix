@@ -1,4 +1,4 @@
-{ amdvlk, pkgsi686Linux, unstable, ... }: {
+{ amdvlk, master, pkgsi686Linux, ... }: {
 
   ##############################################################################
   ## General
@@ -34,7 +34,7 @@
 
   # Install kernel modules.
   # TODO Remove "unstable." on 21.05.
-  boot.extraModulePackages = with unstable.linuxPackages_zen;
+  boot.extraModulePackages = with master.linuxPackages_zen;
     [ hid-playstation ];
 
 

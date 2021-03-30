@@ -1,4 +1,4 @@
-{ alsaTools, pkgsi686Linux, unstable, vaapiIntel, ... }: {
+{ alsaTools, master, pkgsi686Linux, vaapiIntel, ... }: {
 
   ##############################################################################
   ## General
@@ -47,10 +47,10 @@
 
   # Install kernel modules.
   # TODO Remove "unstable." on 21.05.
-  boot.extraModulePackages = with unstable.linuxPackages_zen; [
+  boot.extraModulePackages = with master.linuxPackages_zen; [
     hid-playstation
     rtw88
-    rtw88-firmware
+    master.rtw88-firmware
   ];
 
   # Blacklist sensor kernel modules.
