@@ -1,8 +1,5 @@
 { flakes }: [
 
-  # amdvlkUnstable: Alias for amdvlk from nixpkgs unstable
-  (import ./amdvlkUnstable { inherit (flakes) nixpkgs-unstable; })
-
   # g810-led: LED controller for Logitech keyboards
   (import ./g810-led)
 
@@ -13,9 +10,6 @@
   # TODO Remove on 21.05.
   # linuxPackages_zen: Add kernel modules (hid-playstation & rtw88).
   (import ./linuxPackages_zen)
-
-  # mesaUnstable: Alias for mesa from nixpkgs unstable
-  (import ./mesaUnstable { inherit (flakes) nixpkgs-unstable; })
 
   # mpv: Add custom scripts.
   (import ./mpv)
