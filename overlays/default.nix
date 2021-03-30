@@ -8,9 +8,6 @@
   # linuxPackages_zen: Add kernel modules (hid-playstation & rtw88).
   (import ./linuxPackages_zen)
 
-  # nix-zsh-completions: Add experimental flake support.
-  (import ./nix-zsh-completions)
-
   # pcsx2: Build with native compiler optimizations.
   (import ./pcsx2)
 
