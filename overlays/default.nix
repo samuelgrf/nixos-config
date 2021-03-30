@@ -13,7 +13,7 @@
 
   # TODO Remove on 21.05.
   # plasma5Packages: Alias for packages related to Plasma 5.
-  (import ./plasma5Packages)
+  (_: prev: { plasma5Packages = prev.kdeApplications // prev.libsForQt5; })
 
   # ungoogled-chromium: Add command line arguments.
   (import ./ungoogled-chromium)
