@@ -33,7 +33,7 @@
   (import ./pcsx2)
 
   # plasma5.kwin: Apply low latency patch.
-  (import ./plasma5/kwin.nix)
+  (import ./kwin)
 
   # TODO Remove on 21.05.
   # plasma5Packages: Alias for packages related to Plasma 5.
