@@ -21,9 +21,6 @@
   # plasma5Packages: Alias for packages related to Plasma 5.
   (import ./plasma5Packages)
 
-  # steam: Add cabextract, needed for protontricks to install MS core fonts.
-  (import ./steam)
-
   # ungoogled-chromium: Add command line arguments.
   (import ./ungoogled-chromium)
 
