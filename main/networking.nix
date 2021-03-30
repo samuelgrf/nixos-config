@@ -18,7 +18,7 @@
   programs.chromium = {
     enable = true;
 
-    # Enterprise policy list: https://cloud.google.com/docs/chrome-enterprise/policies
+    # Enterprise policy list: https://chromeenterprise.google/policies/
     # chrome://policy shows applied policies and syntax errors.
     extraOpts = {
 
