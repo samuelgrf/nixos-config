@@ -11,7 +11,7 @@
   };
 
   outputs =
-    { home-manager, nixpkgs, nixpkgs-master, nixpkgs-unstable, self }@inputs: {
+    { home-manager, nixpkgs, nixpkgs-master, nixpkgs-unstable, self }@flakes: {
       nixosConfigurations = let
 
         # The NixOS release to be compatible with for stateful data such as databases.
@@ -33,7 +33,7 @@
           ./main/services.nix
           ./main/terminal.nix
 
-          ({ config, flakes, lib, ... }:
+          ({ config, lib, ... }:
             let
               pkgsImport = pkgs:
                 import pkgs {
@@ -42,7 +42,7 @@
             in {
               config = {
                 _module.args = pkgsImport nixpkgs // {
-                  flakes = inputs;
+                  inherit flakes;
                   master = pkgsImport nixpkgs-master;
                   unstable = pkgsImport nixpkgs-unstable;
                 };
@@ -53,7 +53,7 @@
                     inherit id;
                   };
                   inherit flake;
-                }) inputs;
+                }) flakes;
 
                 nixpkgs.overlays = import ./overlays { inherit flakes; };
 
