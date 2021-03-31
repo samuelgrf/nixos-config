@@ -36,9 +36,7 @@
           ({ config, lib, ... }:
             let
               pkgsImport = pkgs:
-                import pkgs {
-                  inherit (config.nixpkgs) config overlays system;
-                };
+                import pkgs (removeAttrs config.nixpkgs [ "localSystem" ]);
             in {
               config = {
                 _module.args = pkgsImport nixpkgs // {
