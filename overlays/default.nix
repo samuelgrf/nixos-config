@@ -5,8 +5,8 @@
   (import ./libstrangle { inherit (flakes) nixpkgs-unstable; })
 
   # TODO Remove on 21.05.
-  # linuxPackages_zen: Add hid-playstation kernel module.
-  (import ./linuxPackages_zen)
+  # linuxPackages*.hid-playstation: Init
+  (import ./linuxPackages)
 
   # plasma5.kwin: Apply low latency patch.
   (import ./kwin)
