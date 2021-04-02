@@ -78,12 +78,7 @@
       kwinrc.Plugins.dynamic_workspacesEnabled = true;
 
       # Enable Night Color
-      kwinrc.NightColor = {
-        Active = true;
-        Mode = "Times";
-        EveningBeginFixed = 1800;
-        MorningBeginFixed = "0600";
-      };
+      kwinrc.NightColor.Active = true;
 
       # Keyboard shortcuts
       kglobalshortcutsrc = {
