@@ -22,16 +22,16 @@
 
         defaultModules = [
           home-manager.nixosModules.home-manager
-          ./main/general.nix
-          ./main/hardware.nix
-          ./main/kernel.nix
-          ./main/misc.nix
-          ./main/networking.nix
-          ./main/packages.nix
-          ./main/printing.nix
-          ./main/scanning.nix
-          ./main/services.nix
-          ./main/terminal.nix
+          main/general.nix
+          main/hardware.nix
+          main/kernel.nix
+          main/misc.nix
+          main/networking.nix
+          main/packages.nix
+          main/printing.nix
+          main/scanning.nix
+          main/services.nix
+          main/terminal.nix
 
           ({ config, lib, ... }:
             let
@@ -63,12 +63,12 @@
                   users.samuel.imports = [
                     { _module.args = pkgsImport nixpkgs; }
                     { home = { inherit stateVersion; }; }
-                    ./home/modules/kde.nix
-                    ./home/default-applications.nix
-                    ./home/git.nix
-                    ./home/kde.nix
-                    ./home/mpv.nix
-                    ./home/proton.nix
+                    home/modules/kde.nix
+                    home/default-applications.nix
+                    home/git.nix
+                    home/kde.nix
+                    home/mpv.nix
+                    home/proton.nix
                   ];
                 };
               };
@@ -80,9 +80,9 @@
           system = "x86_64-linux";
           inherit specialArgs;
           modules = [
-            ./machines/HPx/configuration.nix
-            ./machines/HPx/hardware-generated.nix
-            { home-manager.users.samuel.imports = [ ./machines/HPx/home.nix ]; }
+            machines/HPx/configuration.nix
+            machines/HPx/hardware-generated.nix
+            { home-manager.users.samuel.imports = [ machines/HPx/home.nix ]; }
           ] ++ defaultModules;
         };
 
@@ -90,8 +90,8 @@
           system = "x86_64-linux";
           inherit specialArgs;
           modules = [
-            ./machines/R3600/configuration.nix
-            ./machines/R3600/hardware-generated.nix
+            machines/R3600/configuration.nix
+            machines/R3600/hardware-generated.nix
           ] ++ defaultModules;
         };
       };
