@@ -47,6 +47,7 @@
         keepassxc
         libreoffice
         libstrangle
+        lutris
         mpv
         multimc
         protontricks
@@ -66,7 +67,6 @@
         okular
       ]) ++ (with unstable; [
         ghidra-bin
-        lutris
         lxqt.pavucontrol-qt
         pcsx2
         python3Packages.adb-enhanced
