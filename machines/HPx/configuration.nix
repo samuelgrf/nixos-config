@@ -1,4 +1,4 @@
-{ alsaTools, master, pkgsi686Linux, vaapiIntel, ... }: {
+{ alsaTools, config, pkgsi686Linux, vaapiIntel, ... }: {
 
   ##############################################################################
   ## General
@@ -45,8 +45,7 @@
   ##############################################################################
 
   # Install kernel modules.
-  # TODO Remove "unstable." on 21.05.
-  boot.extraModulePackages = with master.linuxPackages_zen; [
+  boot.extraModulePackages = with config.boot.kernelPackages; [
     hid-playstation
     rtw88
   ];
