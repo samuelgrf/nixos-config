@@ -4,9 +4,6 @@
   # TODO Remove "unstable." on 21.05.
   boot.kernelPackages = unstable.linuxPackages_zen;
 
-  # Load kernel module for ddcutil.
-  boot.kernelModules = [ "i2c-dev" ];
-
   # Enable support for additional filesystems.
   boot.supportedFilesystems = [ "exfat" "ntfs" "zfs" ];
 
