@@ -53,7 +53,7 @@
                   inherit flake;
                 }) flakes;
 
-                nixpkgs.overlays = import ./overlays { inherit flakes; };
+                nixpkgs.overlays = import ./overlays { inherit config flakes; };
 
                 system = { inherit stateVersion; };
 
