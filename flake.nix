@@ -38,39 +38,37 @@
               pkgsImport = pkgs:
                 import pkgs (removeAttrs config.nixpkgs [ "localSystem" ]);
             in {
-              config = {
-                _module.args = pkgsImport nixpkgs // {
-                  inherit flakes;
-                  master = pkgsImport nixpkgs-master;
-                  unstable = pkgsImport nixpkgs-unstable;
+              _module.args = pkgsImport nixpkgs // {
+                inherit flakes;
+                master = pkgsImport nixpkgs-master;
+                unstable = pkgsImport nixpkgs-unstable;
+              };
+
+              nix.registry = lib.mapAttrs (id: flake: {
+                from = {
+                  type = "indirect";
+                  inherit id;
                 };
+                inherit flake;
+              }) flakes;
 
-                nix.registry = lib.mapAttrs (id: flake: {
-                  from = {
-                    type = "indirect";
-                    inherit id;
-                  };
-                  inherit flake;
-                }) flakes;
+              nixpkgs.overlays = import ./overlays { inherit config flakes; };
 
-                nixpkgs.overlays = import ./overlays { inherit config flakes; };
+              system = { inherit stateVersion; };
 
-                system = { inherit stateVersion; };
-
-                home-manager = {
-                  useGlobalPkgs = true;
-                  useUserPackages = true;
-                  users.samuel.imports = [
-                    { _module.args = pkgsImport nixpkgs; }
-                    { home = { inherit stateVersion; }; }
-                    home/modules/kde.nix
-                    home/default-applications.nix
-                    home/git.nix
-                    home/kde.nix
-                    home/mpv.nix
-                    home/proton.nix
-                  ];
-                };
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                users.samuel.imports = [
+                  { _module.args = pkgsImport nixpkgs; }
+                  { home = { inherit stateVersion; }; }
+                  home/modules/kde.nix
+                  home/default-applications.nix
+                  home/git.nix
+                  home/kde.nix
+                  home/mpv.nix
+                  home/proton.nix
+                ];
               };
             })
         ];
