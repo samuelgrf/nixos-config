@@ -33,7 +33,7 @@
           main/services.nix
           main/terminal.nix
 
-          ({ config, lib, ... }:
+          ({ config, ... }:
             let
               pkgsImport = pkgs:
                 import pkgs (removeAttrs config.nixpkgs [ "localSystem" ]);
