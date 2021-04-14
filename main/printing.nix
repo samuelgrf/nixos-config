@@ -22,6 +22,20 @@
       };
     }
     {
+      name = "Brother_HL-3140CW";
+      description = "Brother HL-3140CW";
+      location = "Office Downstairs";
+      deviceUri = "ipp://192.168.178.38/ipp";
+      model = "everywhere";
+      ppdOptions = {
+        PageSize = "A4";
+        InputSlot = "Auto";
+        MediaType = "Stationery";
+        ColorModel = "RGB";
+        cupsPrintQuality = "Normal";
+      };
+    }
+    {
       name = "HP_OfficeJet_Pro_7720";
       description = "HP Officejet Pro 7720";
       location = "Office Downstairs";
