@@ -16,9 +16,28 @@
 
     # Add entries to zshrc.
     interactiveShellInit = ''
-      # Setup Powerlevel10K theme.
+      # Load and configure Powerlevel10k theme.
       source ${zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
-      source ${./p10k.zsh}
+      source ${zsh-powerlevel10k}/share/zsh-powerlevel10k/config/p10k-lean.zsh
+      POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
+        dir                     # current directory
+        vcs                     # git status
+        prompt_char             # prompt symbol
+      )
+      POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
+        status                  # exit code of the last command
+        command_execution_time  # duration of the last command
+        background_jobs         # presence of background jobs
+        context                 # user@hostname
+        vim_shell               # vim shell indicator (:sh)
+        nix_shell               # nix shell indicator
+        time                    # current time
+      )
+      # Use fewer icons.
+      POWERLEVEL9K_DIR_CLASSES=()
+      POWERLEVEL9K_VCS_VISUAL_IDENTIFIER_EXPANSION=
+      POWERLEVEL9K_COMMAND_EXECUTION_TIME_VISUAL_IDENTIFIER_EXPANSION=
+      POWERLEVEL9K_TIME_VISUAL_IDENTIFIER_EXPANSION=
 
       # Load the nix-index `command-not-found` replacement.
       source ${nix-index}/etc/profile.d/command-not-found.sh
