@@ -1,6 +1,6 @@
 {
 
-  # Set mpv configuration.
+  # Configure mpv.
   programs.mpv = {
     enable = true;
     config.keep-open = true; # Keep mpv open after playback is finished.

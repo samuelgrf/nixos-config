@@ -14,7 +14,7 @@
     to = 27036;
   }];
 
-  # Set Chromium/Chrome configuration.
+  # Configure Chromium/Chrome.
   # Command line arguments are set in ../overlays/ungoogled-chromium.
   programs.chromium = {
     enable = true;

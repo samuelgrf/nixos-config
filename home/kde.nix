@@ -1,6 +1,6 @@
 { nixos-artwork, ... }: {
 
-  # Set KDE configuration.
+  # Configure KDE.
   programs.kde = {
     enable = true;
     config = {

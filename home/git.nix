@@ -1,6 +1,6 @@
 {
 
-  # Set Git configuration.
+  # Configure Git.
   programs.git = {
     enable = true;
     userName = "Samuel Gräfenstein";
