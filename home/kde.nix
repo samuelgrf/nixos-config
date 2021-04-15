@@ -5,15 +5,15 @@
     enable = true;
     config = {
 
-      # Set desktop wallpaper
+      # Set desktop wallpaper.
       "plasma-org.kde.plasma.desktop-appletsrc".Containments."1".Wallpaper."org.kde.image".General.Image =
         "file://${nixos-artwork.wallpapers.nineish-dark-gray}/share/backgrounds/nixos/nix-wallpaper-nineish-dark-gray.png";
 
-      # Set lockscreen wallpaper
+      # Set lockscreen wallpaper.
       kscreenlockerrc.Greeter.Wallpaper."org.kde.image".General.Image =
         "file://${nixos-artwork.wallpapers.nineish-dark-gray}/share/backgrounds/nixos/nix-wallpaper-nineish-dark-gray.png";
 
-      # Konsole configuration
+      # Configure Konsole.
       konsolerc.KonsoleWindow.ShowMenuBarByDefault = false;
       konsolerc."Desktop Entry".DefaultProfile = "Profile 1.profile";
       "$HOME/.local/share/konsole/Profile 1.profile" = {
@@ -64,23 +64,23 @@
         ForegroundIntense.Color = "255,255,255";
       };
 
-      # Kate: Use system color scheme
+      # Kate: Use system color scheme.
       katerc."KTextEditor Renderer".Schema = "KDE";
 
-      # Dolphin: Show hidden files
+      # Dolphin: Show hidden files.
       "$HOME/.local/share/dolphin/view_properties/global/.directory".Settings.HiddenFilesShown =
         true;
 
-      # Ark: Open destination folder after extracting
+      # Ark: Open destination folder after extracting.
       arkrc.Extraction.openDestinationFolderAfterExtraction = true;
 
-      # Enable Dynamic Workspaces extension
+      # Enable Dynamic Workspaces extension.
       kwinrc.Plugins.dynamic_workspacesEnabled = true;
 
-      # Enable Night Color
+      # Enable Night Color.
       kwinrc.NightColor.Active = true;
 
-      # Keyboard shortcuts
+      # Set keyboard shortcuts.
       kglobalshortcutsrc = {
         kwin = {
           "Switch One Desktop to the Left" =
@@ -120,25 +120,25 @@
         Data_4Triggers0.Uuid = "{f3242e9b-1c88-455f-be32-f9d50105551a}";
       };
 
-      # Disable lockscreen media controls
+      # Disable lockscreen media controls.
       kscreenlockerrc.Greeter.LnF.General.showMediaControls = false;
 
-      # Remove help button from titlebar
+      # Remove help button from titlebar.
       kwinrc."org.kde.kdecoration2".ButtonsOnRight = "IAX";
 
-      # Disable animations
+      # Disable animations.
       kdeglobals.KDE.AnimationDurationFactor = 0;
       "gtk-3.0/settings.ini".Settings.gtk-enable-animations = 0;
       "glib-2.0/settings/keyfile"."org/gnome/desktop/interface".enable-animations =
         false;
 
-      # Use OpenGL 3 rendering backend
+      # Use OpenGL 3 rendering backend.
       kwinrc.Compositing.GLCore = true;
 
-      # Disable file indexing
+      # Disable file indexing.
       baloofilerc."Basic Settings".Indexing-Enabled = false;
 
-      # Enable natural scrolling on HPx
+      # Enable natural scrolling on HPx.
       touchpadxlibinputrc."SYNA328B:00 06CB:CD50 Touchpad".naturalScroll = true;
     };
   };
