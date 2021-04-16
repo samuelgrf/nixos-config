@@ -74,13 +74,16 @@
         ];
       in {
 
-        HPx = lib.nixosSystem {
+        amethyst = lib.nixosSystem {
           system = "x86_64-linux";
           inherit specialArgs;
           modules = [
-            machines/HPx/configuration.nix
-            machines/HPx/hardware-generated.nix
-            { home-manager.users.samuel.imports = [ machines/HPx/home.nix ]; }
+            machines/amethyst/configuration.nix
+            machines/amethyst/hardware-generated.nix
+            {
+              home-manager.users.samuel.imports =
+                [ machines/amethyst/home.nix ];
+            }
           ] ++ defaultModules;
         };
 

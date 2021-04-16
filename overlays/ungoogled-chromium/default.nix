@@ -14,7 +14,7 @@ with prev; {
 
       # Experimental features
       ("--enable-features=TabSearch"
-        + lib.optionalString (config.networking.hostName == "HPx")
+        + lib.optionalString (config.networking.hostName == "amethyst")
         ",VaapiVideoDecoder")
 
       # Dark mode
@@ -31,7 +31,7 @@ with prev; {
     # https://bugs.chromium.org/p/chromium/issues/detail?id=1087109 &
     # https://github.com/NixOS/nixpkgs/issues/89512
     # are resolved.
-      + lib.optionalString (config.networking.hostName == "HPx")
+      + lib.optionalString (config.networking.hostName == "amethyst")
       " --force-device-scale-factor=1";
   };
 

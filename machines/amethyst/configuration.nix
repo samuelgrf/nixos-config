@@ -5,7 +5,7 @@
   ##############################################################################
 
   # Set hostname.
-  networking.hostName = "HPx";
+  networking.hostName = "amethyst";
 
   # The 32-bit host ID of this machine, formatted as 8 hexadecimal characters.
   # This is generated via `head -c 8 /etc/machine-id` and required by ZFS.
