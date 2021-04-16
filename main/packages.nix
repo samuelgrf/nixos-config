@@ -19,6 +19,7 @@
         neofetch
         nix-index
         nix-linter
+        nix-tree
         nixfmt
         nixpkgs-review
         p7zip
