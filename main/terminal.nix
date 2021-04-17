@@ -1,4 +1,5 @@
-{ flakes, lib, nix-index, vlc, zsh, zsh-powerlevel10k, ... }: {
+{ flakes, lib, nix-index, ungoogled-chromium, vlc, zsh, zsh-powerlevel10k, ...
+}: {
 
   # Use X keyboard configuration on console.
   console.useXkbConfig = true;
@@ -104,6 +105,12 @@
       nvr = "nixos-version --revision";
 
       # Other
+      chromium-widevine = ''
+        ${ungoogled-chromium.override { enableWideVine = true; }}/bin/chromium \
+          --user-data-dir=$HOME/.config/chromium-widevine &\
+        disown
+        exit\
+      '';
       clean = ''
         rm -v $(nsr)
         sudo nix-collect-garbage -d &&\
