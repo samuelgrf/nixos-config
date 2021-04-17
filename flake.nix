@@ -87,14 +87,15 @@
           ] ++ defaultModules;
         };
 
-        R3600 = lib.nixosSystem {
+        beryl = lib.nixosSystem {
           system = "x86_64-linux";
           inherit specialArgs;
           modules = [
-            machines/R3600/configuration.nix
-            machines/R3600/hardware-generated.nix
+            machines/beryl/configuration.nix
+            machines/beryl/hardware-generated.nix
           ] ++ defaultModules;
         };
+
       };
     };
 

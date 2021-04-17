@@ -10,7 +10,7 @@ repos:
     files: \.nix$
     exclude: |
       (?x)^(
-        machines/(amethyst|R3600)/configuration.nix|
+        machines/(amethyst|beryl)/configuration.nix|
         machines/.*/hardware-generated.nix
       )$
 
