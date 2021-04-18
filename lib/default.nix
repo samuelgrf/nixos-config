@@ -13,4 +13,8 @@ with lib; rec {
     url = mkWebstoreUrl id;
   });
 
+  sudoBashCmd = cmd: "sudo bash -c ${escapeShellArg cmd}";
+
+  sudoShCmd = cmd: "sudo sh -c ${escapeShellArg cmd}";
+
 }

@@ -111,12 +111,12 @@
         disown
         exit\
       '';
-      clean = ''
+      clean = lib.sudoShCmd ''
         rm -v $(nsr)
-        sudo nix-collect-garbage -d &&\
+        nix-collect-garbage -d &&\
         echo "deleting unused boot entries..." &&\
-        sudo /nix/var/nix/profiles/system/bin/switch-to-configuration boot &&\
-        ztr\
+        /nix/var/nix/profiles/system/bin/switch-to-configuration boot &&\
+        ${ztr}\
       '';
       grl = "git reflog";
       inc = ''
@@ -137,9 +137,9 @@
       rbc = "shutdown -c";
       rbn = "shutdown -r now";
       rld = "exec zsh";
-      rldh = ''
-        sudo systemctl restart home-manager-\*.service
-        sudo systemctl status home-manager-\*.service\
+      rldh = lib.sudoShCmd ''
+        systemctl restart home-manager-*.service
+        systemctl status home-manager-*.service\
       '';
       rldp = "kquitapp5 plasmashell && kstart5 plasmashell";
       sd = "shutdown";
