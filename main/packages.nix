@@ -17,6 +17,7 @@
         lshw
         ncdu
         neofetch
+        nix-diff
         nix-index
         nix-linter
         nix-tree
