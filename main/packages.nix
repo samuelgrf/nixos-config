@@ -1,4 +1,4 @@
-{ config, lib, master, pkgs, unstable, ... }: {
+{ config, lib, pkgs, unstable, ... }: {
 
   # System-wide packages to install.
   environment.systemPackages = with pkgs;
@@ -39,7 +39,7 @@
         wget
         whois
         youtube-dl
-      ] ++ (with unstable; [ manix ]) ++ (with master; [ tmpmail ]);
+      ] ++ (with unstable; [ manix tmpmail ]);
       X = [
         anki
         appimage-run
