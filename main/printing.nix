@@ -6,11 +6,11 @@
   # Add printers to CUPS.
   # Get PPD options by running `lpoptions -p <name> -l`.
   hardware.printers.ensurePrinters = [
-    {
-      name = "Brother_MFC-L2700DW";
+    rec {
+      name = "Brother-MFC-L2700DW";
       description = "Brother MFC-L2700DW";
       location = "Office Upstairs";
-      deviceUri = "ipp://192.168.178.37/ipp";
+      deviceUri = "ipp://${name}/ipp";
       model = "everywhere";
       ppdOptions = {
         PageSize = "A4";
@@ -21,11 +21,11 @@
         cupsPrintQuality = "Normal";
       };
     }
-    {
-      name = "Brother_HL-3140CW";
+    rec {
+      name = "Brother-HL-3140CW";
       description = "Brother HL-3140CW";
       location = "Office Downstairs";
-      deviceUri = "ipp://192.168.178.38/ipp";
+      deviceUri = "ipp://${name}/ipp";
       model = "everywhere";
       ppdOptions = {
         PageSize = "A4";
@@ -35,11 +35,11 @@
         cupsPrintQuality = "Normal";
       };
     }
-    {
-      name = "HP_OfficeJet_Pro_7720";
+    rec {
+      name = "HP-OfficeJet-Pro-7720";
       description = "HP Officejet Pro 7720";
       location = "Office Downstairs";
-      deviceUri = "ipp://192.168.178.36/ipp/print";
+      deviceUri = "ipp://${name}/ipp/print";
       model = "everywhere";
       ppdOptions = {
         PageSize = "A3";
@@ -52,6 +52,6 @@
   ];
 
   # Set default printer.
-  hardware.printers.ensureDefaultPrinter = "Brother_MFC-L2700DW";
+  hardware.printers.ensureDefaultPrinter = "Brother-MFC-L2700DW";
 
 }
