@@ -5,6 +5,8 @@ with prev;
 let
   version = "5.18.5";
   revision = "3";
+
+  urlSuffix = version + lib.optionalString (revision != "0") "-${revision}";
 in {
 
   plasma5 = plasma5 // {
@@ -13,9 +15,7 @@ in {
       patches = (oldAttrs.patches or [ ]) ++ [
         (fetchpatch {
           url =
-            "https://tildearrow.org/storage/kwin-lowlatency/kwin-lowlatency-${version}${
-              if revision == "0" then "" else "-${revision}"
-            }.patch";
+            "https://tildearrow.org/storage/kwin-lowlatency/kwin-lowlatency-${urlSuffix}.patch";
           sha256 = "sha256-HaHw7CDayhtlTA8qs8maUsz4qjHTVUsYaFg9IFxjGhM=";
         })
       ];
