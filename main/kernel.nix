@@ -1,8 +1,8 @@
-{ master, ... }: {
+{ unstable, ... }: {
 
   # Use Zen kernel for better interactive performance.
   # TODO Remove "unstable." on 21.05.
-  boot.kernelPackages = master.linuxPackages_zen;
+  boot.kernelPackages = unstable.linuxPackages_zen;
 
   # Enable support for additional filesystems.
   boot.supportedFilesystems = [ "exfat" "ntfs" "zfs" ];
