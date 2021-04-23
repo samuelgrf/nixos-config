@@ -16,6 +16,7 @@
     http = "x-scheme-handler/http";
     https = "x-scheme-handler/https";
     ini = "application/x-wine-extension-ini";
+    pdf = "application/pdf";
     svg = "image/svg+xml";
     txt = "text/plain";
     url = "application/x-mswinurl";
@@ -36,6 +37,7 @@
       ${http} = chromium;
       ${https} = chromium;
       ${ini} = kate;
+      ${pdf} = chromium;
       ${svg} = gwenview;
       ${txt} = kate;
       ${url} = kate;
