@@ -65,7 +65,6 @@
         kate
         kdialog
         kwin-dynamic-workspaces
-        okular
       ]) ++ (with unstable; [
         ghidra-bin
         lutris
