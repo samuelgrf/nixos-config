@@ -12,8 +12,8 @@
   (import ./kwin)
 
   # TODO Remove on 21.05.
-  # plasma5Packages: Alias for packages related to Plasma 5.
-  (_: prev: { plasma5Packages = prev.kdeApplications // prev.libsForQt5; })
+  # kdeGear: Alias for packages related to KDE.
+  (_: prev: { kdeGear = prev.kdeApplications // prev.libsForQt5; })
 
   # ungoogled-chromium: Add command line arguments.
   (import ./ungoogled-chromium { inherit config; })
