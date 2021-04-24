@@ -36,12 +36,10 @@
         tree
         unrar
         usbutils
-        wget
         whois
         youtube-dl
-      ] ++ (with unstable; [ manix tmpmail ]);
+      ] ++ (with unstable; [ manix ]);
       X = [
-        anki
         appimage-run
         caffeine-ng
         gimp
@@ -50,7 +48,6 @@
         libreoffice
         libstrangle
         mpv
-        multimc
         protontricks
         simple-scan
         steam
@@ -66,7 +63,6 @@
         kdialog
         kwin-dynamic-workspaces
       ]) ++ (with unstable; [
-        ghidra-bin
         lutris
         lxqt.pavucontrol-qt
         pcsx2
