@@ -38,7 +38,7 @@
         usbutils
         whois
         youtube-dl
-      ] ++ (with unstable; [ manix ]);
+      ] ++ (with unstable; [ manix python3Packages.adb-enhanced ]);
       X = [
         appimage-run
         caffeine-ng
@@ -62,12 +62,7 @@
         kate
         kdialog
         kwin-dynamic-workspaces
-      ]) ++ (with unstable; [
-        lutris
-        lxqt.pavucontrol-qt
-        pcsx2
-        python3Packages.adb-enhanced
-      ]);
+      ]) ++ (with unstable; [ lutris lxqt.pavucontrol-qt pcsx2 ]);
       noX = [ ];
     in common ++ (if config.services.xserver.enable then X else noX);
 
