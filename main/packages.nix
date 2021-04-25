@@ -55,7 +55,6 @@
         ungoogled-chromium
         winetricks
         wineWowPackages.staging
-        xdotool
       ] ++ (with kdeGear; [ ark gwenview kate kdialog kwin-dynamic-workspaces ])
         ++ (with unstable; [ lutris lxqt.pavucontrol-qt pcsx2 ]);
       noX = [ ];
