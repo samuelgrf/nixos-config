@@ -45,7 +45,7 @@
           "https://raw.githubusercontent.com/StevenBlack/hosts/master/extensions/porn/sinfonietta-snuff/hosts"
           "https://raw.githubusercontent.com/StevenBlack/hosts/master/extensions/porn/tiuxo/hosts"
         ];
-      in builtins.toJSON {
+      in __toJSON {
         selectedFilterLists = [
           "user-filters"
           "ublock-filters"
