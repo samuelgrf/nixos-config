@@ -1,14 +1,11 @@
 let
-  self = (builtins.getFlake flake:self);
-  flakes = self.inputs;
-  host = with builtins; head (match "([a-zA-Z0-9]+)\n" (readFile "/etc/hostname"));
+  self = __getFlake "self";
+  lib = self.inputs.nixpkgs.lib;
+  host = lib.removeSuffix "\n" (__readFile "/etc/hostname");
   nixosConfig = self.nixosConfigurations.${host};
-  system = nixosConfig.pkgs.system;
 in {
-  lib = (flakes.nixpkgs).lib;
-  pkgs-master = (flakes.nixpkgs-master).legacyPackages.${system};
-  pkgs-unstable = (flakes.nixpkgs-unstable).legacyPackages.${system};
+  inherit (nixosConfig._module.args) lib pkgs-master pkgs-unstable;
 }
-// flakes
 // nixosConfig
+// self.inputs
 // self
