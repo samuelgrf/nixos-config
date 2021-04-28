@@ -37,12 +37,14 @@
             let
               pkgsImport = pkgs:
                 import pkgs (removeAttrs config.nixpkgs [ "localSystem" ]);
-            in {
+
               _module.args = pkgsImport nixpkgs // {
                 inherit flakes;
                 master = pkgsImport nixpkgs-master;
                 unstable = pkgsImport nixpkgs-unstable;
               };
+            in {
+              inherit _module;
 
               nix.registry = lib.mapAttrs (id: flake: {
                 from = {
@@ -60,14 +62,16 @@
                 useGlobalPkgs = true;
                 useUserPackages = true;
                 users.samuel.imports = [
-                  { _module.args = pkgsImport nixpkgs; }
-                  { home = { inherit stateVersion; }; }
                   home/modules/kde.nix
                   home/default-applications.nix
                   home/git.nix
                   home/kde.nix
                   home/mpv.nix
                   home/proton.nix
+                  {
+                    inherit _module;
+                    home = { inherit stateVersion; };
+                  }
                 ];
               };
             })
