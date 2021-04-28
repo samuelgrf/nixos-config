@@ -40,8 +40,8 @@
 
               _module.args = pkgsImport nixpkgs // {
                 inherit flakes;
-                master = pkgsImport nixpkgs-master;
-                unstable = pkgsImport nixpkgs-unstable;
+                pkgs-master = pkgsImport nixpkgs-master;
+                pkgs-unstable = pkgsImport nixpkgs-unstable;
               };
             in {
               inherit _module;

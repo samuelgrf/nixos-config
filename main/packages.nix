@@ -1,4 +1,4 @@
-{ config, lib, pkgs, unstable, ... }: {
+{ config, lib, pkgs, pkgs-unstable, ... }: {
 
   # System-wide packages to install.
   environment.systemPackages = with pkgs;
@@ -38,7 +38,7 @@
         usbutils
         whois
         youtube-dl
-      ] ++ (with unstable; [ manix python3Packages.adb-enhanced ]);
+      ] ++ (with pkgs-unstable; [ manix python3Packages.adb-enhanced ]);
       X = [
         appimage-run
         caffeine-ng
@@ -56,13 +56,13 @@
         winetricks
         wineWowPackages.staging
       ] ++ (with kdeGear; [ ark gwenview kate kdialog kwin-dynamic-workspaces ])
-        ++ (with unstable; [ lutris lxqt.pavucontrol-qt pcsx2 ]);
+        ++ (with pkgs-unstable; [ lutris lxqt.pavucontrol-qt pcsx2 ]);
       noX = [ ];
     in common ++ (if config.services.xserver.enable then X else noX);
 
   # System-wide fonts to install.
   fonts.fonts = with pkgs; [
-    unstable.meslo-lgs-nf # TODO Remove "unstable." on 21.05.
+    pkgs-unstable.meslo-lgs-nf # TODO Remove "pkgs-unstable." on 21.05.
     noto-fonts-cjk
   ];
 
