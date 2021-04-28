@@ -5,7 +5,4 @@ let
   nixosConfig = self.nixosConfigurations.${host};
 in {
   inherit (nixosConfig._module.args) lib pkgs-master pkgs-unstable;
-}
-// nixosConfig
-// self.inputs
-// self
+} // nixosConfig // self.inputs // self
