@@ -3,9 +3,12 @@
   # Automatically optimize the Nix store.
   nix.autoOptimiseStore = true;
 
-  # Enable Nix flake support.
+  # Enable Nix flake support and replace global with system flake registry.
   nix.package = nixUnstable;
-  nix.extraOptions = "experimental-features = nix-command flakes";
+  nix.extraOptions = ''
+    experimental-features = nix-command flakes
+    flake-registry = /etc/nix/registry.json
+  '';
 
   # Define user accounts. Don't forget to set a password with ‘passwd’.
   users.users.samuel = {
