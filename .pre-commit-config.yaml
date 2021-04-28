@@ -20,7 +20,4 @@ repos:
     language: system
     files: \.nix$
     exclude: |
-      (?x)^(
-        flake.nix|
-        machines/.*/hardware-generated.nix
-      )$
+      (?x)^( machines/.*/hardware-generated.nix )$
