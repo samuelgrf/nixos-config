@@ -16,27 +16,27 @@
   boot.loader.timeout = 3;
 
   # Enable weekly TRIM on ZFS.
-  services.zfs.trim.enable = true;
+  services.zfs.trim.enable = true
 
-
+  ;
   ##############################################################################
   ## Xorg & Services
   ##############################################################################
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-  services.xserver.autorun = true;
+  services.xserver.autorun = true
 
-
+  ;
   ##############################################################################
   ## Kernel & Modules
   ##############################################################################
 
   # Install kernel modules.
   boot.extraModulePackages = with config.boot.kernelPackages;
-    [ hid-playstation ];
+    [ hid-playstation ]
 
-
+  ;
   ##############################################################################
   ## GPU
   ##############################################################################
@@ -58,9 +58,9 @@
   services.xserver.deviceSection = ''
     Option "VariableRefresh" "true"
     Option "TearFree" "true"
-  '';
+  ''
 
-
+  ;
   ##############################################################################
   ## Other hardware
   ##############################################################################

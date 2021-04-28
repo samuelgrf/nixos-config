@@ -16,9 +16,9 @@
   boot.loader.timeout = 1;
 
   # Enable weekly TRIM on ZFS.
-  services.zfs.trim.enable = true;
+  services.zfs.trim.enable = true
 
-
+  ;
   ##############################################################################
   ## Xorg & Services
   ##############################################################################
@@ -37,9 +37,9 @@
     gpuOffset = -50;
     uncoreOffset = -100;
     analogioOffset = -100;
-  };
+  }
 
-
+  ;
   ##############################################################################
   ## Kernel & Modules
   ##############################################################################
@@ -51,9 +51,9 @@
   ];
 
   # Blacklist sensor kernel modules.
-  boot.blacklistedKernelModules = [ "intel_ishtp_hid" "intel_ish_ipc" ];
+  boot.blacklistedKernelModules = [ "intel_ishtp_hid" "intel_ish_ipc" ]
 
-
+  ;
   ##############################################################################
   ## GPU & Audio
   ##############################################################################
@@ -72,9 +72,9 @@
     '';
     wantedBy = [ "multi-user.target" "post-resume.target" ];
     after = [ "post-resume.target" ];
-  };
+  }
 
-
+  ;
   ##############################################################################
   ## Other hardware
   ##############################################################################

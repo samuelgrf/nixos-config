@@ -9,10 +9,7 @@ repos:
     language: system
     files: \.nix$
     exclude: |
-      (?x)^(
-        machines/(amethyst|beryl)/configuration.nix|
-        machines/.*/hardware-generated.nix
-      )$
+      (?x)^( machines/.*/hardware-generated.nix )$
 
   - id: nix-linter
     name: nix-linter
