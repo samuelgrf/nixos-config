@@ -76,7 +76,7 @@
 
       # Nix & NixOS
       c = "cd $(dirname $(readlink -m /etc/nixos/flake.nix))";
-      n = "nix";
+      n = "nix repl ${../repl.nix}";
       nb = "nix build --print-build-logs -v";
       nbd = "nix build --dry-run -v";
       nf = "nix flake";
@@ -85,8 +85,7 @@
       ng = "nix-collect-garbage";
       ngd = "sudo nix-collect-garbage -d";
       nlo = "nix-locate";
-      np = "nix repl ${../repl.nix}";
-      npp = "nix repl";
+      np = "nix repl";
       nrb = "sudo nixos-rebuild -v boot";
       nrbu = "nixos-rebuild -v build";
       nse = "nix search nixpkgs";
