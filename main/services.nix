@@ -8,6 +8,18 @@
   services.xserver.displayManager.autoLogin.enable = true;
   services.xserver.displayManager.autoLogin.user = "samuel";
 
+  # Enable and configure ZFS auto-snapshotting service.
+  # To activate auto-snapshotting for a dataset run
+  # `sudo zfs set com.sun:auto-snapshot=true <DATASET>`.
+  services.zfs.autoSnapshot = {
+    enable = true;
+    frequent = 4; # 15 minutes
+    hourly = 24;
+    daily = 7;
+    weekly = 4;
+    monthly = 12;
+  };
+
   # Enable unclutter-xfixes to hide the mouse cursor when inactive.
   services.unclutter-xfixes.enable = true;
 
