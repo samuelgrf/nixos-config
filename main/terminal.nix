@@ -1,4 +1,5 @@
-{ lib, nix-index, ungoogled-chromium, vlc, zsh, zsh-powerlevel10k, ... }: {
+{ flakes, lib, nix-index, ungoogled-chromium, vlc, zsh, zsh-powerlevel10k, ...
+}: {
 
   # Use X keyboard configuration on console.
   console.useXkbConfig = true;
@@ -85,7 +86,10 @@
       ng = "nix-collect-garbage";
       ngd = "sudo nix-collect-garbage -d";
       nlo = "nix-locate";
+      nom = "nixos-help";
       np = "nix repl";
+      npm =
+        "xdg-open ${flakes.nixpkgs-unstable.htmlDocs.nixpkgsManual}/share/doc/nixpkgs/manual.html";
       nrb = "sudo nixos-rebuild -v boot";
       nrbu = "nixos-rebuild -v build";
       nse = "nix search nixpkgs";
