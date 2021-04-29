@@ -46,7 +46,7 @@
 
   # Install AMDVLK driver, as some games have graphical glitches when using RADV.
   # Can be enabled by setting
-  # VK_ICD_FILENAMES=/run/opengl-driver/share/vulkan/icd.d/amd_icd64.json:/run/opengl-driver-32/share/vulkan/icd.d/amd_icd32.json
+  # `VK_ICD_FILENAMES=/run/opengl-driver/share/vulkan/icd.d/amd_icd64.json:/run/opengl-driver-32/share/vulkan/icd.d/amd_icd32.json`.
   hardware.opengl.extraPackages = [ amdvlk ];
   hardware.opengl.extraPackages32 = with pkgsi686Linux; [ amdvlk ];
 
