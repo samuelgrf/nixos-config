@@ -148,7 +148,11 @@
       t = "tree";
       tv = "${vlc}/bin/vlc ${./tv.m3u}";
       wtr = "curl wttr.in";
+      zl = "zfs list";
+      zla = "zfs list -t all";
+      zlf = "zfs list -t filesystem";
       zls = "zfs list -t snapshot";
+      zlv = "zfs list -t volume";
       ztr = "sudo zpool trim rpool && watch zpool status -t rpool";
       ztrc = "sudo zpool trim -c rpool; zpool status -t rpool";
     };
