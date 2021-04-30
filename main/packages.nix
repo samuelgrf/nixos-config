@@ -1,4 +1,4 @@
-{ config, lib, pkgs, pkgs-unstable, ... }: {
+{ config, flakes, lib, pkgs, pkgs-unstable, ... }: {
 
   # System-wide packages to install.
   environment.systemPackages = with pkgs;
@@ -42,12 +42,15 @@
       X = [
         appimage-run
         caffeine-ng
+        flakes.nixpkgs-unstable.htmlDocs.nixosManual
+        flakes.nixpkgs-unstable.htmlDocs.nixpkgsManual
         gimp
         imagemagick
         keepassxc
         libreoffice
         libstrangle
         mpv
+        nixUnstable.doc
         protontricks
         simple-scan
         steam
