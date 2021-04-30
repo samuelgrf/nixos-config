@@ -1,5 +1,4 @@
-{ flakes, lib, nix-index, ungoogled-chromium, vlc, zsh, zsh-powerlevel10k, ...
-}: {
+{ lib, nix-index, ungoogled-chromium, vlc, zsh, zsh-powerlevel10k, ... }: {
 
   # Use X keyboard configuration on console.
   console.useXkbConfig = true;
@@ -77,6 +76,11 @@
 
       # Nix & NixOS
       c = "cd $(dirname $(readlink -m /etc/nixos/flake.nix))";
+      m =
+        "chromium file:///run/current-system/sw/share/doc/nix/manual/index.html";
+      mo = "chromium file:///run/current-system/sw/share/doc/nixos/index.html";
+      mp =
+        "chromium file:///run/current-system/sw/share/doc/nixpkgs/manual.html";
       n = "nix repl ${../repl.nix}";
       nb = "nix build --print-build-logs -v";
       nbd = "nix build --dry-run -v";
@@ -86,11 +90,7 @@
       ng = "nix-collect-garbage";
       ngd = "sudo nix-collect-garbage -d";
       nlo = "nix-locate";
-      nom =
-        "xdg-open ${flakes.nixpkgs-unstable.htmlDocs.nixosManual}/share/doc/nixos/index.html";
       np = "nix repl";
-      npm =
-        "xdg-open ${flakes.nixpkgs-unstable.htmlDocs.nixpkgsManual}/share/doc/nixpkgs/manual.html";
       nrb = "sudo nixos-rebuild -v boot";
       nrbu = "nixos-rebuild -v build";
       nse = "nix search nixpkgs";
