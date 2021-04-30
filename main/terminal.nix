@@ -86,7 +86,8 @@
       ng = "nix-collect-garbage";
       ngd = "sudo nix-collect-garbage -d";
       nlo = "nix-locate";
-      nom = "nixos-help";
+      nom =
+        "xdg-open ${flakes.nixpkgs-unstable.htmlDocs.nixosManual}/share/doc/nixos/index.html";
       np = "nix repl";
       npm =
         "xdg-open ${flakes.nixpkgs-unstable.htmlDocs.nixpkgsManual}/share/doc/nixpkgs/manual.html";
