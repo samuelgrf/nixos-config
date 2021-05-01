@@ -69,26 +69,49 @@
         '';
       };
 
-      # Bookmarks for installing extensions
+      # Bookmarks
       ManagedBookmarks = [
-        { toplevel_name = "Extensions"; }
+        {
+          name = "Manuals";
+          children = [
+            {
+              name = "NixOS Manual";
+              url = "file:///run/current-system/sw/share/doc/nixos/index.html";
+            }
+            {
+              name = "Nixpkgs Manual";
+              url =
+                "file:///run/current-system/sw/share/doc/nixpkgs/manual.html";
+            }
+            {
+              name = "Nix Manual";
+              url =
+                "file:///run/current-system/sw/share/doc/nix/manual/index.html";
+            }
+          ];
+        }
         {
           name = "Extensions";
-          url = "chrome://extensions";
+          children = [
+            {
+              name = "Extensions";
+              url = "chrome://extensions";
+            }
+            {
+              name = "Chromium Web Store";
+              url = "https://github.com/NeverDecaf/chromium-web-store/releases";
+            }
+          ] ++ lib.mkWebstoreBookmarks {
+            "Dark Reader" = "eimadpbcbfnmbkopoojfekhnkhdbieeh";
+            "Go Back with Backspace" = "eekailopagacbcdloonjhbiecobagjci";
+            "Just Black" = "aghfnjkcakhmadgdomlmlhhaocbkloab";
+            "Not yet, AV1" = "dcmllfkiihingappljlkffafnlhdpbai";
+            "SponsorBlock" = "mnjggcdmjocbbbhaepdhchncahnbgone";
+            "uBlock Origin" = "cjpalhdlnbpafiamejdnhcphjbkeiagm";
+            "Video Speed Controller" = "nffaoalbilbmmfgbnbgppjihopabppdk";
+          };
         }
-        {
-          name = "Chromium Web Store";
-          url = "https://github.com/NeverDecaf/chromium-web-store/releases";
-        }
-      ] ++ lib.mkWebstoreBookmarks {
-        "Dark Reader" = "eimadpbcbfnmbkopoojfekhnkhdbieeh";
-        "Go Back with Backspace" = "eekailopagacbcdloonjhbiecobagjci";
-        "Just Black" = "aghfnjkcakhmadgdomlmlhhaocbkloab";
-        "Not yet, AV1" = "dcmllfkiihingappljlkffafnlhdpbai";
-        "SponsorBlock" = "mnjggcdmjocbbbhaepdhchncahnbgone";
-        "uBlock Origin" = "cjpalhdlnbpafiamejdnhcphjbkeiagm";
-        "Video Speed Controller" = "nffaoalbilbmmfgbnbgppjihopabppdk";
-      };
+      ];
 
       # MS Teams
       CookiesAllowedForUrls =
