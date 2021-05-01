@@ -84,7 +84,7 @@
           "chromium file:///run/current-system/sw/share/doc/nixos/index.html";
         mp =
           "chromium file:///run/current-system/sw/share/doc/nixpkgs/manual.html";
-        n = "nix repl ${../repl.nix}";
+        n = "nix repl ${configDir}/repl.nix";
         nb = "nix build --print-build-logs -v";
         nbd = "nix build --dry-run -v";
         nf = "nix flake";
