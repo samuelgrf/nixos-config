@@ -72,91 +72,95 @@
     '';
 
     # Set shell aliases.
-    shellAliases = rec {
+    shellAliases =
+      let configDir = "$(dirname $(readlink -m /etc/nixos/flake.nix))";
+      in rec {
 
-      # Nix & NixOS
-      c = "cd $(dirname $(readlink -m /etc/nixos/flake.nix))";
-      m =
-        "chromium file:///run/current-system/sw/share/doc/nix/manual/index.html";
-      mo = "chromium file:///run/current-system/sw/share/doc/nixos/index.html";
-      mp =
-        "chromium file:///run/current-system/sw/share/doc/nixpkgs/manual.html";
-      n = "nix repl ${../repl.nix}";
-      nb = "nix build --print-build-logs -v";
-      nbd = "nix build --dry-run -v";
-      nf = "nix flake";
-      nfc = "nix flake check";
-      nfu = "nix flake update";
-      ng = "nix-collect-garbage";
-      ngd = "sudo nix-collect-garbage -d";
-      nlo = "nix-locate";
-      np = "nix repl";
-      nrb = "sudo nixos-rebuild -v boot";
-      nrbu = "nixos-rebuild -v build";
-      nse = "nix search nixpkgs";
-      nsem = "nix search github:NixOS/nixpkgs";
-      nseu = "nix search nixpkgs-unstable";
-      nsr = "nix-store --gc --print-roots | cut -f 1 -d ' ' | grep /result$";
-      nsrr = "rm -v $(nsr)";
-      nu = "${c} && nix flake update --commit-lock-file";
-      nub = "${nu} && sudo nixos-rebuild -v boot";
-      nubu = "${nu} && sudo nixos-rebuild -v build";
-      nui = "${c} && nix flake lock --commit-lock-file --update-input";
-      nv = "nixos-version";
-      nvr = "nixos-version --revision";
+        # Nix & NixOS
+        c = "cd ${configDir}";
+        m =
+          "chromium file:///run/current-system/sw/share/doc/nix/manual/index.html";
+        mo =
+          "chromium file:///run/current-system/sw/share/doc/nixos/index.html";
+        mp =
+          "chromium file:///run/current-system/sw/share/doc/nixpkgs/manual.html";
+        n = "nix repl ${../repl.nix}";
+        nb = "nix build --print-build-logs -v";
+        nbd = "nix build --dry-run -v";
+        nf = "nix flake";
+        nfc = "nix flake check";
+        nfu = "nix flake update";
+        ng = "nix-collect-garbage";
+        ngd = "sudo nix-collect-garbage -d";
+        nlo = "nix-locate";
+        np = "nix repl";
+        nrb = "sudo nixos-rebuild -v boot";
+        nrbu = "nixos-rebuild -v build";
+        nse = "nix search nixpkgs";
+        nsem = "nix search github:NixOS/nixpkgs";
+        nseu = "nix search nixpkgs-unstable";
+        nsr = "nix-store --gc --print-roots | cut -f 1 -d ' ' | grep /result$";
+        nsrr = "rm -v $(nsr)";
+        nu = "cd ${configDir} && nix flake update --commit-lock-file";
+        nub = "${nu} && sudo nixos-rebuild -v boot";
+        nubu = "${nu} && sudo nixos-rebuild -v build";
+        nui =
+          "cd ${configDir} && nix flake lock --commit-lock-file --update-input";
+        nv = "nixos-version";
+        nvr = "nixos-version --revision";
 
-      # Other
-      chromium-widevine = ''
-        ${ungoogled-chromium.override { enableWideVine = true; }}/bin/chromium \
-          --user-data-dir=$HOME/.config/chromium-widevine &\
-        disown
-        exit\
-      '';
-      clean = lib.sudoShCmd ''
-        rm -v $(nsr)
-        nix-collect-garbage -d &&\
-        echo "deleting unused boot entries..." &&\
-        /nix/var/nix/profiles/system/bin/switch-to-configuration boot &&\
-        ${ztr}\
-      '';
-      grl = "git reflog";
-      inc = ''
-        [ -n "$HISTFILE" ] && {\
-          echo "Enabled incognito mode"
-          unset HISTFILE
-        } || {\
-          echo "Disabled incognito mode"
-          exec zsh
-        }\
-      '';
-      lvl = "echo $SHLVL";
-      msg = "kdialog --msgbox";
-      o = "xdg-open";
-      qr = "qrencode -t UTF8";
-      radio = "${vlc}/bin/vlc ${./radio.m3u}";
-      rb = "shutdown -r";
-      rbc = "shutdown -c";
-      rbn = "shutdown -r now";
-      rld = "exec zsh";
-      rldh = lib.sudoShCmd ''
-        systemctl restart home-manager-*.service
-        systemctl status home-manager-*.service\
-      '';
-      rldp = "kquitapp5 plasmashell && kstart5 plasmashell";
-      sd = "shutdown";
-      sdc = "shutdown -c";
-      sdn = "shutdown now";
-      t = "tree";
-      tv = "${vlc}/bin/vlc ${./tv.m3u}";
-      wtr = "curl wttr.in";
-      zl = "zfs list";
-      zla = "zfs list -t all";
-      zlf = "zfs list -t filesystem";
-      zls = "zfs list -t snapshot";
-      zlv = "zfs list -t volume";
-      ztr = "sudo zpool trim rpool && watch zpool status -t rpool";
-      ztrc = "sudo zpool trim -c rpool; zpool status -t rpool";
-    };
+        # Other
+        chromium-widevine = ''
+          ${ungoogled-chromium.override { enableWideVine = true; }}\
+          /bin/chromium --user-data-dir=$HOME/.config/chromium-widevine &\
+          disown
+          exit\
+        '';
+        clean = lib.sudoShCmd ''
+          rm -v $(nsr)
+          nix-collect-garbage -d &&\
+          echo "deleting unused boot entries..." &&\
+          /nix/var/nix/profiles/system/bin/switch-to-configuration boot &&\
+          ${ztr}\
+        '';
+        grl = "git reflog";
+        inc = ''
+          [ -n "$HISTFILE" ] && {\
+            echo "Enabled incognito mode"
+            unset HISTFILE
+          } || {\
+            echo "Disabled incognito mode"
+            exec zsh
+          }\
+        '';
+        lvl = "echo $SHLVL";
+        msg = "kdialog --msgbox";
+        o = "xdg-open";
+        qr = "qrencode -t UTF8";
+        radio = "${vlc}/bin/vlc ${./radio.m3u}";
+        rb = "shutdown -r";
+        rbc = "shutdown -c";
+        rbn = "shutdown -r now";
+        rld = "exec zsh";
+        rldh = lib.sudoShCmd ''
+          systemctl restart home-manager-*.service
+          systemctl status home-manager-*.service\
+        '';
+        rldp = "kquitapp5 plasmashell && kstart5 plasmashell";
+        sd = "shutdown";
+        sdc = "shutdown -c";
+        sdn = "shutdown now";
+        t = "tree";
+        tv = "${vlc}/bin/vlc ${./tv.m3u}";
+        wtr = "curl wttr.in";
+        zl = "zfs list";
+        zla = "zfs list -t all";
+        zlf = "zfs list -t filesystem";
+        zls = "zfs list -t snapshot";
+        zlv = "zfs list -t volume";
+        ztr = "sudo zpool trim rpool && watch zpool status -t rpool";
+        ztrc = "sudo zpool trim -c rpool; zpool status -t rpool";
+      };
 
     # Set Zsh options.
     setOptions = [ "HIST_FCNTL_LOCK" "HIST_IGNORE_DUPS" "SHARE_HISTORY" ];
