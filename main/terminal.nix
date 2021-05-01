@@ -78,12 +78,6 @@
 
         # Nix & NixOS
         c = "cd ${configDir}";
-        m =
-          "chromium file:///run/current-system/sw/share/doc/nix/manual/index.html";
-        mo =
-          "chromium file:///run/current-system/sw/share/doc/nixos/index.html";
-        mp =
-          "chromium file:///run/current-system/sw/share/doc/nixpkgs/manual.html";
         n = "nix repl ${configDir}/repl.nix";
         nb = "nix build --print-build-logs -v";
         nbd = "nix build --dry-run -v";
@@ -93,7 +87,13 @@
         ng = "nix-collect-garbage";
         ngd = "sudo nix-collect-garbage -d";
         nlo = "nix-locate";
+        nm =
+          "chromium file:///run/current-system/sw/share/doc/nix/manual/index.html";
+        nom =
+          "chromium file:///run/current-system/sw/share/doc/nixos/index.html";
         np = "nix repl";
+        npm =
+          "chromium file:///run/current-system/sw/share/doc/nixpkgs/manual.html";
         nrb = "sudo nixos-rebuild -v boot";
         nrbu = "nixos-rebuild -v build";
         nse = "nix search nixpkgs";
