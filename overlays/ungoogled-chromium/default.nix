@@ -25,14 +25,7 @@ with prev; {
       "--enable-oop-rasterization"
       "--enable-zero-copy"
       "--ignore-gpu-blocklist"
-
-    ]
-    # TODO Remove after
-    # https://bugs.chromium.org/p/chromium/issues/detail?id=1087109 &
-    # https://github.com/NixOS/nixpkgs/issues/89512
-    # are resolved.
-      + lib.optionalString (config.networking.hostName == "amethyst")
-      " --force-device-scale-factor=1";
+    ];
   };
 
 }
