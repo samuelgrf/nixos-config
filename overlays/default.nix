@@ -1,4 +1,4 @@
-{ config, flakes }: [
+{ flakes }: [
 
   # TODO Remove on 21.05.
   # libstrangle: Get from nixpkgs unstable.
@@ -16,6 +16,6 @@
   (_: prev: { kdeGear = prev.kdeApplications // prev.libsForQt5; })
 
   # ungoogled-chromium: Add command line arguments.
-  (import ./ungoogled-chromium { inherit config; })
+  (import ./ungoogled-chromium)
 
 ]

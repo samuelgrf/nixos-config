@@ -1,5 +1,3 @@
-{ config }:
-
 _: prev:
 with prev; {
 
@@ -13,9 +11,7 @@ with prev; {
       "--show-avatar-button=incognito-and-guest"
 
       # Experimental features
-      ("--enable-features=TabSearch"
-        + lib.optionalString (config.networking.hostName == "amethyst")
-        ",VaapiVideoDecoder")
+      "--enable-features=TabSearch,VaapiVideoDecoder"
 
       # Dark mode
       "--force-dark-mode"
