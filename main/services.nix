@@ -44,9 +44,11 @@
   # Enable Early OOM deamon.
   services.earlyoom.enable = true;
 
-  # Enable Emacs daemon.
-  services.emacs.enable = true;
-  services.emacs.defaultEditor = true;
+  # Enable and configure Emacs daemon.
+  services.emacs = {
+    enable = true;
+    defaultEditor = true;
+  };
 
   # Enable and configure OpenSSH utilities.
   services.openssh.enable = true;
