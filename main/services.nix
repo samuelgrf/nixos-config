@@ -1,8 +1,5 @@
 { pulseaudio-modules-bt, ... }: {
 
-  # Enable NetworkManager daemon.
-  networking.networkmanager.enable = true;
-
   # Enable and configure desktop environment.
   services.xserver = {
 
@@ -28,6 +25,12 @@
     # is merged and in nixpkgs.
     extraModules = [ pulseaudio-modules-bt ]; # Support more Bluetooth codecs.
   };
+
+  # Enable NetworkManager daemon.
+  networking.networkmanager.enable = true;
+
+  # Enable Avahi daemon for zero-configuration networking.
+  services.avahi.enable = true;
 
   # Enable and configure ZFS auto-snapshotting service.
   # To activate auto-snapshotting for a dataset run

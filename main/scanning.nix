@@ -4,7 +4,4 @@
   hardware.sane.enable = true;
   hardware.sane.extraBackends = [ sane-airscan ];
 
-  # Enable Avahi daemon for zero-configuration (zeroconf) networking.
-  services.avahi.enable = true;
-
 }
