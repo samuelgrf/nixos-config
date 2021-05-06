@@ -32,7 +32,7 @@
           main/services.nix
           main/terminal.nix
 
-          ({ config, ... }:
+          ({ config, nixUnstable, ... }:
             let
               pkgsImport = pkgs:
                 import pkgs (removeAttrs config.nixpkgs [ "localSystem" ]);
@@ -45,13 +45,22 @@
             in {
               inherit _module;
 
-              nix.registry = lib.mapAttrs (id: flake: {
-                from = {
-                  type = "indirect";
-                  inherit id;
-                };
-                inherit flake;
-              }) flakes;
+              nix = {
+                package = nixUnstable;
+
+                extraOptions = ''
+                  experimental-features = nix-command flakes
+                  flake-registry = /etc/nix/registry.json
+                '';
+
+                registry = lib.mapAttrs (id: flake: {
+                  from = {
+                    type = "indirect";
+                    inherit id;
+                  };
+                  inherit flake;
+                }) flakes;
+              };
 
               nixpkgs.overlays = import ./overlays { inherit flakes; };
 
