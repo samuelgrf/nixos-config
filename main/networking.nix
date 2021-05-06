@@ -1,8 +1,5 @@
 { lib, ... }: {
 
-  # Enable NetworkManager.
-  networking.networkmanager.enable = true;
-
   # Don't respond to IPv4 pings.
   networking.firewall.allowPing = false;
 

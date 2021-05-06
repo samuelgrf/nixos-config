@@ -23,7 +23,6 @@
         defaultModules = [
           home-manager.nixosModules.home-manager
           main/general.nix
-          main/hardware.nix
           main/kernel.nix
           main/misc.nix
           main/networking.nix
