@@ -48,8 +48,12 @@
   services.emacs.enable = true;
   services.emacs.defaultEditor = true;
 
-  # Enable OpenSSH agent.
-  programs.ssh.startAgent = true;
+  # Enable and configure OpenSSH utilities.
+  services.openssh.enable = true;
+  programs.ssh = {
+    startAgent = true; # Enable key manager.
+    askPassword = ""; # Disable GUI password prompt.
+  };
 
   # Enable GnuPG agent.
   programs.gnupg.agent.enable = true;
