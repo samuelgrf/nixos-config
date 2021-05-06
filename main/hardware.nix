@@ -4,7 +4,6 @@
   services.xserver.desktopManager.plasma5.supportDDC = true;
 
   # Enable sound.
-  sound.enable = true;
   hardware.pulseaudio.enable = true;
 
   # Add LDAC, aptX, aptX HD, AAC codec support for Bluetooth playback.
