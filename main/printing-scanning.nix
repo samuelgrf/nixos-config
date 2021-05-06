@@ -1,4 +1,4 @@
-{
+{ sane-airscan, ... }: {
 
   # Enable Common UNIX Printing System.
   services.printing.enable = true;
@@ -53,5 +53,11 @@
 
   # Set default printer.
   hardware.printers.ensureDefaultPrinter = "Brother-MFC-L2700DW";
+
+  # Enable and configure SANE scanning API.
+  hardware.sane = {
+    enable = true;
+    extraBackends = [ sane-airscan ]; # Support Apple AirScan and Microsoft WSD
+  };
 
 }

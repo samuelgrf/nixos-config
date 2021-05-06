@@ -27,8 +27,7 @@
           main/kernel.nix
           main/misc.nix
           main/packages.nix
-          main/printing.nix
-          main/scanning.nix
+          main/printing-scanning.nix
           main/services.nix
           main/terminal.nix
 
