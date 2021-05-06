@@ -1,8 +1,5 @@
 { lib, ... }: {
 
-  # Don't respond to IPv4 pings.
-  networking.firewall.allowPing = false;
-
   # Configure Chromium/Chrome.
   # Command line arguments are set in ../overlays/ungoogled-chromium.
   programs.chromium = {
