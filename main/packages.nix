@@ -64,6 +64,7 @@
   # Install programs from modules.
   programs = {
     adb.enable = true;
+    partition-manager.enable = true;
     steam.enable = true;
     steam.remotePlay.openFirewall = true;
   };

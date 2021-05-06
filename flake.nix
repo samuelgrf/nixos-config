@@ -79,6 +79,7 @@
               # Import modules from nixpkgs-unstable.
               disabledModules = [ "programs/steam.nix" ];
               imports = [
+                "${flakes.nixpkgs-unstable}/nixos/modules/programs/partition-manager.nix"
                 "${flakes.nixpkgs-unstable}/nixos/modules/programs/steam.nix"
               ];
             })
