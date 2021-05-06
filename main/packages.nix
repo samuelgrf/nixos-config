@@ -53,8 +53,6 @@
         nixUnstable.doc
         protontricks
         simple-scan
-        steam
-        steam-run
         ungoogled-chromium
         winetricks
         wineWowPackages.staging
@@ -62,6 +60,13 @@
         ++ (with pkgs-unstable; [ lutris lxqt.pavucontrol-qt pcsx2 ]);
       noX = [ ];
     in common ++ (if config.services.xserver.enable then X else noX);
+
+  # Install programs from modules.
+  programs = {
+    adb.enable = true;
+    steam.enable = true;
+    steam.remotePlay.openFirewall = true;
+  };
 
   # System-wide fonts to install.
   fonts.fonts = with pkgs; [
@@ -86,8 +91,5 @@
 
   # Don't allow package aliases.
   nixpkgs.config.allowAliases = false;
-
-  # Install ADB and fastboot.
-  programs.adb.enable = true;
 
 }
