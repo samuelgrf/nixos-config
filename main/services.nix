@@ -1,4 +1,4 @@
-{ pulseaudio-modules-bt, ... }: {
+{ avahi, pulseaudio-modules-bt, ... }: {
 
   # Enable and configure desktop environment.
   services.xserver = {
@@ -29,8 +29,11 @@
   # Enable NetworkManager daemon.
   networking.networkmanager.enable = true;
 
-  # Enable Avahi daemon for zero-configuration networking.
-  services.avahi.enable = true;
+  # Enable and configure Avahi daemon for zero-configuration networking.
+  services.avahi = {
+    enable = true;
+    extraServiceFiles.ssh = "${avahi}/etc/avahi/services/ssh.service";
+  };
 
   # Enable and configure ZFS auto-snapshotting service.
   # To activate auto-snapshotting for a dataset run
