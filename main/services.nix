@@ -32,6 +32,7 @@
   # Enable and configure Avahi daemon for zero-configuration networking.
   services.avahi = {
     enable = true;
+    nssmdns = true;
     extraServiceFiles.ssh = "${avahi}/etc/avahi/services/ssh.service";
   };
 
