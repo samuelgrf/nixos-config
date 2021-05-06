@@ -22,10 +22,10 @@
 
         defaultModules = [
           home-manager.nixosModules.home-manager
+          main/chromium.nix
           main/general.nix
           main/kernel.nix
           main/misc.nix
-          main/networking.nix
           main/packages.nix
           main/printing.nix
           main/scanning.nix
