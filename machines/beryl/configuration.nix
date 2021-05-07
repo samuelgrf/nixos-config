@@ -13,7 +13,7 @@
 
   # Enable systemd-boot and set timeout.
   boot.loader.systemd-boot.enable = true;
-  boot.loader.timeout = 3;
+  boot.loader.timeout = 5;
 
   # Enable weekly TRIM on ZFS.
   services.zfs.trim.enable = true
