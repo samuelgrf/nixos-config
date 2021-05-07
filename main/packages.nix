@@ -52,6 +52,7 @@
         mpv
         nixUnstable.doc
         protontricks
+        scrcpy
         simple-scan
         ungoogled-chromium
         winetricks
