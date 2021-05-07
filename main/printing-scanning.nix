@@ -7,7 +7,7 @@
   # Get PPD options by running `lpoptions -p <name> -l`.
   hardware.printers.ensurePrinters = [
     {
-      name = "Brother-MFC-L2700DW";
+      name = "Brother_MFC-L2700DW";
       description = "Brother MFC-L2700DW";
       location = "Office Upstairs";
       deviceUri =
@@ -23,7 +23,7 @@
       };
     }
     {
-      name = "Brother-HL-3140CW";
+      name = "Brother_HL-3140CW";
       description = "Brother HL-3140CW";
       location = "Office Downstairs";
       deviceUri =
@@ -38,7 +38,7 @@
       };
     }
     {
-      name = "HP-OfficeJet-Pro-7720";
+      name = "HP_OfficeJet-Pro-7720";
       description = "HP Officejet Pro 7720";
       location = "Office Downstairs";
       deviceUri =
@@ -55,7 +55,7 @@
   ];
 
   # Set default printer.
-  hardware.printers.ensureDefaultPrinter = "Brother-MFC-L2700DW";
+  hardware.printers.ensureDefaultPrinter = "Brother_MFC-L2700DW";
 
   # Enable and configure SANE scanning API.
   hardware.sane = {
