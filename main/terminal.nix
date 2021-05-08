@@ -80,7 +80,6 @@
         c = "cd ${configDir}";
         hmm =
           "chromium file:///run/current-system/sw/share/doc/home-manager/index.html";
-        n = "nix repl ${configDir}/repl.nix";
         nb = "nix build --print-build-logs -v";
         nbd = "nix build --dry-run -v";
         nf = "nix flake";
@@ -110,6 +109,7 @@
           "cd ${configDir} && nix flake lock --commit-lock-file --update-input";
         nv = "nixos-version";
         nvr = "nixos-version --revision";
+        r = "nix repl ${configDir}/repl.nix";
 
         # Other
         chromium-widevine = ''
