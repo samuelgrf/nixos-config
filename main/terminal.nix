@@ -80,10 +80,12 @@
         c = "cd ${configDir}";
         hmm =
           "chromium file:///run/current-system/sw/share/doc/home-manager/index.html";
+        n = "nix";
         nb = "nix build --print-build-logs -v";
         nbd = "nix build --dry-run -v";
         nf = "nix flake";
         nfc = "nix flake check";
+        nfl = "nix flake lock";
         nfu = "nix flake update";
         ng = "nix-collect-garbage";
         ngd = "sudo nix-collect-garbage -d";
