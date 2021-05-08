@@ -61,6 +61,11 @@
           name = "Manuals";
           children = [
             {
+              name = "Nix Manual";
+              url =
+                "file:///run/current-system/sw/share/doc/nix/manual/index.html";
+            }
+            {
               name = "NixOS Manual";
               url = "file:///run/current-system/sw/share/doc/nixos/index.html";
             }
@@ -70,9 +75,9 @@
                 "file:///run/current-system/sw/share/doc/nixpkgs/manual.html";
             }
             {
-              name = "Nix Manual";
+              name = "Home Manager Manual";
               url =
-                "file:///run/current-system/sw/share/doc/nix/manual/index.html";
+                "file:///run/current-system/sw/share/doc/home-manager/index.html";
             }
           ];
         }

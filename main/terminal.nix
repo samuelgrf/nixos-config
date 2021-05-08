@@ -78,6 +78,8 @@
 
         # Nix & NixOS
         c = "cd ${configDir}";
+        hmm =
+          "chromium file:///run/current-system/sw/share/doc/home-manager/index.html";
         n = "nix repl ${configDir}/repl.nix";
         nb = "nix build --print-build-logs -v";
         nbd = "nix build --dry-run -v";
