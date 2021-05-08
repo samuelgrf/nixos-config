@@ -138,6 +138,7 @@
         lvl = "echo $SHLVL";
         msg = "kdialog --msgbox";
         o = "xdg-open";
+        p = "pre-commit run -a";
         qr = "qrencode -t UTF8";
         radio = "${vlc}/bin/vlc ${./radio.m3u}";
         rb = "shutdown -r";
