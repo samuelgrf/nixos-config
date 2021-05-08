@@ -8,16 +8,43 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-20.09";
     nixpkgs-master.url = "github:NixOS/nixpkgs";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    pre-commit-hooks = {
+      url = "github:cachix/pre-commit-hooks.nix";
+      inputs.nixpkgs.follows = "/nixpkgs";
+    };
   };
 
-  outputs =
-    { home-manager, nixpkgs, nixpkgs-master, nixpkgs-unstable, ... }@flakes: {
+  outputs = { home-manager, nixpkgs, nixpkgs-master, nixpkgs-unstable
+    , pre-commit-hooks, self }@flakes:
+    let
+      system = "x86_64-linux";
+      pkgs = nixpkgs.legacyPackages.${system};
+      lib = nixpkgs.lib;
+    in {
+
+      checks.${system}.pre-commit-check = pre-commit-hooks.lib.${system}.run {
+        src = ./.;
+        hooks = {
+          nixfmt = {
+            enable = true;
+            excludes = [ "machines/.*/hardware-generated.nix" ];
+          };
+          nix-linter = {
+            enable = true;
+            excludes = [ "machines/.*/hardware-generated.nix" ];
+          };
+        };
+      };
+
+      devShell.${system} = pkgs.mkShell {
+        inherit (self.checks.${system}.pre-commit-check) shellHook;
+      };
+
       nixosConfigurations = let
 
         # The NixOS release to be compatible with for stateful data such as databases.
         stateVersion = "20.09";
 
-        lib = nixpkgs.lib;
         specialArgs.lib = lib // import ./lib { inherit lib; };
 
         defaultModules = [
@@ -94,8 +121,7 @@
       in {
 
         amethyst = lib.nixosSystem {
-          system = "x86_64-linux";
-          inherit specialArgs;
+          inherit system specialArgs;
           modules = [
             machines/amethyst/configuration.nix
             machines/amethyst/hardware-generated.nix
@@ -107,8 +133,7 @@
         };
 
         beryl = lib.nixosSystem {
-          system = "x86_64-linux";
-          inherit specialArgs;
+          inherit system specialArgs;
           modules = [
             machines/beryl/configuration.nix
             machines/beryl/hardware-generated.nix
