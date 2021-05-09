@@ -34,6 +34,8 @@
             excludes = [ "machines/.*/hardware-generated.nix" ];
           };
         };
+        settings.nix-linter.checks =
+          [ "BetaReduction" "EmptyVariadicParamSet" "UnneededAntiquote" ];
       };
 
       devShell.${system} = pkgs.mkShell {
