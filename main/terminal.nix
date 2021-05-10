@@ -80,6 +80,7 @@
         c = "cd ${configDir}";
         hmm =
           "chromium file:///run/current-system/sw/share/doc/home-manager/index.html";
+        hmo = "man home-configuration.nix";
         n = "nix";
         nb = "nix build --print-build-logs -v";
         nbd = "nix build --dry-run -v";
@@ -94,6 +95,7 @@
           "chromium file:///run/current-system/sw/share/doc/nix/manual/index.html";
         nom =
           "chromium file:///run/current-system/sw/share/doc/nixos/index.html";
+        noo = "man configuration.nix";
         np = "nix repl";
         npm =
           "chromium file:///run/current-system/sw/share/doc/nixpkgs/manual.html";
