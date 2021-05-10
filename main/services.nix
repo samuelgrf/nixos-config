@@ -36,16 +36,32 @@
     extraServiceFiles.ssh = "${avahi}/etc/avahi/services/ssh.service";
   };
 
-  # Enable and configure ZFS auto-snapshotting service.
-  # To activate auto-snapshotting for a dataset run
-  # `sudo zfs set com.sun:auto-snapshot=true <DATASET>`.
-  services.zfs.autoSnapshot = {
-    enable = true;
-    frequent = 4; # 15 minutes
-    hourly = 24;
-    daily = 7;
-    weekly = 0;
-    monthly = 0;
+  # Enable and configure ZFS services.
+  services.zfs = {
+
+    # To activate auto-snapshotting for a dataset run
+    # `sudo zfs set com.sun:auto-snapshot=true <DATASET>`.
+    autoSnapshot = {
+      enable = true;
+      frequent = 4; # 15 minutes
+      hourly = 24;
+      daily = 7;
+      weekly = 0;
+      monthly = 0;
+    };
+
+    # Scrub ZFS pools to verify and restore filesystem integrity.
+    autoScrub = {
+      enable = true;
+      interval = "weekly";
+    };
+
+    # To activate trimming for a LUKS device set
+    # `boot.initrd.luks.devices.<name>.allowDiscards = true`.
+    trim = {
+      enable = true;
+      interval = "weekly";
+    };
   };
 
   # Enable Early OOM deamon.

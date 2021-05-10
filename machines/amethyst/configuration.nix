@@ -24,10 +24,6 @@
   services.xserver.enable = true;
   services.xserver.autorun = true;
 
-  # Trim and scrub ZFS drives weekly.
-  services.zfs.trim.enable = true;
-  services.zfs.autoScrub.enable = true;
-
   # Enable TLP for improved battery life.
   services.tlp.enable = true;
 
