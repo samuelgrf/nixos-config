@@ -166,6 +166,8 @@
         zlf = "zfs list -t filesystem";
         zls = "zfs list -t snapshot";
         zlv = "zfs list -t volume";
+        zsr = "sudo zpool scrub rpool && watch zpool status -t rpool";
+        zsrc = "sudo zpool scrub -s rpool; zpool status -t rpool";
         ztr = "sudo zpool trim rpool && watch zpool status -t rpool";
         ztrc = "sudo zpool trim -c rpool; zpool status -t rpool";
       };
