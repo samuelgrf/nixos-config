@@ -1,4 +1,4 @@
-{ lib, ... }: {
+{ config, lib, ... }: {
 
   # Configure Chromium/Chrome.
   # Command line arguments are set in ../overlays/ungoogled-chromium.
@@ -56,7 +56,58 @@
       };
 
       # Bookmarks
-      ManagedBookmarks = [
+      ManagedBookmarks = let release = config.system.nixos.release;
+      in [
+        { toplevel_name = "​"; }
+        {
+          name = "Google";
+          url = "https://www.google.com/";
+        }
+        {
+          name = "GitHub";
+          url = "https://github.com/";
+        }
+        {
+          name = "YouTube";
+          url = "https://www.youtube.com/";
+        }
+        {
+          name = "YouTube Music";
+          url = "https://music.youtube.com/";
+        }
+        {
+          name = "Nix & NixOS";
+          children = [
+            {
+              name = "NixOS/nixpkgs: Nix Packages collection";
+              url = "https://github.com/NixOS/nixpkgs";
+            }
+            {
+              name = "NixOS Infra Status";
+              url = "https://status.nixos.org/";
+            }
+            {
+              name = "Nixpkgs PR progress tracker";
+              url = "https://nixpk.gs/pr-tracker.html";
+            }
+            {
+              name = "Useful Nix Hacks";
+              url = "http://chriswarbo.net/projects/nixos/useful_hacks.html";
+            }
+            {
+              name = "Hydra - Overview";
+              url = "https://hydra.nixos.org/";
+            }
+            {
+              name = "Hydra - Jobset nixos:release-${release}";
+              url = "https://hydra.nixos.org/jobset/nixos/release-${release}";
+            }
+            {
+              name = "Hydra - Jobset nixos:trunk-combined";
+              url = "https://hydra.nixos.org/jobset/nixos/trunk-combined";
+            }
+          ];
+        }
         {
           name = "Manuals";
           children = [
@@ -78,6 +129,19 @@
               name = "Home Manager Manual";
               url =
                 "file:///run/current-system/sw/share/doc/home-manager/index.html";
+            }
+          ];
+        }
+        {
+          name = "Misc";
+          children = [
+            {
+              name = "CUPS Web Interface";
+              url = "http://localhost:631/";
+            }
+            {
+              name = "FRITZ!Box Interface";
+              url = "http://fritz.box/";
             }
           ];
         }
