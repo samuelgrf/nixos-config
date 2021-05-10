@@ -44,8 +44,8 @@
     frequent = 4; # 15 minutes
     hourly = 24;
     daily = 7;
-    weekly = 4;
-    monthly = 12;
+    weekly = 0;
+    monthly = 0;
   };
 
   # Enable Early OOM deamon.
