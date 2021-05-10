@@ -6,7 +6,7 @@ let
   cfg = config.programs.kde;
 
   settingsLists =
-    attrsets.collect isList (mapAttrsRecursive (p: v: p ++ [ v ]) cfg.config);
+    attrsets.collect isList (mapAttrsRecursive (p: v: p ++ [ v ]) cfg.settings);
 
   commandList = map (v: ''
     ${kdeFrameworks.kconfig}/bin/kwriteconfig5 \
@@ -22,7 +22,7 @@ in {
   options.programs.kde = {
     enable = mkEnableOption "KDE";
 
-    config = mkOption {
+    settings = mkOption {
       default = { };
       example = literalExample ''{ kwinrc = { General.Foo = "bar"; }; }'';
       description = "KDE settings";

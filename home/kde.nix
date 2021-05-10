@@ -3,7 +3,7 @@
   # Configure KDE.
   programs.kde = {
     enable = true;
-    config = {
+    settings = {
 
       # Set desktop wallpaper.
       "plasma-org.kde.plasma.desktop-appletsrc".Containments."1".Wallpaper."org.kde.image".General.Image =
