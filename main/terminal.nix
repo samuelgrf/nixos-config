@@ -130,6 +130,7 @@
           ${ztr}\
         '';
         grl = "git reflog";
+        grlp = "git reflog -p";
         inc = ''
           [ -n "$HISTFILE" ] && {\
             echo "Enabled incognito mode"
