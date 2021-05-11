@@ -1,4 +1,4 @@
-{ alsaTools, config, pkgsi686Linux, vaapiIntel, ... }: {
+{ config, pkgsi686Linux, vaapiIntel, ... }: {
 
   ##############################################################################
   ## General
@@ -59,17 +59,30 @@
   # are also installed.
   services.xserver.videoDrivers = [ "modesetting" ];
 
-  # Create a systemd service to fix audio crackling on startup/resume.
-  # https://bugs.launchpad.net/ubuntu/+source/alsa-driver/+bug/1648183/comments/31
-  systemd.services.fixaudio = {
-    description = "Audio crackling fix for Realtek ALC295";
-    script = ''
-      ${alsaTools}/bin/hda-verb /dev/snd/hwC[[:print:]]*D0 0x20 SET_COEF_INDEX 0x67
-      ${alsaTools}/bin/hda-verb /dev/snd/hwC[[:print:]]*D0 0x20 SET_PROC_COEF 0x3000
-    '';
-    wantedBy = [ "multi-user.target" "post-resume.target" ];
-    after = [ "post-resume.target" ];
-  }
+  # [WIP] amethyst: Fix audio crackling via kernel parameter
+  # Commented out models have been tested and don't work.
+  # A list of models can be found at `<linux-src>/Documentation/sound/hd-audio/models.rst`.
+  boot.kernelParams = [
+    ("snd_hda_intel.model=" # +
+      # "hp-gpio-led"
+      # "alc295-hp-x360"
+      # "hp-mute-led-mic1"
+      # "hp-mute-led-mic2"
+      # "hp-mute-led-mic3"
+      # "hp-gpio-mic1"
+      # "hp-line1-mic1"
+      # "noshutup"
+      # "hp-gpio4"
+      # "hp-gpio-led"
+      # "hp-gpio2-hotkey"
+      # "alc295-disable-dac3"
+      # "lenovo-spk-noise"
+      # "dell-spk-noise"
+      # "inv-dmic"
+      # "pcm44k"
+      # "alc295-hp-omen"
+    )
+  ]
 
   ;
   ##############################################################################
