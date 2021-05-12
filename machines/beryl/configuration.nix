@@ -1,4 +1,4 @@
-{ amdvlk, config, pkgsi686Linux, ... }: {
+{ amdvlk, pkgsi686Linux, ... }: {
 
   ##############################################################################
   ## General
@@ -23,15 +23,6 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   services.xserver.autorun = true
-
-  ;
-  ##############################################################################
-  ## Kernel & Modules
-  ##############################################################################
-
-  # Install kernel modules.
-  boot.extraModulePackages = with config.boot.kernelPackages;
-    [ hid-playstation ]
 
   ;
   ##############################################################################

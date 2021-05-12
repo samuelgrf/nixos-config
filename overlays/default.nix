@@ -4,9 +4,8 @@
   # libstrangle: Get from nixpkgs unstable.
   (import ./libstrangle { inherit (flakes) nixpkgs-unstable; })
 
-  # TODO Remove on 21.05.
-  # linuxPackages*.hid-playstation: Init
-  (import ./linuxPackages)
+  # linux_zen: Update to 5.12.2-zen2.
+  (import ./linux_zen)
 
   # plasma5.kwin: Apply low latency patch.
   (import ./kwin)

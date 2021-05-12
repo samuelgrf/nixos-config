@@ -1,4 +1,4 @@
-{ alsaTools, config, pkgsi686Linux, vaapiIntel, ... }: {
+{ alsaTools, pkgsi686Linux, vaapiIntel, ... }: {
 
   ##############################################################################
   ## General
@@ -40,12 +40,6 @@
   ##############################################################################
   ## Kernel & Modules
   ##############################################################################
-
-  # Install kernel modules.
-  boot.extraModulePackages = with config.boot.kernelPackages; [
-    hid-playstation
-    rtw88
-  ];
 
   # Blacklist sensor kernel modules.
   boot.blacklistedKernelModules = [ "intel_ishtp_hid" "intel_ish_ipc" ]
