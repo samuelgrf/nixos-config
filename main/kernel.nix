@@ -1,4 +1,4 @@
-{ pkgs-unstable, ... }: {
+{ config, lib, pkgs-unstable, ... }: {
 
   # Use Zen kernel for better interactive performance.
   # TODO Remove "pkgs-unstable." on 21.05.
@@ -7,6 +7,7 @@
 
   # Enable support for additional filesystems.
   boot.supportedFilesystems = [ "exfat" "ntfs" "zfs" ];
+  networking.hostId = lib.mkHostId config.networking.hostName; # Needed by ZFS.
 
   # Enable zram and use faster lzo compression.
   zramSwap.enable = true;

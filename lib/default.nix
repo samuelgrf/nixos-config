@@ -1,6 +1,8 @@
 { lib }:
 
-with lib; rec {
+with builtins // lib; rec {
+
+  mkHostId = s: substring 0 8 (hashString "sha256" s);
 
   mkWebstoreUrl = id:
     "javascript:location.href="

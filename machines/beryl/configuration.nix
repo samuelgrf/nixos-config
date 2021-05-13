@@ -7,10 +7,6 @@
   # Set hostname.
   networking.hostName = "beryl";
 
-  # The 32-bit host ID of this machine, formatted as 8 hexadecimal characters.
-  # This is generated via `head -c 8 /etc/machine-id` and required by ZFS.
-  networking.hostId = "db43f9bb";
-
   # Enable systemd-boot and set timeout.
   boot.loader.systemd-boot.enable = true;
   boot.loader.timeout = 5
