@@ -45,13 +45,13 @@
   ## Audio
   ##############################################################################
 
-  # Create a systemd service to fix audio crackling on startup/resume.
-  # https://bugs.launchpad.net/ubuntu/+source/alsa-driver/+bug/1648183/comments/31
-  systemd.services.fixaudio = {
-    description = "Audio crackling fix for Realtek ALC295";
+  # Create a systemd service to fix sound crackling after resume/startup.
+  # https://bugs.launchpad.net/ubuntu/+source/alsa-driver/+bug/1648183/comments/17
+  systemd.services.sound-crackling-workaround = {
+    description = "Sound crackling workaround for Realtek ALC295";
     script = ''
-      ${alsaTools}/bin/hda-verb /dev/snd/hwC[[:print:]]*D0 0x20 SET_COEF_INDEX 0x67
-      ${alsaTools}/bin/hda-verb /dev/snd/hwC[[:print:]]*D0 0x20 SET_PROC_COEF 0x3000
+      ${alsaTools}/bin/hda-verb /dev/snd/hwC0D0 0x20 SET_COEF_INDEX 0x67
+      ${alsaTools}/bin/hda-verb /dev/snd/hwC0D0 0x20 SET_PROC_COEF 0x3000
     '';
     wantedBy = [ "multi-user.target" "post-resume.target" ];
     after = [ "post-resume.target" ];
