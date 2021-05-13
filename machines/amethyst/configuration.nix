@@ -42,12 +42,8 @@
 
   ;
   ##############################################################################
-  ## GPU & Audio
+  ## Audio
   ##############################################################################
-
-  # Only enable modesetting video driver, if this isn't set other unused drivers
-  # are also installed.
-  services.xserver.videoDrivers = [ "modesetting" ];
 
   # Create a systemd service to fix audio crackling on startup/resume.
   # https://bugs.launchpad.net/ubuntu/+source/alsa-driver/+bug/1648183/comments/31
