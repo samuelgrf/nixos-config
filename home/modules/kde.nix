@@ -5,18 +5,24 @@ with lib;
 let
   cfg = config.programs.kde;
 
-  settingsLists =
-    attrsets.collect isList (mapAttrsRecursive (p: v: p ++ [ v ]) cfg.settings);
+  toString' = v: if isBool v then boolToString v else toString v;
 
-  commandList = map (v: ''
-    ${kdeFrameworks.kconfig}/bin/kwriteconfig5 \
-      --file "${head v}" \
-      ${toString (map (v: ''--group "${v}"'') (sublist 1 (length v - 3) v))} \
-      --key "${elemAt (reverseList v) 1}" \
-      "${if isBool (last v) then boolToString (last v) else toString (last v)}"
-  '') settingsLists;
+  settingsLists = attrsets.collect isList
+    (mapAttrsRecursive (path: value: path ++ [ (toString' value) ])
+      cfg.settings);
 
-  commandString = concatStrings commandList;
+  commandList = map (args:
+    flatten [
+      "${kdeFrameworks.kconfig}/bin/kwriteconfig5"
+      "--file"
+      (head args)
+      (map (g: [ "--group" g ]) (sublist 1 (length args - 3) args))
+      "--key"
+      (last (init args))
+      (last args)
+    ]) settingsLists;
+
+  commandString = concatMapStringsSep "\n" escapeShellArgs commandList;
 in {
 
   options.programs.kde = {
@@ -31,7 +37,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.activation.kdeConfig =
+    home.activation.kdeSettings =
       hm.dag.entryAfter [ "writeBoundary" ] commandString;
   };
 
