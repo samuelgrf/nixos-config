@@ -1,4 +1,4 @@
-{ config, flakes, lib, pkgs, ... }:
+{ config, flakes, lib, pkgs, pkgs-master, ... }:
 
 let
   bat = "${pkgs.bat}/bin/bat";
@@ -19,6 +19,7 @@ let
   nix-locate = "${pkgs.nix-index}/bin/nix-locate";
   nix-store = "${config.nix.package}/bin/nix-store";
   nixos-rebuild = "${config.system.build.nixos-rebuild}/bin/nixos-rebuild";
+  nvd = "${pkgs-master.nvd}/bin/nvd";
   pre-commit = "${pkgs.pre-commit}/bin/pre-commit";
   qrencode = "${pkgs.qrencode}/bin/qrencode";
   readlink = "${pkgs.coreutils}/bin/readlink";
@@ -87,7 +88,11 @@ in {
       export LESSHISTFILE=/dev/null
 
       # Define Nix & NixOS functions.
-      nr () { ${sudo} ${nixos-rebuild} -v "$@" }
+      nr () {
+        _NIXOS_OLD_GEN=$(${readlink} /run/current-system)
+        ${sudo} ${nixos-rebuild} -v "$@" &&
+        ${nvd} diff $_NIXOS_OLD_GEN $(${readlink} result)
+      }
       nrs () { nr switch "$@" && exec ${zsh} }
       nrt () { nr test "$@" && exec ${zsh} }
       nsd () { ${nix} show-derivation "$@" | ${bat} -l nix }
