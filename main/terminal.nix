@@ -79,114 +79,110 @@ with binPaths; {
     '';
 
     # Set shell aliases.
-    shellAliases =
-      let configDir = "$(${dirname} $(${readlink} -m /etc/nixos/flake.nix))";
-      in {
+    shellAliases = let
+      configDir = "$(${dirname} $(${readlink} -m /etc/nixos/flake.nix))";
+      docDir = "/run/current-system/sw/share/doc";
+    in {
 
-        # Nix & NixOS
-        c = "cd ${configDir}";
-        hmm =
-          "${ungoogled-chromium} file:///run/current-system/sw/share/doc/home-manager/index.html";
-        hmo = "${man} home-configuration.nix";
-        hmv = "${echo} ${flakes.home-manager.rev}";
-        n = nix;
-        nb = "${nix} build --print-build-logs -v";
-        nbd = "${nix} build --dry-run -v";
-        nf = "${nix} flake";
-        nfc = "${nix} flake check";
-        nfl = "${nix} flake lock";
-        nfu = "${nix} flake update";
-        ng = nix-collect-garbage;
-        ngd = "${sudo} ${nix-collect-garbage} -d";
-        nlo = nix-locate;
-        nm =
-          "${ungoogled-chromium} file:///run/current-system/sw/share/doc/nix/manual/index.html";
-        nmv = "${echo} ${flakes.nixpkgs-master.rev}";
-        nom =
-          "${ungoogled-chromium} file:///run/current-system/sw/share/doc/nixos/index.html";
-        noo = "${man} configuration.nix";
-        np = "${nix} repl";
-        npm =
-          "${ungoogled-chromium} file:///run/current-system/sw/share/doc/nixpkgs/manual.html";
-        nrb = "nr boot";
-        nrbu = "nr build";
-        nse = "${nix} search nixpkgs";
-        nsem = "${nix} search github:NixOS/nixpkgs";
-        nseu = "${nix} search nixpkgs-unstable";
-        nsr = ''
-          ${nix-store} --gc --print-roots |\
-            ${cut} -f 1 -d " " |\
-            ${grep} '/result-\?[^-]*$'
-        '';
-        nsrr = "${rm} -v $(nsr)";
-        nu = "cd ${configDir} && ${nix} flake update --commit-lock-file";
-        nub = "nu && nr boot";
-        nubu = "nu && nr build";
-        nui =
-          "cd ${configDir} && nix flake lock --commit-lock-file --update-input";
-        nuv = "${echo} ${flakes.nixpkgs-unstable.rev}";
-        nv = "${echo} ${flakes.nixpkgs.rev}";
-        r = "${nix} repl ${configDir}/repl.nix";
+      # Nix & NixOS
+      c = "cd ${configDir}";
+      hmm = "${ungoogled-chromium} file://${docDir}/home-manager/index.html";
+      hmo = "${man} home-configuration.nix";
+      hmv = "${echo} ${flakes.home-manager.rev}";
+      n = nix;
+      nb = "${nix} build --print-build-logs -v";
+      nbd = "${nix} build --dry-run -v";
+      nf = "${nix} flake";
+      nfc = "${nix} flake check";
+      nfl = "${nix} flake lock";
+      nfu = "${nix} flake update";
+      ng = nix-collect-garbage;
+      ngd = "${sudo} ${nix-collect-garbage} -d";
+      nlo = nix-locate;
+      nm = "${ungoogled-chromium} file://${docDir}/nix/manual/index.html";
+      nmv = "${echo} ${flakes.nixpkgs-master.rev}";
+      nom = "${ungoogled-chromium} file://${docDir}/nixos/index.html";
+      noo = "${man} configuration.nix";
+      np = "${nix} repl";
+      npm = "${ungoogled-chromium} file://${docDir}/nixpkgs/manual.html";
+      nrb = "nr boot";
+      nrbu = "nr build";
+      nse = "${nix} search nixpkgs";
+      nsem = "${nix} search github:NixOS/nixpkgs";
+      nseu = "${nix} search nixpkgs-unstable";
+      nsr = ''
+        ${nix-store} --gc --print-roots |\
+          ${cut} -f 1 -d " " |\
+          ${grep} '/result-\?[^-]*$'
+      '';
+      nsrr = "${rm} -v $(nsr)";
+      nu = "cd ${configDir} && nfu --commit-lock-file";
+      nub = "nu && nr boot";
+      nubu = "nu && nr build";
+      nui = "cd ${configDir} && nfl --commit-lock-file --update-input";
+      nuv = "${echo} ${flakes.nixpkgs-unstable.rev}";
+      nv = "${echo} ${flakes.nixpkgs.rev}";
+      r = "${nix} repl ${configDir}/repl.nix";
 
-        # Other
-        chromium-widevine = ''
-          ${pkgs.ungoogled-chromium.override { enableWideVine = true; }}\
-          /bin/chromium --user-data-dir=$HOME/.config/chromium-widevine &\
-          disown
-          exit\
-        '';
-        clean = lib.sudoZshICmd ''
-          ${rm} -v $(nsr)
-          ${nix-collect-garbage} -d &&\
-          ${echo} "deleting unused boot entries..." &&\
-          /nix/var/nix/profiles/system/bin/switch-to-configuration boot &&\
-          ztr\
-        '';
-        grl = "${git} reflog";
-        grlp = "${git} reflog -p";
-        inc = ''
-          [ -n "$HISTFILE" ] && {\
-            ${echo} "Enabled incognito mode"
-            unset HISTFILE
-          } || {\
-            ${echo} "Disabled incognito mode"
-            exec ${zsh}
-          }\
-        '';
-        lvl = "${echo} $SHLVL";
-        msg = "${kdialog} --msgbox";
-        o = xdg-open;
-        p = "${pre-commit} run -a";
-        qr = "${qrencode} -t UTF8";
-        radio = "${vlc} ${./radio.m3u}";
-        rb = "${shutdown} -r";
-        rbc = "${shutdown} -c";
-        rbn = "${shutdown} -r now";
-        rld = "exec ${zsh}";
-        rldh = lib.sudoShCmd ''
-          ${systemctl} restart home-manager-*.service
-          ${systemctl} status home-manager-*.service\
-        '';
-        rldp = "${kquitapp5} plasmashell && ${kstart5} plasmashell";
-        sd = shutdown;
-        sdc = "${shutdown} -c";
-        sdn = "${shutdown} now";
-        t = tree;
-        tv = "${vlc} ${./tv.m3u}";
-        wtr = "${curl} wttr.in";
-        zl = "${zfs} list";
-        zla = "${zfs} list -t all";
-        zlf = "${zfs} list -t filesystem";
-        zls = "${zfs} list -t snapshot";
-        zlv = "${zfs} list -t volume";
-        zsr =
-          "${sudo} ${zpool} scrub rpool && ${watch} ${zpool} status -t rpool";
-        zsrc = "${sudo} ${zpool} scrub -s rpool; ${zpool} status -t rpool";
-        ztr =
-          "${sudo} ${zpool} trim rpool && ${watch} ${zpool} status -t rpool";
-        ztrc = "${sudo} ${zpool} trim -c rpool; ${zpool} status -t rpool";
-        zstr = "${sudo} ${zpool} status -t rpool";
-      };
+      # Other
+      chromium-widevine = ''
+        ${pkgs.ungoogled-chromium.override { enableWideVine = true; }}\
+        /bin/chromium --user-data-dir=$HOME/.config/chromium-widevine &\
+        disown
+        exit\
+      '';
+      clean = lib.sudoZshICmd ''
+        ${rm} -v $(nsr)
+        ${nix-collect-garbage} -d &&\
+        ${echo} "deleting unused boot entries..." &&\
+        /nix/var/nix/profiles/system/bin/switch-to-configuration boot &&\
+        ztr\
+      '';
+      grl = "${git} reflog";
+      grlp = "${git} reflog -p";
+      inc = ''
+        [ -n "$HISTFILE" ] && {\
+          ${echo} "Enabled incognito mode"
+          unset HISTFILE
+        } || {\
+          ${echo} "Disabled incognito mode"
+          exec ${zsh}
+        }\
+      '';
+      lvl = "${echo} $SHLVL";
+      msg = "${kdialog} --msgbox";
+      o = xdg-open;
+      p = "${pre-commit} run -a";
+      qr = "${qrencode} -t UTF8";
+      radio = "${vlc} ${./radio.m3u}";
+      rb = "${shutdown} -r";
+      rbc = "${shutdown} -c";
+      rbn = "${shutdown} -r now";
+      rld = "exec ${zsh}";
+      rldh = lib.sudoShCmd ''
+        ${systemctl} restart home-manager-*.service
+        ${systemctl} status home-manager-*.service\
+      '';
+      rldp = "${kquitapp5} plasmashell && ${kstart5} plasmashell";
+      sd = shutdown;
+      sdc = "${shutdown} -c";
+      sdn = "${shutdown} now";
+      sudo = "${sudo} ";
+      t = tree;
+      tv = "${vlc} ${./tv.m3u}";
+      watch = "${watch} ";
+      wtr = "${curl} wttr.in";
+      zl = "${zfs} list";
+      zla = "${zfs} list -t all";
+      zlf = "${zfs} list -t filesystem";
+      zls = "${zfs} list -t snapshot";
+      zlv = "${zfs} list -t volume";
+      zsr = "${sudo} ${zpool} scrub rpool && watch zstr";
+      zsrc = "${sudo} ${zpool} scrub -s rpool; zstr";
+      zstr = "${sudo} ${zpool} status -t rpool";
+      ztr = "${sudo} ${zpool} trim rpool && watch zstr";
+      ztrc = "${sudo} ${zpool} trim -c rpool; zstr";
+    };
 
     # Set Zsh options.
     setOptions = [ "HIST_FCNTL_LOCK" "HIST_IGNORE_DUPS" "SHARE_HISTORY" ];
