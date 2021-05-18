@@ -1,4 +1,4 @@
-{ config, kdeFrameworks, lib, ... }:
+{ binPaths, config, lib, ... }:
 
 with lib;
 
@@ -13,7 +13,7 @@ let
 
   commandList = map (args:
     flatten [
-      "${kdeFrameworks.kconfig}/bin/kwriteconfig5"
+      binPaths.kwriteconfig5
       "--file"
       (head args)
       (map (g: [ "--group" g ]) (sublist 1 (length args - 3) args))

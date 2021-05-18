@@ -60,12 +60,14 @@
           main/services.nix
           main/terminal.nix
 
-          ({ config, nixUnstable, ... }:
+          ({ config, pkgs, pkgs-master, ... }:
             let
               pkgsImport = pkgs:
                 import pkgs (removeAttrs config.nixpkgs [ "localSystem" ]);
 
               _module.args = pkgsImport nixpkgs // {
+                binPaths =
+                  import main/binpaths.nix { inherit config pkgs pkgs-master; };
                 inherit flakes;
                 pkgs-master = pkgsImport nixpkgs-master;
                 pkgs-unstable = pkgsImport nixpkgs-unstable;
@@ -74,7 +76,7 @@
               inherit _module;
 
               nix = {
-                package = nixUnstable;
+                package = pkgs.nixUnstable;
 
                 extraOptions = ''
                   experimental-features = nix-command flakes

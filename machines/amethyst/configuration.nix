@@ -1,4 +1,4 @@
-{ alsaTools, pkgsi686Linux, vaapiIntel, ... }: {
+{ binPaths, pkgsi686Linux, vaapiIntel, ... }: {
 
   ##############################################################################
   ## General
@@ -49,9 +49,9 @@
   # https://bugs.launchpad.net/ubuntu/+source/alsa-driver/+bug/1648183/comments/17
   systemd.services.sound-crackling-workaround = {
     description = "Sound crackling workaround for Realtek ALC295";
-    script = ''
-      ${alsaTools}/bin/hda-verb /dev/snd/hwC0D0 0x20 SET_COEF_INDEX 0x67
-      ${alsaTools}/bin/hda-verb /dev/snd/hwC0D0 0x20 SET_PROC_COEF 0x3000
+    script = with binPaths; ''
+      ${hda-verb} /dev/snd/hwC0D0 0x20 SET_COEF_INDEX 0x67
+      ${hda-verb} /dev/snd/hwC0D0 0x20 SET_PROC_COEF 0x3000
     '';
     wantedBy = [ "multi-user.target" "post-resume.target" ];
     after = [ "post-resume.target" ];

@@ -1,46 +1,6 @@
-{ config, flakes, lib, pkgs, pkgs-master, ... }:
+{ binPaths, flakes, lib, pkgs, ... }:
 
-let
-  bat = "${pkgs.bat}/bin/bat";
-  curl = "${pkgs.curl}/bin/curl";
-  cut = "${pkgs.coreutils}/bin/cut";
-  dirname = "${pkgs.coreutils}/bin/dirname";
-  echo = "${pkgs.coreutils}/bin/echo";
-  emacsclient = "${config.services.emacs.package}/bin/emacsclient";
-  git = "${pkgs.git}/bin/git";
-  grep = "${pkgs.gnugrep}/bin/grep";
-  kdialog = "${pkgs.kdeGear.kdialog}/bin/kdialog";
-  kquitapp5 = "${pkgs.kdeGear.kdbusaddons}/bin/kquitapp5";
-  kstart5 = "${pkgs.kdeGear.kdbusaddons}/bin/kstart5";
-  less = "${pkgs.less}/bin/less";
-  man = "${pkgs.man-db}/bin/man";
-  nix = "${config.nix.package}/bin/nix";
-  nix-collect-garbage = "${config.nix.package}/bin/nix-collect-garbage";
-  nix-locate = "${pkgs.nix-index}/bin/nix-locate";
-  nix-store = "${config.nix.package}/bin/nix-store";
-  nixos-rebuild = "${config.system.build.nixos-rebuild}/bin/nixos-rebuild";
-  nvd = "${pkgs-master.nvd}/bin/nvd";
-  pre-commit = "${pkgs.pre-commit}/bin/pre-commit";
-  qrencode = "${pkgs.qrencode}/bin/qrencode";
-  readlink = "${pkgs.coreutils}/bin/readlink";
-  rm = "${pkgs.coreutils}/bin/rm";
-  shutdown = "${config.systemd.package}/bin/shutdown";
-  smartctl = "${pkgs.smartmontools}/bin/smartctl";
-  sudo = "${config.security.wrapperDir}/sudo";
-  systemctl = "${config.systemd.package}/bin/systemctl";
-  tree = "${pkgs.tree}/bin/tree";
-  ungoogled-chromium = "${pkgs.ungoogled-chromium}/bin/chromium";
-  vlc = "${pkgs.vlc}/bin/vlc";
-  watch = "${pkgs.procps}/bin/watch";
-  xdg-open = "${pkgs.xdg_utils}/bin/xdg-open";
-  zfs = "${
-      if config.boot.zfs.enableUnstable then pkgs.zfsUnstable else pkgs.zfs
-    }/bin/zfs";
-  zpool = "${
-      if config.boot.zfs.enableUnstable then pkgs.zfsUnstable else pkgs.zfs
-    }/bin/zpool";
-  zsh = "${pkgs.zsh}/bin/zsh";
-in {
+with binPaths; {
 
   # Use X keyboard configuration on console.
   console.useXkbConfig = true;
