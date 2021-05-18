@@ -1,6 +1,11 @@
-{ lib }:
+{ lib, pkgs }:
 
-with builtins // lib; rec {
+with builtins // lib;
+
+let
+  bash = "${pkgs.bash}/bin/bash";
+  sh = "${pkgs.bash}/bin/sh";
+in rec {
 
   mkHostId = s: substring 0 8 (hashString "sha256" s);
 
@@ -15,8 +20,8 @@ with builtins // lib; rec {
     url = mkWebstoreUrl id;
   });
 
-  sudoBashCmd = cmd: "sudo bash -c ${escapeShellArg cmd}";
+  sudoBashCmd = cmd: "sudo ${bash} -c ${escapeShellArg cmd}";
 
-  sudoShCmd = cmd: "sudo sh -c ${escapeShellArg cmd}";
+  sudoShCmd = cmd: "sudo ${sh} -c ${escapeShellArg cmd}";
 
 }

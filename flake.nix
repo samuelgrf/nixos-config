@@ -47,7 +47,7 @@
         # The NixOS release to be compatible with for stateful data such as databases.
         stateVersion = "20.09";
 
-        specialArgs.lib = lib // import ./lib { inherit lib; };
+        specialArgs.lib = lib // import ./lib { inherit lib pkgs; };
 
         defaultModules = [
           home-manager.nixosModules.home-manager
