@@ -5,6 +5,7 @@ with builtins // lib;
 let
   bash = "${pkgs.bash}/bin/bash";
   sh = "${pkgs.bash}/bin/sh";
+  zsh = "${pkgs.zsh}/bin/zsh";
 in rec {
 
   mkHostId = s: substring 0 8 (hashString "sha256" s);
@@ -23,5 +24,7 @@ in rec {
   sudoBashCmd = cmd: "sudo ${bash} -c ${escapeShellArg cmd}";
 
   sudoShCmd = cmd: "sudo ${sh} -c ${escapeShellArg cmd}";
+
+  sudoZshICmd = cmd: "sudo ${zsh} -ic ${escapeShellArg cmd}";
 
 }

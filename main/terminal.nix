@@ -121,7 +121,7 @@ in {
     # Set shell aliases.
     shellAliases =
       let configDir = "$(${dirname} $(${readlink} -m /etc/nixos/flake.nix))";
-      in rec {
+      in {
 
         # Nix & NixOS
         c = "cd ${configDir}";
@@ -172,12 +172,12 @@ in {
           disown
           exit\
         '';
-        clean = lib.sudoShCmd ''
+        clean = lib.sudoZshICmd ''
           ${rm} -v $(nsr)
           ${nix-collect-garbage} -d &&\
           ${echo} "deleting unused boot entries..." &&\
           /nix/var/nix/profiles/system/bin/switch-to-configuration boot &&\
-          ${ztr}\
+          ztr\
         '';
         grl = "${git} reflog";
         grlp = "${git} reflog -p";
