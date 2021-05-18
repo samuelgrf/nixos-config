@@ -101,6 +101,7 @@ with binPaths; {
         nlo = nix-locate;
         nm =
           "${ungoogled-chromium} file:///run/current-system/sw/share/doc/nix/manual/index.html";
+        nmv = "${echo} ${flakes.nixpkgs-master.rev}";
         nom =
           "${ungoogled-chromium} file:///run/current-system/sw/share/doc/nixos/index.html";
         noo = "${man} configuration.nix";
@@ -120,9 +121,8 @@ with binPaths; {
         nubu = "nu && nr build";
         nui =
           "cd ${configDir} && nix flake lock --commit-lock-file --update-input";
+        nuv = "${echo} ${flakes.nixpkgs-unstable.rev}";
         nv = "${echo} ${flakes.nixpkgs.rev}";
-        nvu = "${echo} ${flakes.nixpkgs-unstable.rev}";
-        nvm = "${echo} ${flakes.nixpkgs-master.rev}";
         r = "${nix} repl ${configDir}/repl.nix";
 
         # Other
