@@ -11,10 +11,10 @@ with pkgs; {
   git = "${git}/bin/git";
   grep = "${gnugrep}/bin/grep";
   hda-verb = "${alsaTools}/bin/hda-verb";
-  kdialog = "${kdeGear.kdialog}/bin/kdialog";
-  kquitapp5 = "${kdeGear.kdbusaddons}/bin/kquitapp5";
-  kstart5 = "${kdeGear.kdbusaddons}/bin/kstart5";
-  kwriteconfig5 = "${kdeGear.kconfig}/bin/kwriteconfig5";
+  kdialog = "${plasma5Packages.kdialog}/bin/kdialog";
+  kquitapp5 = "${plasma5Packages.kdbusaddons}/bin/kquitapp5";
+  kstart5 = "${plasma5Packages.kdbusaddons}/bin/kstart5";
+  kwriteconfig5 = "${plasma5Packages.kconfig}/bin/kwriteconfig5";
   less = "${less}/bin/less";
   man = "${man-db}/bin/man";
   nix = "${config.nix.package}/bin/nix";
@@ -41,7 +41,7 @@ with pkgs; {
   ungoogled-chromium = "${ungoogled-chromium}/bin/chromium";
   vlc = "${vlc}/bin/vlc";
   watch = "${procps}/bin/watch";
-  xdg-open = "${xdg_utils}/bin/xdg-open";
+  xdg-open = "${xdg-utils}/bin/xdg-open";
   zfs =
     "${if config.boot.zfs.enableUnstable then zfsUnstable else zfs}/bin/zfs";
   zpool =

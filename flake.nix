@@ -2,10 +2,11 @@
 
   inputs = {
     home-manager = {
-      url = "github:nix-community/home-manager/release-20.09";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "/nixpkgs";
     };
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-20.09";
+    # TODO Change to `github:NixOS/nixpkgs/nixos-21.05` when available.
+    nixpkgs.url = "github:NixOS/nixpkgs/21.05-beta";
     nixpkgs-master.url = "github:NixOS/nixpkgs";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     pre-commit-hooks = {
@@ -45,6 +46,7 @@
       nixosConfigurations = let
 
         # The NixOS release to be compatible with for stateful data such as databases.
+        # TODO Read release notes and change to 21.05.
         stateVersion = "20.09";
 
         specialArgs.lib = lib // import ./lib { inherit lib pkgs; };
@@ -98,7 +100,7 @@
                 };
               };
 
-              nixpkgs.overlays = import ./overlays { inherit flakes; };
+              nixpkgs.overlays = import ./overlays;
 
               system = { inherit stateVersion; };
 
@@ -118,14 +120,6 @@
                   }
                 ];
               };
-
-              # TODO Remove on 21.05.
-              # Import modules from nixpkgs-unstable.
-              disabledModules = [ "programs/steam.nix" ];
-              imports = [
-                "${flakes.nixpkgs-unstable}/nixos/modules/programs/partition-manager.nix"
-                "${flakes.nixpkgs-unstable}/nixos/modules/programs/steam.nix"
-              ];
             })
         ];
       in {

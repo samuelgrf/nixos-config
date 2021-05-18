@@ -1,8 +1,7 @@
-{ config, lib, pkgs-unstable, ... }: {
+{ config, lib, linuxPackages_zen, ... }: {
 
   # Use Zen kernel for better interactive performance.
-  # TODO Remove "pkgs-unstable." on 21.05.
-  boot.kernelPackages = pkgs-unstable.linuxPackages_zen;
+  boot.kernelPackages = linuxPackages_zen;
   boot.zfs.enableUnstable = true; # Supports Linux 5.12.
 
   # Enable support for additional filesystems.

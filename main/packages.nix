@@ -1,4 +1,4 @@
-{ config, flakes, lib, pkgs, pkgs-unstable, ... }: {
+{ config, flakes, lib, pkgs, ... }: {
 
   # System-wide packages to install.
   environment.systemPackages = with pkgs;
@@ -15,6 +15,7 @@
         lm_sensors
         lolcat
         lshw
+        manix
         ncdu
         neofetch
         nix-diff
@@ -23,11 +24,13 @@
         nix-tree
         nixfmt
         nixpkgs-review
+        nvd
         p7zip
         patchelf
         pciutils
         pre-commit
         python3
+        python3Packages.adb-enhanced
         qrencode
         rmtrash
         smartmontools
@@ -39,7 +42,7 @@
         usbutils
         whois
         youtube-dl
-      ] ++ (with pkgs-unstable; [ manix nvd python3Packages.adb-enhanced ]);
+      ];
       X = [
         appimage-run
         caffeine-ng
@@ -51,16 +54,24 @@
         keepassxc
         libreoffice
         libstrangle
+        lutris
+        lxqt.pavucontrol-qt
         mpv
         nixUnstable.doc
+        pcsx2
         protontricks
         scrcpy
         simple-scan
         ungoogled-chromium
         winetricks
         wineWowPackages.staging
-      ] ++ (with kdeGear; [ ark gwenview kate kdialog kwin-dynamic-workspaces ])
-        ++ (with pkgs-unstable; [ lutris lxqt.pavucontrol-qt pcsx2 ]);
+      ] ++ (with plasma5Packages; [
+        ark
+        gwenview
+        kate
+        kdialog
+        kwin-dynamic-workspaces
+      ]);
       noX = [ ];
     in common ++ (if config.services.xserver.enable then X else noX);
 
@@ -73,10 +84,7 @@
   };
 
   # System-wide fonts to install.
-  fonts.fonts = with pkgs; [
-    pkgs-unstable.meslo-lgs-nf # TODO Remove "pkgs-unstable." on 21.05.
-    noto-fonts-cjk
-  ];
+  fonts.fonts = with pkgs; [ meslo-lgs-nf noto-fonts-cjk ];
 
   # Select allowed unfree packages.
   nixpkgs.config.allowUnfreePredicate = pkg:
