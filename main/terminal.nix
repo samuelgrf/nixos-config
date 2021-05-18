@@ -113,8 +113,11 @@ with binPaths; {
         nse = "${nix} search nixpkgs";
         nsem = "${nix} search github:NixOS/nixpkgs";
         nseu = "${nix} search nixpkgs-unstable";
-        nsr =
-          "${nix-store} --gc --print-roots | ${cut} -f 1 -d ' ' | ${grep} /result$";
+        nsr = ''
+          ${nix-store} --gc --print-roots |\
+            ${cut} -f 1 -d " " |\
+            ${grep} '/result-\?[^-]*$'
+        '';
         nsrr = "${rm} -v $(nsr)";
         nu = "cd ${configDir} && ${nix} flake update --commit-lock-file";
         nub = "nu && nr boot";
