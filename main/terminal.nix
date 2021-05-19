@@ -50,8 +50,12 @@ with binPaths; {
       # Define Nix & NixOS functions.
       nr () {
         _NIXOS_OLD_GEN=$(${readlink} /run/current-system)
-        ${sudo} ${nixos-rebuild} -v "$@" &&
-        ${nvd} diff $_NIXOS_OLD_GEN $(${readlink} result)
+        ${sudo} ${nixos-rebuild} -v "$@" && {
+          [ "$1" = boot -o "$1" = switch ] \
+            && _NIXOS_NEW_GEN=$(${readlink} -f /nix/var/nix/profiles/system) \
+            || _NIXOS_NEW_GEN=$(${readlink} result)
+          ${nvd} diff $_NIXOS_OLD_GEN $_NIXOS_NEW_GEN
+        }
       }
       nrs () { nr switch "$@" && exec ${zsh} }
       nrt () { nr test "$@" && exec ${zsh} }
