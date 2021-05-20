@@ -100,8 +100,6 @@ with binPaths; {
       nfc = "${nix} flake check";
       nfl = "${nix} flake lock";
       nfu = "${nix} flake update";
-      ng = nix-collect-garbage;
-      ngd = "${sudo} ${nix-collect-garbage} -d";
       nlo = nix-locate;
       nm = "${ungoogled-chromium} file://${docDir}/nix/manual/index.html";
       nmv = "${echo} ${flakes.nixpkgs-master.rev}";
