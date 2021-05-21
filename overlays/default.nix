@@ -8,6 +8,10 @@
   # libstrangle: Get from nixpkgs unstable.
   (import ./libstrangle { inherit (flakes) nixpkgs-unstable; })
 
+  # linuxPackages*.ati_drivers_x11: Fix build failure caused by throw.
+  # TODO Remove when https://github.com/NixOS/nixpkgs/issues/123972 is fixed.
+  (import ./linuxPackages)
+
   # linux_zen: Update to 5.12.2-zen2.
   (import ./linux_zen)
 
