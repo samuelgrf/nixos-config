@@ -12,7 +12,7 @@
   # TODO Remove when https://github.com/NixOS/nixpkgs/issues/123972 is fixed.
   (import ./linuxPackages)
 
-  # linux_zen: Update to 5.12.2-zen2.
+  # linux_zen: Update to 5.12.5-zen1.
   (import ./linux_zen)
 
   # plasma5.kwin: Apply low latency patch.
