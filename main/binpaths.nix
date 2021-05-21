@@ -40,6 +40,6 @@ with pkgs; {
     "${if config.boot.zfs.enableUnstable then zfsUnstable else zfs}/bin/zfs";
   zpool =
     "${if config.boot.zfs.enableUnstable then zfsUnstable else zfs}/bin/zpool";
-  zsh = "${pkgs.zsh}/bin/zsh";
+  zsh = "${zsh}/bin/zsh";
 
 }
