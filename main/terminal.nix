@@ -59,7 +59,7 @@ with binPaths; {
       }
       nrs () { nr switch "$@" && exec ${zsh} }
       nrt () { nr test "$@" && exec ${zsh} }
-      nsd () { ${nix} show-derivation "$@" | ${bat} -l nix }
+      nsd () { ${nix} show-derivation "$@" | ${bat} -l json }
       nsh () { NIXPKGS_ALLOW_UNFREE=1 ${nix} shell --impure nixpkgs#"$@" }
       nshm () { NIXPKGS_ALLOW_UNFREE=1 ${nix} shell --impure github:NixOS/nixpkgs#"$@" }
       nshu () { NIXPKGS_ALLOW_UNFREE=1 ${nix} shell --impure nixpkgs-unstable#"$@" }
