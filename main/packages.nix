@@ -1,4 +1,4 @@
-{ config, flakes, lib, pkgs, pkgs-master, pkgs-unstable, ... }: {
+{ config, flakes, lib, pkgs, pkgs-unstable, ... }: {
 
   # System-wide packages to install.
   environment.systemPackages = with pkgs;
@@ -38,8 +38,7 @@
         usbutils
         whois
         youtube-dl
-      ] ++ (with pkgs-unstable; [ manix python3Packages.adb-enhanced ])
-        ++ (with pkgs-master; [ nvd ]);
+      ] ++ (with pkgs-unstable; [ manix nvd python3Packages.adb-enhanced ]);
       X = [
         appimage-run
         caffeine-ng
