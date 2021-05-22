@@ -29,6 +29,7 @@
         pre-commit
         python3
         qrencode
+        rmtrash
         smartmontools
         strace
         sysstat
