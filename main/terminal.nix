@@ -167,6 +167,12 @@ with binPaths; {
         ${systemctl} status home-manager-*.service\
       '';
       rldp = "${kquitapp5} plasmashell && ${kstart5} plasmashell";
+      rm = rmtrash;
+      rmdir = rmdirtrash;
+      rme = trash-empty;
+      rml = trash-list;
+      rmr = "${rmtrash} -r";
+      rmu = trash-restore;
       sd = shutdown;
       sdc = "${shutdown} -c";
       sdn = "${shutdown} now";
