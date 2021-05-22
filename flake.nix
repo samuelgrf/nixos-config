@@ -91,6 +91,11 @@
                   };
                   inherit flake;
                 }) flakes;
+
+                sshServe = {
+                  enable = true;
+                  keys = config.users.users.root.openssh.authorizedKeys.keys;
+                };
               };
 
               nixpkgs.overlays = import ./overlays { inherit flakes; };
