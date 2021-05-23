@@ -143,6 +143,7 @@ with binPaths; {
       '';
       grl = "${git} reflog";
       grlp = "${git} reflog -p";
+      gstlp = "${git} stash list -p";
       inc = ''
         [ -n "$HISTFILE" ] && {\
           ${echo} "Enabled incognito mode"
