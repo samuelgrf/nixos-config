@@ -219,7 +219,7 @@ with binPaths; {
       zlv = "${zfs} list -t volume";
       zsr = "${sudo} ${zpool} scrub rpool && watch zstr";
       zsrc = "${sudo} ${zpool} scrub -s rpool; zstr";
-      zstr = "${sudo} ${zpool} status -t rpool";
+      zstr = "${zpool} status -t rpool";
       ztr = "${sudo} ${zpool} trim rpool && watch zstr";
       ztrc = "${sudo} ${zpool} trim -c rpool; zstr";
     };
