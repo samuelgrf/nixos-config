@@ -176,6 +176,8 @@ with binPaths; {
       sd = shutdown;
       sdc = "${shutdown} -c";
       sdn = "${shutdown} now";
+      ssha = "${ssh} amethyst";
+      sshb = "${ssh} beryl";
       sudo = "${sudo} ";
       t = tree;
       tv = "${vlc} ${./tv.m3u}";

@@ -31,6 +31,7 @@ with pkgs; {
   rmtrash = "${rmtrash}/bin/rmtrash";
   shutdown = "${config.systemd.package}/bin/shutdown";
   smartctl = "${smartmontools}/bin/smartctl";
+  ssh = "${config.programs.ssh.package}/bin/ssh";
   sudo = "${config.security.wrapperDir}/sudo";
   systemctl = "${config.systemd.package}/bin/systemctl";
   trash-empty = "${trash-cli}/bin/trash-empty";
