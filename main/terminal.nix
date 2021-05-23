@@ -194,9 +194,6 @@ with binPaths; {
       ztr = "${sudo} ${zpool} trim rpool && watch zstr";
       ztrc = "${sudo} ${zpool} trim -c rpool; zstr";
     };
-
-    # Set Zsh options.
-    setOptions = [ "HIST_FCNTL_LOCK" "HIST_IGNORE_DUPS" "SHARE_HISTORY" ];
   };
 
   # Add entries to top of zshrc.
