@@ -49,12 +49,40 @@ with binPaths; {
 
       # Define Nix & NixOS functions.
       nr () {
-        _NIXOS_OLD_GEN=$(${readlink} /run/current-system)
-        ${sudo} ${nixos-rebuild} -v "$@" && {
-          [ "$1" = boot -o "$1" = switch ] \
-            && _NIXOS_NEW_GEN=$(${readlink} -f /nix/var/nix/profiles/system) \
-            || _NIXOS_NEW_GEN=$(${readlink} result)
-          ${nvd} diff $_NIXOS_OLD_GEN $_NIXOS_NEW_GEN
+        oldNixosGen=$(${readlink} /run/current-system)
+        origArgs=("$@")
+
+        while [ "$#" -gt 0 ]; do
+          i="$1"; shift 1
+          case "$i" in
+            switch|boot|test|build|edit|dry-build|dry-run|dry-activate|build-vm|build-vm-with-bootloader)
+              action="$i"
+            ;;
+            --build-host|h)
+              buildHost="$1"
+              shift 1
+            ;;
+            --target-host|t)
+              targetHost="$1"
+              shift 1
+            ;;
+          esac
+        done
+
+        [[ -z "$buildHost" && -n "$targetHost" ]] && buildHost="$targetHost"
+        [ "$targetHost" = localhost ] && targetHost=
+        [ "$buildHost" = localhost ] && buildHost=
+
+        ${sudo} ${nixos-rebuild} -v "''${origArgs[@]}" && {
+          if [ -z "$targetHost" ]; then
+            if [[ "$action" = boot || "$action" = switch ]]; then
+              newNixosGen=$(${readlink} -f /nix/var/nix/profiles/system)
+              ${nvd} diff $oldNixosGen $newNixosGen
+            elif [ -z "$buildHost" ]; then
+              newNixosGen=$(${readlink} result)
+              ${nvd} diff $oldNixosGen $newNixosGen
+            fi
+          fi
         }
       }
       nrs () { nr switch "$@" && exec ${zsh} }
