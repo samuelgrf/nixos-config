@@ -40,6 +40,7 @@
         tree
         unrar
         usbutils
+        vim
         whois
         youtube-dl
       ];
