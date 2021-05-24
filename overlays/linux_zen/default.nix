@@ -2,7 +2,7 @@ _: prev:
 with prev;
 
 let
-  version = "5.12.5";
+  version = "5.12.6";
   suffix = "zen1";
 in {
 
@@ -15,7 +15,7 @@ in {
         owner = "zen-kernel";
         repo = "zen-kernel";
         rev = "v${version}-${suffix}";
-        hash = "sha256-KF/t6CRK/0MbVV4mf1OIrOhWMUyp5c9U/Uo0HZ2B9Ao=";
+        hash = "sha256-AcaLxmkYFR2HEcOqSgiPIIqmfcX6QcXZrxJCJMm02s0=";
       };
     };
   };

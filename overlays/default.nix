@@ -1,6 +1,6 @@
 [
 
-  # linux_zen: Update to 5.12.5-zen1.
+  # linux_zen: Update to 5.12.6-zen1.
   (import ./linux_zen)
 
   # nixos-rebuild: Fix creating ./result symlink for flakes.
