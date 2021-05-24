@@ -99,8 +99,6 @@ with binPaths; {
       nruu () { NIXPKGS_ALLOW_UNFREE=1 ${nix} run --impure nixpkgs-unstable#"$@" }
 
       # Define other functions.
-      e () { ${emacsclient} -c "$@" > /dev/null & disown }
-      et () { ${emacsclient} -t "$@" }
       smart () { ${sudo} ${smartctl} -a "$@" | ${less} }
       run () { "$@" &> /dev/null & disown }
     '';
@@ -119,8 +117,10 @@ with binPaths; {
 
       # Nix & NixOS
       c = "cd ${configDir}";
-      hmm = "${ungoogled-chromium} file://${docDir}/home-manager/index.html";
-      hmo = "${ungoogled-chromium} file://${docDir}/home-manager/options.html";
+      hmm =
+        "run ${ungoogled-chromium} file://${docDir}/home-manager/index.html";
+      hmo =
+        "run ${ungoogled-chromium} file://${docDir}/home-manager/options.html";
       hmv = "${echo} ${flakes.home-manager.rev}";
       n = nix;
       nb = "${nix} build --print-build-logs -v";
@@ -131,12 +131,12 @@ with binPaths; {
       nfu = "${nix} flake update";
       ngd = "${nix} path-info --derivation";
       nlo = nix-locate;
-      nm = "${ungoogled-chromium} file://${docDir}/nix/manual/index.html";
+      nm = "run ${ungoogled-chromium} file://${docDir}/nix/manual/index.html";
       nmv = "${echo} ${flakes.nixpkgs-master.rev}";
-      nom = "${ungoogled-chromium} file://${docDir}/nixos/index.html";
-      noo = "${ungoogled-chromium} file://${docDir}/nixos/options.html";
+      nom = "run ${ungoogled-chromium} file://${docDir}/nixos/index.html";
+      noo = "run ${ungoogled-chromium} file://${docDir}/nixos/options.html";
       np = "${nix} repl";
-      npm = "${ungoogled-chromium} file://${docDir}/nixpkgs/manual.html";
+      npm = "run ${ungoogled-chromium} file://${docDir}/nixpkgs/manual.html";
       nrb = "nr boot";
       nrbu = "nr build";
       nse = "${nix} search nixpkgs";
@@ -158,10 +158,8 @@ with binPaths; {
 
       # Other
       chromium-widevine = ''
-        ${pkgs.ungoogled-chromium.override { enableWideVine = true; }}\
-        /bin/chromium --user-data-dir=$HOME/.config/chromium-widevine &\
-        disown
-        exit\
+        run ${pkgs.ungoogled-chromium.override { enableWideVine = true; }}\
+        /bin/chromium --user-data-dir=$HOME/.config/chromium-widevine\
       '';
       clean = lib.sudoZshICmd ''
         ${rm} -v $(nsr)
@@ -170,6 +168,8 @@ with binPaths; {
         /nix/var/nix/profiles/system/bin/switch-to-configuration boot &&\
         ztr\
       '';
+      e = "run ${emacsclient} -c";
+      et = "${emacsclient} -t";
       grl = "${git} reflog";
       grlp = "${git} reflog -p";
       gstlp = "${git} stash list -p";
@@ -187,7 +187,7 @@ with binPaths; {
       o = xdg-open;
       p = "${pre-commit} run -a";
       qr = "${qrencode} -t UTF8";
-      radio = "${vlc} ${./radio.m3u}";
+      radio = "run ${vlc} ${./radio.m3u}";
       rb = "${shutdown} -r";
       rbc = "${shutdown} -c";
       rbn = "${shutdown} -r now";
@@ -210,7 +210,7 @@ with binPaths; {
       sshb = "${ssh} beryl";
       sudo = "${sudo} ";
       t = tree;
-      tv = "${vlc} ${./tv.m3u}";
+      tv = "run ${vlc} ${./tv.m3u}";
       watch = "${watch} ";
       wtr = "${curl} wttr.in";
       zl = "${zfs} list";
