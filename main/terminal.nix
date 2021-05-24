@@ -119,7 +119,7 @@ with binPaths; {
       # Nix & NixOS
       c = "cd ${configDir}";
       hmm = "${ungoogled-chromium} file://${docDir}/home-manager/index.html";
-      hmo = "${man} home-configuration.nix";
+      hmo = "${ungoogled-chromium} file://${docDir}/home-manager/options.html";
       hmv = "${echo} ${flakes.home-manager.rev}";
       n = nix;
       nb = "${nix} build --print-build-logs -v";
@@ -133,7 +133,7 @@ with binPaths; {
       nm = "${ungoogled-chromium} file://${docDir}/nix/manual/index.html";
       nmv = "${echo} ${flakes.nixpkgs-master.rev}";
       nom = "${ungoogled-chromium} file://${docDir}/nixos/index.html";
-      noo = "${man} configuration.nix";
+      noo = "${ungoogled-chromium} file://${docDir}/nixos/options.html";
       np = "${nix} repl";
       npm = "${ungoogled-chromium} file://${docDir}/nixpkgs/manual.html";
       nrb = "nr boot";

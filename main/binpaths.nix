@@ -16,7 +16,6 @@ with pkgs; {
   kstart5 = "${plasma5Packages.kdbusaddons}/bin/kstart5";
   kwriteconfig5 = "${plasma5Packages.kconfig}/bin/kwriteconfig5";
   less = "${less}/bin/less";
-  man = "${man-db}/bin/man";
   nix = "${config.nix.package}/bin/nix";
   nix-collect-garbage = "${config.nix.package}/bin/nix-collect-garbage";
   nix-locate = "${nix-index}/bin/nix-locate";
