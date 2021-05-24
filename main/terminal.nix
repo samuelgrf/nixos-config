@@ -94,9 +94,9 @@ with binPaths; {
       nus () { nu && nr switch "$@" && exec ${zsh} }
       nut () { nu && nr test "$@" && exec ${zsh} }
       nw () { ${readlink} "$(where "$@")" }
-      run () { NIXPKGS_ALLOW_UNFREE=1 ${nix} run --impure nixpkgs#"$@" }
-      runm () { NIXPKGS_ALLOW_UNFREE=1 ${nix} run --impure github:NixOS/nixpkgs#"$@" }
-      runu () { NIXPKGS_ALLOW_UNFREE=1 ${nix} run --impure nixpkgs-unstable#"$@" }
+      nru () { NIXPKGS_ALLOW_UNFREE=1 ${nix} run --impure nixpkgs#"$@" }
+      nrum () { NIXPKGS_ALLOW_UNFREE=1 ${nix} run --impure github:NixOS/nixpkgs#"$@" }
+      nruu () { NIXPKGS_ALLOW_UNFREE=1 ${nix} run --impure nixpkgs-unstable#"$@" }
 
       # Define other functions.
       e () { ${emacsclient} -c "$@" > /dev/null & disown }
