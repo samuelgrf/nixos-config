@@ -49,7 +49,8 @@
         # TODO Read release notes and change to 21.05.
         stateVersion = "20.09";
 
-        specialArgs.lib = lib // import ./lib { inherit lib pkgs; };
+        lib' = import ./lib { inherit lib pkgs; };
+        specialArgs.lib = lib // lib';
 
         defaultModules = [
           home-manager.nixosModules.home-manager
@@ -107,6 +108,9 @@
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = true;
+                extraSpecialArgs.lib =
+                  (import "${home-manager}/modules/lib/stdlib-extended.nix" lib)
+                  // lib';
                 users.samuel.imports = [
                   home/modules/kde.nix
                   home/default-applications.nix
