@@ -166,7 +166,7 @@ with binPaths; {
         ${nix-collect-garbage} -d &&\
         ${echo} "deleting unused boot entries..." &&\
         /nix/var/nix/profiles/system/bin/switch-to-configuration boot &&\
-        ztr\
+        zt\
       '';
       e = "run ${emacsclient} -c";
       et = "${emacsclient} -t";
@@ -218,11 +218,11 @@ with binPaths; {
       zlf = "${zfs} list -t filesystem";
       zls = "${zfs} list -t snapshot";
       zlv = "${zfs} list -t volume";
-      zsr = "${sudo} ${zpool} scrub rpool && watch zstr";
-      zsrc = "${sudo} ${zpool} scrub -s rpool; zstr";
-      zstr = "${zpool} status -t rpool";
-      ztr = "${sudo} ${zpool} trim rpool && watch zstr";
-      ztrc = "${sudo} ${zpool} trim -c rpool; zstr";
+      zs = "${sudo} ${zpool} scrub rpool && watch zst";
+      zsc = "${sudo} ${zpool} scrub -s rpool; zst";
+      zst = "${zpool} status -t rpool";
+      zt = "${sudo} ${zpool} trim rpool && watch zst";
+      ztc = "${sudo} ${zpool} trim -c rpool; zst";
     };
   };
 
