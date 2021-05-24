@@ -1,4 +1,4 @@
-{ avahi, pulseaudio-modules-bt, ... }: {
+{ avahi, ... }: {
 
   # Enable and configure desktop environment.
   services.xserver = {
@@ -17,13 +17,10 @@
     };
   };
 
-  # Enable and configure PulseAudio server.
-  hardware.pulseaudio = {
+  # Enable and configure PipeWire audio server.
+  services.pipewire = {
     enable = true;
-
-    # TODO Remove when https://gitlab.freedesktop.org/pulseaudio/pulseaudio/-/merge_requests/473
-    # is merged and in nixpkgs.
-    extraModules = [ pulseaudio-modules-bt ]; # Support more Bluetooth codecs.
+    pulse.enable = true;
   };
 
   # Enable NetworkManager daemon.
