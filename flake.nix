@@ -63,15 +63,13 @@
           main/services.nix
           main/terminal.nix
 
-          ({ config, pkgs, pkgs-unstable, ... }:
+          ({ config, pkgs, ... }:
             let
               pkgsImport = pkgs:
                 import pkgs (removeAttrs config.nixpkgs [ "localSystem" ]);
 
               _module.args = pkgsImport nixpkgs // {
-                binPaths = import main/binpaths.nix {
-                  inherit config pkgs pkgs-unstable;
-                };
+                binPaths = import main/binpaths.nix { inherit config pkgs; };
                 inherit flakes;
                 pkgs-master = pkgsImport nixpkgs-master;
                 pkgs-unstable = pkgsImport nixpkgs-unstable;

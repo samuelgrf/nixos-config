@@ -1,4 +1,4 @@
-{ config, pkgs, pkgs-unstable }:
+{ config, pkgs }:
 
 with pkgs; {
 
@@ -21,7 +21,7 @@ with pkgs; {
   nix-locate = "${nix-index}/bin/nix-locate";
   nix-store = "${config.nix.package}/bin/nix-store";
   nixos-rebuild = "${config.system.build.nixos-rebuild}/bin/nixos-rebuild";
-  nvd = "${pkgs-unstable.nvd}/bin/nvd";
+  nvd = "${nvd}/bin/nvd";
   pre-commit = "${pre-commit}/bin/pre-commit";
   qrencode = "${qrencode}/bin/qrencode";
   readlink = "${coreutils}/bin/readlink";
