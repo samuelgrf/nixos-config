@@ -5,8 +5,6 @@ with lib;
 let
   cfg = config.programs.kde;
 
-  toString' = v: if isBool v then boolToString v else toString v;
-
   settingsLists = attrsets.collect isList
     (mapAttrsRecursive (path: value: path ++ [ (toString' value) ])
       cfg.settings);

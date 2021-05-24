@@ -27,4 +27,9 @@ in rec {
 
   sudoZshICmd = cmd: "sudo ${zsh} -ic ${escapeShellArg cmd}";
 
+  /* Like toString, but converts booleans to "true" or "false"
+     instead of "1" or "".
+  */
+  toString' = v: if isBool v then boolToString v else toString v;
+
 }
