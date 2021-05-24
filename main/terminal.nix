@@ -102,6 +102,7 @@ with binPaths; {
       e () { ${emacsclient} -c "$@" > /dev/null & disown }
       et () { ${emacsclient} -t "$@" }
       smart () { ${sudo} ${smartctl} -a "$@" | ${less} }
+      run () { "$@" &> /dev/null & disown }
     '';
 
     # Add entries to zshenv.
