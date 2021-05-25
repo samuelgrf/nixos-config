@@ -1,4 +1,4 @@
-{ avahi, ... }: {
+{ avahi, binPaths, lib, ... }: {
 
   # Enable and configure desktop environment.
   services.xserver = {
@@ -59,6 +59,19 @@
       interval = "weekly";
     };
   };
+
+  # Wait for running ZFS operations to end before scrub & trim.
+  systemd.services = with binPaths;
+    let
+      waitCmd = lib.bashCmd
+        "for pool in $(${zpool} list -H -o name); do ${zpool} wait $pool; done";
+    in {
+      zfs-scrub.serviceConfig.ExecStartPre = waitCmd;
+      zpool-trim.serviceConfig = {
+        ExecStartPre = waitCmd;
+        Type = "oneshot";
+      };
+    };
 
   # Enable Early OOM deamon.
   services.earlyoom.enable = true;
