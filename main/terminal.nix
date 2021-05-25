@@ -192,7 +192,7 @@ with binPaths; {
       rbc = "${shutdown} -c";
       rbn = "${shutdown} -r now";
       rld = "exec ${zsh}";
-      rldh = lib.sudoShCmd ''
+      rldh = lib.sudoBashCmd ''
         ${systemctl} restart home-manager-*.service
         ${systemctl} status home-manager-*.service\
       '';
