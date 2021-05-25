@@ -4,7 +4,6 @@ with builtins // lib;
 
 let
   bash = "${pkgs.bash}/bin/bash";
-  sh = "${pkgs.bash}/bin/sh";
   zsh = "${pkgs.zsh}/bin/zsh";
 in rec {
 
@@ -21,11 +20,11 @@ in rec {
     url = mkWebstoreUrl id;
   });
 
-  sudoBashCmd = cmd: "sudo ${bash} -c ${escapeShellArg cmd}";
+  bashCmd = cmd: "${bash} -c ${escapeShellArg cmd}";
+  sudoBashCmd = cmd: "sudo ${bashCmd cmd}";
 
-  sudoShCmd = cmd: "sudo ${sh} -c ${escapeShellArg cmd}";
-
-  sudoZshICmd = cmd: "sudo ${zsh} -ic ${escapeShellArg cmd}";
+  zshICmd = cmd: "${zsh} -ic ${escapeShellArg cmd}";
+  sudoZshICmd = cmd: "sudo ${zshICmd cmd}";
 
   /* Like toString, but converts booleans to "true" or "false"
      instead of "1" or "".
