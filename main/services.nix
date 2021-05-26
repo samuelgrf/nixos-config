@@ -61,9 +61,10 @@
   };
 
   # Wait for running ZFS operations to end before scrub & trim.
-  systemd.services = with binPaths;
-    let scrubCfg = config.services.zfs.autoScrub;
-    in {
+  systemd = let scrubCfg = config.services.zfs.autoScrub;
+  in with binPaths; {
+
+    services = {
       zfs-scrub.serviceConfig.ExecStart = lib.mkForce
         (writeShellScript "zfs-scrub" ''
           for pool in ${
@@ -91,6 +92,13 @@
         Type = "oneshot";
       };
     };
+
+    # Ensure one of the timers waits if run simultaneously.
+    timers = {
+      zfs-scrub.timerConfig.RandomizedDelaySec = 1;
+      zpool-trim.timerConfig.RandomizedDelaySec = 1;
+    };
+  };
 
   # Enable Early OOM deamon.
   services.earlyoom.enable = true;
