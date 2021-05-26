@@ -114,6 +114,7 @@
                   home/default-applications.nix
                   home/git.nix
                   home/kde.nix
+                  home/misc.nix
                   home/mpv.nix
                   home/proton.nix
                   {
