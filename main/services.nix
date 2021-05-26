@@ -1,4 +1,4 @@
-{ avahi, binPaths, lib, ... }: {
+{ avahi, binPaths, config, lib, writeShellScript, ... }: {
 
   # Enable and configure desktop environment.
   services.xserver = {
@@ -62,13 +62,32 @@
 
   # Wait for running ZFS operations to end before scrub & trim.
   systemd.services = with binPaths;
-    let
-      waitCmd = lib.bashCmd
-        "for pool in $(${zpool} list -H -o name); do ${zpool} wait $pool; done";
+    let scrubCfg = config.services.zfs.autoScrub;
     in {
-      zfs-scrub.serviceConfig.ExecStartPre = waitCmd;
+      zfs-scrub.serviceConfig.ExecStart = lib.mkForce
+        (writeShellScript "zfs-scrub" ''
+          for pool in ${
+            if scrubCfg.pools != [ ] then
+              (concatStringsSep " " scrubCfg.pools)
+            else
+              "$(${zpool} list -H -o name)"
+          }; do
+            echo Waiting for ZFS operations running on $pool to end...
+            ${zpool} wait $pool
+            echo Starting ZFS scrub for $pool...
+            ${zpool} scrub $pool
+          done
+        '');
+
       zpool-trim.serviceConfig = {
-        ExecStartPre = waitCmd;
+        ExecStart = lib.mkForce (writeShellScript "zpool-trim" ''
+          for pool in $(${zpool} list -H -o name); do
+            echo Waiting for ZFS operations running on $pool to end...
+            ${zpool} wait $pool
+            echo Starting TRIM operation for $pool...
+            ${zpool} trim $pool
+          done
+        '');
         Type = "oneshot";
       };
     };
