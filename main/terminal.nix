@@ -168,6 +168,7 @@ with binPaths; {
         /nix/var/nix/profiles/system/bin/switch-to-configuration boot &&\
         zt\
       '';
+      cpr = "cp -r";
       e = "run ${emacsclient} -c";
       et = "${emacsclient} -t";
       grl = "${git} reflog";
