@@ -129,6 +129,10 @@
       "glib-2.0/settings/keyfile"."org/gnome/desktop/interface".enable-animations =
         false;
 
+      # Disable application launch feedback.
+      klaunchrc.FeedbackStyle.BusyCursor = false;
+      klaunchrc.BusyCursorSettings.Bouncing = false;
+
       # Disable lockscreen media controls.
       kscreenlockerrc.Greeter.LnF.General.showMediaControls = false;
 
