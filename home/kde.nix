@@ -120,11 +120,8 @@
         Data_4Triggers0.Uuid = "{f3242e9b-1c88-455f-be32-f9d50105551a}";
       };
 
-      # Disable lockscreen media controls.
-      kscreenlockerrc.Greeter.LnF.General.showMediaControls = false;
-
-      # Remove help button from titlebar.
-      kwinrc."org.kde.kdecoration2".ButtonsOnRight = "IAX";
+      # Use OpenGL 3 rendering backend.
+      kwinrc.Compositing.GLCore = true;
 
       # Disable animations.
       kdeglobals.KDE.AnimationDurationFactor = 0;
@@ -132,8 +129,11 @@
       "glib-2.0/settings/keyfile"."org/gnome/desktop/interface".enable-animations =
         false;
 
-      # Use OpenGL 3 rendering backend.
-      kwinrc.Compositing.GLCore = true;
+      # Disable lockscreen media controls.
+      kscreenlockerrc.Greeter.LnF.General.showMediaControls = false;
+
+      # Remove help button from titlebar.
+      kwinrc."org.kde.kdecoration2".ButtonsOnRight = "IAX";
 
       # Disable file indexing.
       baloofilerc."Basic Settings".Indexing-Enabled = false;
