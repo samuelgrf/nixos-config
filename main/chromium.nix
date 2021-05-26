@@ -109,6 +109,23 @@
           ];
         }
         {
+          name = "Chrome";
+          children = [
+            {
+              name = "Chrome Release Schedule";
+              url = "https://www.chromestatus.com/features/schedule";
+            }
+            {
+              name = "Chrome Enterprise release notes";
+              url = "https://support.google.com/chrome/a/answer/7679408/";
+            }
+            {
+              name = "Chrome Enterprise policy list";
+              url = "https://chromeenterprise.google/policies/";
+            }
+          ];
+        }
+        {
           name = "Manuals";
           children = [
             {
