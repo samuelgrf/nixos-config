@@ -49,14 +49,14 @@
     # Scrub ZFS pools to verify and restore filesystem integrity.
     autoScrub = {
       enable = true;
-      interval = "weekly";
+      interval = "Mon";
     };
 
     # To activate trimming for a LUKS device set
     # `boot.initrd.luks.devices.<name>.allowDiscards = true`.
     trim = {
       enable = true;
-      interval = "weekly";
+      interval = "Thu";
     };
   };
 
