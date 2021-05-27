@@ -46,7 +46,6 @@
       ];
       X = [
         appimage-run
-        caffeine-ng
         (import flakes.home-manager { inherit pkgs; }).docs.html
         (lib.hiPrio flakes.nixpkgs-unstable.htmlDocs.nixosManual)
         flakes.nixpkgs-unstable.htmlDocs.nixpkgsManual
