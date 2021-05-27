@@ -2,7 +2,7 @@
 
   inputs = {
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-21.05";
       inputs.nixpkgs.follows = "/nixpkgs";
     };
     # TODO Change to `github:NixOS/nixpkgs/nixos-21.05` when available.
