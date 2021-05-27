@@ -46,8 +46,7 @@
       nixosConfigurations = let
 
         # The NixOS release to be compatible with for stateful data such as databases.
-        # TODO Read release notes and change to 21.05.
-        stateVersion = "20.09";
+        stateVersion = "21.05";
 
         lib' = import ./lib { inherit lib pkgs; };
         specialArgs.lib = lib // lib';
