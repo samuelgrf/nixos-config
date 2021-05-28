@@ -1,4 +1,4 @@
-{ avahi, binPaths, config, lib, writeShellScript, ... }: {
+{ avahi, binPaths, config, flakes, lib, writeShellScript, ... }: {
 
   # Enable and configure desktop environment.
   services.xserver = {
@@ -18,9 +18,20 @@
   };
 
   # Enable and configure PipeWire audio server.
-  services.pipewire = {
+  services.pipewire = let
+    defaults.bluez-monitor = __fromJSON (__readFile
+      "${flakes.nixpkgs}/nixos/modules/services/desktops/pipewire/bluez-monitor.conf.json");
+  in {
     enable = true;
     pulse.enable = true;
+
+    # Enable volume control via Bluetooth.
+    media-session.config.bluez-monitor.rules = defaults.bluez-monitor.rules
+      ++ [{
+        matches = [{ "device.name" = "~bluez_card.*"; }];
+        actions.update-props."bluez5.hw-volume" =
+          [ "hfp_hf" "hsp_hs" "a2dp_sink" "hfp_ag" "hsp_ag" "a2dp_source" ];
+      }];
   };
 
   # Enable NetworkManager daemon.
