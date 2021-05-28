@@ -36,6 +36,7 @@
         smartmontools
         strace
         sysstat
+        tmpmail
         trash-cli
         tree
         unrar
