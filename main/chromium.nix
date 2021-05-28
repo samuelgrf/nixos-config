@@ -181,7 +181,19 @@
             "SponsorBlock" = "mnjggcdmjocbbbhaepdhchncahnbgone";
             "uBlock Origin" = "cjpalhdlnbpafiamejdnhcphjbkeiagm";
             "Video Speed Controller" = "nffaoalbilbmmfgbnbgppjihopabppdk";
-          };
+            "Violentmonkey" = "jinjaccalgkegednnccohejagnlnfdag";
+          } ++ [
+            {
+              name = "Display remaining Youtube playlist time";
+              url =
+                "https://greasyfork.org/scripts/408966-display-remaining-youtube-playlist-time/code/Display%20remaining%20Youtube%20playlist%20time.user.js";
+            }
+            {
+              name = "Play Youtube playlist in reverse order";
+              url =
+                "https://greasyfork.org/scripts/404986-play-youtube-playlist-in-reverse-order/code/Play%20Youtube%20playlist%20in%20reverse%20order.user.js";
+            }
+          ];
         }
       ];
 
