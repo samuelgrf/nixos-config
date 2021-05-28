@@ -13,7 +13,7 @@ with pkgs; {
   hda-verb = "${alsaTools}/bin/hda-verb";
   kdialog = "${plasma5Packages.kdialog}/bin/kdialog";
   kquitapp5 = "${plasma5Packages.kdbusaddons}/bin/kquitapp5";
-  kstart5 = "${plasma5Packages.kdbusaddons}/bin/kstart5";
+  kstart5 = "${plasma5Packages.kde-cli-tools}/bin/kstart5";
   kwriteconfig5 = "${plasma5Packages.kconfig}/bin/kwriteconfig5";
   less = "${less}/bin/less";
   nix = "${config.nix.package}/bin/nix";
