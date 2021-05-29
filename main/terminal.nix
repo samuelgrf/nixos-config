@@ -135,7 +135,8 @@ with binPaths; {
       nmv = "${echo} ${flakes.nixpkgs-master.rev}";
       nom = "run ${ungoogled-chromium} file://${docDir}/nixos/index.html";
       noo = "run ${ungoogled-chromium} file://${docDir}/nixos/options.html";
-      np = "${nix} repl";
+      np = "${nix} repl ${configDir}/repl.nix";
+      npl = "${nix} repl";
       npm = "run ${ungoogled-chromium} file://${docDir}/nixpkgs/manual.html";
       nrb = "nr boot";
       nrbu = "nr build";
@@ -154,7 +155,6 @@ with binPaths; {
       nui = "cd ${configDir} && nfl --commit-lock-file --update-input";
       nuv = "${echo} ${flakes.nixpkgs-unstable.rev}";
       nv = "${echo} ${flakes.nixpkgs.rev}";
-      r = "${nix} repl ${configDir}/repl.nix";
 
       # Other
       chromium-widevine = ''
