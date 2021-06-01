@@ -182,7 +182,11 @@
             "uBlock Origin" = "cjpalhdlnbpafiamejdnhcphjbkeiagm";
             "Video Speed Controller" = "nffaoalbilbmmfgbnbgppjihopabppdk";
             "Violentmonkey" = "jinjaccalgkegednnccohejagnlnfdag";
-          } ++ [
+          };
+        }
+        {
+          name = "Userscripts";
+          children = [
             {
               name = "Display remaining Youtube playlist time";
               url =
