@@ -193,6 +193,11 @@
               url =
                 "https://greasyfork.org/scripts/404986-play-youtube-playlist-in-reverse-order/code/Play%20Youtube%20playlist%20in%20reverse%20order.user.js";
             }
+            {
+              name = "YouTube CPU Tamer";
+              url =
+                "https://greasyfork.org/scripts/418283-youtube-cpu-tamer/code/YouTube%20CPU%20Tamer.user.js";
+            }
           ];
         }
       ];
