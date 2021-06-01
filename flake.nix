@@ -5,8 +5,7 @@
       url = "github:nix-community/home-manager/release-21.05";
       inputs.nixpkgs.follows = "/nixpkgs";
     };
-    # TODO Change to `github:NixOS/nixpkgs/nixos-21.05` when available.
-    nixpkgs.url = "github:NixOS/nixpkgs/release-21.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-21.05";
     nixpkgs-master.url = "github:NixOS/nixpkgs";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     pre-commit-hooks = {
