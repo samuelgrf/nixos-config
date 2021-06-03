@@ -7,6 +7,16 @@ let
   zsh = "${pkgs.zsh}/bin/zsh";
 in rec {
 
+  mkGreasyforkUrl = name: id:
+    "https://greasyfork.org/scripts/${toString id}/code/${
+      replaceStrings [ "/" ] [ "" ] name
+    }.user.js";
+
+  mkGreasyforkBookmarks = mapAttrsToList (name: id: {
+    inherit name;
+    url = mkGreasyforkUrl name id;
+  });
+
   mkHostId = s: substring 0 8 (hashString "sha256" s);
 
   mkWebstoreUrl = id:
