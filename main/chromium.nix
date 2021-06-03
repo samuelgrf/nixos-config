@@ -58,7 +58,6 @@
       # Bookmarks
       ManagedBookmarks = let release = config.system.nixos.release;
       in [
-        { toplevel_name = "​"; }
         {
           name = "Google";
           url = "https://www.google.com/";
