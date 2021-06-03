@@ -11,7 +11,7 @@ with prev; {
       "--show-avatar-button=incognito-and-guest"
 
       # Experimental features
-      "--enable-features=TabSearch,VaapiVideoDecoder"
+      "--enable-features=VaapiVideoDecoder"
 
       # Dark mode
       "--force-dark-mode"
