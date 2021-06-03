@@ -51,7 +51,7 @@
         specialArgs.lib = lib // lib';
 
         defaultModules = [
-          home-manager.nixosModules.home-manager
+          home-manager.nixosModule
           main/chromium.nix
           main/general.nix
           main/kernel.nix
