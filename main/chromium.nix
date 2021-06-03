@@ -59,22 +59,6 @@
       ManagedBookmarks = let release = config.system.nixos.release;
       in [
         {
-          name = "Google";
-          url = "https://www.google.com/";
-        }
-        {
-          name = "GitHub";
-          url = "https://github.com/";
-        }
-        {
-          name = "YouTube";
-          url = "https://www.youtube.com/";
-        }
-        {
-          name = "YouTube Music";
-          url = "https://music.youtube.com/";
-        }
-        {
           name = "Nix & NixOS";
           children = [
             {
@@ -145,19 +129,6 @@
               name = "Home Manager Manual";
               url =
                 "file:///run/current-system/sw/share/doc/home-manager/index.html";
-            }
-          ];
-        }
-        {
-          name = "Misc";
-          children = [
-            {
-              name = "CUPS Web Interface";
-              url = "http://localhost:631/";
-            }
-            {
-              name = "FRITZ!Box Interface";
-              url = "http://fritz.box/";
             }
           ];
         }
