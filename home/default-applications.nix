@@ -51,10 +51,10 @@
     associations.removed = {
       ${html} = "wine-extension-htm.desktop";
       ${ini} = "wine-extension-ini.desktop";
+      ${pdf} = "wine-extension-pdf.desktop";
       ${txt} = "wine-extension-txt.desktop";
       ${url} = "wine-extension-url.desktop";
       ${xml} = "wine-extension-xml.desktop";
-      "application/pdf" = "wine-extension-pdf.desktop";
       "application/rtf" = "wine-extension-rtf.desktop";
       "application/vnd.ms-htmlhelp" = "wine-extension-chm.desktop";
       "application/winhlp" = "wine-extension-hlp.desktop";
