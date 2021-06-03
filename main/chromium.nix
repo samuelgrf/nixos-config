@@ -157,9 +157,13 @@
         {
           name = "Userscripts";
           children = lib.mkGreasyforkBookmarks {
+            "Default YouTube to Dark Theme" = 408542;
             "Display remaining Youtube playlist time" = 408966;
+            "Google - auto-set privacy/GDPR consent cookie (prevent consent popup)" =
+              424411;
             "Play Youtube playlist in reverse order" = 404986;
             "YouTube CPU Tamer" = 418283;
+            "Youtube - dismiss sign-in" = 412178;
           };
         }
       ];
