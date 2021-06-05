@@ -1,5 +1,8 @@
 [
 
+  # gimpPlugins.bimp: Init
+  (import ./gimpPlugins)
+
   # TODO Remove once `nixUnstable` is updated in nixpkgs.
   # nix: Install Zsh completion script.
   (import ./nix)
