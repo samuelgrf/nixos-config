@@ -46,11 +46,11 @@
         youtube-dl
       ];
       X = [
-        appimage-run
+        (gimp-with-plugins.override { plugins = with gimpPlugins; [ bimp ]; })
         (import flakes.home-manager { inherit pkgs; }).docs.html
         (lib.hiPrio flakes.nixpkgs-unstable.htmlDocs.nixosManual)
+        appimage-run
         flakes.nixpkgs-unstable.htmlDocs.nixpkgsManual
-        (gimp-with-plugins.override { plugins = with gimpPlugins; [ bimp ]; })
         imagemagick
         keepassxc
         libreoffice
