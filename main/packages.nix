@@ -60,6 +60,7 @@
         mpv
         nixUnstable.doc
         pcsx2
+        pdftk
         protontricks
         scrcpy
         simple-scan
