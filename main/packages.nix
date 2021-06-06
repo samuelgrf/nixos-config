@@ -50,7 +50,7 @@
         (import flakes.home-manager { inherit pkgs; }).docs.html
         (lib.hiPrio flakes.nixpkgs-unstable.htmlDocs.nixosManual)
         flakes.nixpkgs-unstable.htmlDocs.nixpkgsManual
-        gimp
+        (gimp-with-plugins.override { plugins = with gimpPlugins; [ bimp ]; })
         imagemagick
         keepassxc
         libreoffice
