@@ -32,7 +32,6 @@
         python3
         python3Packages.adb-enhanced
         qrencode
-        rmtrash
         smartmontools
         strace
         sysstat
