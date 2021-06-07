@@ -26,16 +26,11 @@ with pkgs; {
   qrencode = "${qrencode}/bin/qrencode";
   readlink = "${coreutils}/bin/readlink";
   rm = "${coreutils}/bin/rm";
-  rmdirtrash = "${rmtrash}/bin/rmdirtrash";
-  rmtrash = "${rmtrash}/bin/rmtrash";
   shutdown = "${config.systemd.package}/bin/shutdown";
   smartctl = "${smartmontools}/bin/smartctl";
   ssh = "${config.programs.ssh.package}/bin/ssh";
   sudo = "${config.security.wrapperDir}/sudo";
   systemctl = "${config.systemd.package}/bin/systemctl";
-  trash-empty = "${trash-cli}/bin/trash-empty";
-  trash-list = "${trash-cli}/bin/trash-list";
-  trash-restore = "${trash-cli}/bin/trash-restore";
   tree = "${tree}/bin/tree";
   ungoogled-chromium = "${ungoogled-chromium}/bin/chromium";
   vlc = "${vlc}/bin/vlc";
