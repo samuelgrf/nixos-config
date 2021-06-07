@@ -198,6 +198,7 @@ with binPaths; {
         ${systemctl} status home-manager-*.service\
       '';
       rldp = "${kquitapp5} plasmashell && ${kstart5} plasmashell";
+      rmr = "rm -r";
       sd = shutdown;
       sdc = "${shutdown} -c";
       sdn = "${shutdown} now";
