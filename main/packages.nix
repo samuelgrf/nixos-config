@@ -59,6 +59,7 @@
         mpv
         nixUnstable.doc
         pcsx2
+        pdfsizeopt
         pdftk
         protontricks
         scrcpy
