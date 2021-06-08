@@ -11,6 +11,9 @@
   # nixos-rebuild: Fix creating ./result symlink for flakes.
   (import ./nixos-rebuild)
 
+  # pdfsizeopt: Init
+  (import ./pdfsizeopt)
+
   # ungoogled-chromium: Add command line arguments.
   (import ./ungoogled-chromium)
 
