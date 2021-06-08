@@ -214,10 +214,10 @@ with binPaths; {
       zlf = "${zfs} list -t filesystem";
       zls = "${zfs} list -t snapshot";
       zlv = "${zfs} list -t volume";
-      zs = "${sudo} ${systemctl} start zfs-scrub.service && watch zst";
+      zs = "${sudo} ${systemctl} start zfs-scrub.service && ${watch} zst";
       zsc = "${sudo} ${zpool} scrub -s rpool; zst";
       zst = "${zpool} status -t rpool";
-      zt = "${sudo} ${systemctl} start zpool-trim.service && watch zst";
+      zt = "${sudo} ${systemctl} start zpool-trim.service && ${watch} zst";
       ztc = "${sudo} ${zpool} trim -c rpool; zst";
     };
   };
