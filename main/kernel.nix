@@ -1,7 +1,7 @@
-{ config, lib, linuxPackages_xanmod, ... }: {
+{ config, lib, pkgs-unstable, ... }: {
 
   # Use XanMod kernel for better interactive performance.
-  boot.kernelPackages = linuxPackages_xanmod;
+  boot.kernelPackages = pkgs-unstable.linuxPackages_xanmod;
 
   # TODO Remove once OpenZFS is updated to 2.1.0.
   boot.zfs.enableUnstable = true; # Supports Linux 5.12.
