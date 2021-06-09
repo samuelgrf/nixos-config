@@ -164,6 +164,7 @@
               424411;
             "Play Youtube playlist in reverse order" = 404986;
             "YouTube CPU Tamer" = 418283;
+            "YouTube ScrollBar Remove" = 423150;
             "Youtube - dismiss sign-in" = 412178;
           };
         }
