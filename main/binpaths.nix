@@ -11,6 +11,7 @@ with pkgs; {
   git = "${git}/bin/git";
   grep = "${gnugrep}/bin/grep";
   hda-verb = "${alsaTools}/bin/hda-verb";
+  journalctl = "${config.systemd.package}/bin/journalctl";
   kdialog = "${plasma5Packages.kdialog}/bin/kdialog";
   kquitapp5 = "${plasma5Packages.kdbusaddons}/bin/kquitapp5";
   kstart5 = "${plasma5Packages.kde-cli-tools}/bin/kstart5";

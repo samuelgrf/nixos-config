@@ -20,6 +20,24 @@ in rec {
 
   mkHostId = s: substring 0 8 (hashString "sha256" s);
 
+  mkSystemdScript = name: text:
+    let
+      out = pkgs.writeTextFile {
+        # The derivation name is different from the script file name
+        # to keep the script file name short to avoid cluttering logs.
+        name = "unit-script-${name}";
+        executable = true;
+        destination = "/bin/${name}";
+        text = ''
+          #!${pkgs.runtimeShell} -e
+          ${text}
+        '';
+        checkPhase = ''
+          ${pkgs.stdenv.shell} -n "$out/bin/${name}"
+        '';
+      };
+    in "${out}/bin/${name}";
+
   mkGreasyforkUrl = name: id:
     "https://greasyfork.org/scripts/${toString id}/code/${
       replaceStrings [ "/" ] [ "" ] name

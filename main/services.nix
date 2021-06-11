@@ -1,4 +1,6 @@
-{ avahi, binPaths, config, flakes, lib, writeShellScript, ... }: {
+{ avahi, binPaths, config, flakes, lib, ... }:
+
+with binPaths; {
 
   # Enable and configure desktop environment.
   services.xserver = {
@@ -67,48 +69,69 @@
     # `boot.initrd.luks.devices.<name>.allowDiscards = true`.
     trim = {
       enable = true;
-      interval = "Thu";
+      interval = "Wed";
     };
   };
 
   # Wait for running ZFS operations to end before scrub & trim.
-  systemd = let scrubCfg = config.services.zfs.autoScrub;
-  in with binPaths; {
+  systemd.services.zfs-scrub.serviceConfig.ExecStart =
+    let scrubCfg = config.services.zfs.autoScrub;
+    in lib.mkForce (lib.mkSystemdScript "zfs-scrub" ''
+      for pool in ${
+        if scrubCfg.pools != [ ] then
+          (concatStringsSep " " scrubCfg.pools)
+        else
+          "$(${zpool} list -H -o name)"
+      }; do
+        ${echo} Waiting for ZFS operations running on $pool to end...
+        ${zpool} wait $pool
+        ${echo} Starting ZFS scrub for $pool...
+        ${zpool} scrub $pool
+      done
+    '');
 
-    services = {
-      zfs-scrub.serviceConfig.ExecStart = lib.mkForce
-        (writeShellScript "zfs-scrub" ''
-          for pool in ${
-            if scrubCfg.pools != [ ] then
-              (concatStringsSep " " scrubCfg.pools)
-            else
-              "$(${zpool} list -H -o name)"
-          }; do
-            echo Waiting for ZFS operations running on $pool to end...
-            ${zpool} wait $pool
-            echo Starting ZFS scrub for $pool...
-            ${zpool} scrub $pool
-          done
-        '');
+  systemd.services.zpool-trim.serviceConfig = {
+    ExecStart = lib.mkForce (lib.mkSystemdScript "zpool-trim" ''
+      for pool in $(${zpool} list -H -o name); do
+        ${echo} Waiting for ZFS operations running on $pool to end...
+        ${zpool} wait $pool
+        ${echo} Starting TRIM operation for $pool...
+        ${zpool} trim $pool
+      done
+    '');
+    Type = "oneshot";
+  };
 
-      zpool-trim.serviceConfig = {
-        ExecStart = lib.mkForce (writeShellScript "zpool-trim" ''
-          for pool in $(${zpool} list -H -o name); do
-            echo Waiting for ZFS operations running on $pool to end...
-            ${zpool} wait $pool
-            echo Starting TRIM operation for $pool...
-            ${zpool} trim $pool
-          done
-        '');
-        Type = "oneshot";
-      };
-    };
+  # Ensure one of the timers waits if run simultaneously.
+  systemd.timers = {
+    zfs-scrub.timerConfig.RandomizedDelaySec = 1;
+    zpool-trim.timerConfig.RandomizedDelaySec = 1;
+  };
 
-    # Ensure one of the timers waits if run simultaneously.
-    timers = {
-      zfs-scrub.timerConfig.RandomizedDelaySec = 1;
-      zpool-trim.timerConfig.RandomizedDelaySec = 1;
-    };
+  # Run Nix garbage collector automatically.
+  nix.gc = {
+    automatic = true;
+    dates = "Fri";
+    options = "--delete-old";
+  };
+
+  systemd.services.nix-gc.serviceConfig = {
+
+    # Remove stray garbage collector roots before GC.
+    ExecStartPre = lib.mkSystemdScript "nix-gc-pre" ''
+      ${echo} removing stray garbage collector roots...
+      ${rm} -v $(
+        ${nix-store} --gc --print-roots |
+          ${cut} -f 1 -d " " |
+          ${grep} '/result-\?[^-]*$'
+      ) || true
+    '';
+
+    # Delete inaccessible boot entries after GC.
+    ExecStopPost = lib.mkSystemdScript "nix-gc-post" ''
+      ${echo} deleting old boot entries...
+      /nix/var/nix/profiles/system/bin/switch-to-configuration boot
+    '';
   };
 
   # Enable Early OOM deamon.
