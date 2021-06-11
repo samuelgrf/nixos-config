@@ -1,7 +1,8 @@
-{ config, lib, pkgs-unstable, ... }: {
+{ config, lib, linuxPackages_5_12, ... }: {
 
-  # Use XanMod kernel for better interactive performance.
-  boot.kernelPackages = pkgs-unstable.linuxPackages_xanmod;
+  # TODO Remove on NixOS 21.11.
+  # Linux kernel 5.12 supports DualSense and RTL8821CE.
+  boot.kernelPackages = linuxPackages_5_12;
 
   # TODO Remove once OpenZFS is updated to 2.1.0.
   boot.zfs.enableUnstable = true; # Supports Linux 5.12.
