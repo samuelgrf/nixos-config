@@ -103,7 +103,7 @@
   # Don't install optional default packages.
   environment.defaultPackages = [ ];
 
-  # Don't allow package aliases.
+  # Disallow package aliases.
   nixpkgs.config.allowAliases = false;
 
 }
