@@ -93,7 +93,6 @@ with binPaths; {
       nshu () { NIXPKGS_ALLOW_UNFREE=1 ${nix} shell --impure nixpkgs-unstable#"$@" }
       nus () { nu && nr switch "$@" && exec ${zsh} }
       nut () { nu && nr test "$@" && exec ${zsh} }
-      nw () { ${readlink} "$(where "$@")" }
       nru () { NIXPKGS_ALLOW_UNFREE=1 ${nix} run --impure nixpkgs#"$@" }
       nrum () { NIXPKGS_ALLOW_UNFREE=1 ${nix} run --impure github:NixOS/nixpkgs#"$@" }
       nruu () { NIXPKGS_ALLOW_UNFREE=1 ${nix} run --impure nixpkgs-unstable#"$@" }
@@ -182,6 +181,7 @@ with binPaths; {
       '';
       lvl = "${echo} $SHLVL";
       msg = "${kdialog} --msgbox";
+      nw = "whence -ps";
       o = xdg-open;
       p = "${pre-commit} run -a";
       qr = "${qrencode} -t UTF8";
