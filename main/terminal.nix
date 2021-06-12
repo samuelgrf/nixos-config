@@ -144,7 +144,7 @@ with binPaths; {
       nsr = ''
         ${nix-store} --gc --print-roots |\
           ${cut} -f 1 -d " " |\
-          ${grep} '/result-\?[^-]*$'
+          ${grep} '/result-\?[^-]*$'\
       '';
       nsrr = "${rm} -v $(nsr)";
       nu = "cd ${configDir} && nfu --commit-lock-file";
@@ -189,9 +189,9 @@ with binPaths; {
       rbc = "${shutdown} -c";
       rbn = "${shutdown} -r now";
       rld = "exec ${zsh}";
-      rldh = lib.sudoBashCmd ''
-        ${systemctl} restart home-manager-*.service
-        ${systemctl} status home-manager-*.service\
+      rldh = ''
+        ${sudo} ${systemctl} restart home-manager-\*.service
+        ${systemctl} status home-manager-\*.service\
       '';
       rldp = "${kquitapp5} plasmashell && ${kstart5} plasmashell";
       rmr = "rm -r";
