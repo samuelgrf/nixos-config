@@ -1,17 +1,6 @@
 { lib, pkgs }:
 
-with builtins // lib;
-
-let
-  bash = "${pkgs.bash}/bin/bash";
-  zsh = "${pkgs.zsh}/bin/zsh";
-in rec {
-
-  bashCmd = cmd: "${bash} -c ${escapeShellArg cmd}";
-  sudoBashCmd = cmd: "sudo ${bashCmd cmd}";
-
-  zshICmd = cmd: "${zsh} -ic ${escapeShellArg cmd}";
-  sudoZshICmd = cmd: "sudo ${zshICmd cmd}";
+with builtins // lib; rec {
 
   /* Like toString, but converts booleans to "true" or "false"
      instead of "1" or "".
