@@ -144,6 +144,7 @@
               url = "https://github.com/NeverDecaf/chromium-web-store/releases";
             }
           ] ++ lib.mkWebstoreBookmarks {
+            "Auto History Wipe" = "hdgnienkeomlaeeojaibeicglpoaadnj";
             "Dark Reader" = "eimadpbcbfnmbkopoojfekhnkhdbieeh";
             "Go Back with Backspace" = "eekailopagacbcdloonjhbiecobagjci";
             "Just Black" = "aghfnjkcakhmadgdomlmlhhaocbkloab";
