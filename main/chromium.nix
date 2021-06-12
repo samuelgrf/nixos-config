@@ -22,7 +22,6 @@
       DefaultSearchProviderSuggestURL =
         "https://duckduckgo.com/ac/?q={searchTerms}&type=list";
       HideWebStoreIcon = true;
-      SavingBrowserHistoryDisabled = true;
 
       # uBlock Origin
       "3rdparty".extensions.cjpalhdlnbpafiamejdnhcphjbkeiagm.adminSettings = let
