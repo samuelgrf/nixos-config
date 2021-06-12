@@ -6,7 +6,6 @@ with pkgs; {
   curl = "${curl}/bin/curl";
   cut = "${coreutils}/bin/cut";
   dirname = "${coreutils}/bin/dirname";
-  echo = "${coreutils}/bin/echo";
   emacsclient = "${config.services.emacs.package}/bin/emacsclient";
   git = "${git}/bin/git";
   grep = "${gnugrep}/bin/grep";

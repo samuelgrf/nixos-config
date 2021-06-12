@@ -120,7 +120,7 @@ with binPaths; {
         "run ${ungoogled-chromium} file://${docDir}/home-manager/index.html";
       hmo =
         "run ${ungoogled-chromium} file://${docDir}/home-manager/options.html";
-      hmv = "${echo} ${flakes.home-manager.rev}";
+      hmv = "echo ${flakes.home-manager.rev}";
       n = nix;
       nb = "${nix} build --print-build-logs -v";
       nbd = "${nix} build --dry-run -v";
@@ -131,7 +131,7 @@ with binPaths; {
       ngd = "${nix} path-info --derivation";
       nlo = nix-locate;
       nm = "run ${ungoogled-chromium} file://${docDir}/nix/manual/index.html";
-      nmv = "${echo} ${flakes.nixpkgs-master.rev}";
+      nmv = "echo ${flakes.nixpkgs-master.rev}";
       nom = "run ${ungoogled-chromium} file://${docDir}/nixos/index.html";
       noo = "run ${ungoogled-chromium} file://${docDir}/nixos/options.html";
       np = "${nix} repl ${configDir}/repl.nix";
@@ -152,8 +152,8 @@ with binPaths; {
       nub = "nu && nr boot";
       nubu = "nu && nr build";
       nui = "cd ${configDir} && nfl --commit-lock-file --update-input";
-      nuv = "${echo} ${flakes.nixpkgs-unstable.rev}";
-      nv = "${echo} ${flakes.nixpkgs.rev}";
+      nuv = "echo ${flakes.nixpkgs-unstable.rev}";
+      nv = "echo ${flakes.nixpkgs.rev}";
 
       # Other
       chromium-widevine = ''
@@ -172,14 +172,14 @@ with binPaths; {
       gstlp = "${git} stash list -p";
       inc = ''
         [ -n "$HISTFILE" ] && {\
-          ${echo} "Enabled incognito mode"
+          echo "Enabled incognito mode"
           unset HISTFILE
         } || {\
-          ${echo} "Disabled incognito mode"
+          echo "Disabled incognito mode"
           exec ${zsh}
         }\
       '';
-      lvl = "${echo} $SHLVL";
+      lvl = "echo $SHLVL";
       msg = "${kdialog} --msgbox";
       nw = "whence -ps";
       o = xdg-open;

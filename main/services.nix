@@ -83,9 +83,9 @@ with binPaths; {
         else
           "$(${zpool} list -H -o name)"
       }; do
-        ${echo} Waiting for ZFS operations running on $pool to end...
+        echo Waiting for ZFS operations running on $pool to end...
         ${zpool} wait $pool
-        ${echo} Starting ZFS scrub for $pool...
+        echo Starting ZFS scrub for $pool...
         ${zpool} scrub $pool
       done
     '');
@@ -93,9 +93,9 @@ with binPaths; {
   systemd.services.zpool-trim.serviceConfig = {
     ExecStart = lib.mkForce (lib.mkSystemdScript "zpool-trim" ''
       for pool in $(${zpool} list -H -o name); do
-        ${echo} Waiting for ZFS operations running on $pool to end...
+        echo Waiting for ZFS operations running on $pool to end...
         ${zpool} wait $pool
-        ${echo} Starting TRIM operation for $pool...
+        echo Starting TRIM operation for $pool...
         ${zpool} trim $pool
       done
     '');
@@ -119,7 +119,7 @@ with binPaths; {
 
     # Remove stray garbage collector roots before GC.
     ExecStartPre = lib.mkSystemdScript "nix-gc-pre" ''
-      ${echo} removing stray garbage collector roots...
+      echo removing stray garbage collector roots...
       ${rm} -v $(
         ${nix-store} --gc --print-roots |
           ${cut} -f 1 -d " " |
@@ -129,7 +129,7 @@ with binPaths; {
 
     # Delete inaccessible boot entries after GC.
     ExecStopPost = lib.mkSystemdScript "nix-gc-post" ''
-      ${echo} deleting old boot entries...
+      echo deleting old boot entries...
       /nix/var/nix/profiles/system/bin/switch-to-configuration boot
     '';
   };
