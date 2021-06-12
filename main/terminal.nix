@@ -98,7 +98,6 @@ with binPaths; {
       nruu () { NIXPKGS_ALLOW_UNFREE=1 ${nix} run --impure nixpkgs-unstable#"$@" }
 
       # Define other functions.
-      smart () { ${sudo} ${smartctl} -a "$@" | ${less} }
       run () { "$@" &> /dev/null & disown }
     '';
 
@@ -199,6 +198,7 @@ with binPaths; {
       sd = shutdown;
       sdc = "${shutdown} -c";
       sdn = "${shutdown} now";
+      smart = "${sudo} ${smartctl} -a";
       ssha = "${ssh} amethyst";
       sshb = "${ssh} beryl";
       sudo = "${sudo} ";
