@@ -18,7 +18,6 @@ with pkgs; {
   kwriteconfig5 = "${plasma5Packages.kconfig}/bin/kwriteconfig5";
   less = "${less}/bin/less";
   nix = "${config.nix.package}/bin/nix";
-  nix-collect-garbage = "${config.nix.package}/bin/nix-collect-garbage";
   nix-locate = "${nix-index}/bin/nix-locate";
   nix-store = "${config.nix.package}/bin/nix-store";
   nixos-rebuild = "${config.system.build.nixos-rebuild}/bin/nixos-rebuild";

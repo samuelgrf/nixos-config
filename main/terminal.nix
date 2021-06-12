@@ -161,12 +161,9 @@ with binPaths; {
         run ${pkgs.ungoogled-chromium.override { enableWideVine = true; }}\
         /bin/chromium --user-data-dir=$HOME/.config/chromium-widevine\
       '';
-      clean = lib.sudoZshICmd ''
-        ${rm} -v $(nsr)
-        ${nix-collect-garbage} -d &&\
-        ${echo} "deleting unused boot entries..." &&\
-        /nix/var/nix/profiles/system/bin/switch-to-configuration boot &&\
-        zt\
+      clean = ''
+        ${sudo} ${systemctl} start nix-gc.service
+        ${journalctl} -o cat -fu nix-gc.service
       '';
       cpr = "cp -r";
       e = "run ${emacsclient} -c";
