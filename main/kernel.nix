@@ -11,8 +11,8 @@
   boot.supportedFilesystems = [ "exfat" "ntfs" "zfs" ];
   networking.hostId = lib.mkHostId config.networking.hostName; # Needed by ZFS.
 
-  # Enable zram and use faster lzo compression.
+  # Enable zram and use faster lzo-rle compression.
   zramSwap.enable = true;
-  zramSwap.algorithm = "lzo";
+  zramSwap.algorithm = "lzo-rle";
 
 }
