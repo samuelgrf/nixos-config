@@ -114,7 +114,6 @@
                   home/kde.nix
                   home/misc.nix
                   home/mpv.nix
-                  home/proton.nix
                   {
                     inherit _module;
                     home = { inherit stateVersion; };
