@@ -53,7 +53,6 @@
         imagemagick
         keepassxc
         libreoffice
-        libstrangle
         lutris
         lxqt.pavucontrol-qt
         mpv
