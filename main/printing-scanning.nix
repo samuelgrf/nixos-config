@@ -54,6 +54,9 @@
   # Set default printer.
   hardware.printers.ensureDefaultPrinter = "Brother_MFC-L2700DW";
 
+  # Disable CUPS remote printer discovery.
+  systemd.services.cups-browsed.enable = false;
+
   # Enable and configure SANE scanning API.
   hardware.sane = {
     enable = true;
