@@ -56,7 +56,7 @@
       };
 
       # Bookmarks
-      ManagedBookmarks = let release = config.system.nixos.release;
+      ManagedBookmarks = let inherit (config.system.nixos) release;
       in [
         {
           name = "Manuals";
