@@ -91,8 +91,8 @@ with binPaths; {
       nsh () { NIXPKGS_ALLOW_UNFREE=1 ${nix} shell --impure nixpkgs#"$@" }
       nshm () { NIXPKGS_ALLOW_UNFREE=1 ${nix} shell --impure github:NixOS/nixpkgs#"$@" }
       nshu () { NIXPKGS_ALLOW_UNFREE=1 ${nix} shell --impure nixpkgs-unstable#"$@" }
-      nus () { nu && nr switch "$@" && exec ${zsh} }
-      nut () { nu && nr test "$@" && exec ${zsh} }
+      nus () { $(nu) && nr switch "$@" && exec ${zsh} }
+      nut () { $(nu) && nr test "$@" && exec ${zsh} }
       nru () { NIXPKGS_ALLOW_UNFREE=1 ${nix} run --impure nixpkgs#"$@" }
       nrum () { NIXPKGS_ALLOW_UNFREE=1 ${nix} run --impure github:NixOS/nixpkgs#"$@" }
       nruu () { NIXPKGS_ALLOW_UNFREE=1 ${nix} run --impure nixpkgs-unstable#"$@" }
