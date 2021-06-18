@@ -133,6 +133,9 @@
       klaunchrc.FeedbackStyle.BusyCursor = false;
       klaunchrc.BusyCursorSettings.Bouncing = false;
 
+      # Start with an empty session after login.
+      ksmserverrc.General.loginMode = "emptySession";
+
       # Disable lockscreen media controls.
       kscreenlockerrc.Greeter.LnF.General.showMediaControls = false;
 
