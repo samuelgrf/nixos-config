@@ -97,7 +97,7 @@
                 };
               };
 
-              nixpkgs.overlays = import ./overlays;
+              nixpkgs.overlays = import ./overlays { inherit nixpkgs-master; };
 
               system = { inherit stateVersion; };
 

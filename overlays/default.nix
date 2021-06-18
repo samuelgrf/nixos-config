@@ -1,11 +1,11 @@
-[
+{ nixpkgs-master }: [
 
   # gimpPlugins.bimp: Init
   (import ./gimpPlugins)
 
-  # TODO Remove once https://github.com/NixOS/nixpkgs/pull/123720 is merged.
+  # TODO Remove once https://github.com/NixOS/nixpkgs/pull/126960 is merged.
   # nixos-rebuild: Fix creating ./result symlink for flakes.
-  (import ./nixos-rebuild)
+  (import ./nixos-rebuild { inherit nixpkgs-master; })
 
   # pdfsizeopt: Init
   (import ./pdfsizeopt)
