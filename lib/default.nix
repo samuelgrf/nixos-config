@@ -2,6 +2,17 @@
 
 with builtins // lib; rec {
 
+  /* Example:
+       formatDateSep "-" "20210619"
+       => 2021-06-19
+  */
+  formatDateSep = s: d:
+    concatStringsSep s [
+      (substring 0 4 d)
+      (substring 4 2 d)
+      (substring 6 2 d)
+    ];
+
   /* Like toString, but converts booleans to "true" or "false"
      instead of "1" or "".
   */

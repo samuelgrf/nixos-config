@@ -119,7 +119,6 @@ with binPaths; {
         "run ${ungoogled-chromium} file://${docDir}/home-manager/index.html";
       hmo =
         "run ${ungoogled-chromium} file://${docDir}/home-manager/options.html";
-      hmv = "echo ${flakes.home-manager.rev}";
       n = nix;
       nb = "${nix} build --print-build-logs -v";
       nbd = "${nix} build --dry-run -v";
@@ -130,7 +129,6 @@ with binPaths; {
       ngd = "${nix} path-info --derivation";
       nlo = nix-locate;
       nm = "run ${ungoogled-chromium} file://${docDir}/nix/manual/index.html";
-      nmv = "echo ${flakes.nixpkgs-master.rev}";
       nom = "run ${ungoogled-chromium} file://${docDir}/nixos/index.html";
       noo = "run ${ungoogled-chromium} file://${docDir}/nixos/options.html";
       np = "${nix} repl ${configDir}/repl.nix";
@@ -151,8 +149,13 @@ with binPaths; {
       nub = "nu && nr boot";
       nubu = "nu && nr build";
       nui = "cd ${configDir} && nfl --commit-lock-file --update-input";
-      nuv = "echo ${flakes.nixpkgs-unstable.rev}";
-      nv = "echo ${flakes.nixpkgs.rev}";
+      nv = "echo '${
+          lib.concatStringsSep "\n" (lib.mapAttrsToList (name: flake: ''
+            ${name}:
+              ${flake.rev or "dirty"} (${
+                lib.formatDateSep "-" flake.lastModifiedDate or "19700101"
+              })'') flakes)
+        }'";
 
       # Other
       chromium-widevine = ''
