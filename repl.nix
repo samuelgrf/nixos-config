@@ -7,5 +7,5 @@ let
   nixosConfig = self.nixosConfigurations.${host};
 in {
   lib = lib';
-  inherit (nixosConfig._module.args) pkgs-master pkgs-unstable;
+  inherit (nixosConfig._module.args) binPaths flakes pkgs-master pkgs-unstable;
 } // nixosConfig // self.inputs // self
