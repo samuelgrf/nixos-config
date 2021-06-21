@@ -127,6 +127,7 @@ with binPaths; {
       nfl = "${nix} flake lock";
       nfu = "${nix} flake update";
       ngd = "${nix} path-info --derivation";
+      nlg = "${nix} log";
       nlo = nix-locate;
       nm = "run ${ungoogled-chromium} file://${docDir}/nix/manual/index.html";
       nom = "run ${ungoogled-chromium} file://${docDir}/nixos/index.html";
