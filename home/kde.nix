@@ -71,6 +71,9 @@
       "$HOME/.local/share/dolphin/view_properties/global/.directory".Settings.HiddenFilesShown =
         true;
 
+      # Dolphin: Don't remember last session.
+      dolphinrc.General.RememberOpenedTabs = false;
+
       # Ark: Open destination folder after extracting.
       arkrc.Extraction.openDestinationFolderAfterExtraction = true;
 
