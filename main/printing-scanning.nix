@@ -1,4 +1,4 @@
-{ sane-airscan, ... }: {
+{ config, lib, sane-airscan, ... }: {
 
   # Enable Common UNIX Printing System.
   services.printing.enable = true;
@@ -53,6 +53,12 @@
 
   # Set default printer.
   hardware.printers.ensureDefaultPrinter = "Brother_MFC-L2700DW";
+
+  # Don't fail `ensure-printers` service when printers are unreachable.
+  systemd.services.ensure-printers.serviceConfig.ExecStart = lib.mkForce "-${
+      lib.mkSystemdScript "ensure-printers"
+      config.systemd.services.ensure-printers.script
+    }";
 
   # Enable and configure SANE scanning API.
   hardware.sane = {
