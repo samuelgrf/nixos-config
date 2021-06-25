@@ -1,8 +1,7 @@
-{ config, lib, linuxPackages_5_12, ... }: {
+{ config, lib, linuxPackages_xanmod, ... }: {
 
-  # TODO Remove on NixOS 21.11.
-  # Linux kernel 5.12 supports DualSense and RTL8821CE.
-  boot.kernelPackages = linuxPackages_5_12;
+  # Use XanMod kernel for better interactive performance.
+  boot.kernelPackages = linuxPackages_xanmod;
 
   # Enable support for additional filesystems.
   boot.supportedFilesystems = [ "exfat" "ntfs" "zfs" ];
