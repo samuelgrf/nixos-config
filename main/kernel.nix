@@ -1,7 +1,7 @@
-{ config, lib, linuxPackages_xanmod, ... }: {
+{ config, lib, linuxPackages_zen, ... }: {
 
-  # Use XanMod kernel for better interactive performance.
-  boot.kernelPackages = linuxPackages_xanmod;
+  # Use Zen kernel for better interactive performance.
+  boot.kernelPackages = linuxPackages_zen;
 
   # Enable support for additional filesystems.
   boot.supportedFilesystems = [ "exfat" "ntfs" "zfs" ];
