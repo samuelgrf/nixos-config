@@ -3,6 +3,9 @@
   # gimpPlugins.bimp: Init
   (import ./gimpPlugins)
 
+  # linux_zen: Update, customize configuration & build with latest GCC.
+  (import ./linux_zen)
+
   # TODO Remove once https://github.com/NixOS/nixpkgs/pull/126960 is merged.
   # nixos-rebuild: Fix creating ./result symlink for flakes.
   (import ./nixos-rebuild { inherit nixpkgs-unstable; })
