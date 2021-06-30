@@ -6,8 +6,7 @@ let
   cfg = config.programs.kde;
 
   settingsLists = attrsets.collect isList
-    (mapAttrsRecursive (path: value: path ++ [ (toString' value) ])
-      cfg.settings);
+    (mapAttrsRecursive (path: value: path ++ [ value ]) cfg.settings);
 
   commandList = map (args:
     flatten [
@@ -17,7 +16,7 @@ let
       (map (g: [ "--group" g ]) (sublist 1 (length args - 3) args))
       "--key"
       (last (init args))
-      (last args)
+      (if last args == null then "--delete" else toString' (last args))
     ]) settingsLists;
 
   commandString = concatMapStringsSep "\n" escapeShellArgs commandList;
