@@ -75,6 +75,9 @@
       # Dolphin: Don't remember last session.
       dolphinrc.General.RememberOpenedTabs = false;
 
+      # Dolphin: Don't show confirmation dialog when closing multiple Tabs.
+      dolphinrc.ConfirmClosingMultipleTabs = false;
+
       # Ark: Open destination folder after extracting.
       arkrc.Extraction.openDestinationFolderAfterExtraction = true;
 
