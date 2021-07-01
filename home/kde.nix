@@ -15,6 +15,7 @@
 
       # Configure Konsole.
       konsolerc.KonsoleWindow.ShowMenuBarByDefault = false;
+      konsolerc.MenuBar = false;
       konsolerc."Desktop Entry".DefaultProfile = "Profile 1.profile";
       "$HOME/.local/share/konsole/Profile 1.profile" = {
         Appearance.Font = "MesloLGS NF,11,-1,5,50,0,0,0,0,0";
