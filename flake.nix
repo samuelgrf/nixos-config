@@ -112,7 +112,7 @@
                   home/modules/kde.nix
                   home/default-applications.nix
                   home/git.nix
-                  home/kde.nix
+                  home/kde
                   home/misc.nix
                   home/mpv.nix
                   {
