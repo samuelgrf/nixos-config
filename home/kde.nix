@@ -173,9 +173,6 @@
 
       # Disable file indexing.
       baloofilerc."Basic Settings".Indexing-Enabled = false;
-
-      # Enable natural scrolling on amethyst.
-      touchpadxlibinputrc."SYNA328B:00 06CB:CD50 Touchpad".naturalScroll = true;
     };
   };
 
