@@ -22,18 +22,18 @@ with binPaths; {
       source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
       source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/config/p10k-lean.zsh
       POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
-        dir                     # current directory
-        vcs                     # git status
-        prompt_char             # prompt symbol
+        dir #                     current directory
+        vcs #                     git status
+        prompt_char #             prompt symbol
       )
       POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
-        status                  # exit code of the last command
-        command_execution_time  # duration of the last command
-        background_jobs         # presence of background jobs
-        context                 # user@hostname
-        vim_shell               # vim shell indicator (:sh)
-        nix_shell               # nix shell indicator
-        time                    # current time
+        status #                  exit code of the last command
+        command_execution_time #  duration of the last command
+        background_jobs #         presence of background jobs
+        context #                 user@hostname
+        vim_shell #               vim shell indicator (:sh)
+        nix_shell #               nix shell indicator
+        time #                    current time
       )
       # Use fewer icons.
       POWERLEVEL9K_DIR_CLASSES=()
