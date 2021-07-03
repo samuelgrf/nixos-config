@@ -11,7 +11,13 @@ with prev; {
       "--show-avatar-button=incognito-and-guest"
 
       # Experimental features
-      "--enable-features=OverlayScrollbar,VaapiVideoDecoder"
+      "--enable-features=${
+        lib.concatStringsSep "," [
+          "BackForwardCache:enable_same_site/true"
+          "OverlayScrollbar"
+          "VaapiVideoDecoder"
+        ]
+      }"
 
       # Dark mode
       "--force-dark-mode"
