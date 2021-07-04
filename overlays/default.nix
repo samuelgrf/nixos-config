@@ -3,6 +3,10 @@
   # gimpPlugins.bimp: Init
   (import ./gimpPlugins)
 
+  # TODO Remove once https://github.com/NixOS/nixpkgs/pull/129227 is backported.
+  # kjv: 2018-12-25 -> 2021-03-11
+  (import ./kjv)
+
   # linux_zen: Update, customize configuration & build with latest GCC.
   (import ./linux_zen)
 
