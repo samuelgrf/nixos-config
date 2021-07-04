@@ -12,6 +12,7 @@
         git
         htop
         killall
+        kjv
         lm_sensors
         lolcat
         lshw
