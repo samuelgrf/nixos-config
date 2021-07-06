@@ -34,8 +34,12 @@
     };
 
   swapDevices =
-    [ { device = "/dev/disk/by-partuuid/c4114437-3b41-41c3-b005-ce9f8171815f";
-        randomEncryption.enable = true;
+    [ { device = "/dev/disk/by-uuid/26098363-02e4-4737-beda-5ee4b31c593c";
+        encrypted =
+          { enable = true;
+            label = "luksswap";
+            blkDev = "/dev/disk/by-uuid/0ac07ca7-d590-451f-9023-cabed945fff3";
+          };
       }
     ];
 
