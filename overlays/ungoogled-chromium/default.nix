@@ -16,6 +16,7 @@ with prev; {
           "BackForwardCache:enable_same_site/true"
           "CopyLinkToText"
           "OverlayScrollbar"
+          "TabHoverCardImages"
           "VaapiVideoDecoder"
         ]
       }"
