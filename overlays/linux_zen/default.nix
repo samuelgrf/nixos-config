@@ -2,17 +2,7 @@ _: prev:
 with prev; {
 
   linux_zen = linux_zen.override {
-    argsOverride = rec {
-      version = "5.12.13";
-      modDirVersion = "${version}-zen1";
-
-      src = fetchFromGitHub {
-        owner = "zen-kernel";
-        repo = "zen-kernel";
-        rev = "v${modDirVersion}";
-        sha256 = "sha256-rQLrC441bfknmmIR1qVvJ+x+K1xRSdmaP/QuZ1WAFqw=";
-      };
-
+    argsOverride = {
       structuredExtraConfig = with lib.kernel; {
 
         # Preemptive kernel
@@ -30,8 +20,6 @@ with prev; {
         NET_SCH_DEFAULT = yes;
         DEFAULT_FQ_PIE = yes;
       };
-
-      extraMeta.branch = "${lib.versions.majorMinor version}/master";
 
       stdenv = overrideCC gccStdenv buildPackages.gcc_latest;
     };

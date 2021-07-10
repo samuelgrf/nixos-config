@@ -7,7 +7,7 @@
   # kjv: 2018-12-25 -> 2021-03-11
   (import ./kjv)
 
-  # linux_zen: Update, customize configuration & build with latest GCC.
+  # linux_zen: Customize configuration & build with latest GCC.
   (import ./linux_zen)
 
   # TODO Remove once https://github.com/NixOS/nixpkgs/pull/126960 is merged.
