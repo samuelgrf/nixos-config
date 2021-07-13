@@ -48,8 +48,10 @@ with binPaths; {
       export LESSHISTFILE=/dev/null
 
       # Define Nix & NixOS functions.
-      nr () {
-        oldNixosGen=$(${readlink} /run/current-system)
+      nr () {(
+        set -e
+
+        oldNixosGen="$(${readlink} -f '/run/current-system')"
         origArgs=("$@")
 
         while [ "$#" -gt 0 ]; do
@@ -73,18 +75,18 @@ with binPaths; {
         [ "$targetHost" = localhost ] && targetHost=
         [ "$buildHost" = localhost ] && buildHost=
 
-        ${sudo} ${nixos-rebuild} -v "''${origArgs[@]}" && {
-          if [ -z "$targetHost" ]; then
-            if [[ "$action" = boot || "$action" = switch ]]; then
-              newNixosGen=$(${readlink} -f /nix/var/nix/profiles/system)
-              ${nvd} diff $oldNixosGen $newNixosGen
-            elif [ -z "$buildHost" ]; then
-              newNixosGen=$(${readlink} result)
-              ${nvd} diff $oldNixosGen $newNixosGen
-            fi
+        ${sudo} ${nixos-rebuild} -v "''${origArgs[@]}"
+
+        if [ -z "$targetHost" ]; then
+          if [[ "$action" = boot || "$action" = switch ]]; then
+            newNixosGen="$(${readlink} -f '/nix/var/nix/profiles/system')"
+            ${nvd} diff "$oldNixosGen" "$newNixosGen"
+          elif [ -z "$buildHost" ]; then
+            newNixosGen="$(${readlink} -f 'result')"
+            ${nvd} diff "$oldNixosGen" "$newNixosGen"
           fi
-        }
-      }
+        fi
+      )}
       nrs () { nr switch "$@" && exec ${zsh} }
       nrt () { nr test "$@" && exec ${zsh} }
       nsd () { ${nix} show-derivation "$@" | ${bat} -l json }
