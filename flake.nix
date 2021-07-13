@@ -115,6 +115,7 @@
                   home/kde
                   home/misc.nix
                   home/mpv.nix
+                  home/nix-index-database.nix
                   {
                     inherit _module;
                     home = { inherit stateVersion; };
