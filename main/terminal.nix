@@ -41,9 +41,6 @@ with binPaths; {
       POWERLEVEL9K_COMMAND_EXECUTION_TIME_VISUAL_IDENTIFIER_EXPANSION=
       POWERLEVEL9K_TIME_VISUAL_IDENTIFIER_EXPANSION=
 
-      # Load the nix-index `command-not-found` replacement.
-      source ${pkgs.nix-index}/etc/profile.d/command-not-found.sh
-
       # Disable less history.
       export LESSHISTFILE=/dev/null
 
@@ -107,12 +104,18 @@ with binPaths; {
           attr="$(echo "$attr" | ${fzy} -l 50)"
         fi
 
+        if [ -z "$attr" ]; then
+          >&2 echo "command not found: $1"
+          exit 1
+        fi
+
         ${nix} shell "$flake#$attr" --command "$@"
       )}
       nrum () { flake="github:NixOS/nixpkgs" nru "$@" }
       nruu () { flake="nixpkgs-unstable" nru "$@" }
 
       # Define other functions.
+      command_not_found_handler () { nru "$@" }
       run () { "$@" &> /dev/null & disown }
     '';
 
