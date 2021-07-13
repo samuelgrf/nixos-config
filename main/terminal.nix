@@ -93,9 +93,22 @@ with binPaths; {
       nshu () { NIXPKGS_ALLOW_UNFREE=1 ${nix} shell --impure nixpkgs-unstable#"$@" }
       nus () { $(nu) && nr switch "$@" && exec ${zsh} }
       nut () { $(nu) && nr test "$@" && exec ${zsh} }
-      nru () { NIXPKGS_ALLOW_UNFREE=1 ${nix} run --impure nixpkgs#"$@" }
-      nrum () { NIXPKGS_ALLOW_UNFREE=1 ${nix} run --impure github:NixOS/nixpkgs#"$@" }
-      nruu () { NIXPKGS_ALLOW_UNFREE=1 ${nix} run --impure nixpkgs-unstable#"$@" }
+      nru () {(
+        set -e
+
+        if [ -z "$flake" ]; then
+          flake='nixpkgs'
+        fi
+
+        attr="$(${nix-locate} --top-level --minimal --at-root --whole-name "/bin/$1")"
+        if [ "$(echo "$attr" | ${wc} -l)" -ne 1 ]; then
+          attr="$(echo "$attr" | ${fzy} -l 50)"
+        fi
+
+        ${nix} shell "$flake#$attr" --command "$@"
+      )}
+      nrum () { flake="github:NixOS/nixpkgs" nru "$@" }
+      nruu () { flake="nixpkgs-unstable" nru "$@" }
 
       # Define other functions.
       run () { "$@" &> /dev/null & disown }

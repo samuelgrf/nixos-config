@@ -7,6 +7,7 @@ with pkgs; {
   cut = "${coreutils}/bin/cut";
   dirname = "${coreutils}/bin/dirname";
   emacsclient = "${config.services.emacs.package}/bin/emacsclient";
+  fzy = "${fzy}/bin/fzy";
   git = "${git}/bin/git";
   grep = "${gnugrep}/bin/grep";
   hda-verb = "${alsaTools}/bin/hda-verb";
@@ -33,6 +34,7 @@ with pkgs; {
   ungoogled-chromium = "${ungoogled-chromium}/bin/chromium";
   vlc = "${vlc}/bin/vlc";
   watch = "${procps}/bin/watch";
+  wc = "${coreutils}/bin/wc";
   xdg-open = "${xdg-utils}/bin/xdg-open";
   zfs =
     "${if config.boot.zfs.enableUnstable then zfsUnstable else zfs}/bin/zfs";
