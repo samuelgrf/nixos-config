@@ -92,7 +92,7 @@ with binPaths; {
       nshu () { NIXPKGS_ALLOW_UNFREE=1 ${nix} shell --impure nixpkgs-unstable#"$@" }
       nus () { $(nu) && nr switch "$@" && exec ${zsh} }
       nut () { $(nu) && nr test "$@" && exec ${zsh} }
-      nru () {(
+      nrn () {(
         set -e
 
         if [ -z "$flake" ]; then
@@ -111,11 +111,11 @@ with binPaths; {
 
         ${nix} shell "$flake#$attr" --command "$@"
       )}
-      nrum () { flake="github:NixOS/nixpkgs" nru "$@" }
-      nruu () { flake="nixpkgs-unstable" nru "$@" }
+      nrnm () { flake="github:NixOS/nixpkgs" nrn "$@" }
+      nrnu () { flake="nixpkgs-unstable" nrn "$@" }
 
       # Define other functions.
-      command_not_found_handler () { nru "$@" }
+      command_not_found_handler () { nrn "$@" }
       run () { "$@" &> /dev/null & disown }
     '';
 
