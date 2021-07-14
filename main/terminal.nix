@@ -127,16 +127,16 @@ with binPaths; {
 
     # Set shell aliases.
     shellAliases = let
-      configDir = "$(${dirname} $(${readlink} -m /etc/nixos/flake.nix))";
+      configDir = ''$(${dirname} "$(${readlink} -m /etc/nixos/flake.nix)")'';
       docDir = "/run/current-system/sw/share/doc";
     in {
 
       # Nix & NixOS
-      c = "cd ${configDir}";
+      c = ''cd "${configDir}"'';
       hmm =
-        "run ${ungoogled-chromium} file://${docDir}/home-manager/index.html";
+        "run ${ungoogled-chromium} 'file://${docDir}/home-manager/index.html'";
       hmo =
-        "run ${ungoogled-chromium} file://${docDir}/home-manager/options.html";
+        "run ${ungoogled-chromium} 'file://${docDir}/home-manager/options.html'";
       n = nix;
       nb = "${nix} build --print-build-logs -v";
       nbd = "${nix} build --dry-run -v";
@@ -147,12 +147,12 @@ with binPaths; {
       ngd = "${nix} path-info --derivation";
       nlg = "${nix} log";
       nlo = nix-locate;
-      nm = "run ${ungoogled-chromium} file://${docDir}/nix/manual/index.html";
-      nom = "run ${ungoogled-chromium} file://${docDir}/nixos/index.html";
-      noo = "run ${ungoogled-chromium} file://${docDir}/nixos/options.html";
-      np = "${nix} repl ${configDir}/repl.nix";
+      nm = "run ${ungoogled-chromium} 'file://${docDir}/nix/manual/index.html'";
+      nom = "run ${ungoogled-chromium} 'file://${docDir}/nixos/index.html'";
+      noo = "run ${ungoogled-chromium} 'file://${docDir}/nixos/options.html'";
+      np = ''${nix} repl "${configDir}/repl.nix"'';
       npl = "${nix} repl";
-      npm = "run ${ungoogled-chromium} file://${docDir}/nixpkgs/manual.html";
+      npm = "run ${ungoogled-chromium} 'file://${docDir}/nixpkgs/manual.html'";
       nrb = "nr boot";
       nrbu = "nr build";
       nse = "${nix} search nixpkgs";
@@ -164,10 +164,10 @@ with binPaths; {
           ${grep} '/result-\?[^-]*$'\
       '';
       nsrr = "${rm} -v $(nsr)";
-      nu = "cd ${configDir} && nfu --commit-lock-file";
+      nu = ''cd "${configDir}" && nfu --commit-lock-file'';
       nub = "nu && nr boot";
       nubu = "nu && nr build";
-      nui = "cd ${configDir} && nfl --commit-lock-file --update-input";
+      nui = ''cd "${configDir}" && nfl --commit-lock-file --update-input'';
       nv = "echo '${
           lib.concatStringsSep "\n" (lib.mapAttrsToList (name: flake: ''
             ${name}:
@@ -179,7 +179,7 @@ with binPaths; {
       # Other
       chromium-widevine = ''
         run ${pkgs.ungoogled-chromium.override { enableWideVine = true; }}\
-        /bin/chromium --user-data-dir=$HOME/.config/chromium-widevine\
+        /bin/chromium --user-data-dir="$HOME/.config/chromium-widevine"\
       '';
       clean = ''
         ${sudo} ${systemctl} start nix-gc.service
@@ -206,7 +206,7 @@ with binPaths; {
       o = xdg-open;
       p = "${pre-commit} run -a";
       qr = "${qrencode} -t UTF8";
-      radio = "run ${vlc} ${./radio.m3u}";
+      radio = ''run ${vlc} "${./radio.m3u}"'';
       rb = "${shutdown} -r";
       rbc = "${shutdown} -c";
       rbn = "${shutdown} -r now";
@@ -225,7 +225,7 @@ with binPaths; {
       sshb = "${ssh} beryl";
       sudo = "${sudo} ";
       t = tree;
-      tv = "run ${vlc} ${./tv.m3u}";
+      tv = ''run ${vlc} "${./tv.m3u}"'';
       watch = "${watch} ";
       wtr = "${curl} wttr.in";
       zl = "${zfs} list";
