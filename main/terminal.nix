@@ -212,8 +212,8 @@ with binPaths; {
       rbn = "${shutdown} -r now";
       rld = "exec ${zsh}";
       rldh = ''
-        ${sudo} ${systemctl} restart home-manager-\*.service
-        ${systemctl} status home-manager-\*.service\
+        ${sudo} ${systemctl} restart 'home-manager-*.service'
+        ${systemctl} status 'home-manager-*.service'\
       '';
       rldp = "${kquitapp5} plasmashell && ${kstart5} plasmashell";
       rmr = "rm -r";
