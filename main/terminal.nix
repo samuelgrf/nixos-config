@@ -143,7 +143,10 @@ with binPaths; {
       nf = "${nix} flake";
       nfc = "${nix} flake check";
       nfl = "${nix} flake lock";
-      nfu = "${nix} flake update";
+      nfu = "nu";
+      nfuc = "nuc";
+      nfuci = "nuci";
+      nfui = "nui";
       ngd = "${nix} path-info --derivation";
       nlg = "${nix} log";
       nlo = nix-locate;
@@ -164,10 +167,12 @@ with binPaths; {
           ${grep} '/result-\?[^-]*$'\
       '';
       nsrr = "${rm} -v $(nsr)";
-      nu = ''cd "${configDir}" && nfu --commit-lock-file'';
+      nu = "${nix} flake update";
       nub = "nu && nr boot";
       nubu = "nu && nr build";
-      nui = ''cd "${configDir}" && nfl --commit-lock-file --update-input'';
+      nuc = "${nix} flake update --commit-lock-file";
+      nuci = "${nix} flake update --commit-lock-file --update-input";
+      nui = "${nix} flake update --update-input";
       nv = "echo '${
           lib.concatStringsSep "\n" (lib.mapAttrsToList (name: flake: ''
             ${name}:
