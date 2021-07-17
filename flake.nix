@@ -15,12 +15,15 @@
   };
 
   outputs = { home-manager, nixpkgs, nixpkgs-master, nixpkgs-unstable
-    , pre-commit-hooks, self }@flakes:
-    let
+    , pre-commit-hooks, ... }@flakes: rec {
+
+      # The NixOS release to be compatible with for stateful data such as databases.
+      stateVersion = "21.05";
+
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
       lib = nixpkgs.lib;
-    in {
+      lib' = import ./lib { inherit lib pkgs; };
 
       checks.${system}.pre-commit-check = pre-commit-hooks.lib.${system}.run {
         src = ./.;
@@ -38,19 +41,11 @@
           [ "BetaReduction" "EmptyVariadicParamSet" "UnneededAntiquote" ];
       };
 
-      devShell.${system} = pkgs.mkShell {
-        inherit (self.checks.${system}.pre-commit-check) shellHook;
-      };
+      devShell.${system} =
+        pkgs.mkShell { inherit (checks.${system}.pre-commit-check) shellHook; };
 
-      nixosConfigurations = let
-
-        # The NixOS release to be compatible with for stateful data such as databases.
-        stateVersion = "21.05";
-
-        lib' = import ./lib { inherit lib pkgs; };
-        specialArgs.lib = lib // lib';
-
-        defaultModules = [
+      nixosModules = {
+        default = [
           home-manager.nixosModule
           main/chromium.nix
           main/general.nix
@@ -124,29 +119,35 @@
               };
             })
         ];
-      in {
 
+        amethyst = [
+          machines/amethyst/configuration.nix
+          machines/amethyst/hardware-generated.nix
+          {
+            home-manager.users.samuel.imports = [ machines/amethyst/home.nix ];
+          }
+        ];
+
+        beryl = [
+          machines/beryl/configuration.nix
+          machines/beryl/hardware-generated.nix
+        ];
+      };
+
+      specialArgs.lib = lib // lib';
+
+      nixosConfigurations = {
         amethyst = lib.nixosSystem {
           inherit system specialArgs;
-          modules = [
-            machines/amethyst/configuration.nix
-            machines/amethyst/hardware-generated.nix
-            {
-              home-manager.users.samuel.imports =
-                [ machines/amethyst/home.nix ];
-            }
-          ] ++ defaultModules;
+          modules = with nixosModules; default ++ amethyst;
         };
 
         beryl = lib.nixosSystem {
           inherit system specialArgs;
-          modules = [
-            machines/beryl/configuration.nix
-            machines/beryl/hardware-generated.nix
-          ] ++ defaultModules;
+          modules = with nixosModules; default ++ beryl;
         };
-
       };
+
     };
 
 }
