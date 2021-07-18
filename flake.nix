@@ -101,7 +101,7 @@
                 useGlobalPkgs = true;
                 useUserPackages = true;
                 extraSpecialArgs.lib =
-                  import "${home-manager}/modules/lib/stdlib-extended.nix" lib
+                  (import "${home-manager}/modules/lib/stdlib-extended.nix" lib)
                   // lib';
                 users.samuel.imports = [
                   home/modules/kde.nix
