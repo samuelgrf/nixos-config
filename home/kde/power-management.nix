@@ -1,27 +1,32 @@
-{
+let
+  minToSec = n: n * 60;
+  minToMsec = n: n * 60000;
+in {
 
   powermanagementprofilesrc = {
     AC = {
       BrightnessControl.value = null;
-      DimDisplay.idleTime = 780000; # ​       13 min
-      DPMSControl.idleTime = 900; # ​         15 min
+      DimDisplay.idleTime = minToMsec 13;
+      DPMSControl.idleTime = minToSec 15;
       SuspendSession.idleTime = null;
     };
+
     Battery = {
       BrightnessControl.value = null;
-      DimDisplay.idleTime = 480000; # ​        8 min
-      DPMSControl.idleTime = 600; # ​         10 min
-      SuspendSession.idleTime = 900000; # ​   15 min
+      DimDisplay.idleTime = minToMsec 8;
+      DPMSControl.idleTime = minToSec 10;
+      SuspendSession.idleTime = minToMsec 15;
     };
+
     LowBattery = {
-      BrightnessControl.value = 30; # ​          30%
-      DimDisplay.idleTime = 180000; # ​        3 min
-      DPMSControl.idleTime = 300; # ​          5 min
-      SuspendSession = {
-        idleTime = 600000; # ​                10 min
-        suspendType = 2; # ​               Hibernate
-      };
-      HandleButtonEvents.lidAction = 2; # ​Hibernate
+      BrightnessControl.value = 30;
+      DimDisplay.idleTime = minToMsec 3;
+      DPMSControl.idleTime = minToSec 5;
+      SuspendSession.idleTime = minToMsec 10;
+
+      # Hibernate instead of sleeping.
+      HandleButtonEvents.lidAction = 2;
+      SuspendSession.suspendType = 2;
     };
   };
 
