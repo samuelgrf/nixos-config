@@ -72,6 +72,7 @@
         gwenview
         kate
         kdialog
+        ktimer
         kwin-dynamic-workspaces
       ]);
       noX = [ ];
