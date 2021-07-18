@@ -2,7 +2,7 @@ let
   self = __getFlake "self";
   host = lib.removeSuffix "\n" (__readFile "/etc/hostname");
   nixosConfig = self.nixosConfigurations.${host};
-  inherit (self.outputs) lib lib';
+  inherit (self) lib lib';
 
 in nixosConfig // self.inputs // self // {
   lib = lib // lib';
