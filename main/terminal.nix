@@ -46,7 +46,7 @@ with binPaths; {
 
       # Define Nix & NixOS functions.
       nr () {(
-        set -e
+        set -eo pipefail
 
         oldNixosGen="$(${readlink} -f '/run/current-system')"
         origArgs=("$@")
