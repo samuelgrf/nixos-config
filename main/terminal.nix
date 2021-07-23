@@ -90,8 +90,6 @@ with binPaths; {
       nsh () { NIXPKGS_ALLOW_UNFREE=1 ${nix} shell --impure nixpkgs#"$@" }
       nshm () { NIXPKGS_ALLOW_UNFREE=1 ${nix} shell --impure github:NixOS/nixpkgs#"$@" }
       nshu () { NIXPKGS_ALLOW_UNFREE=1 ${nix} shell --impure nixpkgs-unstable#"$@" }
-      nus () { $(nu) && nr switch "$@" && exec ${zsh} }
-      nut () { $(nu) && nr test "$@" && exec ${zsh} }
       nrn () {(
         set -e
 
@@ -111,8 +109,6 @@ with binPaths; {
 
         ${nix} shell "$flake#$attr" --command "$@"
       )}
-      nrnm () { flake="github:NixOS/nixpkgs" nrn "$@" }
-      nrnu () { flake="nixpkgs-unstable" nrn "$@" }
 
       # Define other functions.
       command_not_found_handler () { nrn "$@" }
@@ -168,11 +164,15 @@ with binPaths; {
       '';
       nsrr = "${rm} -v $(nsr)";
       nu = "${nix} flake update";
-      nub = "nu && nr boot";
-      nubu = "nu && nr build";
+      nrnm = "flake=github:NixOS/nixpkgs nrn";
+      nrnu = "flake=nixpkgs-unstable nrn";
+      nub = "nu && nrb";
+      nubu = "nu && nrbu";
       nuc = "${nix} flake update --commit-lock-file";
       nuci = "${nix} flake update --commit-lock-file --update-input";
       nui = "${nix} flake update --update-input";
+      nus = "nu && nrs";
+      nut = "nu && nrt";
       nv = "echo '${
           lib.concatStringsSep "\n" (lib.mapAttrsToList (name: flake: ''
             ${name}:
