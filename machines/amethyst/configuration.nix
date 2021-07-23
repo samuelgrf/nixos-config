@@ -1,4 +1,4 @@
-{ binPaths, pkgsi686Linux, vaapiIntel, ... }: {
+{ binPaths, pkgs-unstable, pkgsi686Linux, vaapiIntel, ... }: {
 
   ##############################################################################
   ## General
@@ -36,6 +36,10 @@
   ##############################################################################
   ## Kernel
   ##############################################################################
+
+  # Use Zen kernel with platform optimizations.
+  # TODO Remove `pkgs-unstable.` on NixOS 21.11.
+  boot.kernelPackages = pkgs-unstable.linuxLTOPackages_zen_skylake;
 
   # Blacklist sensor kernel modules.
   boot.blacklistedKernelModules = [ "intel_ishtp_hid" "intel_ish_ipc" ]

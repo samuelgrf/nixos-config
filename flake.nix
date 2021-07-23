@@ -30,11 +30,17 @@
         hooks = {
           nixfmt = {
             enable = true;
-            excludes = [ "machines/.*/hardware-generated.nix" ];
+            excludes = [
+              "machines/.*/hardware-generated.nix"
+              "overlays/linuxLTOPackages/default.nix"
+            ];
           };
           nix-linter = {
             enable = true;
-            excludes = [ "machines/.*/hardware-generated.nix" ];
+            excludes = [
+              "machines/.*/hardware-generated.nix"
+              "overlays/linuxLTOPackages/default.nix"
+            ];
           };
         };
         settings.nix-linter.checks =

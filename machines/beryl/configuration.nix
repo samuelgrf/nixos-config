@@ -1,4 +1,4 @@
-{ amdvlk, pkgsi686Linux, ... }: {
+{ amdvlk, pkgs-unstable, pkgsi686Linux, ... }: {
 
   ##############################################################################
   ## General
@@ -19,6 +19,15 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   services.xserver.autorun = true
+
+  ;
+  ##############################################################################
+  ## Kernel
+  ##############################################################################
+
+  # Use Zen kernel with platform optimizations.
+  # TODO Remove `pkgs-unstable.` on NixOS 21.11.
+  boot.kernelPackages = pkgs-unstable.linuxLTOPackages_zen_zen2
 
   ;
   ##############################################################################

@@ -20,8 +20,6 @@ with prev; {
         NET_SCH_DEFAULT = yes;
         DEFAULT_FQ_PIE = yes;
       };
-
-      stdenv = overrideCC gccStdenv buildPackages.gcc_latest;
     };
   };
 
