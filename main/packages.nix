@@ -50,6 +50,7 @@
         (import flakes.home-manager { inherit pkgs; }).docs.html
         (lib.hiPrio flakes.nixpkgs-unstable.htmlDocs.nixosManual)
         appimage-run
+        calibre
         flakes.nixpkgs-unstable.htmlDocs.nixpkgsManual
         imagemagick
         keepassxc
