@@ -31,6 +31,7 @@
           nixfmt = {
             enable = true;
             excludes = [
+              ".*/source.nix"
               "machines/.*/hardware-generated.nix"
               "overlays/linuxLTOPackages/default.nix"
             ];
@@ -116,7 +117,7 @@
                   home/kde
                   home/misc.nix
                   home/mpv.nix
-                  home/nix-index-database.nix
+                  home/nix-index-database
                   {
                     inherit _module;
                     home = { inherit stateVersion; };
