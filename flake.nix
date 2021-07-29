@@ -52,7 +52,7 @@
         pkgs.mkShell { inherit (checks.${system}.pre-commit-check) shellHook; };
 
       nixosModules = {
-        default = [
+        default.imports = [
           home-manager.nixosModule
           main/chromium.nix
           main/general.nix
@@ -127,7 +127,7 @@
             })
         ];
 
-        amethyst = [
+        amethyst.imports = [
           machines/amethyst/configuration.nix
           machines/amethyst/hardware-generated.nix
           {
@@ -135,7 +135,7 @@
           }
         ];
 
-        beryl = [
+        beryl.imports = [
           machines/beryl/configuration.nix
           machines/beryl/hardware-generated.nix
         ];
@@ -146,12 +146,12 @@
       nixosConfigurations = {
         amethyst = lib.nixosSystem {
           inherit system specialArgs;
-          modules = with nixosModules; default ++ amethyst;
+          modules = with nixosModules; [ default amethyst ];
         };
 
         beryl = lib.nixosSystem {
           inherit system specialArgs;
-          modules = with nixosModules; default ++ beryl;
+          modules = with nixosModules; [ default beryl ];
         };
       };
 
