@@ -48,8 +48,15 @@
           [ "BetaReduction" "EmptyVariadicParamSet" "UnneededAntiquote" ];
       };
 
-      devShell.${system} =
-        pkgs.mkShell { inherit (checks.${system}.pre-commit-check) shellHook; };
+      devShell.${system} = pkgs.mkShell {
+        shellHook = checks.${system}.pre-commit-check.shellHook + ''
+          if [ -L .pre-commit-config.yaml ]; then >/dev/null \
+            nix-store \
+              --add-root .pre-commit-config.yaml \
+              -r .pre-commit-config.yaml
+          fi
+        '';
+      };
 
       nixosModules = {
         default.imports = [
