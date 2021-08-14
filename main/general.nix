@@ -15,8 +15,8 @@
 
   # Set keyboard layout.
   services.xserver = {
-    layout = "us";
-    xkbVariant = "altgr-intl";
+    layout = "us,de";
+    xkbVariant = "altgr-intl,nodeadkeys";
     xkbOptions = "caps:escape";
   };
 
