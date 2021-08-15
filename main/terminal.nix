@@ -94,16 +94,16 @@ with binPaths; {
         set -e
 
         if [ -z "$flake" ]; then
-          flake='nixpkgs'
+          flake=nixpkgs
         fi
 
-        attr="$(${nix-locate} --top-level --minimal --at-root --whole-name "/bin/$1")"
+        attr=$(${nix-locate} --top-level --minimal --at-root --whole-name "/bin/$1")
         if [ "$(echo "$attr" | ${wc} -l)" -ne 1 ]; then
-          attr="$(echo "$attr" | ${fzy} -l 50)"
+          attr=$(echo "$attr" | ${fzy} -l 50)
         fi
 
         if [ -z "$attr" ]; then
-          >&2 echo "command not found: $1"
+          echo "command not found: $1" >&2
           exit 1
         fi
 
@@ -112,7 +112,7 @@ with binPaths; {
 
       # Define other functions.
       command_not_found_handler () { nrn "$@" }
-      run () { "$@" &> /dev/null & disown }
+      run () { "$@" &>/dev/null & disown }
     '';
 
     # Add entries to zshenv.
