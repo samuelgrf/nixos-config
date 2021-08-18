@@ -19,6 +19,11 @@
     kded5."Show System Activity" = ",Ctrl+Esc,Show System Activity";
     khotkeys."{f3242e9b-1c88-455f-be32-f9d50105551a}" =
       "Ctrl+Esc,none,Launch KSysGuard";
+
+    "KDE Keyboard Layout Switcher" = {
+      "Switch to Next Keyboard Layout" =
+        "Meta+Space,none,Switch to Next Keyboard Layout";
+    };
   };
 
   khotkeysrc = {
