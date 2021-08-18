@@ -58,6 +58,7 @@
         lutris
         lxqt.pavucontrol-qt
         mpv
+        multimc
         nixUnstable.doc
         pcsx2
         pdfsizeopt
