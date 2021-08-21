@@ -2,28 +2,26 @@
 
   kglobalshortcutsrc = {
     kwin = {
+      "stop current activity" = ",Meta+S,Stop Current Activity";
       "Switch One Desktop to the Left" =
         "Meta+A,Meta+Ctrl+Left,Switch One Desktop to the Left";
       "Switch One Desktop to the Right" =
         "Meta+S,Meta+Ctrl+Right,Switch One Desktop to the Right";
-      "stop current activity" = ",Meta+S,Stop Current Activity";
-      "Window Minimize" = "Meta+Down,Meta+PgDown,Minimize Window";
-      "Window Quick Tile Bottom" = ",Meta+Down,Quick Tile Window to the Bottom";
       "Window Maximize" = "Meta+Up,Meta+PgUp,Maximize Window";
-      "Window Quick Tile Top" = ",Meta+Up,Quick Tile Window to the Top";
+      "Window Minimize" = "Meta+Down,Meta+PgDown,Minimize Window";
       "Window One Desktop to the Left" =
         "Meta+Shift+A,none,Window One Desktop to the Left";
       "Window One Desktop to the Right" =
         "Meta+Shift+S,none,Window One Desktop to the Right";
+      "Window Quick Tile Bottom" = ",Meta+Down,Quick Tile Window to the Bottom";
+      "Window Quick Tile Top" = ",Meta+Up,Quick Tile Window to the Top";
     };
+
+    "KDE Keyboard Layout Switcher"."Switch to Next Keyboard Layout" =
+      "Meta+Space,none,Switch to Next Keyboard Layout";
     kded5."Show System Activity" = ",Ctrl+Esc,Show System Activity";
     khotkeys."{f3242e9b-1c88-455f-be32-f9d50105551a}" =
       "Ctrl+Esc,none,Launch KSysGuard";
-
-    "KDE Keyboard Layout Switcher" = {
-      "Switch to Next Keyboard Layout" =
-        "Meta+Space,none,Switch to Next Keyboard Layout";
-    };
   };
 
   khotkeysrc = {
