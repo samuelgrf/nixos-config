@@ -4,6 +4,7 @@
   environment.systemPackages = with pkgs;
     let
       common = [
+        (pkgs.writeShellScriptBin "java8" "${graalvm8-ce}/bin/java $@")
         bat
         dos2unix
         exiftool
