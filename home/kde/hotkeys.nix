@@ -7,6 +7,7 @@
         "Meta+A,Meta+Ctrl+Left,Switch One Desktop to the Left";
       "Switch One Desktop to the Right" =
         "Meta+S,Meta+Ctrl+Right,Switch One Desktop to the Right";
+      "Window Fullscreen" = "Meta+F,none,Make Window Fullscreen";
       "Window Maximize" = "Meta+Up,Meta+PgUp,Maximize Window";
       "Window Minimize" = "Meta+Down,Meta+PgDown,Minimize Window";
       "Window One Desktop to the Left" =
