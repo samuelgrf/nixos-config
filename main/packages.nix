@@ -10,6 +10,7 @@
         fd
         file
         git
+        graalvm11-ce
         htop
         killall
         kjv
