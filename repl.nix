@@ -1,5 +1,5 @@
 let
-  self = __getFlake "self";
+  self = __getFlake (toString ./.);
   host = lib.removeSuffix "\n" (__readFile "/etc/hostname");
   nixosConfig = self.nixosConfigurations.${host};
   inherit (self) lib lib';
