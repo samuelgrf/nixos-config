@@ -21,16 +21,7 @@
   services.xserver.autorun = true;
 
   # Enable TLP for improved battery life.
-  services.tlp.enable = true;
-
-  # Configure undervolting service for Intel CPUs.
-  services.undervolt = {
-    enable = true;
-    coreOffset = -100;
-    gpuOffset = -50;
-    uncoreOffset = -100;
-    analogioOffset = -100;
-  }
+  services.tlp.enable = true
 
   ;
   ##############################################################################
