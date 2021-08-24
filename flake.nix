@@ -62,6 +62,7 @@
         default.imports = [
           home-manager.nixosModule
           main/chromium.nix
+          main/firewall.nix
           main/general.nix
           main/kernel.nix
           main/misc.nix
