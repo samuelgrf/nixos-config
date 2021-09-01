@@ -54,6 +54,7 @@
         appimage-run
         calibre
         flakes.nixpkgs-unstable.htmlDocs.nixpkgsManual
+        ghostscript
         imagemagick
         keepassxc
         libreoffice
@@ -62,6 +63,7 @@
         mpv
         multimc
         nixUnstable.doc
+        ocrmypdf
         pcsx2
         pdfsizeopt
         pdftk
