@@ -169,9 +169,16 @@
         }
       ];
 
-      # MS Teams
-      CookiesAllowedForUrls =
-        [ "assignments.onenote.com" "login.microsoftonline.com" ];
+      # Cookie whitelist
+      CookiesAllowedForUrls = [
+
+        # Google Drive (fix downloads)
+        "[*.]googleusercontent.com"
+
+        # MS Teams (fix login)
+        "assignments.onenote.com"
+        "login.microsoftonline.com"
+      ];
     };
   };
 
