@@ -1,4 +1,4 @@
-{ config, lib, ... }: {
+{ config, lib, pkgs-unstable, ... }: {
 
   # Configure Chromium/Chrome.
   # Command line arguments are set in ../overlays/ungoogled-chromium.
@@ -24,15 +24,15 @@
       HideWebStoreIcon = true;
 
       # uBlock Origin
-      "3rdparty".extensions.cjpalhdlnbpafiamejdnhcphjbkeiagm.adminSettings = let
-        externalLists = [
-          "https://raw.githubusercontent.com/StevenBlack/hosts/master/extensions/porn/clefspeare13/hosts"
-          "https://raw.githubusercontent.com/StevenBlack/hosts/master/extensions/porn/sinfonietta/hosts"
-          "https://raw.githubusercontent.com/StevenBlack/hosts/master/extensions/porn/sinfonietta-snuff/hosts"
-          "https://raw.githubusercontent.com/StevenBlack/hosts/master/extensions/porn/tiuxo/hosts"
-        ];
-      in __toJSON {
-        selectedFilterLists = [
+      # TODO `pkgs-unstable` -> `pkgs` on NixOS 21.11.
+      "3rdparty".extensions.cjpalhdlnbpafiamejdnhcphjbkeiagm.toOverwrite = let
+        localListNames = __attrNames
+          (__readDir "${pkgs-unstable.stevenblack-blocklist}/extensions/porn");
+        localLists = map (n:
+          "file://${pkgs-unstable.stevenblack-blocklist}/extensions/porn/${n}/hosts")
+          localListNames;
+      in {
+        filterLists = [
           "user-filters"
           "ublock-filters"
           "ublock-badware"
@@ -45,9 +45,8 @@
           "adguard-annoyance"
           "ublock-annoyances"
           "plowe-0"
-        ] ++ externalLists;
-        userSettings.externalLists = lib.concatStringsSep "\n" externalLists;
-        userFilters = ''
+        ] ++ localLists;
+        filters = lib.splitString "\n" ''
           ! Reddit: Hide 'Get Coins' button
           www.reddit.com##.jEUbSHJJx8vISKpWirlfx
           ! Reddit: Hide account information
