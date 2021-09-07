@@ -24,7 +24,7 @@
       HideWebStoreIcon = true;
 
       # uBlock Origin
-      # TODO `pkgs-unstable` -> `pkgs` on NixOS 21.11.
+      # TODO Remove `pkgs-unstable.` on NixOS 21.11.
       "3rdparty".extensions.cjpalhdlnbpafiamejdnhcphjbkeiagm.toOverwrite = let
         localListNames = __attrNames
           (__readDir "${pkgs-unstable.stevenblack-blocklist}/extensions/porn");
@@ -123,7 +123,7 @@
             }
             {
               name = "Chrome Enterprise release notes";
-              url = "https://support.google.com/chrome/a/answer/7679408/";
+              url = "https://support.google.com/chrome/a/answer/7679408";
             }
             {
               name = "Chrome Enterprise policy list";
@@ -140,7 +140,8 @@
             }
             {
               name = "Chromium Web Store";
-              url = "https://github.com/NeverDecaf/chromium-web-store/releases";
+              url =
+                "https://github.com/NeverDecaf/chromium-web-store/releases/latest/download/Chromium.Web.Store.crx";
             }
           ] ++ lib.mkWebstoreBookmarks {
             "Dark Reader" = "eimadpbcbfnmbkopoojfekhnkhdbieeh";
