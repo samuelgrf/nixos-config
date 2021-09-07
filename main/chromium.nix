@@ -169,6 +169,13 @@
         }
       ];
 
+      # Pinned extensions
+      ExtensionSettings = lib.genAttrs [
+        "ocaahdebbfolfmndjeplogmgcagdmblk" # Chromium Web Store
+        "eimadpbcbfnmbkopoojfekhnkhdbieeh" # Dark Reader
+        "cjpalhdlnbpafiamejdnhcphjbkeiagm" # uBlock Origin
+      ] (_: { toolbar_pin = "force_pinned"; });
+
       # Cookie whitelist
       CookiesAllowedForUrls = [
 
