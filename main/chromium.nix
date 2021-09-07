@@ -55,8 +55,7 @@
       };
 
       # Bookmarks
-      ManagedBookmarks = let inherit (config.system.nixos) release;
-      in [
+      ManagedBookmarks = [
         {
           name = "Manuals";
           children = [
@@ -81,7 +80,8 @@
             }
           ];
         }
-        {
+        (let inherit (config.system.nixos) release;
+        in {
           name = "Nix & NixOS";
           children = [
             {
@@ -113,7 +113,7 @@
               url = "http://chriswarbo.net/projects/nixos/useful_hacks.html";
             }
           ];
-        }
+        })
         {
           name = "Chrome";
           children = [
