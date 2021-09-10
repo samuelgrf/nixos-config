@@ -12,6 +12,7 @@
         file
         git
         git-open
+        gptfdisk
         graalvm11-ce
         htop
         killall
