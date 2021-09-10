@@ -9,6 +9,7 @@ with pkgs; {
   emacsclient = "${config.services.emacs.package}/bin/emacsclient";
   fzy = "${fzy}/bin/fzy";
   git = "${git}/bin/git";
+  git-open = "${git-open}/bin/git-open";
   grep = "${gnugrep}/bin/grep";
   hda-verb = "${alsaTools}/bin/hda-verb";
   journalctl = "${config.systemd.package}/bin/journalctl";

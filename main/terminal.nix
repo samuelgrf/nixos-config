@@ -195,6 +195,7 @@ with binPaths; {
       et = "${emacsclient} -t";
       grl = "${git} reflog";
       grlp = "${git} reflog -p";
+      go = git-open;
       gstlp = "${git} stash list -p";
       inc = ''
         [ -n "$HISTFILE" ] && {\

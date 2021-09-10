@@ -11,6 +11,7 @@
         fd
         file
         git
+        git-open
         graalvm11-ce
         htop
         killall
