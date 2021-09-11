@@ -8,7 +8,7 @@ SOURCE_FILE="$SCRIPT_DIR/source.nix"
 sourceAttr () { nix-instantiate --eval -E "(import \"$SOURCE_FILE\").$1" | xargs; }
 
 API_DATA=$(curl -sS https://api.github.com/repos/Mic92/nix-index-database/releases/latest)
-DL_URL=$(echo "$API_DATA" | jq -r '.assets[0].browser_download_url')
+DL_URL=$(echo "$API_DATA" | jq -r '.assets[] | select(.name == "index-x86_64-linux") | .browser_download_url')
 OLD_DL_URL=$(sourceAttr url)
 
 if [ "$DL_URL" = "$OLD_DL_URL" ]; then
