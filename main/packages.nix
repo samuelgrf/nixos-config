@@ -1,4 +1,4 @@
-{ config, flakes, lib, pkgs, ... }: {
+{ config, flakes, lib, pkgs, pkgs-unstable, ... }: {
 
   # System-wide packages to install.
   environment.systemPackages = with pkgs;
@@ -54,6 +54,14 @@
         (gimp-with-plugins.override { plugins = with gimpPlugins; [ bimp ]; })
         (import flakes.home-manager { inherit pkgs; }).docs.html
         (lib.hiPrio flakes.nixpkgs-unstable.htmlDocs.nixosManual)
+        (mpv.override {
+          scripts = with mpvScripts; [
+            mpris
+            sponsorblock
+            # TODO Remove `pkgs-unstable.mpvScripts` on NixOS 21.11.
+            pkgs-unstable.mpvScripts.youtube-quality
+          ];
+        })
         appimage-run
         calibre
         flakes.nixpkgs-unstable.htmlDocs.nixpkgsManual
@@ -63,7 +71,6 @@
         libreoffice
         lutris
         lxqt.pavucontrol-qt
-        mpv
         multimc
         nixUnstable.doc
         ocrmypdf
@@ -102,6 +109,7 @@
     __elem (lib.getName pkg) [
       "chrome-widevine-cdm"
       "chromium-unwrapped"
+      "mpv-youtube-quality"
       "steam"
       "steam-original"
       "steam-runtime"
