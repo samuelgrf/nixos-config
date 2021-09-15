@@ -99,7 +99,7 @@
 
   # Select allowed unfree packages.
   nixpkgs.config.allowUnfreePredicate = pkg:
-    lib.elem (lib.getName pkg) [
+    __elem (lib.getName pkg) [
       "chrome-widevine-cdm"
       "chromium-unwrapped"
       "steam"

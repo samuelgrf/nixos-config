@@ -174,7 +174,7 @@ with binPaths; {
       nus = "nu && nrs";
       nut = "nu && nrt";
       nv = "echo '${
-          lib.concatStringsSep "\n" (lib.mapAttrsToList (name: flake: ''
+          __concatStringsSep "\n" (lib.mapAttrsToList (name: flake: ''
             ${name}:
               ${flake.rev or "dirty"} (${
                 lib.formatDateSep "-" flake.lastModifiedDate or "19700101"

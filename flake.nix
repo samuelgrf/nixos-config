@@ -93,7 +93,7 @@
                   flake-registry = /etc/nix/registry.json
                 '';
 
-                registry = lib.mapAttrs (id: flake: {
+                registry = __mapAttrs (id: flake: {
                   from = {
                     type = "indirect";
                     inherit id;
