@@ -37,10 +37,8 @@ with pkgs; {
   watch = "${procps}/bin/watch";
   wc = "${coreutils}/bin/wc";
   xdg-open = "${xdg-utils}/bin/xdg-open";
-  zfs =
-    "${if config.boot.zfs.enableUnstable then zfsUnstable else zfs}/bin/zfs";
-  zpool =
-    "${if config.boot.zfs.enableUnstable then zfsUnstable else zfs}/bin/zpool";
+  zfs = "${config.boot.zfs.package}/bin/zfs";
+  zpool = "${config.boot.zfs.package}/bin/zpool";
   zsh = "${zsh}/bin/zsh";
 
 }
