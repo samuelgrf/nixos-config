@@ -54,26 +54,28 @@ let
     in
     kernel.override {
       inherit stdenv buildPackages;
-      argsOverride.structuredExtraConfig = kernel.structuredExtraConfig // {
-        LTO_CLANG_FULL = yes;
-        LTO_NONE = no;
-      } // extraConfig;
+      argsOverride = (kernel.passthru.argsOverride or { }) // {
+        structuredExtraConfig = kernel.structuredExtraConfig // {
+          LTO_CLANG_FULL = yes;
+          LTO_NONE = no;
+        } // extraConfig;
+      };
     };
 
   linuxLTOPackagesFor = args: self.linuxPackagesFor (linuxLTOFor args);
 in
 _: {
   linuxLTOPackages_zen = linuxLTOPackagesFor {
-    kernel = self.linux_zen;
+    kernel = self.linuxKernel.kernels.linux_zen;
   };
 
   linuxLTOPackages_zen_skylake = linuxLTOPackagesFor {
-    kernel = self.linux_zen;
+    kernel = self.linuxKernel.kernels.linux_zen;
     extraConfig = { MSKYLAKE = lib.kernel.yes; };
   };
 
   linuxLTOPackages_zen_zen2 = linuxLTOPackagesFor {
-    kernel = self.linux_zen;
+    kernel = self.linuxKernel.kernels.linux_zen;
     extraConfig = { MZEN2 = lib.kernel.yes; };
   };
 }

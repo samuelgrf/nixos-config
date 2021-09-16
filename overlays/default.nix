@@ -3,7 +3,7 @@
   # gimpPlugins.bimp: Init
   (import ./gimpPlugins)
 
-  # linux_zen: Customize kernel configuration.
+  # linux_zen: Customize kernel configuration & fetch ZFS compatible release.
   (import ./linux_zen)
 
   # linuxLTOPackages*: Build LinuxPackages* with LLVM and LTO.
