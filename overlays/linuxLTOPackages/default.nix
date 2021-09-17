@@ -2,18 +2,18 @@ self:
 let
   inherit (self) lib;
 
-  stdenvLLVM =
-    let
-      hostLLVM = self.buildPackages.llvmPackages_12.override {
-        bootBintools = null;
-        bootBintoolsNoLibc = null;
-      };
-      buildLLVM = self.llvmPackages_12.override {
-        bootBintools = null;
-        bootBintoolsNoLibc = null;
-      };
+  stdenvLLVM = let
+    hostLLVM = self.buildPackages.llvmPackages_12.override {
+      bootBintools = null;
+      bootBintoolsNoLibc = null;
+    };
+    buildLLVM = self.llvmPackages_12.override {
+      bootBintools = null;
+      bootBintoolsNoLibc = null;
+    };
 
-      mkLLVMPlatform = platform: platform // {
+    mkLLVMPlatform = platform:
+      platform // {
         useLLVM = true;
         linux-kernel = platform.linux-kernel // {
           makeFlags = (platform.linux-kernel.makeFlags or [ ]) ++ [
@@ -35,24 +35,24 @@ let
         };
       };
 
-      stdenvClangUseLLVM = self.overrideCC hostLLVM.stdenv hostLLVM.clangUseLLVM;
+    stdenvClangUseLLVM = self.overrideCC hostLLVM.stdenv hostLLVM.clangUseLLVM;
 
-      stdenvPlatformLLVM = stdenvClangUseLLVM.override (old: {
-        hostPlatform = mkLLVMPlatform old.hostPlatform;
-        buildPlatform = mkLLVMPlatform old.buildPlatform;
-      });
-    in
-    stdenvPlatformLLVM // {
-      passthru = (stdenvPlatformLLVM.passthru or { }) // { llvmPackages = buildLLVM; };
+    stdenvPlatformLLVM = stdenvClangUseLLVM.override (old: {
+      hostPlatform = mkLLVMPlatform old.hostPlatform;
+      buildPlatform = mkLLVMPlatform old.buildPlatform;
+    });
+  in stdenvPlatformLLVM // {
+    passthru = (stdenvPlatformLLVM.passthru or { }) // {
+      llvmPackages = buildLLVM;
     };
+  };
 
   linuxLTOFor = { kernel, extraConfig ? { } }:
     let
       inherit (lib.kernel) yes no;
       stdenv = stdenvLLVM;
       buildPackages = self.buildPackages // { inherit stdenv; };
-    in
-    kernel.override {
+    in kernel.override {
       inherit stdenv buildPackages;
       argsOverride = (kernel.passthru.argsOverride or { }) // {
         structuredExtraConfig = kernel.structuredExtraConfig // {
@@ -63,11 +63,9 @@ let
     };
 
   linuxLTOPackagesFor = args: self.linuxPackagesFor (linuxLTOFor args);
-in
-_: {
-  linuxLTOPackages_zen = linuxLTOPackagesFor {
-    kernel = self.linuxKernel.kernels.linux_zen;
-  };
+in _: {
+  linuxLTOPackages_zen =
+    linuxLTOPackagesFor { kernel = self.linuxKernel.kernels.linux_zen; };
 
   linuxLTOPackages_zen_skylake = linuxLTOPackagesFor {
     kernel = self.linuxKernel.kernels.linux_zen;
