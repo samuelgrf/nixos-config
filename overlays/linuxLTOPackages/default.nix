@@ -41,6 +41,7 @@ let
       hostPlatform = mkLLVMPlatform old.hostPlatform;
       buildPlatform = mkLLVMPlatform old.buildPlatform;
     });
+
   in stdenvPlatformLLVM // {
     passthru = (stdenvPlatformLLVM.passthru or { }) // {
       llvmPackages = buildLLVM;
@@ -52,6 +53,7 @@ let
       inherit (lib.kernel) yes no;
       stdenv = stdenvLLVM;
       buildPackages = self.buildPackages // { inherit stdenv; };
+
     in kernel.override {
       inherit stdenv buildPackages;
       argsOverride = (kernel.passthru.argsOverride or { }) // {
@@ -63,6 +65,7 @@ let
     };
 
   linuxLTOPackagesFor = args: self.linuxPackagesFor (linuxLTOFor args);
+
 in _: {
   linuxLTOPackages_zen =
     linuxLTOPackagesFor { kernel = self.linuxKernel.kernels.linux_zen; };
