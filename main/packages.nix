@@ -57,7 +57,7 @@
           scripts = with mpvScripts; [
             mpris
             sponsorblock
-            # TODO Remove `pkgs-unstable.mpvScripts` on NixOS 21.11.
+            # TODO Remove `pkgs-unstable.mpvScripts.` on NixOS 21.11.
             pkgs-unstable.mpvScripts.youtube-quality
           ];
         })
