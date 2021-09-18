@@ -53,7 +53,6 @@
       X = [
         (gimp-with-plugins.override { plugins = with gimpPlugins; [ bimp ]; })
         (import flakes.home-manager { inherit pkgs; }).docs.html
-        (lib.hiPrio flakes.nixpkgs-unstable.htmlDocs.nixosManual)
         (mpv.override {
           scripts = with mpvScripts; [
             mpris
@@ -64,6 +63,7 @@
         })
         appimage-run
         calibre
+        flakes.nixpkgs-unstable.htmlDocs.nixosManual
         flakes.nixpkgs-unstable.htmlDocs.nixpkgsManual
         ghostscript
         imagemagick
