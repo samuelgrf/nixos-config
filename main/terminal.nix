@@ -136,6 +136,7 @@ with binPaths; {
       n = nix;
       nb = "${nix} build --print-build-logs -v";
       nbd = "${nix} build --dry-run -v";
+      nd = "${nix} develop";
       nf = "${nix} flake";
       nfc = "${nix} flake check";
       nfl = "${nix} flake lock";
