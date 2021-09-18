@@ -18,6 +18,11 @@ with builtins // lib; rec {
   */
   toString' = v: if isBool v then boolToString v else toString v;
 
+  # TODO Remove once https://github.com/NixOS/nixpkgs/pull/138418 is merged.
+  # Get the path to a package's main executable
+  mainProgram = pkg:
+    "${getBin pkg}/bin/${pkg.meta.mainProgram or (lib.getName pkg)}";
+
   mkHostId = s: substring 0 8 (hashString "sha256" s);
 
   mkSystemdScript = name: text:
