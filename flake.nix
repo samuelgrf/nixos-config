@@ -64,13 +64,14 @@
           main/services.nix
           main/terminal.nix
 
-          ({ config, pkgs, ... }:
+          ({ config, lib, pkgs, ... }:
             let
               pkgsImport = pkgs:
                 import pkgs (removeAttrs config.nixpkgs [ "localSystem" ]);
 
               _module.args = pkgsImport nixpkgs // {
-                binPaths = import main/binpaths.nix { inherit config pkgs; };
+                binPaths =
+                  import main/binpaths.nix { inherit config lib pkgs; };
                 inherit flakes;
                 pkgs-master = pkgsImport nixpkgs-master;
                 pkgs-unstable = pkgsImport nixpkgs-unstable;
@@ -112,8 +113,7 @@
                 useGlobalPkgs = true;
                 useUserPackages = true;
                 extraSpecialArgs.lib =
-                  (import "${home-manager}/modules/lib/stdlib-extended.nix" lib)
-                  // lib';
+                  import "${home-manager}/modules/lib/stdlib-extended.nix" lib;
                 users.samuel.imports = [
                   home/modules/kde.nix
                   home/default-applications.nix
