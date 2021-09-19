@@ -207,6 +207,7 @@ with binPaths; {
           exec ${zsh}
         }\
       '';
+      ls = "ls -v --color=tty";
       lvl = "echo $SHLVL";
       msg = "${kdialog} --msgbox";
       nw = "whence -ps";
