@@ -80,6 +80,7 @@
         protontricks
         scrcpy
         simple-scan
+        tesseract4
         ungoogled-chromium
         winetricks
         wineWowPackages.staging
