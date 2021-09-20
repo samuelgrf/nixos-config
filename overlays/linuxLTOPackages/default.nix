@@ -64,7 +64,7 @@ let
       };
     };
 
-  linuxLTOPackagesFor = args: self.linuxPackagesFor (linuxLTOFor args);
+  linuxLTOPackagesFor = args: self.linuxKernel.packagesFor (linuxLTOFor args);
 
 in _: {
   linuxLTOPackages_zen =
