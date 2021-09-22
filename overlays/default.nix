@@ -5,7 +5,7 @@
 
   # linuxKernel.kernels.linux_zen:
   (import ./linux_zen/config.nix) # Customize kernel configuration.
-  (import ./linux_zen/source.nix) # Fetch ZFS compatible release.
+  (import ./linux_zen/source.nix) # Ensure ZFS compatibility.
 
   # linuxLTOPackages*: Build LinuxPackages* with LLVM and LTO.
   # Thanks a lot to @lovesegfault for his work on this!
