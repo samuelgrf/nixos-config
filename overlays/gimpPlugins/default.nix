@@ -35,7 +35,6 @@ with prev; {
         license = licenses.gpl2Plus;
       };
     };
-
   };
 
 }
