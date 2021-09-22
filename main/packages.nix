@@ -52,6 +52,7 @@
       ];
       X = [
         (gimp-with-plugins.override { plugins = with gimpPlugins; [ bimp ]; })
+        # TODO Replace with `flakes.home-manager.packages.${system}.docs-html` on NixOS 21.11.
         (import flakes.home-manager { inherit pkgs; }).docs.html
         (mpv.override {
           scripts = with mpvScripts; [
