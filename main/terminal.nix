@@ -211,6 +211,8 @@ with binPaths; {
       lvl = "echo $SHLVL";
       msg = "${kdialog} --msgbox";
       nw = "whence -ps";
+      rn = pipe-rename;
+      rnm = "ls | ${pipe-rename}";
       o = xdg-open;
       p = "${pre-commit} run -a";
       qr = "${qrencode} -t UTF8";
