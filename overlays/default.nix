@@ -18,4 +18,7 @@
   # ungoogled-chromium: Add command line arguments.
   (import ./ungoogled-chromium)
 
+  # winetricks: Use Wine with 64-bit support.
+  (import ./winetricks)
+
 ]
