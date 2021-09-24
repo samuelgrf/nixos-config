@@ -64,6 +64,7 @@
             pkgs-unstable.mpvScripts.youtube-quality
           ];
         })
+        (winetricks.override { wine = wineWowPackages.staging; })
         appimage-run
         calibre
         flakes.nixpkgs-unstable.htmlDocs.nixosManual
@@ -85,7 +86,6 @@
         simple-scan
         tesseract4
         ungoogled-chromium
-        winetricks
         wineWowPackages.staging
       ] ++ (with plasma5Packages; [
         ark
