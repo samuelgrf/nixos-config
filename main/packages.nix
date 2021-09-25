@@ -15,6 +15,7 @@
         gptfdisk
         graalvm11-ce
         htop
+        jq
         killall
         kjv
         lm_sensors
