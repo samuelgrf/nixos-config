@@ -1,4 +1,4 @@
-{ config, flakes, lib, pkgs, pkgs-master, pkgs-unstable, ... }: {
+{ config, flakes, lib, pkgs, pkgs-unstable, ... }: {
 
   # System-wide packages to install.
   environment.systemPackages = with pkgs;
@@ -52,7 +52,7 @@
         youtube-dl
       ]
       # TODO Get packages from stable on NixOS 21.11.
-        ++ (with pkgs-master; [ pipe-rename ]);
+        ++ (with pkgs-unstable; [ pipe-rename ]);
       X = [
         (gimp-with-plugins.override { plugins = with gimpPlugins; [ bimp ]; })
         # TODO Replace with `flakes.home-manager.packages.${system}.docs-html` on NixOS 21.11.

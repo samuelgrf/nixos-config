@@ -64,14 +64,14 @@
           main/services.nix
           main/terminal.nix
 
-          ({ config, lib, pkgs, pkgs-master, ... }:
+          ({ config, lib, pkgs, pkgs-unstable, ... }:
             let
               pkgsImport = pkgs:
                 import pkgs (removeAttrs config.nixpkgs [ "localSystem" ]);
 
               _module.args = pkgsImport nixpkgs // {
                 binPaths = import main/binpaths.nix {
-                  inherit config lib pkgs pkgs-master;
+                  inherit config lib pkgs pkgs-unstable;
                 };
                 inherit flakes;
                 pkgs-master = pkgsImport nixpkgs-master;

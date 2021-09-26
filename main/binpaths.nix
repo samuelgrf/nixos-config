@@ -1,5 +1,5 @@
 # TODO Remove `lib,` on NixOS 21.11.
-{ config, lib, pkgs, pkgs-master }:
+{ config, lib, pkgs, pkgs-unstable }:
 
 with pkgs;
 __mapAttrs (_: lib.mainProgram) pkgs // {
@@ -19,7 +19,7 @@ __mapAttrs (_: lib.mainProgram) pkgs // {
   nix-store = "${config.nix.package}/bin/nix-store";
   nixos-rebuild = "${config.system.build.nixos-rebuild}/bin/nixos-rebuild";
   # TODO Remove on NixOS 21.11.
-  pipe-rename = "${pkgs-master.pipe-rename}/bin/renamer";
+  pipe-rename = "${pkgs-unstable.pipe-rename}/bin/renamer";
   readlink = "${coreutils}/bin/readlink";
   rm = "${coreutils}/bin/rm";
   shutdown = "${config.systemd.package}/bin/shutdown";
