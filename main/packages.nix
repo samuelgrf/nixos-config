@@ -72,6 +72,7 @@
         flakes.nixpkgs-unstable.htmlDocs.nixpkgsManual
         ghostscript
         imagemagick
+        inkscape
         keepassxc
         libreoffice
         lutris
