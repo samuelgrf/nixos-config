@@ -93,6 +93,7 @@
         ark
         gwenview
         kate
+        kcolorchooser
         kdialog
         ktimer
         kwin-dynamic-workspaces
