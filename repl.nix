@@ -2,9 +2,8 @@ let
   self = __getFlake (toString ./.);
   host = lib.removeSuffix "\n" (__readFile "/etc/hostname");
   nixosConfig = self.nixosConfigurations.${host};
-  inherit (self) lib lib';
+  inherit (self) lib;
 
 in nixosConfig // self.inputs // self // {
-  lib = lib // lib';
   inherit (nixosConfig._module.args) binPaths flakes pkgs-master pkgs-unstable;
 }

@@ -21,9 +21,14 @@
       stateVersion = "21.05";
 
       system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
-      lib = nixpkgs.lib;
-      lib' = import ./lib { inherit lib pkgs; };
+      lib = nixpkgs.lib // import ./lib {
+        inherit pkgs;
+        lib = nixpkgs.lib;
+      };
+
+      overlays = import ./overlays;
+      pkgs = import nixpkgs { inherit overlays system; };
+      legacyPackages.${system} = pkgs;
 
       checks.${system}.pre-commit-check = pre-commit-hooks.lib.${system}.run {
         src = ./.;
@@ -106,15 +111,16 @@
                 mkForce (concatStringsSep ":"
                   (mapAttrsToList (name: path: "${name}=${path}") flakes));
 
-              nixpkgs.overlays = import ./overlays;
+              nixpkgs = { inherit overlays; };
 
               system = { inherit stateVersion; };
 
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = true;
-                extraSpecialArgs.lib =
-                  import "${home-manager}/modules/lib/stdlib-extended.nix" lib;
+                extraSpecialArgs.lib = lib
+                  // import "${home-manager}/modules/lib/stdlib-extended.nix"
+                  lib;
                 users.samuel.imports = [
                   home/modules/kde.nix
                   home/default-applications.nix
@@ -146,7 +152,7 @@
         ];
       };
 
-      specialArgs.lib = lib // lib';
+      specialArgs = { inherit lib; };
 
       nixosConfigurations = {
         amethyst = lib.nixosSystem {
