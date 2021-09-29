@@ -12,6 +12,9 @@
   # Based on: https://github.com/lovesegfault/nix-config/blob/7ddb02fa8c52b2422c4b74e385ab511a71a6f5e6/nix/overlays/linux-lto.nix
   (import ./linuxLTOPackages)
 
+  # nix-index-database: Init
+  (import ./nix-index-database)
+
   # pdfsizeopt: Init
   (import ./pdfsizeopt)
 
