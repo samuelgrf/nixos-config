@@ -1,7 +1,7 @@
 [
 
   # gimpPlugins.bimp: Init
-  (import ./gimpPlugins)
+  (import ./gimpPlugins/bimp.nix)
 
   # linuxKernel.kernels.linux_zen:
   (import ./linux_zen/config.nix) # Customize kernel configuration.

@@ -8,12 +8,12 @@ with prev; {
          File/Batch Image Manipulation...
       */
       pname = "bimp";
-      version = "2.5";
+      version = "v2.5";
 
       src = fetchFromGitHub {
         owner = "alessandrofrancesconi";
         repo = "gimp-plugin-bimp";
-        rev = "v${version}";
+        rev = version;
         hash = "sha256-s2FtSLzjfi0KbfE+6m1T6GaqXo5ZJJasQimouTp/EkA=";
       };
 
