@@ -5,7 +5,7 @@ set -euo pipefail
 ATTR=nix-index-database
 GIT_URL=https://github.com/Mic92/nix-index-database.git
 
-VERSION=$(list-git-tags "$GIT_URL" 2>/dev/null | tail -1)
+VERSION="unstable-$(list-git-tags "$GIT_URL" 2>/dev/null | tail -1)"
 CHANGES=$(update-source-version "$ATTR" "$VERSION" --print-changes)
 
 if [ "$CHANGES" != "[]" ]; then
