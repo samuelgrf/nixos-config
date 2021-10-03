@@ -5,7 +5,7 @@ set -euo pipefail
 ATTR=gimpPlugins.bimp
 GIT_URL=https://github.com/alessandrofrancesconi/gimp-plugin-bimp.git
 
-VERSION=$(list-git-tags "$GIT_URL" 2>/dev/null | tail -1)
+VERSION=$(list-git-tags "$GIT_URL" 2>/dev/null | tail -1 | sed -e 's/^v//')
 CHANGES=$(update-source-version "$ATTR" "$VERSION" --print-changes)
 
 if [ "$CHANGES" != "[]" ]; then
