@@ -4,8 +4,8 @@ with prev; {
   linuxKernel = linuxKernel // {
     kernels = linuxKernel.kernels // {
 
-      linux_zen = if
-        (linuxKernel.packagesFor linuxKernel.kernels.linux_zen).zfsStable.meta.broken then
+      linux_zen = if (linuxKernel.packagesFor
+        linuxKernel.kernels.linux_zen).zfsStable.meta.broken then
         let
           modDirVersion = "5.13.13-zen1";
 
