@@ -31,7 +31,10 @@
       };
 
       overlays = import ./overlays;
-      pkgs = import nixpkgs { inherit overlays system; };
+      pkgs = import nixpkgs {
+        inherit system;
+        overlays = __attrValues overlays;
+      };
       legacyPackages.${system} = pkgs;
 
       checks.${system}.pre-commit-check = pre-commit-hooks.lib.${system}.run {
@@ -39,11 +42,13 @@
         hooks = {
           nixfmt = {
             enable = true;
-            excludes = [ ".*/source.nix" "machines/.*/hardware-generated.nix" ];
+            excludes =
+              [ "machines/.*/hardware-generated.nix" "overlays/default.nix" ];
           };
           nix-linter = {
             enable = true;
-            excludes = [ "machines/.*/hardware-generated.nix" ];
+            excludes =
+              [ "machines/.*/hardware-generated.nix" "overlays/default.nix" ];
           };
         };
         settings.nix-linter.checks =
@@ -115,7 +120,7 @@
                 mkForce (concatStringsSep ":"
                   (mapAttrsToList (name: path: "${name}=${path}") flakes));
 
-              nixpkgs = { inherit overlays; };
+              nixpkgs.overlays = __attrValues overlays;
 
               system = { inherit stateVersion; };
 

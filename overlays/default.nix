@@ -1,24 +1,28 @@
-[
+let
+  "gimpPlugins.bimp" = importOverlay ./gimpPlugins/bimp.nix;
+  "linuxKernel.kernels.linux_zen__config" = importOverlay ./linux_zen/config.nix;
+  "linuxKernel.kernels.linux_zen__source" = importOverlay ./linux_zen/source.nix;
+  linuxLTOPackages = importOverlay ./linuxLTOPackages;
+  nix-index-database = importOverlay ./nix-index-database;
+  pdfsizeopt = importOverlay ./pdfsizeopt;
+  ungoogled-chromium = importOverlay ./ungoogled-chromium;
+  importOverlay = f: final: prev: import f final prev;
+in {
+  inherit
 
-  # gimpPlugins.bimp: Init
-  (import ./gimpPlugins/bimp.nix)
+    "gimpPlugins.bimp" # Init
 
-  # linuxKernel.kernels.linux_zen:
-  (import ./linux_zen/config.nix) # Customize kernel configuration.
-  (import ./linux_zen/source.nix) # Ensure ZFS compatibility.
+    "linuxKernel.kernels.linux_zen__config" # Customize kernel configuration.
+    "linuxKernel.kernels.linux_zen__source" # Ensure ZFS compatibility.
 
-  # linuxLTOPackages*: Build LinuxPackages* with LLVM and LTO.
-  # Thanks a lot to @lovesegfault for his work on this!
-  # Based on: https://github.com/lovesegfault/nix-config/blob/7ddb02fa8c52b2422c4b74e385ab511a71a6f5e6/nix/overlays/linux-lto.nix
-  (import ./linuxLTOPackages)
+    # Thanks a lot to @lovesegfault for his work on this!
+    # Based on: https://github.com/lovesegfault/nix-config/blob/7ddb02fa8c52b2422c4b74e385ab511a71a6f5e6/nix/overlays/linux-lto.nix
+    linuxLTOPackages # Build LinuxPackages* with LLVM and LTO.
 
-  # nix-index-database: Init
-  (import ./nix-index-database)
+    nix-index-database # Init
 
-  # pdfsizeopt: Init
-  (import ./pdfsizeopt)
+    pdfsizeopt # Init
 
-  # ungoogled-chromium: Add command line arguments.
-  (import ./ungoogled-chromium)
+    ungoogled-chromium; # Add command line arguments.
 
-]
+}
