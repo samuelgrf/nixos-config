@@ -23,6 +23,16 @@ with prev; {
               # FQ-PIE packet scheduling
               NET_SCH_DEFAULT = yes;
               DEFAULT_FQ_PIE = yes;
+
+              # Disable debug options
+              DEBUG_KERNEL = lib.mkForce no;
+              DEBUG_DEVRES = lib.mkForce (option no);
+              DEBUG_INFO = lib.mkForce (option no);
+              DEBUG_STACK_USAGE = lib.mkForce (option no);
+              DETECT_HUNG_TASK = lib.mkForce (option no);
+              RCU_TORTURE_TEST = lib.mkForce (option no);
+              SCHEDSTATS = lib.mkForce (option no);
+              SCHED_DEBUG = lib.mkForce (option no);
             };
           };
 
