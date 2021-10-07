@@ -14,7 +14,6 @@ with prev; {
       "--enable-features=${
         lib.concatStringsSep "," [
           "BackForwardCache:enable_same_site/true"
-          "CopyLinkToText"
           "OverlayScrollbar"
           "TabHoverCardImages"
           "VaapiVideoDecoder"
