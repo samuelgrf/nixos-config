@@ -39,6 +39,7 @@
         python3Packages.adb-enhanced
         qrencode
         reptyr
+        ripgrep
         smartmontools
         strace
         sysstat
