@@ -161,7 +161,7 @@ with binPaths; {
       nsr = ''
         ${nix-store} --gc --print-roots |\
           ${cut} -f 1 -d " " |\
-          ${grep} '/result-\?[^-]*$'\
+          ${gnugrep} '/result-\?[^-]*$'\
       '';
       nsrr = "${rm} -v $(nsr)";
       nu = "${nix} flake update";

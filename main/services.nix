@@ -123,7 +123,7 @@ with binPaths; {
       ${rm} -v $(
         ${nix-store} --gc --print-roots |
           ${cut} -f 1 -d " " |
-          ${grep} '/result-\?[^-]*$'
+          ${gnugrep} '/result-\?[^-]*$'
       ) || :
     '';
 

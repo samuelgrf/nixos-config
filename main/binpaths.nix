@@ -7,7 +7,8 @@ __mapAttrs (_: lib.mainProgram) pkgs // {
   cut = "${coreutils}/bin/cut";
   dirname = "${coreutils}/bin/dirname";
   emacsclient = "${config.services.emacs.package}/bin/emacsclient";
-  grep = "${gnugrep}/bin/grep";
+  # TODO Remove on NixOS 21.11.
+  gnugrep = "${gnugrep}/bin/grep";
   hda-verb = "${alsaTools}/bin/hda-verb";
   journalctl = "${config.systemd.package}/bin/journalctl";
   kdialog = "${plasma5Packages.kdialog}/bin/kdialog";
