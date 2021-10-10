@@ -9,6 +9,8 @@ __mapAttrs (_: lib.mainProgram) pkgs // {
   emacsclient = "${config.services.emacs.package}/bin/emacsclient";
   # TODO Remove on NixOS 21.11.
   gnugrep = "${gnugrep}/bin/grep";
+  # TODO Remove on NixOS 21.11.
+  gnused = "${gnused}/bin/sed";
   hda-verb = "${alsaTools}/bin/hda-verb";
   journalctl = "${config.systemd.package}/bin/journalctl";
   kdialog = "${plasma5Packages.kdialog}/bin/kdialog";

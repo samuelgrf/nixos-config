@@ -9,7 +9,10 @@ with binPaths; {
   users.defaultUserShell = pkgs.zsh;
 
   # Configure Zsh.
-  programs.zsh = {
+  programs.zsh = let
+    configDir = ''$(${dirname} "$(${readlink} -m /etc/nixos/flake.nix)")'';
+    docDir = "/run/current-system/sw/share/doc";
+  in {
     enable = true;
     ohMyZsh.enable = true;
     ohMyZsh.plugins = [ "git" ];
@@ -45,6 +48,10 @@ with binPaths; {
       export LESSHISTFILE=/dev/null
 
       # Define Nix & NixOS functions.
+      ne () {
+        ${nix} eval --impure --expr "with import ${configDir}/repl.nix; $@" \
+          | ${gnused} 's/^"\(.*\)"$/\1/'
+      }
       nr () {(
         set -eo pipefail
 
@@ -122,10 +129,7 @@ with binPaths; {
     '';
 
     # Set shell aliases.
-    shellAliases = let
-      configDir = ''$(${dirname} "$(${readlink} -m /etc/nixos/flake.nix)")'';
-      docDir = "/run/current-system/sw/share/doc";
-    in {
+    shellAliases = {
 
       # Nix & NixOS
       c = ''cd "${configDir}"'';
