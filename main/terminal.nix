@@ -196,6 +196,7 @@ with binPaths; {
         ${journalctl} -o cat -fu nix-gc.service
       '';
       cpr = "cp -r";
+      du = "du -h";
       e = "run ${emacsclient} -c";
       et = "${emacsclient} -t";
       grl = "${git} reflog";
