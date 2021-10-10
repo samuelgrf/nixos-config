@@ -220,6 +220,7 @@ with binPaths; {
       rb = "${shutdown} -r";
       rbc = "${shutdown} -c";
       rbn = "${shutdown} -r now";
+      rgi = "${ripgrep} -i";
       rld = "exec ${zsh}";
       rldh = ''
         ${sudo} ${systemctl} restart 'home-manager-*.service'
