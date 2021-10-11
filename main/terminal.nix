@@ -163,9 +163,9 @@ with binPaths; {
       nsem = "${nix} search github:NixOS/nixpkgs";
       nseu = "${nix} search nixpkgs-unstable";
       nsr = ''
-        ${nix-store} --gc --print-roots |\
-          ${cut} -f 1 -d " " |\
-          ${gnugrep} '/result-\?[^-]*$'\
+        ${nix-store} --gc --print-roots \
+          | ${cut} -f 1 -d " " \
+          | ${gnugrep} '/result-\?[^-]*$'\
       '';
       nsrr = "${rm} -v $(nsr)";
       nu = "${nix} flake update";

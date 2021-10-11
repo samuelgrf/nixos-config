@@ -121,9 +121,9 @@ with binPaths; {
     ExecStartPre = lib.mkSystemdScript "nix-gc-pre" ''
       echo removing stray garbage collector roots...
       ${rm} -v $(
-        ${nix-store} --gc --print-roots |
-          ${cut} -f 1 -d " " |
-          ${gnugrep} '/result-\?[^-]*$'
+        ${nix-store} --gc --print-roots \
+          | ${cut} -f 1 -d " " \
+          | ${gnugrep} '/result-\?[^-]*$'
       ) || :
     '';
 
