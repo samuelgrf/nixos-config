@@ -71,7 +71,7 @@
         calibre
         flakes.nixpkgs-unstable.htmlDocs.nixosManual
         flakes.nixpkgs-unstable.htmlDocs.nixpkgsManual
-        imagemagick
+        imagemagickBig
         inkscape
         keepassxc
         libreoffice
