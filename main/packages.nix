@@ -6,6 +6,7 @@
       common = [
         (writeShellScriptBin "java8" "${graalvm8-ce}/bin/java $@")
         bat
+        common-updater-scripts
         dos2unix
         exiftool
         fd
