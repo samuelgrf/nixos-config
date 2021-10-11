@@ -71,7 +71,6 @@
         calibre
         flakes.nixpkgs-unstable.htmlDocs.nixosManual
         flakes.nixpkgs-unstable.htmlDocs.nixpkgsManual
-        ghostscript
         imagemagick
         inkscape
         keepassxc
