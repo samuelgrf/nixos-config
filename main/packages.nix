@@ -50,7 +50,6 @@
         usbutils
         vim
         whois
-        youtube-dl
       ]
       # TODO Get packages from stable on NixOS 21.11.
         ++ (with pkgs-unstable; [ pipe-rename ]);
@@ -90,6 +89,7 @@
         tesseract4
         ungoogled-chromium
         wineWowPackages.staging
+        youtube-dl
       ] ++ (with plasma5Packages; [
         ark
         gwenview
