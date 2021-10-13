@@ -1,3 +1,5 @@
+{ pkgs-unstable }:
+
 let
   "gimpPlugins.bimp" = importOverlay ./gimpPlugins/bimp.nix;
   "linuxKernel.kernels.linux_zen__config" = importOverlay ./linux_zen/config.nix;
@@ -6,7 +8,9 @@ let
   nix-index-database = importOverlay ./nix-index-database;
   pdfsizeopt = importOverlay ./pdfsizeopt;
   ungoogled-chromium = importOverlay ./ungoogled-chromium;
+  youtube-dl = importOverlayFn ./youtube-dl { inherit pkgs-unstable; };
   importOverlay = f: final: prev: import f final prev;
+  importOverlayFn = f: fnArgs: final: prev: import f fnArgs final prev;
 in {
   inherit
 
@@ -23,6 +27,8 @@ in {
 
     pdfsizeopt # Init
 
-    ungoogled-chromium; # Add command line arguments.
+    ungoogled-chromium # Add command line arguments.
+
+    youtube-dl; # Replace with yt-dlp.
 
 }

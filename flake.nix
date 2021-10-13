@@ -30,11 +30,16 @@
         lib = nixpkgs.lib;
       };
 
-      overlays = import ./overlays;
-      pkgs = import nixpkgs {
-        inherit system;
-        overlays = __attrValues overlays;
-      };
+      overlays = import ./overlays { inherit pkgs-unstable; };
+
+      pkgsImport = pkgs:
+        import pkgs {
+          inherit system;
+          overlays = __attrValues overlays;
+        };
+      pkgs = pkgsImport nixpkgs;
+      pkgs-master = pkgsImport nixpkgs-master;
+      pkgs-unstable = pkgsImport nixpkgs-unstable;
       legacyPackages.${system} = pkgs;
 
       checks.${system}.pre-commit-check = pre-commit-hooks.lib.${system}.run {
