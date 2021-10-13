@@ -1,4 +1,4 @@
-{ config, flakes, lib, pkgs, pkgs-unstable, ... }: {
+{ config, flakes, pkgs, pkgs-unstable, ... }: {
 
   # System-wide packages to install.
   environment.systemPackages = with pkgs;
@@ -112,23 +112,7 @@
   # System-wide fonts to install.
   fonts.fonts = with pkgs; [ meslo-lgs-nf noto-fonts-cjk ];
 
-  # Select allowed unfree packages.
-  nixpkgs.config.allowUnfreePredicate = pkg:
-    __elem (lib.getName pkg) [
-      "chrome-widevine-cdm"
-      "chromium-unwrapped"
-      "mpv-youtube-quality"
-      "steam"
-      "steam-original"
-      "steam-runtime"
-      "ungoogled-chromium"
-      "unrar"
-    ];
-
   # Don't install optional default packages.
   environment.defaultPackages = [ ];
-
-  # Disallow package aliases.
-  nixpkgs.config.allowAliases = false;
 
 }

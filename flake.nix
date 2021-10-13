@@ -25,6 +25,7 @@
       stateVersion = "21.05";
 
       system = "x86_64-linux";
+
       lib = nixpkgs.lib // import ./lib {
         inherit pkgs;
         lib = nixpkgs.lib;
@@ -35,8 +36,10 @@
       pkgsImport = pkgs:
         import pkgs {
           inherit system;
+          config = import ./main/nixpkgs-config.nix { inherit pkgs; };
           overlays = __attrValues overlays;
         };
+
       pkgs = pkgsImport nixpkgs;
       pkgs-master = pkgsImport nixpkgs-master;
       pkgs-unstable = pkgsImport nixpkgs-unstable;
@@ -75,57 +78,27 @@
           home-manager.nixosModule
           main/chromium.nix
           main/firewall.nix
-          main/general.nix
           main/kernel.nix
           main/misc.nix
+          main/nix.nix
           main/packages.nix
           main/printing-scanning.nix
           main/services.nix
           main/terminal.nix
+          main/user.nix
 
-          ({ config, lib, pkgs, pkgs-unstable, ... }:
+          ({ config, ... }:
             let
-              pkgsImport = pkgs:
-                import pkgs (removeAttrs config.nixpkgs [ "localSystem" ]);
-
-              _module.args = pkgsImport nixpkgs // {
+              _module.args = pkgs // {
+                inherit flakes pkgs-master pkgs-unstable;
                 binPaths = import main/binpaths.nix {
                   inherit config lib pkgs pkgs-unstable;
                 };
-                inherit flakes;
-                pkgs-master = pkgsImport nixpkgs-master;
-                pkgs-unstable = pkgsImport nixpkgs-unstable;
               };
             in {
               inherit _module;
 
-              nix = {
-                package = pkgs.nixUnstable;
-
-                extraOptions = ''
-                  experimental-features = nix-command flakes
-                  flake-registry = /etc/nix/registry.json
-                '';
-
-                registry = __mapAttrs (id: flake: {
-                  from = {
-                    type = "indirect";
-                    inherit id;
-                  };
-                  inherit flake;
-                }) flakes;
-
-                sshServe = {
-                  enable = true;
-                  keys = config.users.users.root.openssh.authorizedKeys.keys;
-                };
-              };
-
-              environment.variables.NIX_PATH = with lib;
-                mkForce (concatStringsSep ":"
-                  (mapAttrsToList (name: path: "${name}=${path}") flakes));
-
-              nixpkgs.overlays = __attrValues overlays;
+              nixpkgs = { inherit pkgs; };
 
               system = { inherit stateVersion; };
 
