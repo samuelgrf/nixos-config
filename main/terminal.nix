@@ -217,7 +217,7 @@ with binPaths; {
       msg = "${kdialog} --msgbox";
       nw = "whence -ps";
       rn = pipe-rename;
-      rnm = "ls | ${pipe-rename}";
+      rna = "${pipe-rename} $(ls)";
       o = xdg-open;
       p = "${pre-commit} run -a";
       qr = "${qrencode} -t UTF8";
