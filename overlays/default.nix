@@ -1,31 +1,22 @@
-let
-  "gimpPlugins.bimp" = importOverlay ./gimpPlugins/bimp.nix;
-  "linuxKernel.kernels.linux_zen__config" = importOverlay ./linux_zen/config.nix;
-  "linuxKernel.kernels.linux_zen__source" = importOverlay ./linux_zen/source.nix;
-  linuxLTOPackages = importOverlay ./linuxLTOPackages;
-  nix-index-database = importOverlay ./nix-index-database;
-  pdfsizeopt = importOverlay ./pdfsizeopt;
-  ungoogled-chromium = importOverlay ./ungoogled-chromium;
-  youtube-dl = importOverlay ./youtube-dl;
-  importOverlay = f: final: prev: import f final prev;
-in {
-  inherit
+{ lib }:
 
-    "gimpPlugins.bimp" # Init
+lib.genAttrs [
 
-    "linuxKernel.kernels.linux_zen__config" # Customize kernel configuration.
-    "linuxKernel.kernels.linux_zen__source" # Ensure ZFS compatibility.
+  "gimpPlugins/bimp.nix" # Init
 
-    # Thanks a lot to @lovesegfault for his work on this!
-    # Based on: https://github.com/lovesegfault/nix-config/blob/7ddb02fa8c52b2422c4b74e385ab511a71a6f5e6/nix/overlays/linux-lto.nix
-    linuxLTOPackages # Build LinuxPackages* with LLVM and LTO.
+  "linux_zen/config.nix" # Customize kernel configuration.
+  "linux_zen/source.nix" # Ensure ZFS compatibility.
 
-    nix-index-database # Init
+  # Thanks a lot to @lovesegfault for his work on this!
+  # Based on: https://github.com/lovesegfault/nix-config/blob/7ddb02fa8c52b2422c4b74e385ab511a71a6f5e6/nix/overlays/linux-lto.nix
+  "linuxLTOPackages" # Build LinuxPackages* with LLVM and LTO.
 
-    pdfsizeopt # Init
+  "nix-index-database" # Init
 
-    ungoogled-chromium # Add command line arguments.
+  "pdfsizeopt" # Init
 
-    youtube-dl; # Replace with yt-dlp.
+  "ungoogled-chromium" # Add command line arguments.
 
-}
+  "youtube-dl" # Replace with yt-dlp.
+
+] (file: final: prev: import (./. + "/${file}") final prev)
