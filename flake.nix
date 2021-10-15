@@ -10,40 +10,33 @@
       url = "github:edolstra/flake-compat";
       flake = false;
     };
+    flake-utils.url = "github:/numtide/flake-utils";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-21.05";
     nixpkgs-master.url = "github:NixOS/nixpkgs";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     pre-commit-hooks = {
       url = "github:cachix/pre-commit-hooks.nix";
+      inputs.flake-utils.follows = "/flake-utils";
       inputs.nixpkgs.follows = "/nixpkgs";
     };
   };
 
-  outputs = { home-manager, nixpkgs, nixpkgs-master, nixpkgs-unstable
-    , pre-commit-hooks, ... }@flakes: rec {
+  outputs = { flake-utils, home-manager, nixpkgs, nixpkgs-master
+    , nixpkgs-unstable, pre-commit-hooks, self, ... }@flakes:
 
-      system = "x86_64-linux";
-
-      lib = nixpkgs.lib // import ./lib {
-        inherit pkgs;
-        lib = nixpkgs.lib;
-      };
-
-      overlays = import ./overlays { inherit pkgs-unstable; };
-
+    flake-utils.lib.eachDefaultSystem (system: rec {
       pkgsImport = pkgs:
         import pkgs {
           inherit system;
-          config = import ./main/nixpkgs-config.nix { inherit pkgs; };
-          overlays = __attrValues overlays;
+          config = import ./main/nixpkgs-config.nix { pkgs = legacyPackages; };
+          overlays = __attrValues self.overlays;
         };
 
-      pkgs = pkgsImport nixpkgs;
-      pkgs-master = pkgsImport nixpkgs-master;
-      pkgs-unstable = pkgsImport nixpkgs-unstable;
-      legacyPackages.${system} = pkgs;
+      legacyPackages = pkgsImport nixpkgs;
+      legacyPackages_master = pkgsImport nixpkgs-master;
+      legacyPackages_unstable = pkgsImport nixpkgs-unstable;
 
-      checks.${system}.pre-commit-check = pre-commit-hooks.lib.${system}.run {
+      checks.pre-commit-check = pre-commit-hooks.lib.${system}.run {
         src = ./.;
         hooks = {
           nixfmt = {
@@ -61,8 +54,8 @@
           [ "BetaReduction" "EmptyVariadicParamSet" "UnneededAntiquote" ];
       };
 
-      devShell.${system} = pkgs.mkShell {
-        shellHook = checks.${system}.pre-commit-check.shellHook + ''
+      devShell = legacyPackages.mkShell {
+        shellHook = checks.pre-commit-check.shellHook + ''
           if [ -L .pre-commit-config.yaml ]; then >/dev/null \
             nix-store \
               --add-root .pre-commit-config.yaml \
@@ -70,6 +63,12 @@
           fi
         '';
       };
+    })
+
+    // rec {
+      lib = nixpkgs.lib // import ./lib { inherit (nixpkgs) lib; };
+
+      overlays = import ./overlays;
 
       nixosModules = {
         default.imports = [
@@ -86,9 +85,14 @@
           main/user.nix
 
           ({ config, ... }:
+            with self;
             let
+              pkgs = legacyPackages.${config.nixpkgs.system};
+              pkgs-master = legacyPackages_master.${config.nixpkgs.system};
+              pkgs-unstable = legacyPackages_unstable.${config.nixpkgs.system};
+
               _module.args = pkgs // {
-                inherit flakes pkgs-master pkgs-unstable;
+                inherit flakes pkgs pkgs-master pkgs-unstable;
                 binPaths = import main/binpaths.nix {
                   inherit config lib pkgs pkgs-unstable;
                 };
@@ -132,20 +136,21 @@
         ];
       };
 
-      specialArgs = { inherit lib; };
+      specialArgs = { inherit (self) lib; };
 
       nixosConfigurations = {
-        amethyst = lib.nixosSystem {
-          inherit system specialArgs;
+        amethyst = nixpkgs.lib.nixosSystem {
+          inherit specialArgs;
+          system = "x86_64-linux";
           modules = with nixosModules; [ default amethyst ];
         };
 
-        beryl = lib.nixosSystem {
-          inherit system specialArgs;
+        beryl = nixpkgs.lib.nixosSystem {
+          inherit specialArgs;
+          system = "x86_64-linux";
           modules = with nixosModules; [ default beryl ];
         };
       };
-
     };
 
 }

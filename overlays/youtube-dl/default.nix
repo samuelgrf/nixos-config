@@ -1,9 +1,8 @@
-# TODO Get from prev on NixOS 21.11.
-{ pkgs-unstable }:
+_: prev:
+with prev; {
 
-_: _:
-with pkgs-unstable; {
-
-  youtube-dl = yt-dlp.override { withAlias = true; };
+  # TODO Remove if statement on NixOS 21.11.
+  youtube-dl =
+    if pkgs ? yt-dlp then yt-dlp.override { withAlias = true; } else youtube-dl;
 
 }

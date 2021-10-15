@@ -1,4 +1,4 @@
-{ avahi, binPaths, config, flakes, lib, ... }:
+{ avahi, binPaths, config, flakes, lib, pkgs, ... }:
 
 with binPaths; {
 
@@ -76,7 +76,7 @@ with binPaths; {
   # Wait for running ZFS operations to end before scrub & trim.
   systemd.services.zfs-scrub.serviceConfig.ExecStart =
     let scrubCfg = config.services.zfs.autoScrub;
-    in lib.mkForce (lib.mkSystemdScript "zfs-scrub" ''
+    in lib.mkForce (pkgs.writeShellScriptBin "zfs-scrub" ''
       for pool in ${
         if scrubCfg.pools != [ ] then
           (concatStringsSep " " scrubCfg.pools)
@@ -91,7 +91,7 @@ with binPaths; {
     '');
 
   systemd.services.zpool-trim.serviceConfig = {
-    ExecStart = lib.mkForce (lib.mkSystemdScript "zpool-trim" ''
+    ExecStart = lib.mkForce (pkgs.writeShellScriptBin "zpool-trim" ''
       for pool in $(${zpool} list -H -o name); do
         echo Waiting for ZFS operations running on $pool to end...
         ${zpool} wait $pool
@@ -118,7 +118,7 @@ with binPaths; {
   systemd.services.nix-gc.serviceConfig = {
 
     # Remove stray garbage collector roots before GC.
-    ExecStartPre = lib.mkSystemdScript "nix-gc-pre" ''
+    ExecStartPre = pkgs.writeShellScriptBin "nix-gc-pre" ''
       echo removing stray garbage collector roots...
       ${rm} -v $(
         ${nix-store} --gc --print-roots \
@@ -128,7 +128,7 @@ with binPaths; {
     '';
 
     # Delete inaccessible boot entries after GC.
-    ExecStopPost = lib.mkSystemdScript "nix-gc-post" ''
+    ExecStopPost = pkgs.writeShellScriptBin "nix-gc-post" ''
       echo deleting old boot entries...
       /nix/var/nix/profiles/system/bin/switch-to-configuration boot
     '';
