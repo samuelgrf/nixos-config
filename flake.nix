@@ -1,5 +1,6 @@
 {
 
+  # Remember to read the release notes before updating!
   inputs = {
     home-manager = {
       url = "github:nix-community/home-manager/release-21.05";
@@ -20,9 +21,6 @@
 
   outputs = { home-manager, nixpkgs, nixpkgs-master, nixpkgs-unstable
     , pre-commit-hooks, ... }@flakes: rec {
-
-      # The NixOS release to be compatible with for stateful data such as databases.
-      stateVersion = "21.05";
 
       system = "x86_64-linux";
 
@@ -100,8 +98,6 @@
 
               nixpkgs = { inherit pkgs; };
 
-              system = { inherit stateVersion; };
-
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = true;
@@ -116,10 +112,7 @@
                   home/misc.nix
                   home/mpv.nix
                   home/nix-index-database
-                  {
-                    inherit _module;
-                    home = { inherit stateVersion; };
-                  }
+                  { inherit _module; }
                 ];
               };
             })
