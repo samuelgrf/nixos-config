@@ -5,6 +5,8 @@ with flakes; rec {
 
   overlays = import ../overlays { inherit lib; };
 
+  userData = import ../userdata.nix;
+
   nixosModules = {
     default.imports = [
       home-manager.nixosModule
@@ -28,7 +30,7 @@ with flakes; rec {
           pkgs-unstable = self.legacyPackages_unstable.${system};
 
           _module.args = pkgs // {
-            inherit flakes pkgs pkgs-master pkgs-unstable;
+            inherit flakes pkgs pkgs-master pkgs-unstable userData;
             binPaths = import ../main/binpaths.nix {
               inherit config lib pkgs pkgs-unstable;
             };
@@ -43,7 +45,7 @@ with flakes; rec {
             useUserPackages = true;
             extraSpecialArgs.lib = lib
               // import "${home-manager}/modules/lib/stdlib-extended.nix" lib;
-            users.samuel.imports = [
+            users.${userData.name}.imports = [
               ../home/modules/kde.nix
               ../home/default-applications.nix
               ../home/git.nix
@@ -60,7 +62,10 @@ with flakes; rec {
     amethyst.imports = [
       ../machines/amethyst/configuration.nix
       ../machines/amethyst/hardware-generated.nix
-      { home-manager.users.samuel.imports = [ ../machines/amethyst/home.nix ]; }
+      {
+        home-manager.users.${userData.name}.imports =
+          [ ../machines/amethyst/home.nix ];
+      }
     ];
 
     beryl.imports = [

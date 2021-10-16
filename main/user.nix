@@ -1,23 +1,21 @@
-{
+{ userData, ... }:
+
+with userData; {
 
   # Define user accounts. Don't forget to set a password with ‘passwd’.
-  users.users.samuel = {
-    description = "Samuel Gräfenstein";
+  users.users.${name} = {
+    description = fullName;
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" ];
   };
 
   # Set locale.
-  i18n.defaultLocale = "en_IE.UTF-8";
+  i18n.defaultLocale = locale;
 
   # Set time zone.
-  time.timeZone = "Europe/Berlin";
+  time = { inherit timeZone; };
 
   # Set keyboard layout.
-  services.xserver = {
-    layout = "us,de";
-    xkbVariant = "altgr-intl,nodeadkeys";
-    xkbOptions = "caps:escape";
-  };
+  services.xserver = keyboard;
 
 }

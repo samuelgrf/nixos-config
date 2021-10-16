@@ -1,4 +1,4 @@
-{ config, flakes, nixUnstable, ... }: {
+{ flakes, nixUnstable, userData, ... }: {
 
   nix = {
     package = nixUnstable;
@@ -18,7 +18,7 @@
 
     sshServe = {
       enable = true;
-      keys = config.users.users.root.openssh.authorizedKeys.keys;
+      keys = userData.authorizedSshKeysRoot;
     };
   };
 
