@@ -20,11 +20,12 @@ with flakes; rec {
       ../main/user.nix
 
       ({ config, ... }:
-        with self;
         let
-          pkgs = legacyPackages.${config.nixpkgs.system};
-          pkgs-master = legacyPackages_master.${config.nixpkgs.system};
-          pkgs-unstable = legacyPackages_unstable.${config.nixpkgs.system};
+          inherit (config.nixpkgs) system;
+
+          pkgs = self.legacyPackages.${system};
+          pkgs-master = self.legacyPackages_master.${system};
+          pkgs-unstable = self.legacyPackages_unstable.${system};
 
           _module.args = pkgs // {
             inherit flakes pkgs pkgs-master pkgs-unstable;
