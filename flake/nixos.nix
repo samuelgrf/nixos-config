@@ -30,7 +30,7 @@ with flakes; rec {
           pkgs-unstable = self.legacyPackages_unstable.${system};
 
           _module.args = pkgs // {
-            inherit flakes pkgs pkgs-master pkgs-unstable userData;
+            inherit flakes pkgs pkgs-master pkgs-unstable system userData;
             binPaths = import ../main/binpaths.nix {
               inherit config lib pkgs pkgs-unstable;
             };
