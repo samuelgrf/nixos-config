@@ -16,6 +16,7 @@
         gptfdisk
         graalvm11-ce
         htop
+        inetutils
         jq
         killall
         kjv
