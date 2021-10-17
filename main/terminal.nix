@@ -104,14 +104,15 @@ with binPaths; {
           flake=nixpkgs
         fi
 
-        attr=$(${nix-locate} --top-level --minimal --at-root --whole-name "/bin/$1" | ${fzy} -l 100)
+        attrs=$(${nix-locate} --top-level --minimal --at-root --whole-name "/bin/$1")
 
-        if [ -z "$attr" ]; then
+        if [ "$attrs" ]; then
+          attr=$(echo "$attrs" | ${fzy} -l 100)
+          ${nix} shell "$flake#$attr" --command "$@"
+        else
           >&2 echo "command not found: $1"
           exit 1
         fi
-
-        ${nix} shell "$flake#$attr" --command "$@"
       )}
 
       # Define other functions.
