@@ -219,7 +219,7 @@ with binPaths; {
       o = xdg-open;
       p = "${pre-commit} run -a";
       qr = "${qrencode} -t UTF8";
-      radio = ''run ${vlc} "${./radio.m3u}"'';
+      radio = ''run ${vlc} "${../assets/radio.m3u}"'';
       rb = "${shutdown} -r";
       rbc = "${shutdown} -c";
       rbn = "${shutdown} -r now";
@@ -239,7 +239,7 @@ with binPaths; {
       sshb = "${ssh} beryl";
       sudo = "${sudo} ";
       t = tree;
-      tv = ''run ${vlc} "${./tv.m3u}"'';
+      tv = ''run ${vlc} "${../assets/tv.m3u}"'';
       watch = "${watch} ";
       wtr = "${curl} wttr.in";
       zl = "${zfs} list";
