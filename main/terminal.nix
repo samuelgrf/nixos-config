@@ -98,7 +98,7 @@ with binPaths; {
       nshm () { NIXPKGS_ALLOW_UNFREE=1 ${nix} shell --impure github:NixOS/nixpkgs#"$@" }
       nshu () { NIXPKGS_ALLOW_UNFREE=1 ${nix} shell --impure nixpkgs-unstable#"$@" }
       nrn () {(
-        set -e
+        set -eo pipefail
 
         if [ -z "$flake" ]; then
           flake=nixpkgs
