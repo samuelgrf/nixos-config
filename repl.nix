@@ -5,5 +5,6 @@ let
   inherit (self) lib;
 
 in nixosConfig // self.inputs // self // {
-  inherit (nixosConfig._module.args) binPaths flakes pkgs-master pkgs-unstable;
+  inherit (nixosConfig._module.args)
+    binPaths flakes pkgs-master pkgs-unstable system;
 }
