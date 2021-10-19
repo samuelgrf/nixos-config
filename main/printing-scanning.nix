@@ -63,7 +63,7 @@
   # Enable and configure SANE scanning API.
   hardware.sane = {
     enable = true;
-    extraBackends = [ sane-airscan ]; # Support Apple AirScan and Microsoft WSD
+    extraBackends = [ sane-airscan ]; # Support Apple AirScan and Microsoft WSD.
   };
 
 }
