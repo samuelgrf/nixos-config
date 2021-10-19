@@ -149,10 +149,6 @@ with binPaths; {
     startAgent = true; # Enable key manager.
     askPassword = ""; # Disable GUI password prompt.
   };
-  users.users = with userData; {
-    ${name}.openssh.authorizedKeys.keys = authorizedSshKeysUser;
-    root.openssh.authorizedKeys.keys = authorizedSshKeysRoot;
-  };
 
   # Enable GnuPG agent.
   programs.gnupg.agent.enable = true;
