@@ -14,13 +14,17 @@
       DefaultCookiesSetting = 1;
       DefaultNotificationsSetting = 2;
       DefaultSearchProviderEnabled = true;
-      DefaultSearchProviderName = "DuckDuckGo";
-      DefaultSearchProviderKeyword = "duck.com";
-      DefaultSearchProviderIconURL = "https://duckduckgo.com/favicon.ico";
+      DefaultSearchProviderName = "Google";
+      DefaultSearchProviderKeyword = "!g";
       DefaultSearchProviderSearchURL =
-        "https://duckduckgo.com/?q={searchTerms}";
+        "https://www.google.com/search?q={searchTerms}";
       DefaultSearchProviderSuggestURL =
-        "https://duckduckgo.com/ac/?q={searchTerms}&type=list";
+        "https://www.google.com/complete/search?q={searchTerms}";
+      DefaultSearchProviderImageURL =
+        "https://www.google.com/searchbyimage/upload";
+      DefaultSearchProviderImageURLPostParams =
+        "encoded_image={google:imageThumbnail}";
+      DefaultSearchProviderIconURL = "https://www.google.com/favicon.ico";
       HideWebStoreIcon = true;
 
       # uBlock Origin
@@ -144,6 +148,7 @@
                 "https://github.com/NeverDecaf/chromium-web-store/releases/latest/download/Chromium.Web.Store.crx";
             }
           ] ++ lib.mkWebstoreBookmarks {
+            "Bangs for Google" = "emidbfgmfdphfdldbmehojiocmljfonj";
             "Dark Reader" = "eimadpbcbfnmbkopoojfekhnkhdbieeh";
             "Go Back with Backspace" = "eekailopagacbcdloonjhbiecobagjci";
             "Just Black" = "aghfnjkcakhmadgdomlmlhhaocbkloab";
