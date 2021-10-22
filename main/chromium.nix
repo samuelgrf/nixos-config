@@ -46,7 +46,7 @@
           "easylist"
           "easyprivacy"
           "urlhaus-1"
-          "adguard-annoyance"
+          "fanboy-annoyance"
           "ublock-annoyances"
           "plowe-0"
         ] ++ localLists;
