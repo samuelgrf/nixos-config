@@ -1,6 +1,6 @@
 let
-  minToSec = n: n * 60;
-  minToMsec = n: n * 60000;
+  minToSec = __mul 60;
+  minToMsec = __mul 60000;
 in {
 
   powermanagementprofilesrc = {
