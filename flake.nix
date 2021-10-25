@@ -1,24 +1,18 @@
 {
 
-  # Remember to read the release notes before updating!
   inputs = {
-    home-manager = {
-      url = "github:nix-community/home-manager/release-21.05";
-      inputs.nixpkgs.follows = "/nixpkgs";
-    };
-    flake-compat = {
-      url = "github:edolstra/flake-compat";
-      flake = false;
-    };
+    flake-compat.url = "github:edolstra/flake-compat";
     flake-utils.url = "github:/numtide/flake-utils";
+    home-manager.url = "github:nix-community/home-manager/release-21.05";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-21.05";
     nixpkgs-master.url = "github:NixOS/nixpkgs";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    pre-commit-hooks = {
-      url = "github:cachix/pre-commit-hooks.nix";
-      inputs.flake-utils.follows = "/flake-utils";
-      inputs.nixpkgs.follows = "/nixpkgs";
-    };
+    pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
+
+    flake-compat.flake = false;
+    home-manager.inputs.nixpkgs.follows = "/nixpkgs";
+    pre-commit-hooks.inputs.flake-utils.follows = "/flake-utils";
+    pre-commit-hooks.inputs.nixpkgs.follows = "/nixpkgs";
   };
 
   outputs = flakes:
