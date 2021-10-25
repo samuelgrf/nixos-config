@@ -153,6 +153,7 @@
             "Go Back with Backspace" = "eekailopagacbcdloonjhbiecobagjci";
             "Just Black" = "aghfnjkcakhmadgdomlmlhhaocbkloab";
             "Not yet, AV1" = "dcmllfkiihingappljlkffafnlhdpbai";
+            "Redirector" = "ocgpenflpmgnfapjedencafcfakcekcd";
             "SponsorBlock" = "mnjggcdmjocbbbhaepdhchncahnbgone";
             "uBlock Origin" = "cjpalhdlnbpafiamejdnhcphjbkeiagm";
             "Video Speed Controller" = "nffaoalbilbmmfgbnbgppjihopabppdk";
