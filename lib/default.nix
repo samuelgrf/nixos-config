@@ -45,5 +45,4 @@ with builtins // lib; rec {
     inherit name;
     url = mkWebstoreUrl id;
   });
-
 }

@@ -13,5 +13,4 @@
       ./power-management.nix
     ]) ++ [ (import ./wallpaper.nix { inherit nixos-artwork; }) ]);
   };
-
 }

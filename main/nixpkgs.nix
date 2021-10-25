@@ -17,5 +17,4 @@ with pkgs.lib; {
 
   # Disallow package aliases.
   allowAliases = false;
-
 }

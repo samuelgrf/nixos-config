@@ -7,5 +7,4 @@
   # Lockscreen
   kscreenlockerrc.Greeter.Wallpaper."org.kde.image".General.Image =
     nixos-artwork.wallpapers.nineish-dark-gray.kdeFilePath;
-
 }

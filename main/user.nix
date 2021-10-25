@@ -21,5 +21,4 @@ with userData; {
 
   # Set keyboard layout.
   services.xserver = keyboard;
-
 }

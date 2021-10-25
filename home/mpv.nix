@@ -1,5 +1,4 @@
 {
-
   # Configure mpv.
   programs.mpv = {
     enable = true;
@@ -10,5 +9,4 @@
         "(bestvideo[vcodec=vp9]/bestvideo)+(bestaudio[acodec=opus]/bestaudio)/best";
     };
   };
-
 }

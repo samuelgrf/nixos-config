@@ -11,5 +11,4 @@
   # Enable zram and use faster lzo-rle compression.
   zramSwap.enable = true;
   zramSwap.algorithm = "lzo-rle";
-
 }

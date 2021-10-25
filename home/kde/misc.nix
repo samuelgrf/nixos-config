@@ -1,5 +1,4 @@
 {
-
   # Disable animations.
   kdeglobals.KDE.AnimationDurationFactor = 0;
   "gtk-3.0/settings.ini".Settings.gtk-enable-animations = 0;
@@ -18,5 +17,4 @@
 
   # Disable file indexing.
   baloofilerc."Basic Settings".Indexing-Enabled = false;
-
 }

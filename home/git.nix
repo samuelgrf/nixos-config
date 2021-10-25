@@ -22,5 +22,4 @@ with userData; {
       url."ssh://git@gitlab.com/".pushInsteadOf = "https://gitlab.com/";
     };
   };
-
 }

@@ -1,5 +1,4 @@
 {
-
   # Set default applications.
   xdg.mimeApps = let
 
@@ -76,5 +75,4 @@
       "image/png" = "wine-extension-png.desktop";
     };
   };
-
 }

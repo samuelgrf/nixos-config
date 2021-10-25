@@ -1,7 +1,6 @@
 { binPaths, config, lib, ... }:
 
 with lib;
-
 let
   cfg = config.programs.kde;
 
@@ -37,5 +36,4 @@ in {
     home.activation.kdeSettings =
       hm.dag.entryAfter [ "writeBoundary" ] commandString;
   };
-
 }

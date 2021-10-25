@@ -89,5 +89,4 @@ with flakes; rec {
       modules = with nixosModules; [ default beryl ];
     };
   };
-
 }

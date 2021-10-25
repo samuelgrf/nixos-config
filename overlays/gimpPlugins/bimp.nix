@@ -2,7 +2,6 @@ _: prev:
 with prev; {
 
   gimpPlugins = gimpPlugins // {
-
     bimp = stdenv.mkDerivation rec {
       /* menu:
          File/Batch Image Manipulation...
@@ -36,5 +35,4 @@ with prev; {
       };
     };
   };
-
 }

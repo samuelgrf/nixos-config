@@ -21,5 +21,4 @@
       keys = userData.authorizedSshKeysRoot;
     };
   };
-
 }

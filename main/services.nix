@@ -155,5 +155,4 @@ with binPaths; {
 
   # Enable unclutter-xfixes to hide the mouse cursor when inactive.
   services.unclutter-xfixes.enable = true;
-
 }

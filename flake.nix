@@ -1,5 +1,4 @@
 {
-
   inputs = {
     flake-compat.url = "github:edolstra/flake-compat";
     flake-utils.url = "github:/numtide/flake-utils";
@@ -22,5 +21,4 @@
       flake/pkgs.nix
       flake/nixos.nix
     ]);
-
 }

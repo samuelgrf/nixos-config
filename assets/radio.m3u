@@ -1,5 +1,4 @@
 #EXTM3U
-
 #EXTINF:0,1LIVE
 #EXTVLCOPT:network-caching=1000
 rtsp://192.168.178.1:554/?avm=1&freq=314&bw=8&msys=dvbc&mtype=256qam&sr=6900&specinv=0&pids=0,16,17,18,20,4100,4101,2074,2177

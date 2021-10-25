@@ -16,5 +16,4 @@ with prev; {
 
     installPhase = "cp $src $out";
   };
-
 }

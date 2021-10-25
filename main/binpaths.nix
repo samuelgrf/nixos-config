@@ -35,5 +35,4 @@ __mapAttrs (_: lib.mainProgram) pkgs // {
   xdg-open = "${xdg-utils}/bin/xdg-open";
   zfs = "${config.boot.zfs.package}/bin/zfs";
   zpool = "${config.boot.zfs.package}/bin/zpool";
-
 }

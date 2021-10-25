@@ -29,5 +29,4 @@ in {
       SuspendSession.suspendType = 2;
     };
   };
-
 }

@@ -113,5 +113,4 @@
 
   # Don't install optional default packages.
   environment.defaultPackages = [ ];
-
 }

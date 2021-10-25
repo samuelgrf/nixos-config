@@ -1,5 +1,4 @@
 {
-
   # Disable menubar.
   konsolerc.KonsoleWindow.ShowMenuBarByDefault = false;
 
@@ -55,5 +54,4 @@
     ForegroundFaint.Color = "239,240,241";
     ForegroundIntense.Color = "255,255,255";
   };
-
 }

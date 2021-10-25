@@ -35,5 +35,4 @@ with prev; {
         linuxKernel.kernels.linux_zen;
     };
   };
-
 }

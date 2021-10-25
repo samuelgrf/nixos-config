@@ -1,5 +1,4 @@
 {
-
   fullName = "Samuel Gräfenstein";
   name = "samuel";
   email = "git@samuelgrf.com";
@@ -21,5 +20,4 @@
     xkbVariant = "altgr-intl,nodeadkeys";
     xkbOptions = "caps:escape";
   };
-
 }

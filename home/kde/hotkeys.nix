@@ -1,5 +1,4 @@
 {
-
   kglobalshortcutsrc = {
     kwin = {
       "stop current activity" = ",Meta+S,Stop Current Activity";
@@ -42,5 +41,4 @@
     Data_4Triggers0.Type = "SHORTCUT";
     Data_4Triggers0.Uuid = "{f3242e9b-1c88-455f-be32-f9d50105551a}";
   };
-
 }

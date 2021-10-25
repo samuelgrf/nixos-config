@@ -13,5 +13,4 @@ flake-utils.lib.eachDefaultSystem (system: rec {
   legacyPackages = pkgsImport nixpkgs;
   legacyPackages_master = pkgsImport nixpkgs-master;
   legacyPackages_unstable = pkgsImport nixpkgs-unstable;
-
 })

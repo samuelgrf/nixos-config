@@ -268,5 +268,4 @@ with binPaths; {
 
   # Disable the default `command-not-found` script (no flake support).
   programs.command-not-found.enable = false;
-
 }

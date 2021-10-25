@@ -64,5 +64,4 @@
 
   # Configure lm_sensors.
   environment.etc."sysconfig/lm_sensors".text = "HWMON_MODULES=nct6775";
-
 }

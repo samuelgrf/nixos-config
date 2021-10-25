@@ -10,5 +10,4 @@
   environment.variables.NIX_PATH = with lib;
     mkForce (concatStringsSep ":"
       (mapAttrsToList (name: path: "${name}=${path}") flakes));
-
 }

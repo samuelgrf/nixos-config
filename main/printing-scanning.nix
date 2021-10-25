@@ -65,5 +65,4 @@
     enable = true;
     extraBackends = [ sane-airscan ]; # Support Apple AirScan and Microsoft WSD.
   };
-
 }
