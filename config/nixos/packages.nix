@@ -4,7 +4,6 @@
   environment.systemPackages = with pkgs;
     let
       common = [
-        (writeShellScriptBin "java8" "${graalvm8-ce}/bin/java $@")
         bat
         common-updater-scripts
         dos2unix
