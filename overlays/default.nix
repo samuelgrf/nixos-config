@@ -17,6 +17,4 @@ lib.genAttrs [
 
   "ungoogled-chromium" # Add command line arguments.
 
-  "youtube-dl" # Replace with yt-dlp.
-
 ] (file: final: prev: import (./. + "/${file}") final prev)
