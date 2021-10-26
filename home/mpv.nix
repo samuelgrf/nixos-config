@@ -3,9 +3,15 @@
   programs.mpv = {
     enable = true;
     config = {
-      player-operation-mode = "pseudo-gui"; # Always start in GUI mode.
-      keep-open = true; # Keep mpv open after playback is finished.
-      ytdl-format = # Prefer VP9 and Opus codecs for youtube-dl streams.
+
+      # Always start in GUI mode.
+      player-operation-mode = "pseudo-gui";
+
+      # Keep mpv open after playback is finished.
+      keep-open = true;
+
+      # Prefer VP9 and Opus codecs for youtube-dl streams.
+      ytdl-format =
         "(bestvideo[vcodec=vp9]/bestvideo)+(bestaudio[acodec=opus]/bestaudio)/best";
     };
   };
