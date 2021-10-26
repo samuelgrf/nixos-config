@@ -59,6 +59,14 @@
         (gimp-with-plugins.override { plugins = with gimpPlugins; [ bimp ]; })
         # TODO Replace with `flakes.home-manager.packages.${system}.docs-html` on NixOS 21.11.
         (import flakes.home-manager { inherit pkgs; }).docs.html
+        (mpv.override {
+          scripts = with mpvScripts; [
+            mpris
+            sponsorblock
+            # TODO Remove `pkgs-unstable.mpvScripts.` on NixOS 21.11.
+            pkgs-unstable.mpvScripts.youtube-quality
+          ];
+        })
         (winetricks.override { wine = wineWowPackages.staging; })
         appimage-run
         calibre
@@ -92,12 +100,7 @@
         kwin-dynamic-workspaces
       ])
       # TODO Get packages from stable on NixOS 21.11.
-        ++ (with pkgs-unstable; [
-          (mpv.override {
-            scripts = with mpvScripts; [ mpris sponsorblock youtube-quality ];
-          })
-          youtube-dl
-        ]);
+        ++ (with pkgs-unstable; [ youtube-dl ]);
       noX = [ ];
     in common ++ (if config.services.xserver.enable then X else noX);
 
