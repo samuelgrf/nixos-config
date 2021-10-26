@@ -133,8 +133,7 @@ with binPaths; {
       c = ''cd "${configDir}"'';
       hmm =
         "run ${ungoogled-chromium} 'file://${docDir}/home-manager/index.html'";
-      hmo =
-        "run ${ungoogled-chromium} 'file://${docDir}/home-manager/options.html'";
+      hmo = "man home-configuration.nix";
       n = nix;
       nb = "${nix} build --print-build-logs -v";
       nbd = "${nix} build --dry-run -v";
@@ -151,7 +150,7 @@ with binPaths; {
       nlo = nix-locate;
       nm = "run ${ungoogled-chromium} 'file://${docDir}/nix/manual/index.html'";
       nom = "run ${ungoogled-chromium} 'file://${docDir}/nixos/index.html'";
-      noo = "run ${ungoogled-chromium} 'file://${docDir}/nixos/options.html'";
+      noo = "man configuration.nix";
       np = ''${nix} repl "${configDir}/repl.nix"'';
       npl = "${nix} repl";
       npm = "run ${ungoogled-chromium} 'file://${docDir}/nixpkgs/manual.html'";
