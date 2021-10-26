@@ -90,6 +90,7 @@
         tesseract4
         ungoogled-chromium
         wineWowPackages.staging
+        yt-dlp
       ] ++ (with plasma5Packages; [
         ark
         gwenview
@@ -98,9 +99,7 @@
         kdialog
         ktimer
         kwin-dynamic-workspaces
-      ])
-      # TODO Get packages from stable on NixOS 21.11.
-        ++ (with pkgs-unstable; [ youtube-dl ]);
+      ]);
       noX = [ ];
     in common ++ (if config.services.xserver.enable then X else noX);
 
