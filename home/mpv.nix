@@ -1,4 +1,5 @@
-{
+{ binPaths, ... }: {
+
   # Configure mpv.
   programs.mpv = {
     enable = true;
@@ -13,6 +14,9 @@
       # Prefer VP9 and Opus codecs for youtube-dl streams.
       ytdl-format =
         "(bestvideo[vcodec=vp9]/bestvideo)+(bestaudio[acodec=opus]/bestaudio)/best";
+
+      # Parse streams with yt-dlp instead of youtube-dl.
+      script-opts = "ytdl_hook-ytdl_path=${binPaths.yt-dlp}";
     };
   };
 }
