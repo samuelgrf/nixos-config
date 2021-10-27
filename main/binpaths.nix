@@ -17,6 +17,8 @@ __mapAttrs (_: lib.mainProgram) pkgs // {
   kquitapp5 = "${plasma5Packages.kdbusaddons}/bin/kquitapp5";
   kstart5 = "${plasma5Packages.kde-cli-tools}/bin/kstart5";
   kwriteconfig5 = "${plasma5Packages.kconfig}/bin/kwriteconfig5";
+  # TODO Remove on NixOS 21.11.
+  man = "${man-db}/bin/man";
   nix = "${config.nix.package}/bin/nix";
   nix-locate = "${nix-index}/bin/nix-locate";
   nix-store = "${config.nix.package}/bin/nix-store";
