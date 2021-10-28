@@ -1,19 +1,20 @@
-_: prev:
-with prev; {
+_: prev: {
 
-  nix-index-database = stdenv.mkDerivation rec {
-    pname = "nix-index-database";
-    version = "unstable-2021-10-17";
+  nix-index-database = prev.callPackage ({ fetchurl, lib, stdenv }:
 
-    src = fetchurl {
-      url = "https://github.com/Mic92/nix-index-database/releases/download/${
-          lib.removePrefix "unstable-" version
-        }/index-x86_64-linux";
-      hash = "sha256-BHDsak8ASm3oTjiQiZ4qf6kSHskwsbGuJ2Pe+C8NKyc=";
-    };
+    stdenv.mkDerivation rec {
+      pname = "nix-index-database";
+      version = "unstable-2021-10-17";
 
-    dontUnpack = true;
+      src = fetchurl {
+        url = "https://github.com/Mic92/nix-index-database/releases/download/${
+            lib.removePrefix "unstable-" version
+          }/index-x86_64-linux";
+        sha256 = "sha256-BHDsak8ASm3oTjiQiZ4qf6kSHskwsbGuJ2Pe+C8NKyc=";
+      };
 
-    installPhase = "cp $src $out";
-  };
+      dontUnpack = true;
+
+      installPhase = "cp $src $out";
+    }) { };
 }

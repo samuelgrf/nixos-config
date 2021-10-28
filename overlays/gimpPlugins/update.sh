@@ -1,15 +1,4 @@
 #! /usr/bin/env nix-shell
-#! nix-shell -i bash -p common-updater-scripts gitMinimal gnused jq
-set -euo pipefail
+#! nix-shell -i bash -p nix-update
 
-ATTR=gimpPlugins.bimp
-GIT_URL=https://github.com/alessandrofrancesconi/gimp-plugin-bimp.git
-
-VERSION=$(list-git-tags "$GIT_URL" 2>/dev/null | tail -1 | sed 's/^v//')
-CHANGES=$(update-source-version "$ATTR" "$VERSION" --print-changes)
-
-if [ "$CHANGES" != "[]" ]; then
-  FILES=$(echo "$CHANGES" | jq -r '.[].files[]')
-  OLD_VERSION=$(echo "$CHANGES" | jq -r '.[].oldVersion')
-  git commit $FILES -m "overlays/$ATTR: $OLD_VERSION -> $VERSION"
-fi
+nix-update --commit -f ./nix-update-compat 'gimpPlugins.bimp'

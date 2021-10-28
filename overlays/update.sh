@@ -1,10 +1,7 @@
 #! /usr/bin/env bash
-set -eu
+set -euo pipefail
 
-OVERLAY_DIR=$(dirname "$(readlink -f "$0")")
-FLAKE_DIR="$OVERLAY_DIR/.."
-
-cd "$FLAKE_DIR"
-"overlays/gimpPlugins/update.sh" &
-"overlays/nix-index-database/update.sh" &
+cd "$(dirname "$0")"
+./gimpPlugins/update.sh &
+./nix-index-database/update.sh &
 wait

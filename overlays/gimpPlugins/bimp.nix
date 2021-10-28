@@ -11,7 +11,7 @@ stdenv.mkDerivation rec {
     owner = "alessandrofrancesconi";
     repo = "gimp-plugin-bimp";
     rev = "v${version}";
-    hash = "sha256-IJ3+/9UwxJTRo0hUdzlOndOHwso1wGv7Q4UuhbsFkco=";
+    sha256 = "sha256-IJ3+/9UwxJTRo0hUdzlOndOHwso1wGv7Q4UuhbsFkco=";
   };
 
   buildInputs = [ gimp gimp.gtk glib ];
