@@ -2,7 +2,7 @@
 
 lib.genAttrs [
 
-  "gimpPlugins/bimp.nix" # Init
+  "gimpPlugins" # Add bimp
 
   "linux_zen/config.nix" # Customize kernel configuration.
   "linux_zen/source.nix" # Ensure ZFS compatibility.
