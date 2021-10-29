@@ -30,6 +30,7 @@
         nix-index
         nix-linter
         nix-tree
+        nix-update
         nixfmt
         nixpkgs-review
         nvd
