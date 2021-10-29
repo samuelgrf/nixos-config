@@ -1,6 +1,6 @@
 _: prev: {
 
-  nix-index-database = prev.callPackage ({ fetchurl, lib, stdenv }:
+  nix-index-database = prev.callPackage ({ stdenv, lib, fetchurl }:
 
     stdenv.mkDerivation rec {
       pname = "nix-index-database";

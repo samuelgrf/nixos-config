@@ -1,4 +1,4 @@
-{ fetchFromGitHub, gimp, glib, lib, pkg-config, stdenv, which }:
+{ stdenv, lib, fetchFromGitHub, gimp, glib, pkg-config, which }:
 
 stdenv.mkDerivation rec {
   /* menu:
