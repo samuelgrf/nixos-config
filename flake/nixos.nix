@@ -1,10 +1,6 @@
 flakes:
 with flakes; rec {
 
-  lib = nixpkgs.lib // import ../lib { inherit (nixpkgs) lib; };
-
-  overlays = import ../overlays { inherit lib; };
-
   userData = import ../userdata.nix;
 
   nixosModules = {
@@ -21,10 +17,9 @@ with flakes; rec {
       ../main/terminal.nix
       ../main/user.nix
 
-      ({ config, ... }:
+      ({ config, lib, ... }:
         let
           inherit (config.nixpkgs) system;
-
           pkgs = self.legacyPackages.${system};
           pkgs-master = self.legacyPackages_master.${system};
           pkgs-unstable = self.legacyPackages_unstable.${system};
@@ -74,16 +69,15 @@ with flakes; rec {
     ];
   };
 
-  specialArgs = { inherit lib; };
-
-  nixosConfigurations = {
-    amethyst = lib.nixosSystem {
+  nixosConfigurations = let specialArgs = { inherit (self) lib; };
+  in {
+    amethyst = self.lib.nixosSystem {
       inherit specialArgs;
       system = "x86_64-linux";
       modules = with nixosModules; [ default amethyst ];
     };
 
-    beryl = lib.nixosSystem {
+    beryl = self.lib.nixosSystem {
       inherit specialArgs;
       system = "x86_64-linux";
       modules = with nixosModules; [ default beryl ];
