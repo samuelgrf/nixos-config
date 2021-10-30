@@ -38,6 +38,7 @@ with flakes; rec {
           home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
+            backupFileExtension = "bak";
             extraSpecialArgs.lib = lib
               // import "${home-manager}/modules/lib/stdlib-extended.nix" lib;
             users.${userData.name}.imports = [
