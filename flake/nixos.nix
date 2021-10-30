@@ -39,8 +39,7 @@ with flakes; rec {
             useGlobalPkgs = true;
             useUserPackages = true;
             backupFileExtension = "bak";
-            extraSpecialArgs.lib = lib
-              // import "${home-manager}/modules/lib/stdlib-extended.nix" lib;
+            extraSpecialArgs = { inherit lib; };
             users.${userData.name}.imports = [
               ../home/modules/kde.nix
               ../home/default-applications.nix
