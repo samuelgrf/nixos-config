@@ -18,6 +18,7 @@
     with flakes.nixpkgs.lib;
     foldl' recursiveUpdate { } (map (file: import file flakes) [
       flake/checks.nix
+      flake/home.nix
       flake/lib.nix
       flake/nixos.nix
       flake/pkgs.nix

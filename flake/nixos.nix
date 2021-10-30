@@ -5,7 +5,8 @@ with flakes; rec {
 
   nixosModules = {
     default.imports = [
-      home-manager.nixosModule
+      # TODO Replace with `home-manager.nixosModule` on NixOS 21.11.
+      ../modules/home-manager.nix
       ../main/chromium.nix
       ../main/firewall.nix
       ../main/kernel.nix
@@ -40,16 +41,9 @@ with flakes; rec {
             useUserPackages = true;
             backupFileExtension = "bak";
             extraSpecialArgs = { inherit lib; };
-            users.${userData.name}.imports = [
-              ../home/modules/kde.nix
-              ../home/default-applications.nix
-              ../home/git.nix
-              ../home/kde
-              ../home/misc.nix
-              ../home/mpv.nix
-              ../home/nix-index-database
-              { inherit _module; }
-            ];
+            sharedModules = [{ inherit _module; }];
+            users.${userData.name} =
+              self.homeConfigurations."${userData.name}@default";
           };
         })
     ];
@@ -58,14 +52,18 @@ with flakes; rec {
       ../machines/amethyst/configuration.nix
       ../machines/amethyst/hardware-generated.nix
       {
-        home-manager.users.${userData.name}.imports =
-          [ ../machines/amethyst/home.nix ];
+        home-manager.users.${userData.name} =
+          self.homeConfigurations."${userData.name}@amethyst";
       }
     ];
 
     beryl.imports = [
       ../machines/beryl/configuration.nix
       ../machines/beryl/hardware-generated.nix
+      {
+        home-manager.users.${userData.name} =
+          self.homeConfigurations."${userData.name}@beryl";
+      }
     ];
   };
 
