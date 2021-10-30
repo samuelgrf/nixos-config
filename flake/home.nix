@@ -1,8 +1,8 @@
-flakes:
-with flakes; {
+{ self, ... }:
+with self; {
 
   homeConfigurations = {
-    "${self.userData.name}@default".imports = [
+    "${userData.name}@default".imports = [
       ../home/modules/kde.nix
       ../home/default-applications.nix
       ../home/git.nix
@@ -12,9 +12,8 @@ with flakes; {
       ../home/nix-index-database
     ];
 
-    "${self.userData.name}@amethyst".imports =
-      [ ../machines/amethyst/home.nix ];
+    "${userData.name}@amethyst".imports = [ ../machines/amethyst/home.nix ];
 
-    "${self.userData.name}@beryl".imports = [ ];
+    "${userData.name}@beryl".imports = [ ];
   };
 }

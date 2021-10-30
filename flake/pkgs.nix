@@ -1,5 +1,4 @@
-flakes:
-with flakes;
+{ flake-utils, nixpkgs, nixpkgs-master, nixpkgs-unstable, self, ... }:
 
 flake-utils.lib.eachDefaultSystem (system: rec {
 

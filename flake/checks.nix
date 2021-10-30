@@ -1,7 +1,7 @@
-flakes:
-with flakes;
+{ flake-utils, pre-commit-hooks, self, ... }:
+with self;
 
-flake-utils.lib.eachDefaultSystem (system: rec {
+flake-utils.lib.eachDefaultSystem (system: {
 
   checks.pre-commit-check = pre-commit-hooks.lib.${system}.run {
     src = ./.;
@@ -20,8 +20,8 @@ flake-utils.lib.eachDefaultSystem (system: rec {
       [ "BetaReduction" "EmptyVariadicParamSet" "UnneededAntiquote" ];
   };
 
-  devShell = self.legacyPackages.${system}.mkShell {
-    shellHook = checks.pre-commit-check.shellHook + ''
+  devShell = legacyPackages.${system}.mkShell {
+    shellHook = checks.${system}.pre-commit-check.shellHook + ''
       if [ -L .pre-commit-config.yaml ]; then >/dev/null \
         nix-store \
           --add-root .pre-commit-config.yaml \

@@ -1,7 +1,5 @@
-flakes:
-with flakes; rec {
-
-  userData = import ../userdata.nix;
+{ self, ... }@flakes:
+with self; {
 
   nixosModules = {
     default.imports = [
@@ -21,9 +19,9 @@ with flakes; rec {
       ({ config, lib, ... }:
         let
           inherit (config.nixpkgs) system;
-          pkgs = self.legacyPackages.${system};
-          pkgs-master = self.legacyPackages_master.${system};
-          pkgs-unstable = self.legacyPackages_unstable.${system};
+          pkgs = legacyPackages.${system};
+          pkgs-master = legacyPackages_master.${system};
+          pkgs-unstable = legacyPackages_unstable.${system};
 
           _module.args = pkgs // {
             inherit flakes pkgs pkgs-master pkgs-unstable system userData;
@@ -43,7 +41,7 @@ with flakes; rec {
             extraSpecialArgs = { inherit lib; };
             sharedModules = [{ inherit _module; }];
             users.${userData.name} =
-              self.homeConfigurations."${userData.name}@default";
+              homeConfigurations."${userData.name}@default";
           };
         })
     ];
@@ -53,7 +51,7 @@ with flakes; rec {
       ../machines/amethyst/hardware-generated.nix
       {
         home-manager.users.${userData.name} =
-          self.homeConfigurations."${userData.name}@amethyst";
+          homeConfigurations."${userData.name}@amethyst";
       }
     ];
 
@@ -62,20 +60,20 @@ with flakes; rec {
       ../machines/beryl/hardware-generated.nix
       {
         home-manager.users.${userData.name} =
-          self.homeConfigurations."${userData.name}@beryl";
+          homeConfigurations."${userData.name}@beryl";
       }
     ];
   };
 
-  nixosConfigurations = let specialArgs = { inherit (self) lib; };
+  nixosConfigurations = let specialArgs = { inherit lib; };
   in {
-    amethyst = self.lib.nixosSystem {
+    amethyst = lib.nixosSystem {
       inherit specialArgs;
       system = "x86_64-linux";
       modules = with nixosModules; [ default amethyst ];
     };
 
-    beryl = self.lib.nixosSystem {
+    beryl = lib.nixosSystem {
       inherit specialArgs;
       system = "x86_64-linux";
       modules = with nixosModules; [ default beryl ];

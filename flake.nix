@@ -22,5 +22,6 @@
       flake/lib.nix
       flake/nixos.nix
       flake/pkgs.nix
+      flake/userdata.nix
     ]);
 }
