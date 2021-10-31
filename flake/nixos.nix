@@ -3,6 +3,7 @@ with self; {
 
   nixosModules = {
     default.imports = [
+      nixosModules.moduleArgs
       # TODO Replace with `home-manager.nixosModule` on NixOS 21.11.
       ../modules/home-manager.nix
       ../main/chromium.nix
@@ -16,34 +17,18 @@ with self; {
       ../main/terminal.nix
       ../main/user.nix
 
-      ({ config, lib, ... }:
-        let
-          inherit (config.nixpkgs) system;
-          pkgs = legacyPackages.${system};
-          pkgs-master = legacyPackages_master.${system};
-          pkgs-unstable = legacyPackages_unstable.${system};
+      ({ system, ... }: {
+        nixpkgs.pkgs = legacyPackages.${system};
 
-          _module.args = pkgs // {
-            inherit flakes pkgs pkgs-master pkgs-unstable system userData;
-            binPaths = import ../main/binpaths.nix {
-              inherit config lib pkgs pkgs-unstable;
-            };
-          };
-        in {
-          inherit _module;
-
-          nixpkgs = { inherit pkgs; };
-
-          home-manager = {
-            useGlobalPkgs = true;
-            useUserPackages = true;
-            backupFileExtension = "bak";
-            extraSpecialArgs = { inherit lib; };
-            sharedModules = [{ inherit _module; }];
-            users.${userData.name} =
-              homeConfigurations."${userData.name}@default";
-          };
-        })
+        home-manager = {
+          useGlobalPkgs = true;
+          useUserPackages = true;
+          backupFileExtension = "bak";
+          extraSpecialArgs = { inherit lib; };
+          users.${userData.name} =
+            homeManagerModules."${userData.name}@default";
+        };
+      })
     ];
 
     amethyst.imports = [
@@ -63,6 +48,21 @@ with self; {
           homeManagerModules."${userData.name}@beryl";
       }
     ];
+
+    moduleArgs = { config, ... }:
+      let
+        inherit (config.nixpkgs) system;
+        pkgs = legacyPackages.${system};
+        pkgs-master = legacyPackages_master.${system};
+        pkgs-unstable = legacyPackages_unstable.${system};
+      in {
+        _module.args = pkgs // {
+          inherit flakes pkgs pkgs-master pkgs-unstable system userData;
+          binPaths = import ../main/binpaths.nix {
+            inherit config lib pkgs pkgs-unstable;
+          };
+        };
+      };
   };
 
   nixosConfigurations = let specialArgs = { inherit lib; };
