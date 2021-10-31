@@ -51,7 +51,7 @@ with self; {
       ../machines/amethyst/hardware-generated.nix
       {
         home-manager.users.${userData.name} =
-          homeConfigurations."${userData.name}@amethyst";
+          homeManagerModules."${userData.name}@amethyst";
       }
     ];
 
@@ -60,7 +60,7 @@ with self; {
       ../machines/beryl/hardware-generated.nix
       {
         home-manager.users.${userData.name} =
-          homeConfigurations."${userData.name}@beryl";
+          homeManagerModules."${userData.name}@beryl";
       }
     ];
   };

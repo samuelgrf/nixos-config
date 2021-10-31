@@ -1,7 +1,7 @@
 { self, ... }:
 with self; {
 
-  homeConfigurations = {
+  homeManagerModules = {
     "${userData.name}@default".imports = [
       ../home/modules/kde.nix
       ../home/default-applications.nix
