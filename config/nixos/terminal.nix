@@ -247,7 +247,7 @@ with binPaths; {
       sd = shutdown;
       sdc = "${shutdown} -c";
       sdn = "${shutdown} now";
-      smart = "${sudo} ${smartctl} -a";
+      smart = "${sudo} ${smartmontools} -a";
       ssha = "${ssh} amethyst";
       sshb = "${ssh} beryl";
       sudo = "${sudo} ";

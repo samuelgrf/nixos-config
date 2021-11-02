@@ -1,4 +1,4 @@
-{ config, flakes, pkgs, pkgs-unstable, ... }: {
+{ config, flakes, pkgs, system, ... }: {
 
   # System-wide packages to install.
   environment.systemPackages = with pkgs;
@@ -36,6 +36,7 @@
         p7zip
         patchelf
         pciutils
+        pipe-rename
         pre-commit
         python3
         python3Packages.adb-enhanced
@@ -52,24 +53,15 @@
         usbutils
         vim
         whois
-      ]
-      # TODO Get packages from stable on NixOS 21.11.
-        ++ (with pkgs-unstable; [ pipe-rename ]);
+      ];
       X = [
         (gimp-with-plugins.override { plugins = with gimpPlugins; [ bimp ]; })
-        # TODO Replace with `flakes.home-manager.packages.${system}.docs-html` on NixOS 21.11.
-        (import flakes.home-manager { inherit pkgs; }).docs.html
         (mpv.override {
-          scripts = with mpvScripts; [
-            mpris
-            sponsorblock
-            # TODO Remove `pkgs-unstable.mpvScripts.` on NixOS 21.11.
-            pkgs-unstable.mpvScripts.youtube-quality
-          ];
+          scripts = with mpvScripts; [ mpris sponsorblock youtube-quality ];
         })
-        (winetricks.override { wine = wineWowPackages.staging; })
         appimage-run
         calibre
+        flakes.home-manager.packages.${system}.docs-html
         flakes.nixpkgs-unstable.htmlDocs.nixosManual
         flakes.nixpkgs-unstable.htmlDocs.nixpkgsManual
         imagemagickBig
@@ -90,6 +82,7 @@
         tesseract4
         ungoogled-chromium
         wineWowPackages.staging
+        winetricks
         yt-dlp
       ] ++ (with plasma5Packages; [
         ark

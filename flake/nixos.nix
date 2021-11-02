@@ -1,11 +1,10 @@
-{ self, ... }@flakes:
+{ home-manager, self, ... }@flakes:
 with self; {
 
   nixosModules = {
     default.imports = [
+      home-manager.nixosModule
       nixosModules.moduleArgs
-      # TODO Replace with `home-manager.nixosModule` on NixOS 21.11.
-      (import ../config/nixos/modules/home-manager.nix flakes)
       ../config/nixos/chromium.nix
       ../config/nixos/firewall.nix
       ../config/nixos/kernel.nix
@@ -58,9 +57,8 @@ with self; {
       in {
         _module.args = pkgs // {
           inherit flakes pkgs-master pkgs-unstable system userData;
-          binPaths = import ../config/shared/binpaths.nix {
-            inherit config lib pkgs pkgs-unstable;
-          };
+          binPaths =
+            import ../config/shared/binpaths.nix { inherit config lib pkgs; };
         };
       };
   };
