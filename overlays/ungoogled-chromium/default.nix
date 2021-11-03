@@ -15,6 +15,8 @@ with prev; {
         lib.concatStringsSep "," [
           "BackForwardCache:enable_same_site/true"
           "OverlayScrollbar"
+          "SidePanel"
+          "SidePanelDragAndDrop"
           "TabHoverCardImages"
           "VaapiVideoDecoder"
         ]
