@@ -21,8 +21,8 @@ with binPaths; {
 
   # Enable and configure PipeWire audio server.
   services.pipewire = let
-    defaults.bluez-monitor = __fromJSON (__readFile
-      "${flakes.nixpkgs}/nixos/modules/services/desktops/pipewire/bluez-monitor.conf.json");
+    defaults.bluez-monitor = lib.importJSON
+      "${flakes.nixpkgs}/nixos/modules/services/desktops/pipewire/bluez-monitor.conf.json";
   in {
     enable = true;
     pulse.enable = true;
