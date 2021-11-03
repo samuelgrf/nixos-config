@@ -22,6 +22,9 @@ with prev; {
         ]
       }"
 
+      # Revert settings page redesign
+      "--disable-features=SettingsLandingPageRedesign"
+
       # Dark mode
       "--force-dark-mode"
 
