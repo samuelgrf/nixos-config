@@ -10,7 +10,7 @@ with binPaths; {
 
   # Configure Zsh.
   programs.zsh = let
-    configDir = ''$(${dirname} "$(${readlink} -m /etc/nixos/flake.nix)")'';
+    configDir = ''$(${dirname} "$(${realpath} /etc/nixos/flake.nix)")'';
     docDir = "/run/current-system/sw/share/doc";
   in {
     enable = true;
@@ -55,7 +55,7 @@ with binPaths; {
       nr () {(
         set -eo pipefail
 
-        oldNixosGen="$(${readlink} -f '/run/current-system')"
+        oldNixosGen="$(${realpath} '/run/current-system')"
         origArgs=("$@")
 
         while [ "$#" -gt 0 ]; do
@@ -83,10 +83,10 @@ with binPaths; {
 
         if [ -z "$targetHost" ]; then
           if [[ "$action" = boot || "$action" = switch ]]; then
-            newNixosGen="$(${readlink} -f '/nix/var/nix/profiles/system')"
+            newNixosGen="$(${realpath} '/nix/var/nix/profiles/system')"
             ${nvd} diff "$oldNixosGen" "$newNixosGen"
           elif [ -z "$buildHost" ]; then
-            newNixosGen="$(${readlink} -f 'result')"
+            newNixosGen="$(${realpath} 'result')"
             ${nvd} diff "$oldNixosGen" "$newNixosGen"
           fi
         fi

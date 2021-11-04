@@ -25,7 +25,7 @@ __mapAttrs (_: lib.mainProgram) pkgs // {
   nixos-rebuild = "${config.system.build.nixos-rebuild}/bin/nixos-rebuild";
   # TODO Remove on NixOS 21.11.
   pipe-rename = "${pkgs-unstable.pipe-rename}/bin/renamer";
-  readlink = "${coreutils}/bin/readlink";
+  realpath = "${coreutils}/bin/realpath";
   rm = "${coreutils}/bin/rm";
   shutdown = "${config.systemd.package}/bin/shutdown";
   smartctl = "${smartmontools}/bin/smartctl"; # TODO Remove on NixOS 21.11.
