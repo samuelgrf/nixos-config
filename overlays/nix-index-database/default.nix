@@ -4,13 +4,13 @@ _: prev: {
 
     stdenv.mkDerivation rec {
       pname = "nix-index-database";
-      version = "unstable-2021-10-24";
+      version = "unstable-2021-10-31";
 
       src = fetchurl {
         url = "https://github.com/Mic92/nix-index-database/releases/download/${
             lib.removePrefix "unstable-" version
           }/index-x86_64-linux";
-        sha256 = "sha256-3X0C4luv6+jZrnt/KEWg25X1J7CLSEbP3itG6j8CV+M=";
+        sha256 = "sha256-bChh9N3E7JGZ1lQM5W6nnrl5N4mkh9y4yDzCgJzfZQc=";
       };
 
       dontUnpack = true;
