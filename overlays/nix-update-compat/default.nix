@@ -5,5 +5,5 @@ in _:
 
 import inputs.nixpkgs {
   config = import ../../main/nixpkgs.nix { inherit pkgs; };
-  overlays = __attrValues (import ../../overlays { inherit (pkgs) lib; });
+  overlays = __attrValues (import ../. { inherit (pkgs) lib; });
 }
