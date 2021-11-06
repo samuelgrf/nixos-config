@@ -1,7 +1,7 @@
 { config, lib, pkgs-unstable, ... }: {
 
   # Configure Chromium/Chrome.
-  # Command line arguments are set in ../overlays/ungoogled-chromium.
+  # Command line arguments are set in `overlays/ungoogled-chromium`.
   programs.chromium = {
     enable = true;
 

@@ -5,7 +5,7 @@ flake-utils.lib.eachDefaultSystem (system: rec {
   pkgsImport = pkgs:
     import pkgs {
       inherit system;
-      config = import ../nixos/nixpkgs.nix { pkgs = legacyPackages; };
+      config = import ../config/shared/nixpkgs.nix { pkgs = legacyPackages; };
       overlays = __attrValues self.overlays;
     };
 

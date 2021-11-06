@@ -4,16 +4,17 @@ with self; {
   homeManagerModules = {
     "${userData.name}@default".imports = [
       homeManagerModules.moduleArgs
-      ../home/modules/kde.nix
-      ../home/default-applications.nix
-      ../home/git.nix
-      ../home/kde
-      ../home/misc.nix
-      ../home/mpv.nix
-      ../home/nix-index-database
+      ../config/home/modules/kde.nix
+      ../config/home/default-applications.nix
+      ../config/home/git.nix
+      ../config/home/kde
+      ../config/home/misc.nix
+      ../config/home/mpv.nix
+      ../config/home/nix-index-database
     ];
 
-    "${userData.name}@amethyst".imports = [ ../machines/amethyst/home.nix ];
+    "${userData.name}@amethyst".imports =
+      [ ../config/machines/amethyst/home.nix ];
 
     "${userData.name}@beryl".imports = [ ];
 

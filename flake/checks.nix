@@ -8,11 +8,12 @@ flake-utils.lib.eachDefaultSystem (system: {
     hooks = {
       nixfmt = {
         enable = true;
-        excludes = [ "machines/.*/nixos-generated.nix" ];
+        excludes = [ "config/machines/.*/nixos-generated.nix" ];
       };
       nix-linter = {
         enable = true;
-        excludes = [ "machines/.*/nixos-generated.nix" "overlays/default.nix" ];
+        excludes =
+          [ "config/machines/.*/nixos-generated.nix" "overlays/default.nix" ];
       };
     };
     settings.nix-linter.checks =

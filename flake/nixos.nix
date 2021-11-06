@@ -5,17 +5,17 @@ with self; {
     default.imports = [
       nixosModules.moduleArgs
       # TODO Replace with `home-manager.nixosModule` on NixOS 21.11.
-      ../nixos/modules/home-manager.nix
-      ../nixos/chromium.nix
-      ../nixos/firewall.nix
-      ../nixos/kernel.nix
-      ../nixos/misc.nix
-      ../nixos/nix.nix
-      ../nixos/packages.nix
-      ../nixos/printing-scanning.nix
-      ../nixos/services.nix
-      ../nixos/terminal.nix
-      ../nixos/user.nix
+      ../config/nixos/modules/home-manager.nix
+      ../config/nixos/chromium.nix
+      ../config/nixos/firewall.nix
+      ../config/nixos/kernel.nix
+      ../config/nixos/misc.nix
+      ../config/nixos/nix.nix
+      ../config/nixos/packages.nix
+      ../config/nixos/printing-scanning.nix
+      ../config/nixos/services.nix
+      ../config/nixos/terminal.nix
+      ../config/nixos/user.nix
 
       ({ system, ... }: {
         nixpkgs.pkgs = legacyPackages.${system};
@@ -32,8 +32,8 @@ with self; {
     ];
 
     amethyst.imports = [
-      ../machines/amethyst/nixos.nix
-      ../machines/amethyst/nixos-generated.nix
+      ../config/machines/amethyst/nixos.nix
+      ../config/machines/amethyst/nixos-generated.nix
       {
         home-manager.users.${userData.name} =
           homeManagerModules."${userData.name}@amethyst";
@@ -41,8 +41,8 @@ with self; {
     ];
 
     beryl.imports = [
-      ../machines/beryl/nixos.nix
-      ../machines/beryl/nixos-generated.nix
+      ../config/machines/beryl/nixos.nix
+      ../config/machines/beryl/nixos-generated.nix
       {
         home-manager.users.${userData.name} =
           homeManagerModules."${userData.name}@beryl";
@@ -58,7 +58,7 @@ with self; {
       in {
         _module.args = pkgs // {
           inherit flakes pkgs pkgs-master pkgs-unstable system userData;
-          binPaths = import ../nixos/binpaths.nix {
+          binPaths = import ../config/shared/binpaths.nix {
             inherit config lib pkgs pkgs-unstable;
           };
         };
