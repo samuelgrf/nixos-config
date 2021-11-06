@@ -2,7 +2,7 @@
 { config, lib, pkgs, utils, ... }:
 
 with lib;
-with (import ../.).inputs;
+with (import ../..).inputs;
 
 recursiveUpdate
 (import "${home-manager}/nixos" { inherit config lib pkgs utils; }) {
