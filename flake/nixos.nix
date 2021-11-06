@@ -5,17 +5,17 @@ with self; {
     default.imports = [
       nixosModules.moduleArgs
       # TODO Replace with `home-manager.nixosModule` on NixOS 21.11.
-      ../main/modules/home-manager.nix
-      ../main/chromium.nix
-      ../main/firewall.nix
-      ../main/kernel.nix
-      ../main/misc.nix
-      ../main/nix.nix
-      ../main/packages.nix
-      ../main/printing-scanning.nix
-      ../main/services.nix
-      ../main/terminal.nix
-      ../main/user.nix
+      ../nixos/modules/home-manager.nix
+      ../nixos/chromium.nix
+      ../nixos/firewall.nix
+      ../nixos/kernel.nix
+      ../nixos/misc.nix
+      ../nixos/nix.nix
+      ../nixos/packages.nix
+      ../nixos/printing-scanning.nix
+      ../nixos/services.nix
+      ../nixos/terminal.nix
+      ../nixos/user.nix
 
       ({ system, ... }: {
         nixpkgs.pkgs = legacyPackages.${system};
@@ -58,7 +58,7 @@ with self; {
       in {
         _module.args = pkgs // {
           inherit flakes pkgs pkgs-master pkgs-unstable system userData;
-          binPaths = import ../main/binpaths.nix {
+          binPaths = import ../nixos/binpaths.nix {
             inherit config lib pkgs pkgs-unstable;
           };
         };

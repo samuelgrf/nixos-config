@@ -4,6 +4,6 @@ let
 in _:
 
 import inputs.nixpkgs {
-  config = import ../../main/nixpkgs.nix { inherit pkgs; };
+  config = import ../../nixos/nixpkgs.nix { inherit pkgs; };
   overlays = __attrValues (import ../. { inherit (pkgs) lib; });
 }
