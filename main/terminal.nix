@@ -218,7 +218,7 @@ with binPaths; {
       o = xdg-open;
       p = "${pre-commit} run -a";
       qr = "${qrencode} -t UTF8";
-      fm = ''run ${vlc} "${../assets/radio.m3u}"'';
+      fm = "run ${vlc} http://fritz.box/dvb/m3u/radio.m3u";
       rb = "${shutdown} -r";
       rbc = "${shutdown} -c";
       rbn = "${shutdown} -r now";
@@ -238,7 +238,7 @@ with binPaths; {
       sshb = "${ssh} beryl";
       sudo = "${sudo} ";
       t = tree;
-      tv = ''run ${vlc} "${../assets/tv.m3u}"'';
+      tv = "run ${vlc} http://fritz.box/dvb/m3u/{tvhd,tvsd}.m3u";
       watch = "${watch} ";
       wtr = "${curl} wttr.in";
       zl = "${zfs} list";
