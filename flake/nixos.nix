@@ -32,7 +32,7 @@ with self; {
     ];
 
     amethyst.imports = [
-      ../machines/amethyst/configuration.nix
+      ../machines/amethyst/nixos.nix
       ../machines/amethyst/nixos-generated.nix
       {
         home-manager.users.${userData.name} =
@@ -41,7 +41,7 @@ with self; {
     ];
 
     beryl.imports = [
-      ../machines/beryl/configuration.nix
+      ../machines/beryl/nixos.nix
       ../machines/beryl/nixos-generated.nix
       {
         home-manager.users.${userData.name} =
