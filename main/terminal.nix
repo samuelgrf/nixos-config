@@ -218,7 +218,7 @@ with binPaths; {
       o = xdg-open;
       p = "${pre-commit} run -a";
       qr = "${qrencode} -t UTF8";
-      radio = ''run ${vlc} "${../assets/radio.m3u}"'';
+      fm = ''run ${vlc} "${../assets/radio.m3u}"'';
       rb = "${shutdown} -r";
       rbc = "${shutdown} -c";
       rbn = "${shutdown} -r now";
