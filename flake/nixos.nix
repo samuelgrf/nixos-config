@@ -33,7 +33,7 @@ with self; {
 
     amethyst.imports = [
       ../machines/amethyst/configuration.nix
-      ../machines/amethyst/hardware-generated.nix
+      ../machines/amethyst/nixos-generated.nix
       {
         home-manager.users.${userData.name} =
           homeManagerModules."${userData.name}@amethyst";
@@ -42,7 +42,7 @@ with self; {
 
     beryl.imports = [
       ../machines/beryl/configuration.nix
-      ../machines/beryl/hardware-generated.nix
+      ../machines/beryl/nixos-generated.nix
       {
         home-manager.users.${userData.name} =
           homeManagerModules."${userData.name}@beryl";
