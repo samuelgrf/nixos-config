@@ -5,7 +5,7 @@ with self; {
     default.imports = [
       nixosModules.moduleArgs
       # TODO Replace with `home-manager.nixosModule` on NixOS 21.11.
-      ../config/nixos/modules/home-manager.nix
+      (import ../config/nixos/modules/home-manager.nix flakes)
       ../config/nixos/chromium.nix
       ../config/nixos/firewall.nix
       ../config/nixos/kernel.nix

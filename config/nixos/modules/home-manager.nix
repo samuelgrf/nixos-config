@@ -1,8 +1,8 @@
 # TODO Remove on NixOS 21.11.
+{ home-manager, ... }:
 { config, lib, pkgs, utils, ... }:
 
 with lib;
-with (import ../../../flake-compat.nix).inputs;
 
 recursiveUpdate
 (import "${home-manager}/nixos" { inherit config lib pkgs utils; }) {
