@@ -3,11 +3,11 @@ let
   inherit (self) lib;
 
   stdenvLLVM = let
-    hostLLVM = self.buildPackages.llvmPackages_12.override {
+    hostLLVM = self.buildPackages.llvmPackages_13.override {
       bootBintools = null;
       bootBintoolsNoLibc = null;
     };
-    buildLLVM = self.llvmPackages_12.override {
+    buildLLVM = self.llvmPackages_13.override {
       bootBintools = null;
       bootBintoolsNoLibc = null;
     };
