@@ -57,7 +57,7 @@ with self; {
         pkgs-unstable = legacyPackages_unstable.${system};
       in {
         _module.args = pkgs // {
-          inherit flakes pkgs pkgs-master pkgs-unstable system userData;
+          inherit flakes pkgs-master pkgs-unstable system userData;
           binPaths = import ../config/shared/binpaths.nix {
             inherit config lib pkgs pkgs-unstable;
           };
