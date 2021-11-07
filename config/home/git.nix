@@ -16,7 +16,6 @@ with userData; {
     };
 
     extraConfig = {
-      init.defaultBranch = "master";
       pull.ff = "only";
       url."ssh://git@github.com/".pushInsteadOf = "https://github.com/";
       url."ssh://git@gitlab.com/".pushInsteadOf = "https://gitlab.com/";
