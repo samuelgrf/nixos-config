@@ -1,4 +1,4 @@
-{ avahi, binPaths, config, flakes, lib, pkgs, userData, ... }:
+{ binPaths, config, lib, pkgs, userData, ... }:
 
 with binPaths; {
 
@@ -22,7 +22,7 @@ with binPaths; {
   # Enable and configure PipeWire audio server.
   services.pipewire = let
     defaults.bluez-monitor = lib.importJSON
-      "${flakes.nixpkgs}/nixos/modules/services/desktops/pipewire/bluez-monitor.conf.json";
+      "${pkgs.pipewire-media-session}/nix-support/alsa-monitor.conf.json";
   in {
     enable = true;
     pulse.enable = true;
@@ -42,7 +42,7 @@ with binPaths; {
   # Enable and configure Avahi daemon for zero-configuration networking.
   services.avahi = {
     enable = true;
-    extraServiceFiles.ssh = "${avahi}/etc/avahi/services/ssh.service";
+    extraServiceFiles.ssh = "${pkgs.avahi}/etc/avahi/services/ssh.service";
   };
 
   # Enable and configure ZFS services.
