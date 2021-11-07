@@ -1,1 +1,1 @@
-_: { userData = import ../userdata.nix; }
+_: { userData = import ../config/shared/userdata.nix; }
