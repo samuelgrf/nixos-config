@@ -117,6 +117,7 @@ with binPaths; {
 
       # Define other functions.
       command_not_found_handler () { nrn "$@" }
+      mcd () { mkdir -p "$@" && cd "$1" }
       run () { "$@" &>/dev/null & disown }
     '';
 
