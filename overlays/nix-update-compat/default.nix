@@ -1,5 +1,5 @@
 let
-  inherit (import ../..) inputs;
+  inherit (import ../../flake-compat.nix) inputs;
   pkgs = import inputs.nixpkgs { };
 in _:
 
