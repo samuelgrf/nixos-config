@@ -15,6 +15,8 @@ lib.genAttrs [
 
   "pdfsizeopt" # Init
 
+  "spacemacs" # Init
+
   "ungoogled-chromium" # Add command line arguments.
 
 ] (file: final: prev: import (./. + "/${file}") final prev)

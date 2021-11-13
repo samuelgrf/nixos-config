@@ -11,6 +11,7 @@ with self; {
       ../config/home/misc.nix
       ../config/home/mpv.nix
       ../config/home/nix-index-database
+      ../config/home/spacemacs
     ];
 
     "${userData.name}@amethyst".imports =
