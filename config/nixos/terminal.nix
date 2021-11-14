@@ -144,7 +144,7 @@ with binPaths; {
       nfl = "${nix} flake lock";
       nfu = "nu";
       nfuc = "nuc";
-      nfuci = "nuci";
+      nfuic = "nuic";
       nfui = "nui";
       ngd = "${nix} path-info --derivation";
       nlg = "${nix} log";
@@ -172,8 +172,8 @@ with binPaths; {
       nub = "nu && nrb";
       nubu = "nu && nrbu";
       nuc = "${nix} flake update --commit-lock-file";
-      nuci = "${nix} flake update --commit-lock-file --update-input";
-      nui = "${nix} flake update --update-input";
+      nuic = "${nix} flake lock --commit-lock-file --update-input";
+      nui = "${nix} flake lock --update-input";
       nus = "nu && nrs";
       nut = "nu && nrt";
       nv = "echo '${
