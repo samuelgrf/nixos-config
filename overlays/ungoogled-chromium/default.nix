@@ -29,6 +29,7 @@ with prev; {
       "--force-dark-mode"
 
       # Performance
+      "--enable-features=CanvasOopRasterization"
       "--enable-gpu-rasterization"
       "--enable-oop-rasterization"
       "--enable-zero-copy"
