@@ -1,5 +1,6 @@
 {
   inputs = {
+    emacs-overlay.url = "github:nix-community/emacs-overlay";
     flake-compat.url = "github:edolstra/flake-compat";
     flake-utils.url = "github:numtide/flake-utils";
     # TODO Get from `release-21.11` channel when available.

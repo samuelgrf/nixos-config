@@ -1,4 +1,5 @@
-{ flake-utils, nixpkgs, nixpkgs-master, nixpkgs-unstable, self, ... }:
+{ emacs-overlay, flake-utils, nixpkgs, nixpkgs-master, nixpkgs-unstable, self
+, ... }:
 
 flake-utils.lib.eachDefaultSystem (system: rec {
 
@@ -6,7 +7,7 @@ flake-utils.lib.eachDefaultSystem (system: rec {
     import pkgs {
       inherit system;
       config = import ../config/shared/nixpkgs.nix { pkgs = legacyPackages; };
-      overlays = __attrValues self.overlays;
+      overlays = [ emacs-overlay.overlay ] ++ __attrValues self.overlays;
     };
 
   legacyPackages = pkgsImport nixpkgs;
