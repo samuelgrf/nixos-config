@@ -2,20 +2,21 @@
 
 with binPaths; {
 
-  # Enable and configure desktop environment.
+  # Enable and configure desktop & display manager.
   services.xserver = {
-
-    # Enable KDE Plasma with Display Data Channel support.
     desktopManager.plasma5 = {
       enable = true;
       supportDDC = true;
+      runUsingSystemd = true;
     };
 
-    # Enable SDDM session manager and log in automatically.
     displayManager = {
-      sddm.enable = true;
-      autoLogin.enable = true;
-      autoLogin.user = userData.name;
+      lightdm.enable = true;
+      defaultSession = "plasmawayland";
+      autoLogin = {
+        enable = true;
+        user = userData.name;
+      };
     };
   };
 
@@ -153,7 +154,4 @@ with binPaths; {
 
   # Enable GnuPG agent.
   programs.gnupg.agent.enable = true;
-
-  # Enable unclutter-xfixes to hide the mouse cursor when inactive.
-  services.unclutter-xfixes.enable = true;
 }

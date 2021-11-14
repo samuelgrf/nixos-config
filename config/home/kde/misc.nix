@@ -2,6 +2,7 @@
   # Disable animations.
   kdeglobals.KDE.AnimationDurationFactor = 0;
   "gtk-3.0/settings.ini".Settings.gtk-enable-animations = 0;
+  "gtk-4.0/settings.ini".Settings.gtk-enable-animations = 0;
   "glib-2.0/settings/keyfile"."org/gnome/desktop/interface".enable-animations =
     false;
 

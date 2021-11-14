@@ -1,4 +1,4 @@
-{ lib, nixos-artwork, ... }: {
+{ lib, nixos-artwork, nixosConfig, ... }: {
 
   programs.kde = {
     enable = true;
@@ -11,7 +11,10 @@
       ./kwin.nix
       ./misc.nix
       ./power-management.nix
-    ]) ++ [ (import ./wallpaper.nix { inherit nixos-artwork; }) ]);
+    ]) ++ [
+      (import ./keyboard.nix { inherit nixosConfig; })
+      (import ./wallpaper.nix { inherit nixos-artwork; })
+    ]);
   };
 
   imports = [ ./locale.nix ];

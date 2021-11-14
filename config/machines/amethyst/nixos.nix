@@ -16,7 +16,7 @@
   ## Services
   ##############################################################################
 
-  # Enable the X11 windowing system.
+  # Enable display server.
   services.xserver.enable = true;
   services.xserver.autorun = true;
 
