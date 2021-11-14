@@ -58,8 +58,12 @@
   ## Other hardware
   ##############################################################################
 
-  # Enable natural scrolling for touchpad.
-  services.xserver.libinput.touchpad.naturalScrolling = true;
+  # Configure touchpad behavior.
+  services.xserver.libinput.touchpad = {
+    disableWhileTyping = true;
+    naturalScrolling = true;
+    tapping = true;
+  };
 
   # Enable Bluetooth support.
   hardware.bluetooth.enable = true;
