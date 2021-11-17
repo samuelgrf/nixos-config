@@ -4,6 +4,7 @@
   environment.systemPackages = with pkgs;
     let
       common = [
+        _7zz
         bat
         common-updater-scripts
         dos2unix
@@ -33,7 +34,6 @@
         nixfmt
         nixpkgs-review
         nvd
-        p7zip
         patchelf
         pciutils
         pipe-rename
