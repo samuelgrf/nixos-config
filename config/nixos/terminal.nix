@@ -8,6 +8,59 @@ with binPaths; {
   # Set Zsh as default shell.
   users.defaultUserShell = pkgs.zsh;
 
+  # /etc/zshrc
+  environment.etc.zshrc.text = lib.mkMerge [
+    ''
+      # Load and configure Powerlevel10k theme.
+      source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
+      source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/config/p10k-lean.zsh
+      POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
+        dir         # current directory
+        vcs         # git status
+        prompt_char # prompt symbol
+      )
+      POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
+        status                 # exit code of the last command
+        command_execution_time # duration of the last command
+        background_jobs        # presence of background jobs
+        context                # user@hostname
+        vim_shell              # vim shell indicator (:sh)
+        nix_shell              # nix shell indicator
+        time                   # current time
+      )
+      # Use fewer icons.
+      POWERLEVEL9K_DIR_CLASSES=()
+      POWERLEVEL9K_VCS_VISUAL_IDENTIFIER_EXPANSION=
+      POWERLEVEL9K_COMMAND_EXECUTION_TIME_VISUAL_IDENTIFIER_EXPANSION=
+      POWERLEVEL9K_TIME_VISUAL_IDENTIFIER_EXPANSION=
+
+      # Load Fast Syntax Highlighting.
+      source ${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions/fast-syntax-highlighting.plugin.zsh
+
+      # Run unavailable commands via Nix.
+      command_not_found_handler() { nrn "$@" }
+
+      # Disable less history.
+      export LESSHISTFILE=/dev/null
+    ''
+    (lib.mkBefore ''
+      # Enable Powerlevel10k instant prompt.
+      if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
+        source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
+      fi
+    '')
+    (lib.mkAfter ''
+      # Override Oh My Zsh defaults.
+      export LESS='-i -F -R'
+    '')
+  ];
+
+  # /etc/zshenv
+  environment.etc.zshenv.text = ''
+    # Disable Powerlevel10k new user setup (runs if no ~/.zsh* files exist).
+    zsh-newuser-install() {}
+  '';
+
   # Configure Zsh.
   programs.zsh = let
     configDir = ''$(${dirname} "$(${realpath} /etc/nixos/flake.nix)")'';
@@ -17,43 +70,42 @@ with binPaths; {
     ohMyZsh.enable = true;
     ohMyZsh.plugins = [ "git" ];
     autosuggestions.enable = true;
-    syntaxHighlighting.enable = true;
 
-    # Add entries to zshrc.
-    interactiveShellInit = ''
-      # Load and configure Powerlevel10k theme.
-      source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
-      source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/config/p10k-lean.zsh
-      POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
-        dir #                     current directory
-        vcs #                     git status
-        prompt_char #             prompt symbol
-      )
-      POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
-        status #                  exit code of the last command
-        command_execution_time #  duration of the last command
-        background_jobs #         presence of background jobs
-        context #                 user@hostname
-        vim_shell #               vim shell indicator (:sh)
-        nix_shell #               nix shell indicator
-        time #                    current time
-      )
-      # Use fewer icons.
-      POWERLEVEL9K_DIR_CLASSES=()
-      POWERLEVEL9K_VCS_VISUAL_IDENTIFIER_EXPANSION=
-      POWERLEVEL9K_COMMAND_EXECUTION_TIME_VISUAL_IDENTIFIER_EXPANSION=
-      POWERLEVEL9K_TIME_VISUAL_IDENTIFIER_EXPANSION=
+    # Set shell aliases.
+    shellAliases = let f = x: "f() { ${x} }; f";
+    in {
 
-      # Disable less history.
-      export LESSHISTFILE=/dev/null
-
-      # Define Nix & NixOS functions.
-      ne () {
+      # Nix & NixOS
+      c = ''cd "${configDir}"'';
+      hmm =
+        "run ${ungoogled-chromium} 'file://${docDir}/home-manager/index.html'";
+      hmo = "${man} home-configuration.nix";
+      n = nix;
+      nb = "${nix} build --print-build-logs -v";
+      nbd = "${nix} build --dry-run -v";
+      nd = "${nix} develop";
+      ne = f ''
         ${nix} eval --impure --expr "with import ${configDir}/repl.nix; $@" \
           | ${gnused} 's/^"\(.*\)"$/\1/'
-      }
-      nr () {(
-        set -eo pipefail
+      '';
+      nf = "${nix} flake";
+      nfc = "${nix} flake check";
+      nfl = "${nix} flake lock";
+      nfu = "nu";
+      nfuc = "nuc";
+      nfui = "nui";
+      nfuic = "nuic";
+      ngd = "${nix} path-info --derivation";
+      nlg = "${nix} log";
+      nlo = nix-locate;
+      nm = "run ${ungoogled-chromium} 'file://${docDir}/nix/manual/index.html'";
+      nom = "run ${ungoogled-chromium} 'file://${docDir}/nixos/index.html'";
+      noo = "${man} configuration.nix";
+      np = ''${nix} repl "${configDir}/repl.nix"'';
+      npl = "${nix} repl";
+      npm = "run ${ungoogled-chromium} 'file://${docDir}/nixpkgs/manual.html'";
+      nr = f ''
+        (set -eo pipefail
 
         oldNixosGen="$(${realpath} '/run/current-system')"
         origArgs=("$@")
@@ -89,16 +141,12 @@ with binPaths; {
             newNixosGen="$(${realpath} 'result')"
             ${nvd} diff "$oldNixosGen" "$newNixosGen"
           fi
-        fi
-      )}
-      nrs () { nr switch "$@" && exec ${zsh} }
-      nrt () { nr test "$@" && exec ${zsh} }
-      nsd () { ${nix} show-derivation "$@" | ${bat} -l json }
-      nsh () { NIXPKGS_ALLOW_UNFREE=1 ${nix} shell --impure nixpkgs#"$@" }
-      nshm () { NIXPKGS_ALLOW_UNFREE=1 ${nix} shell --impure github:NixOS/nixpkgs#"$@" }
-      nshu () { NIXPKGS_ALLOW_UNFREE=1 ${nix} shell --impure nixpkgs-unstable#"$@" }
-      nrn () {(
-        set -eo pipefail
+        fi)
+      '';
+      nrb = "nr boot";
+      nrbu = "nr build";
+      nrn = f ''
+        (set -eo pipefail
 
         if [ -z "$flake" ]; then
           flake=nixpkgs
@@ -112,56 +160,19 @@ with binPaths; {
         else
           >&2 echo "command not found: $1"
           exit 1
-        fi
-      )}
-
-      # Define other functions.
-      command_not_found_handler () { nrn "$@" }
-      mcd () { mkdir -p "$@" && cd "$1" }
-      run () { "$@" &>/dev/null & disown }
-    '';
-
-    # Add entries to zshenv.
-    shellInit = ''
-      # Disable newuser setup (runs if no ~/.zsh* files exist).
-      zsh-newuser-install() {}
-    '';
-
-    # Set shell aliases.
-    shellAliases = {
-
-      # Nix & NixOS
-      c = ''cd "${configDir}"'';
-      hmm =
-        "run ${ungoogled-chromium} 'file://${docDir}/home-manager/index.html'";
-      hmo = "${man} home-configuration.nix";
-      n = nix;
-      nb = "${nix} build --print-build-logs -v";
-      nbd = "${nix} build --dry-run -v";
-      nd = "${nix} develop";
-      nf = "${nix} flake";
-      nfc = "${nix} flake check";
-      nfl = "${nix} flake lock";
-      nfu = "nu";
-      nfuc = "nuc";
-      nfui = "nui";
-      nfuic = "nuic";
-      ngd = "${nix} path-info --derivation";
-      nlg = "${nix} log";
-      nlo = nix-locate;
-      nm = "run ${ungoogled-chromium} 'file://${docDir}/nix/manual/index.html'";
-      nom = "run ${ungoogled-chromium} 'file://${docDir}/nixos/index.html'";
-      noo = "${man} configuration.nix";
-      np = ''${nix} repl "${configDir}/repl.nix"'';
-      npl = "${nix} repl";
-      npm = "run ${ungoogled-chromium} 'file://${docDir}/nixpkgs/manual.html'";
-      nrb = "nr boot";
-      nrbu = "nr build";
+        fi)
+      '';
       nrnm = "flake=github:NixOS/nixpkgs nrn";
       nrnu = "flake=nixpkgs-unstable nrn";
+      nrs = f ''nr switch "$@" && exec ${zsh}'';
+      nrt = f ''nr test "$@" && exec ${zsh}'';
+      nsd = f ''${nix} show-derivation "$@" | ${bat} -l json'';
       nse = "${nix} search nixpkgs";
       nsem = "${nix} search github:NixOS/nixpkgs";
       nseu = "${nix} search nixpkgs-unstable";
+      nsh = f ''${nix} shell nixpkgs#"$@"'';
+      nshm = f ''${nix} shell github:NixOS/nixpkgs#"$@"'';
+      nshu = f ''${nix} shell nixpkgs-unstable#"$@"'';
       nsr = ''
         ${nix-store} --gc --print-roots \
           | ${cut} -f 1 -d " " \
@@ -203,16 +214,17 @@ with binPaths; {
       grlp = "${git} reflog -p";
       gstlp = "${git} stash list -p";
       inc = ''
-        [ -n "$HISTFILE" ] && {\
+        [ -n "$HISTFILE" ] && {
           echo "Enabled incognito mode"
           unset HISTFILE
-        } || {\
+        } || {
           echo "Disabled incognito mode"
           exec ${zsh}
-        }\
+        }
       '';
       ls = "ls -v --color=tty";
       lvl = "echo $SHLVL";
+      mcd = f ''mkdir -p "$@" && cd "$1"'';
       msg = "${kdialog} --msgbox";
       nw = "whence -ps";
       o = xdg-open;
@@ -231,6 +243,7 @@ with binPaths; {
       rmr = "rm -r";
       rn = pipe-rename;
       rna = "${pipe-rename} $(ls)";
+      run = f ''"$@" &>/dev/null & disown'';
       sd = shutdown;
       sdc = "${shutdown} -c";
       sdn = "${shutdown} now";
@@ -254,17 +267,6 @@ with binPaths; {
       ztc = "${sudo} ${zpool} trim -c rpool; zst";
     };
   };
-
-  # Add entries to top of zshrc.
-  environment.etc.zshrc.text = lib.mkBefore ''
-    # Enable Powerlevel10k instant prompt.
-    if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
-      source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
-    fi
-  '';
-
-  # Override Oh My Zsh defaults.
-  environment.extraInit = "export LESS='-i -F -R'";
 
   # Disable the default `command-not-found` script (no flake support).
   programs.command-not-found.enable = false;
