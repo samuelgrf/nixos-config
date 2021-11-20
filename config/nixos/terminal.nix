@@ -144,8 +144,8 @@ with binPaths; {
       nfl = "${nix} flake lock";
       nfu = "nu";
       nfuc = "nuc";
-      nfuic = "nuic";
       nfui = "nui";
+      nfuic = "nuic";
       ngd = "${nix} path-info --derivation";
       nlg = "${nix} log";
       nlo = nix-locate;
@@ -157,6 +157,8 @@ with binPaths; {
       npm = "run ${ungoogled-chromium} 'file://${docDir}/nixpkgs/manual.html'";
       nrb = "nr boot";
       nrbu = "nr build";
+      nrnm = "flake=github:NixOS/nixpkgs nrn";
+      nrnu = "flake=nixpkgs-unstable nrn";
       nse = "${nix} search nixpkgs";
       nsem = "${nix} search github:NixOS/nixpkgs";
       nseu = "${nix} search nixpkgs-unstable";
@@ -167,13 +169,11 @@ with binPaths; {
       '';
       nsrr = "${rm} -v $(nsr)";
       nu = "${nix} flake update";
-      nrnm = "flake=github:NixOS/nixpkgs nrn";
-      nrnu = "flake=nixpkgs-unstable nrn";
       nub = "nu && nrb";
       nubu = "nu && nrbu";
       nuc = "${nix} flake update --commit-lock-file";
-      nuic = "${nix} flake lock --commit-lock-file --update-input";
       nui = "${nix} flake lock --update-input";
+      nuic = "${nix} flake lock --commit-lock-file --update-input";
       nus = "nu && nrs";
       nut = "nu && nrt";
       nv = "echo '${
@@ -197,9 +197,10 @@ with binPaths; {
       du = "du -h";
       e = "run ${emacsclient} -c";
       et = "${emacsclient} -t";
+      fm = "run ${vlc} http://fritz.box/dvb/m3u/radio.m3u";
+      go = git-open;
       grl = "${git} reflog";
       grlp = "${git} reflog -p";
-      go = git-open;
       gstlp = "${git} stash list -p";
       inc = ''
         [ -n "$HISTFILE" ] && {\
@@ -214,12 +215,9 @@ with binPaths; {
       lvl = "echo $SHLVL";
       msg = "${kdialog} --msgbox";
       nw = "whence -ps";
-      rn = pipe-rename;
-      rna = "${pipe-rename} $(ls)";
       o = xdg-open;
       p = "${pre-commit} run -a";
       qr = "${qrencode} -t UTF8";
-      fm = "run ${vlc} http://fritz.box/dvb/m3u/radio.m3u";
       rb = "${shutdown} -r";
       rbc = "${shutdown} -c";
       rbn = "${shutdown} -r now";
@@ -231,6 +229,8 @@ with binPaths; {
       '';
       rldp = "${kquitapp5} plasmashell && ${kstart5} plasmashell";
       rmr = "rm -r";
+      rn = pipe-rename;
+      rna = "${pipe-rename} $(ls)";
       sd = shutdown;
       sdc = "${shutdown} -c";
       sdn = "${shutdown} now";
