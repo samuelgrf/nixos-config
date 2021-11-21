@@ -17,6 +17,7 @@ lib.genAttrs [
 
   "spacemacs" # Init
 
-  "ungoogled-chromium" # Add command line arguments.
+  "ungoogled-chromium/config" # Add command line arguments.
+  "ungoogled-chromium/pkg" # Build from latest commit.
 
 ] (file: final: prev: import (./. + "/${file}") final prev)
