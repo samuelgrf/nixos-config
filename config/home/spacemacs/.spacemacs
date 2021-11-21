@@ -32,7 +32,8 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(
+   '(javascript
+     (nixos :variables nixos-format-on-save t)
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
@@ -46,7 +47,6 @@ This function should only modify configuration layer settings."
      ;; lsp
      markdown
      multiple-cursors
-     (nixos :variables nixos-format-on-save t)
      ;; org
      ;; (shell :variables
      ;;        shell-default-height 30
