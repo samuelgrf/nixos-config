@@ -8,7 +8,7 @@ lib.genAttrs [
   "linux_zen/source.nix" # Ensure ZFS compatibility.
 
   # Thanks a lot to @lovesegfault for his work on this!
-  # Based on: https://github.com/lovesegfault/nix-config/blob/7ddb02fa8c52b2422c4b74e385ab511a71a6f5e6/nix/overlays/linux-lto.nix
+  # Based on: https://github.com/lovesegfault/nix-config/blob/9abd6a2075831b2a40a859fd9663bad0656ed52c/nix/overlays/linux-lto.nix
   "linuxLTOPackages" # Build LinuxPackages* with LLVM and LTO.
 
   "nix-index-database" # Init

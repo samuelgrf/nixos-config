@@ -1,13 +1,13 @@
-self:
+final:
 let
-  inherit (self) lib;
+  inherit (final) lib;
 
   stdenvLLVM = let
-    hostLLVM = self.buildPackages.llvmPackages_13.override {
+    hostLLVM = final.buildPackages.llvmPackages_13.override {
       bootBintools = null;
       bootBintoolsNoLibc = null;
     };
-    buildLLVM = self.llvmPackages_13.override {
+    buildLLVM = final.llvmPackages_13.override {
       bootBintools = null;
       bootBintoolsNoLibc = null;
     };
@@ -35,7 +35,7 @@ let
         };
       };
 
-    stdenvClangUseLLVM = self.overrideCC hostLLVM.stdenv hostLLVM.clangUseLLVM;
+    stdenvClangUseLLVM = final.overrideCC hostLLVM.stdenv hostLLVM.clangUseLLVM;
 
     stdenvPlatformLLVM = stdenvClangUseLLVM.override (old: {
       hostPlatform = mkLLVMPlatform old.hostPlatform;
@@ -52,7 +52,7 @@ let
     let
       inherit (lib.kernel) yes no;
       stdenv = stdenvLLVM;
-      buildPackages = self.buildPackages // { inherit stdenv; };
+      buildPackages = final.buildPackages // { inherit stdenv; };
 
     in kernel.override {
       inherit stdenv buildPackages;
@@ -64,19 +64,19 @@ let
       };
     };
 
-  linuxLTOPackagesFor = args: self.linuxKernel.packagesFor (linuxLTOFor args);
+  linuxLTOPackagesFor = args: final.linuxKernel.packagesFor (linuxLTOFor args);
 
 in _: {
   linuxLTOPackages_zen =
-    linuxLTOPackagesFor { kernel = self.linuxKernel.kernels.linux_zen; };
+    linuxLTOPackagesFor { kernel = final.linuxKernel.kernels.linux_zen; };
 
   linuxLTOPackages_zen_skylake = linuxLTOPackagesFor {
-    kernel = self.linuxKernel.kernels.linux_zen;
+    kernel = final.linuxKernel.kernels.linux_zen;
     extraConfig = { MSKYLAKE = lib.kernel.yes; };
   };
 
   linuxLTOPackages_zen_zen2 = linuxLTOPackagesFor {
-    kernel = self.linuxKernel.kernels.linux_zen;
+    kernel = final.linuxKernel.kernels.linux_zen;
     extraConfig = { MZEN2 = lib.kernel.yes; };
   };
 }
