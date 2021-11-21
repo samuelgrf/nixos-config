@@ -8,6 +8,7 @@ with prev; {
         # Ungoogled flags
         "--disable-search-engine-collection"
         "--extension-mime-request-handling=always-prompt-for-install"
+        "--hide-tab-close-buttons"
         "--popups-to-tabs"
         "--show-avatar-button=incognito-and-guest"
 
