@@ -1,8 +1,7 @@
-{ config, lib, pkgs-unstable, ... }: {
+{ config, lib, linuxLTOPackages_zen, ... }: {
 
   # Use Zen kernel for better interactive performance.
-  # TODO Remove `pkgs-unstable.` on NixOS 21.11.
-  boot.kernelPackages = lib.mkDefault pkgs-unstable.linuxLTOPackages_zen;
+  boot.kernelPackages = lib.mkDefault linuxLTOPackages_zen;
 
   # Enable support for additional filesystems.
   boot.supportedFilesystems = [ "exfat" "ntfs" "zfs" ];

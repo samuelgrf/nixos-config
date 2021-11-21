@@ -1,4 +1,4 @@
-{ config, lib, pkgs-unstable, ... }: {
+{ config, lib, stevenblack-blocklist, ... }: {
 
   # Configure Chromium/Chrome.
   # Command line arguments are set in `overlays/ungoogled-chromium`.
@@ -28,12 +28,11 @@
       HideWebStoreIcon = true;
 
       # uBlock Origin
-      # TODO Remove `pkgs-unstable.` on NixOS 21.11.
       "3rdparty".extensions.cjpalhdlnbpafiamejdnhcphjbkeiagm.toOverwrite = let
-        localListNames = __attrNames
-          (__readDir "${pkgs-unstable.stevenblack-blocklist}/extensions/porn");
-        localLists = map (n:
-          "file://${pkgs-unstable.stevenblack-blocklist}/extensions/porn/${n}/hosts")
+        localListNames =
+          __attrNames (__readDir "${stevenblack-blocklist}/extensions/porn");
+        localLists =
+          map (n: "file://${stevenblack-blocklist}/extensions/porn/${n}/hosts")
           localListNames;
       in {
         filterLists = [

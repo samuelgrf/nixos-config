@@ -1,12 +1,15 @@
-{ flakes, nixUnstable, userData, ... }: {
+{ flakes, userData, ... }: {
 
   nix = {
-    package = nixUnstable;
-
     extraOptions = ''
       experimental-features = nix-command flakes
       flake-registry = /etc/nix/registry.json
     '';
+
+    sshServe = {
+      enable = true;
+      keys = userData.authorizedSshKeysRoot;
+    };
 
     registry = __mapAttrs (id: flake: {
       from = {
@@ -15,10 +18,5 @@
       };
       inherit flake;
     }) flakes;
-
-    sshServe = {
-      enable = true;
-      keys = userData.authorizedSshKeysRoot;
-    };
   };
 }

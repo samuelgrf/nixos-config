@@ -18,6 +18,6 @@
   keyboard = {
     layout = "us,de";
     xkbVariant = "altgr-intl,nodeadkeys";
-    xkbOptions = "caps:escape";
+    xkbOptions = "caps:escape_shifted_capslock";
   };
 }

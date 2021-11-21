@@ -1,9 +1,12 @@
 {
   inputs = {
+    emacs-overlay.url = "github:nix-community/emacs-overlay";
     flake-compat.url = "github:edolstra/flake-compat";
     flake-utils.url = "github:numtide/flake-utils";
-    home-manager.url = "github:nix-community/home-manager/release-21.05";
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-21.05";
+    # TODO Get from `release-21.11` channel when available.
+    home-manager.url = "github:nix-community/home-manager";
+    # TODO Get from `nixos-21.11` channel when available.
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-master.url = "github:NixOS/nixpkgs";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
