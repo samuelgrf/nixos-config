@@ -10,6 +10,8 @@ with prev; {
         "--extension-mime-request-handling=always-prompt-for-install"
         "--hide-tab-close-buttons"
         "--popups-to-tabs"
+        "--remove-grab-handle"
+        "--remove-tabsearch-button"
         "--show-avatar-button=incognito-and-guest"
 
         # Experimental features
