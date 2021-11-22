@@ -18,9 +18,8 @@ with prev; {
         "--enable-features=${
           lib.concatStringsSep "," [
             "BackForwardCache:enable_same_site/true"
+            "CanvasOopRasterization"
             "OverlayScrollbar"
-            "SidePanel"
-            "SidePanelDragAndDrop"
             "TabHoverCardImages"
             "VaapiVideoDecoder"
           ]
@@ -33,7 +32,6 @@ with prev; {
         "--force-dark-mode"
 
         # Performance
-        "--enable-features=CanvasOopRasterization"
         "--enable-gpu-rasterization"
         "--enable-oop-rasterization"
         "--enable-zero-copy"
