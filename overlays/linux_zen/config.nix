@@ -6,7 +6,7 @@ with prev; {
 
       linux_zen = let
         argsOverride =
-          (linuxKernel.kernels.linux_zen.passthru.argsOverride or { }) // {
+          linuxKernel.kernels.linux_zen.passthru.argsOverride or { } // {
             structuredExtraConfig = with lib.kernel; {
 
               # Preemptive kernel

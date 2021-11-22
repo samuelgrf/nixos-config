@@ -16,7 +16,7 @@ with prev; {
           branch = "${elemAt numbers 0}.${elemAt numbers 1}";
 
           argsOverride =
-            (linuxKernel.kernels.linux_zen.passthru.argsOverride or { }) // {
+            linuxKernel.kernels.linux_zen.passthru.argsOverride or { } // {
               inherit version modDirVersion;
 
               src = fetchFromGitHub {
