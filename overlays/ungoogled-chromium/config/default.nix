@@ -20,6 +20,7 @@ with prev; {
             "BackForwardCache:enable_same_site/true"
             "CanvasOopRasterization"
             "OverlayScrollbar"
+            "RawDraw"
             "TabHoverCardImages"
             "VaapiVideoDecoder"
           ]
