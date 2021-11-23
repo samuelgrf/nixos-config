@@ -13,7 +13,6 @@ with prev; {
         # Ungoogled
         "disable-search-engine-collection"
         "extension-mime-request-handling=always-prompt-for-install"
-        "hide-tab-close-buttons"
         "popups-to-tabs"
         "remove-grab-handle"
         "remove-tabsearch-button"
