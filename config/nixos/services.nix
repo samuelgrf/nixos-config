@@ -63,7 +63,7 @@ with binPaths; {
     # Scrub ZFS pools to verify and restore filesystem integrity.
     autoScrub = {
       enable = true;
-      interval = "Mon";
+      interval = "Fri";
     };
 
     # To activate trimming for a LUKS device set
@@ -112,7 +112,7 @@ with binPaths; {
   # Run Nix garbage collector automatically.
   nix.gc = {
     automatic = true;
-    dates = "Fri";
+    dates = "Mon";
     options = "--delete-old";
   };
 
