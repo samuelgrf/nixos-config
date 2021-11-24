@@ -15,7 +15,7 @@
         git-open
         gptfdisk
         graalvm11-ce
-        htop
+        htop-vim
         inetutils
         jq
         killall
