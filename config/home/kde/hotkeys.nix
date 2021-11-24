@@ -1,4 +1,4 @@
-{
+{ binPaths }: {
   kglobalshortcutsrc = {
     kwin = {
       "stop current activity" = ",Meta+S,Stop Current Activity";
@@ -28,10 +28,10 @@
     Data.DataCount = 4;
     Data_4.Comment = "";
     Data_4.Enabled = true;
-    Data_4.Name = "Launch System Monitor";
+    Data_4.Name = "Launch htop-vim";
     Data_4.Type = "SIMPLE_ACTION_DATA";
     Data_4Actions.ActionsCount = 1;
-    Data_4Actions0.CommandURL = "plasma-systemmonitor";
+    Data_4Actions0.CommandURL = binPaths.htop-vim;
     Data_4Actions0.Type = "COMMAND_URL";
     Data_4Conditions.Comment = "";
     Data_4Conditions.ConditionsCount = 0;
