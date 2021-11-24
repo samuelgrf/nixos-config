@@ -3,10 +3,9 @@
     emacs-overlay.url = "github:nix-community/emacs-overlay";
     flake-compat.url = "github:edolstra/flake-compat";
     flake-utils.url = "github:numtide/flake-utils";
-    # TODO Get from `release-21.11` channel when available.
-    home-manager.url = "github:nix-community/home-manager";
+    home-manager.url = "github:nix-community/home-manager/release-21.11";
     # TODO Get from `nixos-21.11` channel when available.
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/release-21.11";
     nixpkgs-master.url = "github:NixOS/nixpkgs";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
