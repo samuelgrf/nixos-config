@@ -2,12 +2,12 @@ _: prev: {
 
   spacemacs = prev.callPackage ({ stdenv, fetchFromGitHub }:
     let
-      rev = "51611b6e307c9a1c1627c18fbaa03022de07a8ac";
-      sha256 = "Kh5CuhfUoL0stAIPDKWkzMrfKgPcIuvvWuee6W889Tw=";
+      rev = "050221ee35a7dd3f73457a94b192199f57de24b2";
+      sha256 = "A4gRj0vfJmum+ESYg4ydH4stAPFDMdAH5sEkvanwGVw=";
 
     in stdenv.mkDerivation {
       pname = "spacemacs";
-      version = "unstable-2021-11-13";
+      version = "unstable-2021-11-20";
 
       src = fetchFromGitHub {
         owner = "syl20bnr";
