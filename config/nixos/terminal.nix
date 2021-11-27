@@ -148,11 +148,9 @@ with binPaths; {
       nrn = f ''
         (set -eo pipefail
 
-        if [ -z "$flake" ]; then
-          flake=nixpkgs
-        fi
-
         attrs=$(${nix-locate} --top-level --minimal --at-root --whole-name "/bin/$1")
+
+        [ -z "$flake" ] && flake=nixpkgs
 
         if [ "$attrs" ]; then
           attr=$(echo "$attrs" | ${fzy} -l 100)
