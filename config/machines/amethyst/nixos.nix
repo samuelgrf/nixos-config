@@ -1,4 +1,5 @@
-{ binPaths, linuxLTOPackages_zen_skylake, pkgsi686Linux, vaapiIntel, ... }: {
+{ binPaths, linuxLTOPackages_zen_skylake, mesa_ANGLE, pkgsi686Linux, vaapiIntel
+, ... }: {
 
   ##############################################################################
   ## General
@@ -68,8 +69,15 @@
   hardware.bluetooth.enable = true;
 
   # Install libraries for VA-API.
-  hardware.opengl.extraPackages = [ vaapiIntel ];
-  hardware.opengl.extraPackages32 = with pkgsi686Linux; [ vaapiIntel ];
+  hardware.opengl = {
+    extraPackages = [ vaapiIntel ];
+    extraPackages32 = with pkgsi686Linux; [ vaapiIntel ];
+
+    # Use patched Mesa with `ANGLE_sync_control_rate` support.
+    # See https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/5139
+    package = mesa_ANGLE;
+    package32 = pkgsi686Linux.mesa_ANGLE;
+  };
 
   # Enable CPU microcode updates.
   hardware.cpu.intel.updateMicrocode = true;

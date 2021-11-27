@@ -11,6 +11,9 @@ lib.genAttrs [
   # Based on: https://github.com/lovesegfault/nix-config/blob/9abd6a2075831b2a40a859fd9663bad0656ed52c/nix/overlays/linux-lto.nix
   "linuxLTOPackages" # Build LinuxPackages* with LLVM and LTO.
 
+  # See https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/5139
+  "mesa_ANGLE" # Fix Chromium EGL backend.
+
   "nix-index-database" # Init
 
   "pdfsizeopt" # Init

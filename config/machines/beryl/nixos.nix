@@ -1,4 +1,4 @@
-{ amdvlk, linuxLTOPackages_zen_zen2, pkgsi686Linux, ... }: {
+{ amdvlk, linuxLTOPackages_zen_zen2, mesa_ANGLE, pkgsi686Linux, ... }: {
 
   ##############################################################################
   ## General
@@ -35,8 +35,15 @@
 
   # Install AMDVLK driver, as some games have graphical glitches when using RADV.
   # Can be enabled by setting `AMD_VULKAN_ICD=AMDVLK`.
-  hardware.opengl.extraPackages = [ amdvlk ];
-  hardware.opengl.extraPackages32 = with pkgsi686Linux; [ amdvlk ];
+  hardware.opengl = {
+    extraPackages = [ amdvlk ];
+    extraPackages32 = with pkgsi686Linux; [ amdvlk ];
+
+    # Use patched Mesa with `ANGLE_sync_control_rate` support.
+    # See https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/5139
+    package = mesa_ANGLE;
+    package32 = pkgsi686Linux.mesa_ANGLE;
+  };
 
   # Set global environment variables.
   environment.variables.AMD_VULKAN_ICD = "RADV";
