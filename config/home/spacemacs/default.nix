@@ -1,11 +1,15 @@
-{ spacemacs, ... }: {
+{ lib, spacemacs, ... }: {
 
   home.file = {
-    ".emacs.d" = {
-      source = spacemacs;
-      recursive = true;
-    };
-
     ".spacemacs".source = ./.spacemacs;
-  };
+
+  } // (with lib;
+    let
+      spacemacsDirs = __readDir spacemacs;
+      mapDirs = name: _:
+        nameValuePair ".emacs.d/${name}" {
+          recursive = name == "private" || name == "layers";
+          source = "${spacemacs}/${name}";
+        };
+    in mapAttrs' mapDirs spacemacsDirs);
 }
