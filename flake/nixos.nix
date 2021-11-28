@@ -22,7 +22,6 @@ with self; {
         home-manager = {
           useGlobalPkgs = true;
           useUserPackages = true;
-          backupFileExtension = "bak";
           extraSpecialArgs = { inherit lib; };
           users.${userData.name} =
             homeManagerModules."${userData.name}@default";
