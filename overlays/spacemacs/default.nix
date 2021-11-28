@@ -4,13 +4,13 @@ _: prev: {
 
     stdenv.mkDerivation {
       pname = "spacemacs";
-      version = "unstable-2021-11-20";
+      version = "unstable-2021-11-28";
 
       src = fetchFromGitHub {
         owner = "syl20bnr";
         repo = "spacemacs";
-        rev = "050221ee35a7dd3f73457a94b192199f57de24b2";
-        sha256 = "A4gRj0vfJmum+ESYg4ydH4stAPFDMdAH5sEkvanwGVw=";
+        rev = "23367d08f890873e77fd9a434c9332cf53d5f9df";
+        sha256 = "LgNVHX3qXj892osorfWjEAwon5ahJtRftp/EB3cwklg=";
       };
 
       dontUnpack = true;
