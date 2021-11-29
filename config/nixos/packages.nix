@@ -16,6 +16,7 @@
         gptfdisk
         graalvm11-ce
         htop-vim
+        hydra-check
         jq
         killall
         kjv
