@@ -16,7 +16,6 @@
         gptfdisk
         graalvm11-ce
         htop-vim
-        inetutils
         jq
         killall
         kjv
@@ -71,7 +70,6 @@
         lutris
         lxqt.pavucontrol-qt
         multimc
-        nixUnstable.doc
         ocrmypdf
         pcsx2
         pdfsizeopt
