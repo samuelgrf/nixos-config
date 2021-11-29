@@ -61,8 +61,8 @@
         appimage-run
         calibre
         flakes.home-manager.packages.${system}.docs-html
-        flakes.nixpkgs-unstable.htmlDocs.nixosManual
-        flakes.nixpkgs-unstable.htmlDocs.nixpkgsManual
+        flakes.nixpkgs.htmlDocs.nixosManual
+        flakes.nixpkgs.htmlDocs.nixpkgsManual
         imagemagickBig
         inkscape
         keepassxc
