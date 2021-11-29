@@ -1,6 +1,8 @@
-{ flakes, userData, ... }: {
+{ flakes, nix_2_4, userData, ... }: {
 
   nix = {
+    package = nix_2_4;
+
     extraOptions = ''
       experimental-features = nix-command flakes
       flake-registry = /etc/nix/registry.json
