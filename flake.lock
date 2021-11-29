@@ -146,7 +146,25 @@
         "nixpkgs": "nixpkgs",
         "nixpkgs-master": "nixpkgs-master",
         "nixpkgs-unstable": "nixpkgs-unstable",
-        "pre-commit-hooks": "pre-commit-hooks"
+        "pre-commit-hooks": "pre-commit-hooks",
+        "spacemacs": "spacemacs"
+      }
+    },
+    "spacemacs": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1638087739,
+        "narHash": "sha256-LgNVHX3qXj892osorfWjEAwon5ahJtRftp/EB3cwklg=",
+        "owner": "syl20bnr",
+        "repo": "spacemacs",
+        "rev": "23367d08f890873e77fd9a434c9332cf53d5f9df",
+        "type": "github"
+      },
+      "original": {
+        "owner": "syl20bnr",
+        "ref": "develop",
+        "repo": "spacemacs",
+        "type": "github"
       }
     }
   },

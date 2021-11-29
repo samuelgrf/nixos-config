@@ -9,11 +9,13 @@
     nixpkgs-master.url = "github:NixOS/nixpkgs";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
+    spacemacs.url = "github:syl20bnr/spacemacs/develop";
 
     flake-compat.flake = false;
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     pre-commit-hooks.inputs.flake-utils.follows = "flake-utils";
     pre-commit-hooks.inputs.nixpkgs.follows = "nixpkgs";
+    spacemacs.flake = false;
   };
 
   outputs = flakes:
