@@ -543,8 +543,14 @@ dump.")
 This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
-before packages are loaded.")
-
+before packages are loaded."
+  ;; Seperate Emacs and system clipboard.
+  (setq x-select-enable-clipboard nil)
+  (define-key evil-visual-state-map  (kbd "s-c") (kbd "\"+y"))
+  (define-key evil-normal-state-map  (kbd "s-v") (kbd "\"+p"))
+  (define-key evil-insert-state-map  (kbd "s-v") (kbd "C-r +"))
+  (define-key evil-ex-completion-map (kbd "s-v") (kbd "C-r +"))
+  (define-key evil-ex-search-keymap  (kbd "s-v") (kbd "C-r +")))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
@@ -558,5 +564,4 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(warning-suppress-log-types '((comp))))
-)
+ '(warning-suppress-log-types '((comp)))))
