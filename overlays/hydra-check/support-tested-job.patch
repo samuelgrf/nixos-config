@@ -1,0 +1,13 @@
+diff --git a/hydracheck/cli.py b/hydracheck/cli.py
+index bd49069..552513f 100755
+--- a/hydracheck/cli.py
++++ b/hydracheck/cli.py
+@@ -55,6 +55,8 @@ def guess_packagename(package: str, arch: str, is_channel: bool) -> str:
+     if package.startswith("nixpkgs.") or package.startswith("nixos."):
+         # we assume user knows the full package name
+         return f"{package}.{arch}"
++    elif package == "tested":
++        return package
+     elif is_channel:
+         # we simply guess, that the user searches for a package and not a test
+         return f"nixpkgs.{package}.{arch}"

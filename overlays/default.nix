@@ -4,6 +4,8 @@ lib.genAttrs [
 
   "gimpPlugins" # Add bimp
 
+  "hydra-check" # Support checking `tested` job.
+
   "linux_zen/config.nix" # Customize kernel configuration.
   "linux_zen/source.nix" # Ensure ZFS compatibility.
 
