@@ -1,4 +1,5 @@
 { binPaths }: {
+
   kglobalshortcutsrc = {
     kwin = {
       "stop current activity" = ",Meta+S,Stop Current Activity";
@@ -20,6 +21,8 @@
     "KDE Keyboard Layout Switcher"."Switch to Next Keyboard Layout" =
       "Meta+Space,none,Switch to Next Keyboard Layout";
     kded5."Show System Activity" = ",Ctrl+Esc,Show System Activity";
+    plasmashell.show-on-mouse-pos =
+      "none,Meta+V,Open Klipper at Mouse Position";
     khotkeys."{f3242e9b-1c88-455f-be32-f9d50105551a}" =
       "Ctrl+Esc,none,Launch KSysGuard";
   };
