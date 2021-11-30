@@ -9,6 +9,7 @@ __mapAttrs (_: lib.mainProgram) pkgs // {
   hda-verb = "${alsa-tools}/bin/hda-verb";
   journalctl = "${config.systemd.package}/bin/journalctl";
   kdialog = "${plasma5Packages.kdialog}/bin/kdialog";
+  konsole = "${plasma5Packages.konsole}/bin/konsole";
   kquitapp5 = "${plasma5Packages.kdbusaddons}/bin/kquitapp5";
   kstart5 = "${plasma5Packages.kde-cli-tools}/bin/kstart5";
   kwriteconfig5 = "${plasma5Packages.kconfig}/bin/kwriteconfig5";
