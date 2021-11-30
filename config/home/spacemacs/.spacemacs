@@ -538,6 +538,12 @@ This function is called only while dumping Spacemacs configuration. You can
 dump.")
 
 
+(defun cut-to-clipboard ()
+  (interactive)
+  (setq x-select-enable-clipboard t)
+  (kill-region (region-beginning) (region-end))
+  (setq x-select-enable-clipboard nil))
+
 (defun copy-to-clipboard ()
   (interactive)
   (setq x-select-enable-clipboard t)
@@ -558,6 +564,7 @@ Put your configuration code here, except for variables that should be set
 before packages are loaded."
   ;; Seperate Emacs and system clipboard.
   (setq x-select-enable-clipboard nil)
+  (define-key evil-visual-state-map  (kbd "C-X") 'cut-to-clipboard)
   (define-key evil-visual-state-map  (kbd "C-C") 'copy-to-clipboard)
   (define-key evil-insert-state-map  (kbd "C-V") 'paste-from-clipboard)
   (define-key evil-normal-state-map  (kbd "C-V") 'paste-from-clipboard)
