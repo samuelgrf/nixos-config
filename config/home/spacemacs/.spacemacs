@@ -558,11 +558,12 @@ Put your configuration code here, except for variables that should be set
 before packages are loaded."
   ;; Seperate Emacs and system clipboard.
   (setq x-select-enable-clipboard nil)
-  (define-key evil-visual-state-map  (kbd "s-c") 'copy-to-clipboard)
-  (define-key evil-normal-state-map  (kbd "s-v") 'paste-from-clipboard)
-  (define-key evil-insert-state-map  (kbd "s-v") 'paste-from-clipboard)
-  (define-key evil-ex-completion-map (kbd "s-v") 'paste-from-clipboard)
-  (define-key evil-ex-search-keymap  (kbd "s-v") 'paste-from-clipboard))
+  (define-key evil-visual-state-map  (kbd "C-C") 'copy-to-clipboard)
+  (define-key evil-insert-state-map  (kbd "C-V") 'paste-from-clipboard)
+  (define-key evil-normal-state-map  (kbd "C-V") 'paste-from-clipboard)
+  (define-key evil-visual-state-map  (kbd "C-V") 'paste-from-clipboard)
+  (define-key evil-ex-completion-map (kbd "C-V") 'paste-from-clipboard)
+  (define-key evil-ex-search-keymap  (kbd "C-V") 'paste-from-clipboard))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
