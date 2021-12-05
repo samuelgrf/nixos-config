@@ -66,7 +66,7 @@ This function should only modify configuration layer settings."
    ;; `dotspacemacs/user-config'. To use a local version of a package, use the
    ;; `:location' property: '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(simpleclip)
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -538,24 +538,6 @@ This function is called only while dumping Spacemacs configuration. You can
 dump.")
 
 
-(defun cut-to-clipboard ()
-  (interactive)
-  (setq x-select-enable-clipboard t)
-  (kill-region (region-beginning) (region-end))
-  (setq x-select-enable-clipboard nil))
-
-(defun copy-to-clipboard ()
-  (interactive)
-  (setq x-select-enable-clipboard t)
-  (kill-ring-save (region-beginning) (region-end))
-  (setq x-select-enable-clipboard nil))
-
-(defun paste-from-clipboard ()
-  (interactive)
-  (setq x-select-enable-clipboard t)
-  (yank)
-  (setq x-select-enable-clipboard nil))
-
 (defun dotspacemacs/user-config ()
   "Configuration for user code:
 This function is called at the very end of Spacemacs startup, after layer
@@ -563,14 +545,10 @@ configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
   ;; Seperate Emacs and system clipboard.
-  (setq x-select-enable-clipboard nil)
-  (define-key evil-visual-state-map  (kbd "C-X") 'cut-to-clipboard)
-  (define-key evil-visual-state-map  (kbd "C-C") 'copy-to-clipboard)
-  (define-key evil-insert-state-map  (kbd "C-V") 'paste-from-clipboard)
-  (define-key evil-normal-state-map  (kbd "C-V") 'paste-from-clipboard)
-  (define-key evil-visual-state-map  (kbd "C-V") 'paste-from-clipboard)
-  (define-key evil-ex-completion-map (kbd "C-V") 'paste-from-clipboard)
-  (define-key evil-ex-search-keymap  (kbd "C-V") 'paste-from-clipboard))
+  (require 'simpleclip)
+  (simpleclip-mode 1)
+  (setq simpleclip-unmark-on-copy t)
+  (setq x-select-enable-clipboard nil))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
