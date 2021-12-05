@@ -19,4 +19,6 @@ lib.genAttrs [
 
   "ungoogled-chromium" # Add command line arguments.
 
+  "wl-clipboard-x11" # Init
+
 ] (file: final: prev: import (./. + "/${file}") final prev)

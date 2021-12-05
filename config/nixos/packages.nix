@@ -80,9 +80,10 @@
         simple-scan
         tesseract4
         ungoogled-chromium
-        wineWowPackages.staging
         winetricks
+        wineWowPackages.staging
         wl-clipboard
+        wl-clipboard-x11
         yt-dlp
       ] ++ (with plasma5Packages; [
         ark
