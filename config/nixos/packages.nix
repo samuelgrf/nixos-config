@@ -82,6 +82,7 @@
         ungoogled-chromium
         wineWowPackages.staging
         winetricks
+        wl-clipboard
         yt-dlp
       ] ++ (with plasma5Packages; [
         ark
