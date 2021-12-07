@@ -1,4 +1,4 @@
-{ config, lib, pkgs, sane-airscan, ... }: {
+{ config, lib, sane-airscan, writeShellScriptBin, ... }: {
 
   # Enable Common UNIX Printing System.
   services.printing.enable = true;
@@ -56,7 +56,7 @@
 
   # Don't fail `ensure-printers` service when printers are unreachable.
   systemd.services.ensure-printers.serviceConfig.ExecStart = lib.mkForce "-${
-      pkgs.writeShellScriptBin "ensure-printers"
+      writeShellScriptBin "ensure-printers"
       config.systemd.services.ensure-printers.script
     }";
 
