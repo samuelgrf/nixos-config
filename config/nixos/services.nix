@@ -1,4 +1,4 @@
-{ binPaths, config, lib, pkgs, pkgs-unstable, userData, ... }:
+{ binPaths, config, lib, pkgs, userData, ... }:
 
 with binPaths; {
 
@@ -142,9 +142,7 @@ with binPaths; {
   services.emacs = {
     enable = true;
     defaultEditor = true;
-    # TODO Remove `pkgs-unstable.` once the nix-community CI builds Emacs against Nixpkgs 21.11.
-    # See https://hydra.nix-community.org/jobset/emacs-overlay/stable#tabs-configuration
-    package = pkgs-unstable.emacsPgtkGcc;
+    package = pkgs.emacsPgtkGcc;
   };
 
   # Enable and configure OpenSSH utilities.
