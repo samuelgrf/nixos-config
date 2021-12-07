@@ -1,9 +1,10 @@
-{ flakes, lib, ... }: {
+{ flakes, lib, xdg-desktop-portal-gtk, ... }: {
 
   # Wipe /tmp on boot.
   boot.cleanTmpDir = true;
 
-  # Use Qt dialogs in supported GTK applications.
+  # GTK: Fix font aliasing and use Qt dialogs if supported.
+  xdg.portal.extraPortals = [ xdg-desktop-portal-gtk ];
   xdg.portal.gtkUsePortal = true;
 
   # Expose input flakes to legacy Nix applications.
