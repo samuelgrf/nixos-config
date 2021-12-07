@@ -1,4 +1,4 @@
-{ config, flakes, pkgs, system, ... }: {
+{ config, flakes, pkgs, pkgs-unstable, system, ... }: {
 
   # System-wide packages to install.
   environment.systemPackages = with pkgs;
@@ -80,8 +80,8 @@
         simple-scan
         tesseract4
         ungoogled-chromium
-        wineWowPackages.staging
         winetricks
+        wineWowPackages.staging
         wl-clipboard
         yt-dlp
       ] ++ (with plasma5Packages; [
@@ -92,7 +92,9 @@
         kdialog
         ktimer
         kwin-dynamic-workspaces
-      ]);
+      ])
+      # TODO Get packages from stable on NixOS 21.11.
+        ++ (with pkgs-unstable; [ wl-clipboard-x11 ]);
       noX = [ ];
     in common ++ (if config.services.xserver.enable then X else noX);
 
