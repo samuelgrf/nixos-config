@@ -1,4 +1,4 @@
-{ binPaths, flakes, lib, pkgs, ... }:
+{ binPaths, config, flakes, lib, pkgs, ... }:
 
 with binPaths; {
 
@@ -211,6 +211,8 @@ with binPaths; {
       grl = "${git} reflog";
       grlp = "${git} reflog -p";
       gstlp = "${git} stash list -p";
+      hc = hydra-check;
+      hcs = "${hydra-check} --channel ${config.system.nixos.release}";
       inc = ''
         [ -n "$HISTFILE" ] && {
           echo "Enabled incognito mode"
