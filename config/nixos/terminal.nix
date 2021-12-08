@@ -164,7 +164,7 @@ with binPaths; {
       nrnu = "flake=nixpkgs-unstable nrn";
       nrs = f ''nr switch "$@" && exec ${zsh}'';
       nrt = f ''nr test "$@" && exec ${zsh}'';
-      nsd = f ''${nix} show-derivation "$@" | ${bat} -l json'';
+      nsd = f ''${nix} show-derivation "$@" | bat -l json'';
       nse = "${nix} search nixpkgs";
       nsem = "${nix} search github:NixOS/nixpkgs";
       nseu = "${nix} search nixpkgs-unstable";
@@ -194,6 +194,7 @@ with binPaths; {
         }'";
 
       # Other
+      bat = ''${bat} --wrap=never --pager="${less} $LESS"'';
       chromium-widevine = ''
         run ${pkgs.ungoogled-chromium.override { enableWideVine = true; }}\
         /bin/chromium --user-data-dir="$HOME/.config/chromium-widevine"\
