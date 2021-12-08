@@ -1,4 +1,4 @@
-{ binPaths, linuxLTOPackages_zen_skylake, pkgsi686Linux, vaapiIntel, ... }: {
+{ linuxLTOPackages_zen_skylake, pkgsi686Linux, vaapiIntel, ... }: {
 
   ##############################################################################
   ## General
@@ -33,24 +33,6 @@
 
   # Blacklist sensor kernel modules.
   boot.blacklistedKernelModules = [ "intel_ishtp_hid" "intel_ish_ipc" ]
-
-  ;
-  ##############################################################################
-  ## Audio
-  ##############################################################################
-
-  # Create a systemd service to fix sound crackling after resume/startup.
-  # https://bugs.launchpad.net/ubuntu/+source/alsa-driver/+bug/1648183/comments/17
-  systemd.services.sound-crackling-workaround = {
-    description = "Sound crackling workaround for Realtek ALC295";
-    script = with binPaths; ''
-      until [ -e /dev/snd/hwC0D0 ]; do sleep 1; done
-      ${hda-verb} /dev/snd/hwC0D0 0x20 SET_COEF_INDEX 0x67
-      ${hda-verb} /dev/snd/hwC0D0 0x20 SET_PROC_COEF 0x3000
-    '';
-    wantedBy = [ "multi-user.target" "post-resume.target" ];
-    after = [ "post-resume.target" ];
-  }
 
   ;
   ##############################################################################
