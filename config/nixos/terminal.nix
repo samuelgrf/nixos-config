@@ -194,6 +194,7 @@ with binPaths; {
         }'";
 
       # Other
+      b = "bat";
       bat = ''${bat} --wrap=never --pager="${less} $LESS"'';
       chromium-widevine = ''
         run ${pkgs.ungoogled-chromium.override { enableWideVine = true; }}\
