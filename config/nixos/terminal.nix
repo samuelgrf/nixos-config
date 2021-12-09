@@ -67,6 +67,8 @@ with binPaths; {
     docDir = "/run/current-system/sw/share/doc";
   in {
     enable = true;
+    setOptions = [ "AUTO_CONTINUE" "HIST_FCNTL_LOCK" ];
+
     ohMyZsh.enable = true;
     ohMyZsh.plugins = [ "git" ];
     autosuggestions.enable = true;
