@@ -1,4 +1,4 @@
-{ binPaths, ... }: {
+{ binPaths, mpvScripts, ... }: {
 
   # Configure mpv.
   programs.mpv = {
@@ -18,5 +18,7 @@
       # Parse streams with yt-dlp instead of youtube-dl.
       script-opts = "ytdl_hook-ytdl_path=${binPaths.yt-dlp}";
     };
+
+    scripts = with mpvScripts; [ mpris sponsorblock youtube-quality ];
   };
 }
