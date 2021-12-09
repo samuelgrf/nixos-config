@@ -49,12 +49,6 @@
           "ublock-annoyances"
           "plowe-0"
         ] ++ localLists;
-        filters = lib.splitString "\n" ''
-          ! Reddit: Hide 'Get Coins' button
-          www.reddit.com##.jEUbSHJJx8vISKpWirlfx
-          ! Reddit: Hide account information
-          www.reddit.com###email-collection-tooltip-id
-        '';
       };
 
       # Bookmarks
