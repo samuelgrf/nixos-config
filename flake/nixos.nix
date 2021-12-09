@@ -58,6 +58,7 @@ with self; {
           inherit flakes pkgs-master pkgs-unstable system userData;
           binPaths =
             import ../config/shared/binpaths.nix { inherit config lib pkgs; };
+          homeConfig = config.home-manager.users.${userData.name};
         };
       };
   };
