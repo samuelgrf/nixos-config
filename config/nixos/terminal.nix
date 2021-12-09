@@ -208,6 +208,7 @@ with binPaths; {
       '';
       cpr = "cp -r";
       du = "du -h";
+      dso = "disown";
       e = "run ${emacsclient} -c";
       et = "${emacsclient} -t";
       fm = "run ${vlc} http://fritz.box/dvb/m3u/radio.m3u";
