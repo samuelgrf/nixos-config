@@ -11,7 +11,6 @@
         exiftool
         fd
         file
-        git
         git-open
         gptfdisk
         graalvm11-ce
@@ -56,9 +55,6 @@
       ];
       X = [
         (gimp-with-plugins.override { plugins = with gimpPlugins; [ bimp ]; })
-        (mpv.override {
-          scripts = with mpvScripts; [ mpris sponsorblock youtube-quality ];
-        })
         appimage-run
         calibre
         flakes.home-manager.packages.${system}.docs-html
