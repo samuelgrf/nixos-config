@@ -4,7 +4,7 @@ let
   nixosConfig = self.nixosConfigurations.${host};
   inherit (self) lib;
 
-in nixosConfig // self.inputs // self // {
+in self // self.inputs // nixosConfig // {
   inherit (nixosConfig._module.args)
     binPaths flakes pkgs-master pkgs-unstable system;
 }
