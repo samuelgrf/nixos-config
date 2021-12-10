@@ -60,6 +60,7 @@
         flakes.home-manager.packages.${system}.docs-html
         flakes.nixpkgs.htmlDocs.nixosManual
         flakes.nixpkgs.htmlDocs.nixpkgsManual
+        gftp
         imagemagickBig
         inkscape
         keepassxc
