@@ -10,7 +10,7 @@ with self; {
       ../config/home/kde
       ../config/home/misc.nix
       ../config/home/mpv.nix
-      ../config/home/nix-index-database
+      ../config/home/nix-index-database.nix
       ../config/home/spacemacs
     ];
 
