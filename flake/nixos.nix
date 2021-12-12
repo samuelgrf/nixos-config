@@ -5,7 +5,8 @@ with self; {
     default.imports = [
       home-manager.nixosModule
       nixosModules.moduleArgs
-      ../config/nixos/chromium.nix
+      ../config/nixos/chromium/bookmarks.nix
+      ../config/nixos/chromium/policies.nix
       ../config/nixos/firewall.nix
       ../config/nixos/kernel.nix
       ../config/nixos/misc.nix
