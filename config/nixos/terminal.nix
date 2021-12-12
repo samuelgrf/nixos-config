@@ -84,6 +84,10 @@ with binPaths; {
       hmo = "${man} home-configuration.nix";
       n = nix;
       nb = "${nix} build --print-build-logs -v";
+      "nb!" =
+        "sudo ${nix} build --print-build-logs -v --max-jobs 0 --builders ssh-ng://beryl";
+      "nb!a" =
+        "sudo ${nix} build --print-build-logs -v --max-jobs 0 --builders ssh-ng://amethyst";
       nbd = "${nix} build --dry-run -v";
       nd = "${nix} develop";
       ne = f ''
@@ -145,8 +149,14 @@ with binPaths; {
           fi
         fi)
       '';
+      "nr!" = "nr --build-host beryl";
+      "nr!a" = "nr --build-host amethyst";
       nrb = "nr boot";
+      "nrb!" = "nr! boot";
+      "nrb!a" = "nr!a boot";
       nrbu = "nr build";
+      "nrbu!" = "nr! build";
+      "nrbu!a" = "nr!a build";
       nrn = f ''
         (set -eo pipefail
 
@@ -165,7 +175,11 @@ with binPaths; {
       nrnm = "flake=github:NixOS/nixpkgs nrn";
       nrnu = "flake=nixpkgs-unstable nrn";
       nrs = f ''nr switch "$@" && exec ${zsh}'';
+      "nrs!" = f ''nr! switch "$@" && exec ${zsh}'';
+      "nrs!a" = f ''nr!a switch "$@" && exec ${zsh}'';
       nrt = f ''nr test "$@" && exec ${zsh}'';
+      "nrt!" = f ''nr! test "$@" && exec ${zsh}'';
+      "nrt!a" = f ''nr!a test "$@" && exec ${zsh}'';
       nsd = f ''${nix} show-derivation "$@" | bat -l json'';
       nse = "${nix} search nixpkgs";
       nsem = "${nix} search github:NixOS/nixpkgs";
@@ -181,12 +195,20 @@ with binPaths; {
       nsrr = "${rm} -v $(nsr)";
       nu = "${nix} flake update";
       nub = "nu && nrb";
+      "nub!" = "nu && nrb!";
+      "nub!a" = "nu && nrb!a";
       nubu = "nu && nrbu";
+      "nubu!" = "nu && nrbu!";
+      "nubu!a" = "nu && nrbu!a";
       nuc = "${nix} flake update --commit-lock-file";
       nui = "${nix} flake lock --update-input";
       nuic = "${nix} flake lock --commit-lock-file --update-input";
       nus = "nu && nrs";
+      "nus!" = "nu && nrs!";
+      "nus!a" = "nu && nrs!a";
       nut = "nu && nrt";
+      "nut!" = "nu && nrt!";
+      "nut!a" = "nu && nrt!a";
       nv = "echo '${
           __concatStringsSep "\n" (lib.mapAttrsToList (name: flake: ''
             ${name}:
