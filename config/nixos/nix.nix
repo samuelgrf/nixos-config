@@ -25,11 +25,11 @@
     };
 
     registry = __mapAttrs (id: flake: {
-      from = {
-        type = "indirect";
-        inherit id;
-      };
       inherit flake;
+      from = {
+        inherit id;
+        type = "indirect";
+      };
     }) flakes;
   };
 }
