@@ -6,6 +6,7 @@ with self; {
       home-manager.nixosModule
       nixosModules.moduleArgs
       ../config/nixos/chromium/bookmarks.nix
+      ../config/nixos/chromium/flags.nix
       ../config/nixos/chromium/policies.nix
       ../config/nixos/firewall.nix
       ../config/nixos/kernel.nix
