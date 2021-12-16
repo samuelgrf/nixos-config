@@ -1,20 +1,32 @@
 { emacs-overlay, flake-utils, nixpkgs, nixpkgs-master, nixpkgs-unstable, self
 , ... }:
+with self;
+({
 
-flake-utils.lib.eachDefaultSystem (system: rec {
-
-  pkgsImport = pkgs:
+  pkgsImport = { pkgs, system, ... }@args:
     import pkgs {
       inherit system;
-      config = import ../config/shared/nixpkgs.nix { pkgs = legacyPackages; };
-      overlays = [ emacs-overlay.overlay ] ++ __attrValues self.overlays;
+      config = args.config or (import ../config/shared/nixpkgs.nix {
+        pkgs = legacyPackages.${system};
+      });
+      overlays = [ emacs-overlay.overlay ] ++ __attrValues overlays;
     };
 
-  legacyPackages = pkgsImport nixpkgs;
-  legacyPackages_master = pkgsImport nixpkgs-master;
-  legacyPackages_unstable = pkgsImport nixpkgs-unstable;
-})
-
-// {
-  overlays = import ../overlays { inherit (self) lib; };
+  overlays = import ../overlays { inherit lib; };
 }
+
+  // flake-utils.lib.eachDefaultSystem (system: {
+
+    legacyPackages = pkgsImport {
+      inherit system;
+      pkgs = nixpkgs;
+    };
+    legacyPackages_master = pkgsImport {
+      inherit system;
+      pkgs = nixpkgs-master;
+    };
+    legacyPackages_unstable = pkgsImport {
+      inherit system;
+      pkgs = nixpkgs-unstable;
+    };
+  }))

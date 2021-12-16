@@ -1,4 +1,4 @@
-{ home-manager, self, ... }@flakes:
+{ home-manager, nixpkgs, self, ... }@flakes:
 with self; {
 
   nixosModules = {
@@ -17,8 +17,12 @@ with self; {
       ../config/nixos/terminal.nix
       ../config/nixos/user.nix
 
-      ({ system, ... }: {
-        nixpkgs.pkgs = legacyPackages.${system};
+      ({ config, system, ... }: {
+        nixpkgs.pkgs = pkgsImport {
+          inherit system;
+          pkgs = nixpkgs;
+          config = legacyPackages.${system}.config // config.nixpkgs.config;
+        };
 
         home-manager = {
           useGlobalPkgs = true;
