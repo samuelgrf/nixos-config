@@ -21,7 +21,7 @@ with builtins // lib; rec {
   # TODO Remove once https://github.com/NixOS/nixpkgs/pull/138418 is merged.
   # Get the path to a package's main executable.
   mainProgram = pkg:
-    "${getBin pkg}/bin/${pkg.meta.mainProgram or (lib.getName pkg)}";
+    "${getBin pkg}/bin/${pkg.meta.mainProgram or (getName pkg)}";
 
   mkHostId = s: substring 0 8 (hashString "sha256" s);
 
