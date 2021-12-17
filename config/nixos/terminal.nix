@@ -255,7 +255,7 @@ with binPaths; {
       msg = "${kdialog} --msgbox";
       nw = "whence -ps";
       o = xdg-open;
-      p = "${pre-commit} run -a";
+      p = "${pre-commit} run --files $(git diff HEAD --name-only)";
       qr = "${qrencode} -t UTF8";
       rb = "${shutdown} -r";
       rbc = "${shutdown} -c";
