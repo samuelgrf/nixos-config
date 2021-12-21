@@ -1,4 +1,4 @@
-{ amdvlk, linuxLTOPackages_zen_zen2, pkgsi686Linux, ... }: {
+{ amdvlk, linuxPackages_zen_lto_zen2, pkgsi686Linux, ... }: {
 
   ##############################################################################
   ## General
@@ -26,7 +26,7 @@
   ##############################################################################
 
   # Use Zen kernel with platform optimizations.
-  boot.kernelPackages = linuxLTOPackages_zen_zen2
+  boot.kernelPackages = linuxPackages_zen_lto_zen2
 
   ;
   ##############################################################################

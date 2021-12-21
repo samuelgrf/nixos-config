@@ -64,18 +64,25 @@ let
       };
     };
 
-  linuxLTOPackagesFor = args: final.linuxKernel.packagesFor (linuxLTOFor args);
+  kernelPkgsOverlay = _: _: { };
+
+  linuxLTOPackagesFor = args:
+    (final.linuxKernel.packagesFor (linuxLTOFor args)).extend kernelPkgsOverlay;
 
 in _: {
-  linuxLTOPackages_zen =
+  linuxPackages_latest_lto = linuxLTOPackagesFor {
+    kernel = final.linuxKernel.packageAliases.linux_latest.kernel;
+  };
+
+  linuxPackages_zen_lto =
     linuxLTOPackagesFor { kernel = final.linuxKernel.kernels.linux_zen; };
 
-  linuxLTOPackages_zen_skylake = linuxLTOPackagesFor {
+  linuxPackages_zen_lto_skylake = linuxLTOPackagesFor {
     kernel = final.linuxKernel.kernels.linux_zen;
     extraConfig = { MSKYLAKE = lib.kernel.yes; };
   };
 
-  linuxLTOPackages_zen_zen2 = linuxLTOPackagesFor {
+  linuxPackages_zen_lto_zen2 = linuxLTOPackagesFor {
     kernel = final.linuxKernel.kernels.linux_zen;
     extraConfig = { MZEN2 = lib.kernel.yes; };
   };

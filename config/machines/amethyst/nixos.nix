@@ -1,4 +1,4 @@
-{ linuxLTOPackages_zen_skylake, pkgsi686Linux, vaapiIntel, ... }: {
+{ linuxPackages_zen_lto_skylake, pkgsi686Linux, vaapiIntel, ... }: {
 
   ##############################################################################
   ## General
@@ -29,7 +29,7 @@
   ##############################################################################
 
   # Use Zen kernel with platform optimizations.
-  boot.kernelPackages = linuxLTOPackages_zen_skylake;
+  boot.kernelPackages = linuxPackages_zen_lto_skylake;
 
   # Blacklist sensor kernel modules.
   boot.blacklistedKernelModules = [ "intel_ishtp_hid" "intel_ish_ipc" ]
