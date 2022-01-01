@@ -13,7 +13,7 @@ with self; {
       ../config/nixos/misc.nix
       ../config/nixos/nix.nix
       ../config/nixos/packages.nix
-      ../config/nixos/printing-scanning.nix
+      ../config/nixos/printing+scanning.nix
       ../config/nixos/services.nix
       ../config/nixos/terminal.nix
       ../config/nixos/user.nix
