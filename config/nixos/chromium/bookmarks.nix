@@ -101,7 +101,11 @@
     }
     {
       name = "Userscripts";
-      children = lib.mkGreasyforkBookmarks {
+      children = [{
+        name = "Return YouTube Dislike";
+        url =
+          "https://github.com/Anarios/return-youtube-dislike/raw/main/Extensions/UserScript/Return%20Youtube%20Dislike.user.js";
+      }] ++ lib.mkGreasyforkBookmarks {
         "Default YouTube to Dark Theme" = 408542;
         "Display remaining Youtube playlist time" = 408966;
         "Google - auto-set privacy/GDPR consent cookie (prevent consent popup)" =
