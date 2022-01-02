@@ -6,5 +6,5 @@ let
 
 in self // self.inputs // nixosConfig // {
   inherit (nixosConfig._module.args)
-    binPaths homeConfig flakes pkgs-master pkgs-unstable system;
+    binPaths homeConfig flakes pkgs-emacs pkgs-master pkgs-unstable system;
 }

@@ -57,11 +57,12 @@ with self; {
       let
         inherit (config.nixpkgs) system;
         pkgs = legacyPackages.${system};
+        pkgs-emacs = legacyPackages_emacs.${system};
         pkgs-master = legacyPackages_master.${system};
         pkgs-unstable = legacyPackages_unstable.${system};
       in {
         _module.args = pkgs // {
-          inherit flakes pkgs-master pkgs-unstable system userData;
+          inherit flakes pkgs-emacs pkgs-master pkgs-unstable system userData;
           binPaths =
             import ../config/shared/binpaths.nix { inherit config lib pkgs; };
           homeConfig = config.home-manager.users.${userData.name};

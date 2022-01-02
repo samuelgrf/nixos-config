@@ -1,5 +1,5 @@
-{ emacs-overlay, flake-utils, nixpkgs, nixpkgs-master, nixpkgs-unstable, self
-, ... }:
+{ emacs-overlay, flake-utils, nixpkgs, nixpkgs-emacs, nixpkgs-master
+, nixpkgs-unstable, self, ... }:
 with self;
 ({
 
@@ -20,6 +20,10 @@ with self;
     legacyPackages = pkgsImport {
       inherit system;
       pkgs = nixpkgs;
+    };
+    legacyPackages_emacs = pkgsImport {
+      inherit system;
+      pkgs = nixpkgs-emacs;
     };
     legacyPackages_master = pkgsImport {
       inherit system;

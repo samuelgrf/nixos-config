@@ -1,4 +1,4 @@
-{ binPaths, config, lib, pkgs, userData, ... }:
+{ binPaths, config, lib, pkgs, pkgs-emacs, userData, ... }:
 
 with binPaths; {
 
@@ -142,7 +142,7 @@ with binPaths; {
   services.emacs = {
     enable = true;
     defaultEditor = true;
-    package = pkgs.emacsPgtkGcc;
+    package = pkgs-emacs.emacsPgtkGcc;
   };
 
   # Enable and configure OpenSSH utilities.
