@@ -55,6 +55,7 @@
       ];
       X = [
         (gimp-with-plugins.override { plugins = with gimpPlugins; [ bimp ]; })
+        (ungoogled-chromium.override { enableWideVine = true; })
         appimage-run
         calibre
         flakes.home-manager.packages.${system}.docs-html
@@ -76,7 +77,6 @@
         scrcpy
         simple-scan
         tesseract4
-        ungoogled-chromium
         winetricks
         wineWowPackages.staging
         wl-clipboard

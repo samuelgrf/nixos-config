@@ -219,10 +219,6 @@ with binPaths; {
       # Other
       b = "bat";
       bat = ''${bat} --wrap=never --pager="${less} $LESS"'';
-      chromium-widevine = ''
-        run ${pkgs.ungoogled-chromium.override { enableWideVine = true; }}\
-        /bin/chromium --user-data-dir="$HOME/.config/chromium-widevine"\
-      '';
       clean = ''
         ${sudo} ${systemctl} start nix-gc.service
         ${journalctl} -o cat -fu nix-gc.service
