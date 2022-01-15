@@ -79,8 +79,7 @@ with binPaths; {
 
       # Nix & NixOS
       c = ''cd "${configDir}"'';
-      hmm =
-        "run ${ungoogled-chromium} 'file://${docDir}/home-manager/index.html'";
+      hmm = "${xdg-open} '${docDir}/home-manager/index.html'";
       hmo = "${man} home-configuration.nix";
       n = nix;
       nb = "${nix} build --print-build-logs -v";
@@ -104,12 +103,12 @@ with binPaths; {
       ngd = "${nix} path-info --derivation";
       nlg = "${nix} log";
       nlo = nix-locate;
-      nm = "run ${ungoogled-chromium} 'file://${docDir}/nix/manual/index.html'";
-      nom = "run ${ungoogled-chromium} 'file://${docDir}/nixos/index.html'";
+      nm = "${xdg-open} '${docDir}/nix/manual/index.html'";
+      nom = "${xdg-open} '${docDir}/nixos/index.html'";
       noo = "${man} configuration.nix";
       np = ''${nix} repl "${configDir}/repl.nix"'';
       npl = "${nix} repl";
-      npm = "run ${ungoogled-chromium} 'file://${docDir}/nixpkgs/manual.html'";
+      npm = "${xdg-open} '${docDir}/nixpkgs/manual.html'";
       nr = f ''
         (set -eo pipefail
 
