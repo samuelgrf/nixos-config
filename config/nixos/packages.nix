@@ -68,7 +68,6 @@
         libreoffice
         lutris
         lxqt.pavucontrol-qt
-        multimc
         ocrmypdf
         pcsx2
         pdfsizeopt
@@ -91,7 +90,7 @@
         kwin-dynamic-workspaces
       ])
       # TODO Get packages from stable on NixOS 21.11.
-        ++ (with pkgs-unstable; [ wl-clipboard-x11 ]);
+        ++ (with pkgs-unstable; [ polymc wl-clipboard-x11 ]);
       noX = [ ];
     in common ++ (if config.services.xserver.enable then X else noX);
 
