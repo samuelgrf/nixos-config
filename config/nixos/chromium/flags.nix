@@ -23,14 +23,12 @@ in {
     "enable-gpu-rasterization"
     "enable-oop-rasterization"
     "enable-zero-copy"
-    "ignore-gpu-blocklist"
 
   ] + enableFeatures [
     "BackForwardCache:enable_same_site/true"
     "CanvasOopRasterization"
     "OverlayScrollbar"
     "TabHoverCardImages"
-    "VaapiVideoDecoder"
 
   ] + disableFeatures [ "SettingsLandingPageRedesign" ];
 }
