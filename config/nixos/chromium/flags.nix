@@ -19,6 +19,9 @@ in {
     # Dark mode
     "force-dark-mode"
 
+    # Wayland
+    "ozone-platform-hint=auto"
+
     # Performance
     "enable-gpu-rasterization"
     "enable-oop-rasterization"
