@@ -7,6 +7,7 @@
         _7zz
         bat
         common-updater-scripts
+        dnsutils
         dos2unix
         exiftool
         fd
