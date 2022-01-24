@@ -1,8 +1,8 @@
 {
   fullName = "Samuel Gräfenstein";
   name = "samuel";
-  email = "git@samuelgrf.com";
-  gpgKey = "FF2458328FAF466018C6186EEF76A063F15C63C8";
+  email = "s@muel.gr";
+  gpgKey = "6F2E2A90423C8111BFF2895EDE75F92E318123F0";
 
   authorizedSshKeysUser = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDwTxBMRYCd0AKW5vDWbOuyfevl+VH/ntDwrvFw5rbzt samuel@amethyst"
