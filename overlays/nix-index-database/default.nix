@@ -1,8 +1,8 @@
 _: prev: {
 
-  nix-index-database = prev.callPackage ({ stdenv, lib, fetchurl }:
+  nix-index-database = prev.callPackage ({ stdenvNoCC, lib, fetchurl }:
 
-    stdenv.mkDerivation rec {
+    stdenvNoCC.mkDerivation rec {
       pname = "nix-index-database";
       version = "unstable-2022-01-02";
 
