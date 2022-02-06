@@ -272,6 +272,7 @@ with binPaths; {
       smart = "${sudo} ${smartmontools} -a";
       ssha = "${ssh} amethyst";
       sshb = "${ssh} beryl";
+      sshp = "${ssh} pi@nextcloudpi";
       sudo = "${sudo} ";
       t = tree;
       tv = "run ${vlc} http://fritz.box/dvb/m3u/{tvhd,tvsd}.m3u";
