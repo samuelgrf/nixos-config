@@ -33,7 +33,7 @@ This function should only modify configuration layer settings."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(javascript
-     (nixos :variables nixos-format-on-save t)
+     nixos
      python
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
