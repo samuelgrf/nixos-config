@@ -10,7 +10,7 @@ let
         // config;
     };
 
-  applyLTO = kernel:
+  applyLLVM = kernel:
     let
       llvmPackages = "llvmPackages_13";
       noBintools = {
@@ -58,11 +58,14 @@ let
       inherit stdenv;
       buildPackages = final.buildPackages // { inherit stdenv; };
       argsOverride.kernelPatches = kernel.kernelPatches;
-      argsOverride.structuredExtraConfig = kernel.structuredExtraConfig // {
-        LTO_CLANG_FULL = yes;
-        LTO_NONE = no;
-      };
+      argsOverride.structuredExtraConfig = kernel.structuredExtraConfig;
     };
+
+  applyLTO = kernel:
+    applyCfg {
+      LTO_NONE = no;
+      LTO_CLANG_FULL = yes;
+    } (applyLLVM kernel);
 
   inherit (linuxKernel) packagesFor;
 
