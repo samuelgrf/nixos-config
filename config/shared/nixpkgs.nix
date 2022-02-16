@@ -17,4 +17,8 @@ with pkgs.lib; {
 
   # Disallow package aliases.
   allowAliases = false;
+
+  # Add flags to Chromium packages.
+  chromium.commandLineArgs =
+    import ./chromium-flags.nix { inherit (pkgs) lib; };
 }
