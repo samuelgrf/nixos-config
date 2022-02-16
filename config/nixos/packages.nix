@@ -45,6 +45,7 @@
         ripgrep
         smartmontools
         strace
+        stress
         sysstat
         tmpmail
         trash-cli
@@ -90,7 +91,7 @@
         ktimer
         kwin-dynamic-workspaces
       ])
-      # TODO Get packages from stable on NixOS 21.11.
+      # TODO Get packages from stable on NixOS 22.05.
         ++ (with pkgs-unstable; [ polymc wl-clipboard-x11 ]);
       noX = [ ];
     in common ++ (if config.services.xserver.enable then X else noX);
