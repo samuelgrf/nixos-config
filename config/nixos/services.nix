@@ -1,6 +1,9 @@
-{ binPaths, config, lib, pkgs, pkgs-emacs, userData, ... }:
+{ config, lib, pkgs, pkgs-emacs, userData, ... }:
 
-with binPaths; {
+with pkgs;
+
+let zpool.exe = "${config.boot.zfs.package}/bin/zpool";
+in {
 
   # Enable and configure desktop & display manager.
   services.xserver = {
@@ -23,7 +26,7 @@ with binPaths; {
   # Enable and configure PipeWire audio server.
   services.pipewire = let
     defaults.bluez-monitor = lib.importJSON
-      "${pkgs.pipewire-media-session}/nix-support/alsa-monitor.conf.json";
+      "${pipewire-media-session}/nix-support/alsa-monitor.conf.json";
   in {
     enable = true;
     pulse.enable = true;
@@ -43,7 +46,7 @@ with binPaths; {
   # Enable and configure Avahi daemon for zero-configuration networking.
   services.avahi = {
     enable = true;
-    extraServiceFiles.ssh = "${pkgs.avahi}/etc/avahi/services/ssh.service";
+    extraServiceFiles.ssh = "${avahi}/etc/avahi/services/ssh.service";
   };
 
   # Enable and configure ZFS services.
@@ -77,27 +80,27 @@ with binPaths; {
   # Wait for running ZFS operations to end before scrub & trim.
   systemd.services.zfs-scrub.serviceConfig.ExecStart =
     let scrubCfg = config.services.zfs.autoScrub;
-    in lib.mkForce (pkgs.writeShellScript "zfs-scrub" ''
+    in lib.mkForce (writeShellScript "zfs-scrub" ''
       for pool in ${
         if scrubCfg.pools != [ ] then
-          (concatStringsSep " " scrubCfg.pools)
+          (__concatStringsSep " " scrubCfg.pools)
         else
-          "$(${zpool} list -H -o name)"
+          "$(${zpool.exe} list -H -o name)"
       }; do
         echo Waiting for ZFS operations running on $pool to end...
-        ${zpool} wait $pool
+        ${zpool.exe} wait $pool
         echo Starting ZFS scrub for $pool...
-        ${zpool} scrub $pool
+        ${zpool.exe} scrub $pool
       done
     '');
 
   systemd.services.zpool-trim.serviceConfig = {
-    ExecStart = lib.mkForce (pkgs.writeShellScript "zpool-trim" ''
-      for pool in $(${zpool} list -H -o name); do
+    ExecStart = lib.mkForce (writeShellScript "zpool-trim" ''
+      for pool in $(${zpool.exe} list -H -o name); do
         echo Waiting for ZFS operations running on $pool to end...
-        ${zpool} wait $pool
+        ${zpool.exe} wait $pool
         echo Starting TRIM operation for $pool...
-        ${zpool} trim $pool
+        ${zpool.exe} trim $pool
       done
     '');
     Type = "oneshot";
@@ -119,17 +122,17 @@ with binPaths; {
   systemd.services.nix-gc.serviceConfig = {
 
     # Remove stray garbage collector roots before GC.
-    ExecStartPre = pkgs.writeShellScript "nix-gc-pre" ''
+    ExecStartPre = writeShellScript "nix-gc-pre" ''
       echo removing stray garbage collector roots...
-      ${rm} -v $(
-        ${nix-store} --gc --print-roots \
-          | ${cut} -f 1 -d " " \
-          | ${gnugrep} '/result-\?[^-]*$'
+      rm -v $(
+        ${config.nix.package.exe}-store --gc --print-roots \
+          | cut -f 1 -d " " \
+          | ${gnugrep.exe} '/result-\?[^-]*$'
       ) || :
     '';
 
     # Delete inaccessible boot entries after GC.
-    ExecStopPost = pkgs.writeShellScript "nix-gc-post" ''
+    ExecStopPost = writeShellScript "nix-gc-post" ''
       echo deleting old boot entries...
       /nix/var/nix/profiles/system/bin/switch-to-configuration boot
     '';

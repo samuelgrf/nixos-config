@@ -1,4 +1,4 @@
-{ binPaths }: {
+{ htop-vim, plasma5Packages }: {
 
   kglobalshortcutsrc = {
     kwin = {
@@ -34,7 +34,8 @@
     Data_4.Name = "Launch htop-vim";
     Data_4.Type = "SIMPLE_ACTION_DATA";
     Data_4Actions.ActionsCount = 1;
-    Data_4Actions0.CommandURL = with binPaths; "${konsole} -e ${htop-vim}";
+    Data_4Actions0.CommandURL =
+      "${plasma5Packages.konsole.exe} -e ${htop-vim.exe}";
     Data_4Actions0.Type = "COMMAND_URL";
     Data_4Conditions.Comment = "";
     Data_4Conditions.ConditionsCount = 0;

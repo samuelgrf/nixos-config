@@ -1,4 +1,4 @@
-{ binPaths, lib, nixos-artwork, nixosConfig, ... }: {
+{ lib, nixosConfig, pkgs, ... }: {
 
   programs.kde = {
     enable = true;
@@ -11,9 +11,9 @@
       ./misc.nix
       ./power-management.nix
     ]) ++ [
-      (import ./hotkeys.nix { inherit binPaths; })
+      (import ./hotkeys.nix { inherit (pkgs) htop-vim plasma5Packages; })
       (import ./keyboard.nix { inherit nixosConfig; })
-      (import ./wallpaper.nix { inherit nixos-artwork; })
+      (import ./wallpaper.nix { inherit (pkgs) nixos-artwork; })
     ]);
   };
 

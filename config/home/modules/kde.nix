@@ -1,4 +1,4 @@
-{ binPaths, config, lib, ... }:
+{ config, lib, plasma5Packages, ... }:
 
 with lib;
 let
@@ -9,7 +9,7 @@ let
 
   commandList = map (args:
     flatten [
-      binPaths.kwriteconfig5
+      "${plasma5Packages.kconfig}/bin/kwriteconfig5"
       "--file"
       (head args)
       (map (g: [ "--group" g ]) (sublist 1 (length args - 3) args))

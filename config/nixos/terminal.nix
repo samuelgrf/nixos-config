@@ -1,19 +1,19 @@
-{ binPaths, config, flakes, lib, pkgs, ... }:
+{ config, flakes, lib, pkgs, ... }:
 
-with binPaths; {
+with pkgs; {
 
   # Use X keyboard configuration on console.
   console.useXkbConfig = true;
 
   # Set Zsh as default shell.
-  users.defaultUserShell = pkgs.zsh;
+  users.defaultUserShell = zsh;
 
   # /etc/zshrc
   environment.etc.zshrc.text = lib.mkMerge [
     ''
       # Load and configure Powerlevel10k theme.
-      source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
-      source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/config/p10k-lean.zsh
+      source ${zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
+      source ${zsh-powerlevel10k}/share/zsh-powerlevel10k/config/p10k-lean.zsh
       POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
         dir         # current directory
         vcs         # git status
@@ -35,7 +35,7 @@ with binPaths; {
       POWERLEVEL9K_TIME_VISUAL_IDENTIFIER_EXPANSION=
 
       # Load Fast Syntax Highlighting.
-      source ${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions/fast-syntax-highlighting.plugin.zsh
+      source ${zsh-fast-syntax-highlighting}/share/zsh/site-functions/fast-syntax-highlighting.plugin.zsh
 
       # Run unavailable commands via Nix.
       command_not_found_handler() { nrn "$@" }
@@ -63,7 +63,7 @@ with binPaths; {
 
   # Configure Zsh.
   programs.zsh = let
-    configDir = ''$(${dirname} "$(${realpath} /etc/nixos/flake.nix)")'';
+    configDir = ''$(dirname "$(realpath /etc/nixos/flake.nix)")'';
     docDir = "/run/current-system/sw/share/doc";
   in {
     enable = true;
@@ -79,40 +79,38 @@ with binPaths; {
 
       # Nix & NixOS
       c = ''cd "${configDir}"'';
-      hmm = "${xdg-open} '${docDir}/home-manager/index.html'";
-      hmo = "${man} home-configuration.nix";
-      n = nix;
-      nb = "${nix} build --print-build-logs -v";
-      "nb!" =
-        "sudo ${nix} build --print-build-logs -v --max-jobs 0 --builders ssh-ng://beryl";
-      "nb!a" =
-        "sudo ${nix} build --print-build-logs -v --max-jobs 0 --builders ssh-ng://amethyst";
-      nbd = "${nix} build --dry-run -v";
-      nd = "${nix} develop";
+      hmm = "o '${docDir}/home-manager/index.html'";
+      hmo = "${man.exe} home-configuration.nix";
+      n = config.nix.package.exe;
+      nb = "n build --print-build-logs -v";
+      "nb!" = "sudo nb --max-jobs 0 --builders ssh-ng://beryl";
+      "nb!a" = "sudo nb --max-jobs 0 --builders ssh-ng://amethyst";
+      nbd = "nb --dry-run -v";
+      nd = "n develop";
       ne = f ''
-        ${nix} eval --impure --expr "with import ${configDir}/repl.nix; $@" \
-          | ${gnused} 's/^"\(.*\)"$/\1/'
+        n eval --impure --expr "with import ${configDir}/repl.nix; $@" \
+          | ${gnused.exe} 's/^"\(.*\)"$/\1/'
       '';
-      nf = "${nix} flake";
-      nfc = "${nix} flake check";
-      nfl = "${nix} flake lock";
+      nf = "n flake";
+      nfc = "nf check";
+      nfl = "nf lock";
       nfu = "nu";
       nfuc = "nuc";
       nfui = "nui";
       nfuic = "nuic";
-      ngd = "${nix} path-info --derivation";
-      nlg = "${nix} log";
-      nlo = nix-locate;
-      nm = "${xdg-open} '${docDir}/nix/manual/index.html'";
-      nom = "${xdg-open} '${docDir}/nixos/index.html'";
-      noo = "${man} configuration.nix";
-      np = ''${nix} repl "${configDir}/repl.nix"'';
-      npl = "${nix} repl";
-      npm = "${xdg-open} '${docDir}/nixpkgs/manual.html'";
+      ngd = "n path-info --derivation";
+      nlg = "n log";
+      nlo = "${nix-index}/bin/nix-locate";
+      nm = "o '${docDir}/nix/manual/index.html'";
+      nom = "o '${docDir}/nixos/index.html'";
+      noo = "${man.exe} configuration.nix";
+      np = ''npl "${configDir}/repl.nix"'';
+      npl = "n repl";
+      npm = "o '${docDir}/nixpkgs/manual.html'";
       nr = f ''
         (set -eo pipefail
 
-        oldNixosGen="$(${realpath} '/run/current-system')"
+        oldNixosGen="$(realpath '/run/current-system')"
         origArgs=("$@")
 
         while [ "$#" -gt 0 ]; do
@@ -136,15 +134,15 @@ with binPaths; {
         [ "$targetHost" = localhost ] && targetHost=
         [ "$buildHost" = localhost ] && buildHost=
 
-        ${sudo} ${nixos-rebuild} -v "''${origArgs[@]}"
+        sudo ${config.system.build.nixos-rebuild}/bin/nixos-rebuild -v "''${origArgs[@]}"
 
         if [ -z "$targetHost" ]; then
           if [[ "$action" = boot || "$action" = switch ]]; then
-            newNixosGen="$(${realpath} '/nix/var/nix/profiles/system')"
-            ${nvd} diff "$oldNixosGen" "$newNixosGen"
+            newNixosGen="$(realpath '/nix/var/nix/profiles/system')"
+            ${nvd.exe} diff "$oldNixosGen" "$newNixosGen"
           elif [ -z "$buildHost" ]; then
-            newNixosGen="$(${realpath} 'result')"
-            ${nvd} diff "$oldNixosGen" "$newNixosGen"
+            newNixosGen="$(realpath 'result')"
+            ${nvd.exe} diff "$oldNixosGen" "$newNixosGen"
           fi
         fi)
       '';
@@ -159,13 +157,13 @@ with binPaths; {
       nrn = f ''
         (set -eo pipefail
 
-        attrs=$(${nix-locate} --top-level --minimal --at-root --whole-name "/bin/$1")
+        attrs=$(nl --top-level --minimal --at-root --whole-name "/bin/$1")
 
         [ -z "$flake" ] && flake=nixpkgs
 
         if [ "$attrs" ]; then
-          attr=$(echo "$attrs" | ${fzy} -l 100)
-          ${nix} shell "$flake#$attr" --command "$@"
+          attr=$(echo "$attrs" | ${fzy.exe} -l 100)
+          n shell "$flake#$attr" --command "$@"
         else
           >&2 echo "command not found: $1"
           exit 1
@@ -173,35 +171,35 @@ with binPaths; {
       '';
       nrnm = "flake=github:NixOS/nixpkgs nrn";
       nrnu = "flake=nixpkgs-unstable nrn";
-      nrs = f ''nr switch "$@" && exec ${zsh}'';
-      "nrs!" = f ''nr! switch "$@" && exec ${zsh}'';
-      "nrs!a" = f ''nr!a switch "$@" && exec ${zsh}'';
-      nrt = f ''nr test "$@" && exec ${zsh}'';
-      "nrt!" = f ''nr! test "$@" && exec ${zsh}'';
-      "nrt!a" = f ''nr!a test "$@" && exec ${zsh}'';
-      nsd = f ''${nix} show-derivation "$@" | bat -l json'';
-      nse = "${nix} search nixpkgs";
-      nsem = "${nix} search github:NixOS/nixpkgs";
-      nseu = "${nix} search nixpkgs-unstable";
-      nsh = f ''${nix} shell nixpkgs#"$@"'';
-      nshm = f ''${nix} shell github:NixOS/nixpkgs#"$@"'';
-      nshu = f ''${nix} shell nixpkgs-unstable#"$@"'';
+      nrs = f ''nr switch "$@" && rld'';
+      "nrs!" = f ''nr! switch "$@" && rld'';
+      "nrs!a" = f ''nr!a switch "$@" && rld'';
+      nrt = f ''nr test "$@" && rld'';
+      "nrt!" = f ''nr! test "$@" && rld'';
+      "nrt!a" = f ''nr!a test "$@" && rld'';
+      nsd = f ''n show-derivation "$@" | b -l json'';
+      nse = "n search nixpkgs";
+      nsem = "n search github:NixOS/nixpkgs";
+      nseu = "n search nixpkgs-unstable";
+      nsh = f ''n shell nixpkgs#"$@"'';
+      nshm = f ''n shell github:NixOS/nixpkgs#"$@"'';
+      nshu = f ''n shell nixpkgs-unstable#"$@"'';
       nsr = ''
-        ${nix-store} --gc --print-roots \
-          | ${cut} -f 1 -d " " \
-          | ${gnugrep} '/result-\?[^-]*$'\
+        ${config.nix.package.exe}-store --gc --print-roots \
+          | cut -f 1 -d " " \
+          | ${gnugrep.exe} '/result-\?[^-]*$'
       '';
-      nsrr = "${rm} -v $(nsr)";
-      nu = "${nix} flake update";
+      nsrr = "rm -v $(nsr)";
+      nu = "n flake update";
       nub = "nu && nrb";
       "nub!" = "nu && nrb!";
       "nub!a" = "nu && nrb!a";
       nubu = "nu && nrbu";
       "nubu!" = "nu && nrbu!";
       "nubu!a" = "nu && nrbu!a";
-      nuc = "${nix} flake update --commit-lock-file";
-      nui = "${nix} flake lock --update-input";
-      nuic = "${nix} flake lock --commit-lock-file --update-input";
+      nuc = "nf update --commit-lock-file";
+      nui = "nfl --update-input";
+      nuic = "nfl --commit-lock-file --update-input";
       nus = "nu && nrs";
       "nus!" = "nu && nrs!";
       "nus!a" = "nu && nrs!a";
@@ -217,77 +215,82 @@ with binPaths; {
         }'";
 
       # Other
-      b = "bat";
-      bat = ''${bat} --wrap=never --pager="${less} $LESS"'';
+      b = bat.exe;
+      bat = ''b --wrap=never --pager="${less.exe} $LESS"'';
       clean = ''
-        ${sudo} ${systemctl} start nix-gc.service
-        ${journalctl} -o cat -fu nix-gc.service
+        sudo systemctl start nix-gc.service
+        journalctl -o cat -fu nix-gc.service
       '';
       cpr = "cp -r";
       du = "du -h";
       dso = "disown";
-      e = "run ${emacsclient} -c";
-      et = "${emacsclient} -t";
-      fm = "run ${vlc} http://fritz.box/dvb/m3u/radio.m3u";
-      go = git-open;
-      grl = "${git} reflog";
-      grlp = "${git} reflog -p";
-      gstlp = "${git} stash list -p";
-      hc = hydra-check;
-      hcs = "${hydra-check} --channel ${config.system.nixos.release}";
+      e = "run ${config.services.emacs.package.exe}client -c";
+      et = "${config.services.emacs.package.exe}client -t";
+      fm = "run ${vlc.exe} http://fritz.box/dvb/m3u/radio.m3u";
+      g = config.programs.git.package.exe;
+      go = git-open.exe;
+      grl = "g reflog";
+      grlp = "g reflog -p";
+      gstlp = "g stash list -p";
+      hc = python3Packages.hydra-check.exe;
+      hcs = "hc --channel ${config.system.nixos.release}";
       inc = ''
         [ -n "$HISTFILE" ] && {
           echo "Enabled incognito mode"
           unset HISTFILE
         } || {
           echo "Disabled incognito mode"
-          exec ${zsh}
+          rld
         }
       '';
       ls = "ls -v --color=tty";
       lvl = "echo $SHLVL";
       mcd = f ''mkdir -p "$@" && cd "$1"'';
-      msg = "${kdialog} --msgbox";
+      msg = "${plasma5Packages.kdialog.exe} --msgbox";
       nw = "whence -ps";
-      o = xdg-open;
-      p = "${pre-commit} run --files $(git diff HEAD --name-only)";
-      qr = "${qrencode} -t UTF8";
-      rb = "${shutdown} -r";
-      rbc = "${shutdown} -c";
-      rbn = "${shutdown} -r now";
-      rgi = "${ripgrep} -i";
-      rld = "exec ${zsh}";
+      o = "${xdg-utils}/bin/xdg-open";
+      p = "${pre-commit.exe} run --files $(git diff HEAD --name-only)";
+      qr = "${qrencode.exe} -t UTF8";
+      rb = "sd -r";
+      rbc = "sd -c";
+      rbn = "sd -r now";
+      rgi = "${ripgrep.exe} -i";
+      rld = "exec ${zsh.exe}";
       rldh = ''
-        ${sudo} ${systemctl} restart 'home-manager-*.service'
-        ${systemctl} status 'home-manager-*.service'\
+        sudo systemctl restart 'home-manager-*.service'
+        systemctl status 'home-manager-*.service'
       '';
-      rldp = "${kquitapp5} plasmashell && ${kstart5} plasmashell";
+      rldp = ''
+        ${plasma5Packages.kdbusaddons}/bin/kquitapp5 plasmashell &&
+        ${plasma5Packages.kdbusaddons}/bin/kstart5 plasmashell
+      '';
       rmr = "rm -r";
-      rn = pipe-rename;
-      rna = "${pipe-rename} $(ls)";
-      run = f ''"$@" &>/dev/null & disown'';
-      sd = shutdown;
-      sdc = "${shutdown} -c";
-      sdn = "${shutdown} now";
-      smart = "${sudo} ${smartmontools} -a";
-      ssha = "${ssh} amethyst";
-      sshb = "${ssh} beryl";
-      sshp = "${ssh} pi@nextcloudpi";
-      sudo = "${sudo} ";
-      t = tree;
-      tv = "run ${vlc} http://fritz.box/dvb/m3u/{tvhd,tvsd}.m3u";
-      watch = "${watch} ";
-      wtr = "${curl} wttr.in";
-      zl = "${zfs} list";
-      zla = "${zfs} list -t all";
-      zlf = "${zfs} list -t filesystem";
-      zls = "${zfs} list -t snapshot";
-      zlv = "${zfs} list -t volume";
-      zs = "${sudo} ${systemctl} start zfs-scrub.service && watch zst";
-      zsc = "${sudo} ${zpool} scrub -s rpool; zst";
-      zst = "${zpool} status -t rpool";
-      zt = "${sudo} ${systemctl} start zpool-trim.service && watch zst";
-      ztc = "${sudo} ${zpool} trim -c rpool; zst";
+      rn = pipe-rename.exe;
+      rna = "rn $(ls)";
+      run = f ''"$@" &>/dev/null & dso'';
+      sd = "shutdown";
+      sdc = "sd -c";
+      sdn = "sd now";
+      smart = "sudo ${smartmontools.exe} -a";
+      ssha = "${config.programs.ssh.package.exe} amethyst";
+      sshb = "${config.programs.ssh.package.exe} beryl";
+      sshp = "${config.programs.ssh.package.exe} pi@nextcloudpi";
+      sudo = "${config.security.wrapperDir}/sudo";
+      t = tree.exe;
+      tv = "run ${vlc.exe} http://fritz.box/dvb/m3u/{tvhd,tvsd}.m3u";
+      watch = "${procps}/bin/watch ";
+      wtr = "${curl.exe} wttr.in";
+      zl = "${config.boot.zfs.package.exe} list";
+      zla = "zl -t all";
+      zlf = "zl -t filesystem";
+      zls = "zl -t snapshot";
+      zlv = "zl -t volume";
+      zp = "${config.boot.zfs.package}/bin/zpool";
+      zs = "sudo systemctl start zfs-scrub.service && watch zst";
+      zsc = "sudo zp scrub -s rpool; zst";
+      zst = "zp status -t rpool";
+      zt = "sudo systemctl start zpool-trim.service && watch zst";
+      ztc = "sudo zp trim -c rpool; zst";
     };
   };
 
