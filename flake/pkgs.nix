@@ -9,7 +9,8 @@ with self;
       config = args.config or (import ../config/shared/nixpkgs.nix {
         pkgs = legacyPackages.${system};
       });
-      overlays = [ emacs-overlay.overlay ] ++ __attrValues overlays;
+      overlays =
+        args.overlays or ([ emacs-overlay.overlay ] ++ __attrValues overlays);
     };
 
   overlays = import ../overlays { inherit lib; };
