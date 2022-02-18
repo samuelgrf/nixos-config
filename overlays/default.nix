@@ -2,6 +2,8 @@
 
 lib.genAttrs [
 
+  "exe" # Add exe attribute to packages.
+
   "gimpPlugins" # Add bimp
 
   "hydra-check" # Support checking `tested` job.
