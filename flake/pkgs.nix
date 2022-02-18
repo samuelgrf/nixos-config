@@ -6,14 +6,14 @@ with self;
   pkgsImport = { pkgs, system, ... }@args:
     import pkgs {
       inherit system;
-      config = args.config or (import ../config/shared/nixpkgs.nix {
+      config = args.config or (import ../config/nixpkgs {
         pkgs = legacyPackages.${system};
       });
       overlays =
         args.overlays or ([ emacs-overlay.overlay ] ++ __attrValues overlays);
     };
 
-  overlays = import ../overlays { inherit lib; };
+  overlays = import ../config/nixpkgs/overlays { inherit lib; };
 }
 
   // flake-utils.lib.eachDefaultSystem (system: {

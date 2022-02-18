@@ -1,1 +1,1 @@
-../../shared/chromium-flags.nix
+../../nixpkgs/chromium-flags.nix
