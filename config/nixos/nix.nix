@@ -1,7 +1,7 @@
-{ flakes, nix_2_4, userData, ... }: {
+{ flakes, pkgs, userData, ... }: {
 
   nix = {
-    package = nix_2_4;
+    package = pkgs.nix_2_4;
 
     extraOptions = ''
       experimental-features = nix-command flakes

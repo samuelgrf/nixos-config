@@ -11,9 +11,9 @@
       ./misc.nix
       ./power-management.nix
     ]) ++ [
-      (import ./hotkeys.nix { inherit (pkgs) htop-vim plasma5Packages; })
+      (import ./hotkeys.nix { inherit pkgs; })
       (import ./keyboard.nix { inherit nixosConfig; })
-      (import ./wallpaper.nix { inherit (pkgs) nixos-artwork; })
+      (import ./wallpaper.nix { inherit pkgs; })
     ]);
   };
 

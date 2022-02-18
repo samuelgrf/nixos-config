@@ -1,4 +1,4 @@
-{ mpvScripts, yt-dlp, ... }: {
+{ pkgs, ... }: {
 
   # Configure mpv.
   programs.mpv = {
@@ -16,9 +16,9 @@
         "(bestvideo[vcodec=vp9]/bestvideo)+(bestaudio[acodec=opus]/bestaudio)/best";
 
       # Parse streams with yt-dlp instead of youtube-dl.
-      script-opts = "ytdl_hook-ytdl_path=${yt-dlp.exe}";
+      script-opts = "ytdl_hook-ytdl_path=${pkgs.yt-dlp.exe}";
     };
 
-    scripts = with mpvScripts; [ mpris sponsorblock youtube-quality ];
+    scripts = with pkgs.mpvScripts; [ mpris sponsorblock youtube-quality ];
   };
 }

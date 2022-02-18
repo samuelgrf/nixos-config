@@ -1,4 +1,4 @@
-{ config, lib, sane-airscan, writeShellScriptBin, ... }: {
+{ config, lib, pkgs, ... }: {
 
   # Enable Common UNIX Printing System.
   services.printing.enable = true;
@@ -56,13 +56,13 @@
 
   # Don't fail `ensure-printers` service when printers are unreachable.
   systemd.services.ensure-printers.serviceConfig.ExecStart = lib.mkForce "-${
-      writeShellScriptBin "ensure-printers"
+      pkgs.writeShellScriptBin "ensure-printers"
       config.systemd.services.ensure-printers.script
     }";
 
   # Enable and configure SANE scanning API.
   hardware.sane = {
     enable = true;
-    extraBackends = [ sane-airscan ]; # Support Apple AirScan and Microsoft WSD.
+    extraBackends = with pkgs; [ sane-airscan ]; # Support AirScan and WSD.
   };
 }

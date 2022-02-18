@@ -1,4 +1,4 @@
-{ amdvlk, linuxPackages_zen_lto_zen2, pkgsi686Linux, ... }: {
+{ pkgs, pkgsi686Linux, ... }: {
 
   ##############################################################################
   ## General
@@ -26,7 +26,7 @@
   ##############################################################################
 
   # Use Zen kernel with platform optimizations.
-  boot.kernelPackages = linuxPackages_zen_lto_zen2
+  boot.kernelPackages = pkgs.linuxPackages_zen_lto_zen2
 
   ;
   ##############################################################################
@@ -35,7 +35,7 @@
 
   # Install AMDVLK driver, as some games have graphical glitches when using RADV.
   # Can be enabled by setting `AMD_VULKAN_ICD=AMDVLK`.
-  hardware.opengl.extraPackages = [ amdvlk ];
+  hardware.opengl.extraPackages = with pkgs; [ amdvlk ];
   hardware.opengl.extraPackages32 = with pkgsi686Linux; [ amdvlk ];
 
   # Set global environment variables.

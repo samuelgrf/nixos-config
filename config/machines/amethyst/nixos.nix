@@ -1,4 +1,4 @@
-{ linuxPackages_zen_lto_skylake, pkgsi686Linux, vaapiIntel, ... }: {
+{ pkgs, pkgsi686Linux, ... }: {
 
   ##############################################################################
   ## General
@@ -29,7 +29,7 @@
   ##############################################################################
 
   # Use Zen kernel with platform optimizations.
-  boot.kernelPackages = linuxPackages_zen_lto_skylake;
+  boot.kernelPackages = pkgs.linuxPackages_zen_lto_skylake;
 
   # Blacklist sensor kernel modules.
   boot.blacklistedKernelModules = [ "intel_ishtp_hid" "intel_ish_ipc" ]
@@ -50,7 +50,7 @@
   hardware.bluetooth.enable = true;
 
   # Install libraries for VA-API.
-  hardware.opengl.extraPackages = [ vaapiIntel ];
+  hardware.opengl.extraPackages = with pkgs; [ vaapiIntel ];
   hardware.opengl.extraPackages32 = with pkgsi686Linux; [ vaapiIntel ];
 
   # Enable CPU microcode updates.

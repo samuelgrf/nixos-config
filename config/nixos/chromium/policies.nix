@@ -1,4 +1,4 @@
-{ lib, stevenblack-blocklist, ... }: {
+{ lib, pkgs, ... }: {
 
   # Enterprise policy list: https://chromeenterprise.google/policies/
   # chrome://policy shows applied policies and syntax errors.
@@ -25,9 +25,9 @@
     # uBlock Origin
     "3rdparty".extensions.cjpalhdlnbpafiamejdnhcphjbkeiagm.toOverwrite = let
       localListNames =
-        __attrNames (__readDir "${stevenblack-blocklist}/extensions/porn");
-      localLists =
-        map (n: "file://${stevenblack-blocklist}/extensions/porn/${n}/hosts")
+        __attrNames (__readDir "${pkgs.stevenblack-blocklist}/extensions/porn");
+      localLists = map
+        (n: "file://${pkgs.stevenblack-blocklist}/extensions/porn/${n}/hosts")
         localListNames;
     in {
       filterLists = [

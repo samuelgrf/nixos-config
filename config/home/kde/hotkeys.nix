@@ -1,4 +1,4 @@
-{ htop-vim, plasma5Packages }: {
+{ pkgs }: {
 
   kglobalshortcutsrc = {
     kwin = {
@@ -35,7 +35,7 @@
     Data_4.Type = "SIMPLE_ACTION_DATA";
     Data_4Actions.ActionsCount = 1;
     Data_4Actions0.CommandURL =
-      "${plasma5Packages.konsole.exe} -e ${htop-vim.exe}";
+      "${pkgs.plasma5Packages.konsole.exe} -e ${pkgs.htop-vim.exe}";
     Data_4Actions0.Type = "COMMAND_URL";
     Data_4Conditions.Comment = "";
     Data_4Conditions.ConditionsCount = 0;

@@ -56,8 +56,9 @@ with self; {
         pkgs-master = legacyPackages_master.${system};
         pkgs-unstable = legacyPackages_unstable.${system};
       in {
-        _module.args = pkgs // {
+        _module.args = {
           inherit flakes pkgs-emacs pkgs-master pkgs-unstable system userData;
+          inherit (pkgs) pkgsi686Linux;
           homeConfig = config.home-manager.users.${userData.name};
         };
       };
