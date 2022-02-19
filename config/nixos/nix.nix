@@ -1,6 +1,7 @@
 { flakes, pkgs, userData, ... }: {
 
   nix = {
+    # TODO Remove on NixOS 22.05.
     package = pkgs.nix_2_4;
 
     extraOptions = ''
