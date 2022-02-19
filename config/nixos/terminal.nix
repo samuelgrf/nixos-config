@@ -157,7 +157,7 @@ with pkgs; {
       nrn = f ''
         (set -eo pipefail
 
-        attrs=$(nl --top-level --minimal --at-root --whole-name "/bin/$1")
+        attrs=$(nlo --top-level --minimal --at-root --whole-name "/bin/$1")
 
         [ -z "$flake" ] && flake=nixpkgs
 
