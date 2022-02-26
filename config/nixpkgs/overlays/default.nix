@@ -21,4 +21,6 @@ lib.genAttrs [
 
   "skanpage" # Init
 
+  "winePackages_lutris" # Init
+
 ] (file: final: prev: import (./. + "/${file}") final prev)
