@@ -19,4 +19,6 @@ lib.genAttrs [
 
   "pdfsizeopt" # Init
 
+  "skanpage" # Init
+
 ] (file: final: prev: import (./. + "/${file}") final prev)
