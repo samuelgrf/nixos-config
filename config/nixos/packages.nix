@@ -76,7 +76,7 @@
         pdftk
         protontricks
         scrcpy
-        simple-scan
+        skanpage
         tesseract4
         winetricks
         wineWowPackages.staging
