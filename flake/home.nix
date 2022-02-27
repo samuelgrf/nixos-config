@@ -8,6 +8,7 @@ with self; {
       ../config/home/default-applications.nix
       ../config/home/git.nix
       ../config/home/kde
+      ../config/home/lutris-wine.nix
       ../config/home/misc.nix
       ../config/home/mpv.nix
       ../config/home/nix-index-database.nix
