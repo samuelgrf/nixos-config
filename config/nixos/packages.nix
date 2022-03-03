@@ -74,6 +74,7 @@
         pcsx2
         pdfsizeopt
         pdftk
+        perl
         protontricks
         scrcpy
         skanpage
