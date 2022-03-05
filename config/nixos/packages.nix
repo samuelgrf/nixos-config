@@ -77,7 +77,6 @@
         perl
         protontricks
         scrcpy
-        skanpage
         tesseract4
         winetricks
         wineWowPackages.staging
@@ -93,7 +92,7 @@
         kwin-dynamic-workspaces
       ])
       # TODO Get packages from stable on NixOS 22.05.
-        ++ (with pkgs-unstable; [ polymc wl-clipboard-x11 ]);
+        ++ (with pkgs-unstable; [ polymc skanpage wl-clipboard-x11 ]);
       noX = [ ];
     in common ++ (if config.services.xserver.enable then X else noX);
 
