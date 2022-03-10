@@ -69,7 +69,6 @@
         keepassxc
         libreoffice
         lutris
-        lxqt.pavucontrol-qt
         ocrmypdf
         pcsx2
         pdfsizeopt
