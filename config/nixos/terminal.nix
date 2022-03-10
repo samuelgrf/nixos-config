@@ -169,8 +169,8 @@ with pkgs; {
           exit 1
         fi)
       '';
-      nrnm = "flake=github:NixOS/nixpkgs nrn";
-      nrnu = "flake=nixpkgs-unstable nrn";
+      nrnm = "flake=github:NixOS/nixpkgs; nrn";
+      nrnu = "flake=nixpkgs-unstable; nrn";
       nrs = f ''nr switch "$@" && rld'';
       "nrs!" = f ''nr! switch "$@" && rld'';
       "nrs!a" = f ''nr!a switch "$@" && rld'';
@@ -190,14 +190,14 @@ with pkgs; {
           | ${gnugrep.exe} '/result-\?[^-]*$'
       '';
       nsrr = "rm -v $(nsr)";
-      nu = "n flake update";
+      nu = "nf update";
       nub = "nu && nrb";
       "nub!" = "nu && nrb!";
       "nub!a" = "nu && nrb!a";
       nubu = "nu && nrbu";
       "nubu!" = "nu && nrbu!";
       "nubu!a" = "nu && nrbu!a";
-      nuc = "nf update --commit-lock-file";
+      nuc = "nu --commit-lock-file";
       nui = "nfl --update-input";
       nuic = "nfl --commit-lock-file --update-input";
       nus = "nu && nrs";
