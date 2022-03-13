@@ -103,7 +103,7 @@
   };
 
   # System-wide fonts to install.
-  fonts.fonts = with pkgs; [ meslo-lgs-nf noto-fonts-cjk ];
+  fonts.fonts = with pkgs; [ meslo-lgs-nf noto-fonts-cjk times-newer-roman ];
 
   # Don't install optional default packages.
   environment.defaultPackages = [ ];
