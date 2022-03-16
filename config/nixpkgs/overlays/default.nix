@@ -2,6 +2,8 @@
 
 lib.genAttrs [
 
+  "calibre" # Fix decryption via DeDRM plugin.
+
   "exe" # Add exe attribute to packages.
 
   "gimpPlugins" # Add bimp
