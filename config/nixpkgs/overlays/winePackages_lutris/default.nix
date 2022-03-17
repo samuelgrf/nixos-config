@@ -7,7 +7,7 @@ let
 
       src = fetchzip {
         url =
-          "https://github.com/lutris/wine/releases/download/lutris-${version}/wine-lutris-fshack-${version}-x86_64.tar.xz";
+          "https://github.com/lutris/wine/releases/download/lutris-wine-${version}/wine-lutris-fshack-${version}-x86_64.tar.xz";
         inherit sha256;
       };
 
@@ -19,12 +19,12 @@ in _: prev: {
   winePackages_lutris = {
 
     latest = prev.callPackage common {
-      version = "7.1";
-      sha256 = "sha256-9gIM54ZEeyPUV5Fc9Yas8xXsQhx6lQeRLoZIX89bEes=";
+      version = "7.2";
+      sha256 = "sha256-iM1By5QcIue2isRkztqpiN5HUqE92fbOXmN04M1nd7Y=";
     };
-    v7_1 = prev.callPackage common {
-      version = "7.1";
-      sha256 = "sha256-9gIM54ZEeyPUV5Fc9Yas8xXsQhx6lQeRLoZIX89bEes=";
+    v7_2 = prev.callPackage common {
+      version = "7.2";
+      sha256 = "sha256-iM1By5QcIue2isRkztqpiN5HUqE92fbOXmN04M1nd7Y=";
     };
   };
 }
