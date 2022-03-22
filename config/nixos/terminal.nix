@@ -266,7 +266,7 @@ with pkgs; {
       '';
       rmr = "rm -r";
       rn = pipe-rename.exe;
-      rna = "rn $(ls)";
+      rna = "rn .";
       run = f ''"$@" &>/dev/null & dso'';
       sd = "shutdown";
       sdc = "sd -c";
