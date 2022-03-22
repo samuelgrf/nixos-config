@@ -23,4 +23,6 @@ lib.genAttrs [
 
   "winePackages_lutris" # Init
 
+  "yt-dlp" # Update
+
 ] (file: final: prev: import (./. + "/${file}") final prev)
