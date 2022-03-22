@@ -4,8 +4,6 @@ lib.genAttrs [
 
   "calibre" # Fix decryption via DeDRM plugin.
 
-  "exe" # Add exe attribute to packages.
-
   "gimpPlugins" # Add bimp
 
   "hydra-check" # Support checking `tested` job.
@@ -24,5 +22,7 @@ lib.genAttrs [
   "winePackages_lutris" # Init
 
   "yt-dlp" # Update
+
+  "z_exe" # Add `exe` attribute to packages.
 
 ] (file: final: prev: import (./. + "/${file}") final prev)
