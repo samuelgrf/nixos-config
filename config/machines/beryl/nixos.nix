@@ -26,7 +26,7 @@
   ##############################################################################
 
   # Use Zen kernel with platform optimizations.
-  boot.kernelPackages = pkgs.linuxPackages_zen_lto_zen2
+  boot.kernelPackages = pkgs.linuxKernel.ltoPackages.zen_zen2
 
   ;
   ##############################################################################

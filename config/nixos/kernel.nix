@@ -1,7 +1,7 @@
-{ config, lib, linuxPackages_zen_lto, ... }: {
+{ config, lib, pkgs, ... }: {
 
   # Use Zen kernel for better interactive performance.
-  boot.kernelPackages = lib.mkDefault linuxPackages_zen_lto;
+  boot.kernelPackages = lib.mkDefault pkgs.linuxKernel.ltoPackages.zen;
 
   # Enable support for additional filesystems.
   boot.supportedFilesystems = [ "exfat" "ntfs" "zfs" ];

@@ -29,7 +29,7 @@
   ##############################################################################
 
   # Use Zen kernel with platform optimizations.
-  boot.kernelPackages = pkgs.linuxPackages_zen_lto_skylake;
+  boot.kernelPackages = pkgs.linuxKernel.ltoPackages.zen_skylake;
 
   # Blacklist sensor kernel modules.
   boot.blacklistedKernelModules = [ "intel_ishtp_hid" "intel_ish_ipc" ]
