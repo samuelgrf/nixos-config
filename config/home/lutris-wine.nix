@@ -7,5 +7,5 @@ in {
 
   home.file = with lib;
     mapAttrs' (_: source: nameValuePair (mkPath source) { inherit source; })
-    pkgs.winePackages_lutris;
+    pkgs.winePackages.lutris;
 }

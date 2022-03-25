@@ -22,13 +22,13 @@ let
         echo '// {
           linuxKernel = _.linuxKernel // {
             ltoPackages = {
-              zen = packagesFor
+              linux_zen = packagesFor
                 (fullLTO linuxKernel.kernels.linux_zen);
 
-              zen_skylake = packagesFor
+              linux_zen_skylake = packagesFor
                 (cfg { MSKYLAKE = yes; } (fullLTO linuxKernel.kernels.linux_zen));
 
-              zen_zen2 = packagesFor
+              linux_zen_zen2 = packagesFor
                 (cfg { MZEN2 = yes; } (fullLTO linuxKernel.kernels.linux_zen));
             };
           };

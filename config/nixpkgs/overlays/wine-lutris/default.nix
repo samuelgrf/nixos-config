@@ -14,17 +14,21 @@ let
       installPhase = "cp -r $src $out";
       dontFixup = true;
     };
-in _final: prev: {
 
-  winePackages_lutris = {
+in _final: prev:
+with prev; {
 
-    latest = prev.callPackage common {
-      version = "7.2";
-      sha256 = "sha256-iM1By5QcIue2isRkztqpiN5HUqE92fbOXmN04M1nd7Y=";
-    };
-    v7_2 = prev.callPackage common {
-      version = "7.2";
-      sha256 = "sha256-iM1By5QcIue2isRkztqpiN5HUqE92fbOXmN04M1nd7Y=";
+  winePackages = winePackages // {
+    lutris = {
+
+      latest = callPackage common {
+        version = "7.2";
+        sha256 = "sha256-iM1By5QcIue2isRkztqpiN5HUqE92fbOXmN04M1nd7Y=";
+      };
+      v7_2 = callPackage common {
+        version = "7.2";
+        sha256 = "sha256-iM1By5QcIue2isRkztqpiN5HUqE92fbOXmN04M1nd7Y=";
+      };
     };
   };
 }

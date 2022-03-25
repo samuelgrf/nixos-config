@@ -2,4 +2,4 @@
 #! nix-shell -i bash -p nix-update
 
 cd "$(dirname "$(realpath "$0")")"
-nix-update --commit -f ../nix-update-compat -vr 'lutris-wine-(.*)' 'winePackages_lutris.latest'
+nix-update --commit -f ../nix-update-compat -vr 'lutris-wine-(.*)' 'winePackages.lutris.latest'

@@ -19,7 +19,7 @@ lib.genAttrs [
 
   "pdfsizeopt" # Init
 
-  "winePackages_lutris" # Init
+  "wine-lutris" # Init
 
   "yt-dlp" # Update
 
