@@ -14,7 +14,7 @@ let
       installPhase = "cp -r $src $out";
       dontFixup = true;
     };
-in _: prev: {
+in _final: prev: {
 
   winePackages_lutris = {
 

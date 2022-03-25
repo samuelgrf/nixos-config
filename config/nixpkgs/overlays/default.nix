@@ -25,4 +25,4 @@ lib.genAttrs [
 
   "z_exe" # Add `exe` attribute to packages.
 
-] (file: final: prev: import (./. + "/${file}") final prev)
+] (file: import (./. + "/${file}"))

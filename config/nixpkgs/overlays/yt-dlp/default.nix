@@ -1,4 +1,4 @@
-_: prev:
+_final: prev:
 with prev.python3Packages; {
 
   yt-dlp = yt-dlp.overrideAttrs (_: rec {

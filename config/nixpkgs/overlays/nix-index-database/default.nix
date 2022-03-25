@@ -1,4 +1,4 @@
-_: prev: {
+_final: prev: {
 
   nix-index-database = prev.callPackage ({ stdenvNoCC, lib, fetchurl }:
 

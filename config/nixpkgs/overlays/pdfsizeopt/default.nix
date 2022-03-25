@@ -1,4 +1,4 @@
-_: prev: {
+_final: prev: {
 
   pdfsizeopt = prev.callPackage
     ({ stdenvNoCC, fetchurl, fetchzip, makeWrapper }:

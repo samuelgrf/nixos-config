@@ -65,7 +65,7 @@ let
 
   inherit (linuxKernel) packagesFor;
 
-in _: {
+in prev: {
   linuxPackages_zen_lto = packagesFor (applyLTO linuxKernel.kernels.linux_zen);
 
   linuxPackages_zen_lto_skylake = packagesFor

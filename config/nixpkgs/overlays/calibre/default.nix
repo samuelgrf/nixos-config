@@ -1,4 +1,4 @@
-_: prev:
+_final: prev:
 with prev; {
 
   calibre = calibre.overrideAttrs (old: {
