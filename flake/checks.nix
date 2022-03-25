@@ -12,11 +12,7 @@ flake-utils.lib.eachDefaultSystem (system: {
       };
       nix-linter = {
         enable = true;
-        excludes = [
-          "config/machines/.*/nixos-generated.nix"
-          "overlays/default.nix"
-          "overlays/linux_zen_lto/default.nix"
-        ];
+        excludes = [ "config/machines/.*/nixos-generated.nix" ];
       };
     };
     settings.nix-linter.checks =
