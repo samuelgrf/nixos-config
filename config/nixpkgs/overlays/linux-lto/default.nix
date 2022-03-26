@@ -1,16 +1,16 @@
 final: prev:
 
 let
-  linux-lto_overlay = prev.PREV.callPackage ({ stdenvNoCC, fetchurl }:
+  linux-lto-overlay = prev.PREV.callPackage ({ stdenvNoCC, fetchurl }:
 
     stdenvNoCC.mkDerivation rec {
-      pname = "linux-lto_overlay";
-      version = "unstable-2022-03-24";
+      pname = "linux-lto-overlay";
+      version = "unstable-2022-03-25";
 
       src = fetchurl {
         url =
           "https://raw.githubusercontent.com/lovesegfault/nix-config/${passthru.rev}/nix/overlays/linux-lto.nix";
-        sha256 = "169xq6h6r7fldr5v2fawjmvp5zswavrandnjym033yqvks9l74sy";
+        sha256 = "12qlqq0b10izszgjqvbbk0jbxjk6dh4bjfckz02viw7hppp60y6d";
       };
 
       dontUnpack = true;
@@ -22,20 +22,19 @@ let
         echo '// {
           linuxKernel = _.linuxKernel // {
             ltoPackages = {
-              linux_zen = packagesFor
-                (fullLTO linuxKernel.kernels.linux_zen);
+              linux_zen = packagesFor (fullLTO kernels.linux_zen);
 
-              linux_zen_skylake = packagesFor
-                (cfg { MSKYLAKE = yes; } (fullLTO linuxKernel.kernels.linux_zen));
+              linux_zen_skylake =
+                packagesFor (cfg { MSKYLAKE = yes; } (fullLTO kernels.linux_zen));
 
-              linux_zen_zen2 = packagesFor
-                (cfg { MZEN2 = yes; } (fullLTO linuxKernel.kernels.linux_zen));
+              linux_zen_zen2 =
+                packagesFor (cfg { MZEN2 = yes; } (fullLTO kernels.linux_zen));
             };
           };
         }' >> $out
       '';
 
-      passthru.rev = "58af88e66bb69c4e7727a4cf62a87a00e9ec230d";
+      passthru.rev = "7827bd81ace8fc2053257639cca8a519a3baff36";
     }) { };
 
-in { inherit linux-lto_overlay; } // import linux-lto_overlay final prev
+in { inherit linux-lto-overlay; } // import linux-lto-overlay final prev

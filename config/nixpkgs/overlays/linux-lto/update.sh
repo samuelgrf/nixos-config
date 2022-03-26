@@ -11,7 +11,7 @@ pkgAttr () {
 }
 
 FILE=$(realpath ./default.nix)
-ATTR=linux-lto_overlay
+ATTR=linux-lto-overlay
 
 GH_OWNER=lovesegfault
 GH_REPO=nix-config
