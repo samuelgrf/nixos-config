@@ -34,7 +34,7 @@ let
         }' >> $out
       '';
 
-      passthru.rev = "7827bd81ace8fc2053257639cca8a519a3baff36";
+      passthru.rev = "bc091817b1551da9a9309dd49bbe5452b9b87e54";
     }) { };
 
 in { inherit linux-lto-overlay; } // import linux-lto-overlay final prev

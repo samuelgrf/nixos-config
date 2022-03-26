@@ -15,24 +15,21 @@ ATTR=linux-lto-overlay
 
 GH_OWNER=lovesegfault
 GH_REPO=nix-config
-GH_BRANCH=master
+GH_PATH=nix/overlays/linux-lto.nix
 
-DL_URL_PREFIX=https://raw.githubusercontent.com/lovesegfault/nix-config
-DL_URL_SUFFIX=nix/overlays/linux-lto.nix
+API_DATA=$(curl -sS "https://api.github.com/repos/$GH_OWNER/$GH_REPO/commits?path=$GH_PATH&per_page=1")
 
-API_DATA=$(curl -sS "https://api.github.com/repos/$GH_OWNER/$GH_REPO/commits/$GH_BRANCH")
-
-DATE=$(echo "$API_DATA" | jq -r .commit.committer.date | head -c10)
-REV=$(echo "$API_DATA" | jq -r .sha)
+DATE=$(echo "$API_DATA" | jq -r '.[].commit.committer.date' | head -c10)
+REV=$(echo "$API_DATA" | jq -r '.[].sha')
 OLD_DATE=$(pkgAttr version | tail -c10)
 OLD_REV=$(pkgAttr passthru.rev)
 
-if [ "$DATE" = "$OLD_DATE" ]; then
+if [ "$REV" = "$OLD_REV" ]; then
   echo "Not updating version, already $OLD_DATE."
 else
   echo "Updating $OLD_DATE -> $DATE in '$FILE'..."
 
-  HASH=$(nix-prefetch-url "$DL_URL_PREFIX/$REV/$DL_URL_SUFFIX")
+  HASH=$(nix-prefetch-url "https://raw.githubusercontent.com/$GH_OWNER/$GH_REPO/$REV/$GH_PATH")
   OLD_HASH=$(pkgAttr src.outputHash)
 
   sed -i "$FILE" \
