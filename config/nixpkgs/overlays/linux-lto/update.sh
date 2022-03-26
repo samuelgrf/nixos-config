@@ -1,5 +1,5 @@
 #! /usr/bin/env nix-shell
-#! nix-shell -i bash -p curlMinimal gitMinimal jq nix-prefetch-github
+#! nix-shell -i bash -p curlMinimal gitMinimal jq
 set -euo pipefail
 
 cd "$(dirname "$(realpath "$0")")"
