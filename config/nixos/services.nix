@@ -24,20 +24,9 @@ in {
   };
 
   # Enable and configure PipeWire audio server.
-  services.pipewire = let
-    defaults.bluez-monitor = lib.importJSON
-      "${pipewire-media-session}/nix-support/alsa-monitor.conf.json";
-  in {
+  services.pipewire = {
     enable = true;
     pulse.enable = true;
-
-    # Enable volume control via Bluetooth.
-    media-session.config.bluez-monitor.rules = defaults.bluez-monitor.rules
-      ++ [{
-        matches = [{ "device.name" = "~bluez_card.*"; }];
-        actions.update-props."bluez5.hw-volume" =
-          [ "hfp_hf" "hsp_hs" "a2dp_sink" "hfp_ag" "hsp_ag" "a2dp_source" ];
-      }];
   };
 
   # Enable NetworkManager daemon.
