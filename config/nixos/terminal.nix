@@ -34,6 +34,10 @@ with pkgs; {
       POWERLEVEL9K_COMMAND_EXECUTION_TIME_VISUAL_IDENTIFIER_EXPANSION=
       POWERLEVEL9K_TIME_VISUAL_IDENTIFIER_EXPANSION=
 
+      # Use I-Beam shaped cursor.
+      _set_cursor_shape() { printf '\e[5 q' }
+      precmd_functions+=(_set_cursor_shape)
+
       # Load Fast Syntax Highlighting.
       source ${zsh-fast-syntax-highlighting}/share/zsh/site-functions/fast-syntax-highlighting.plugin.zsh
 
