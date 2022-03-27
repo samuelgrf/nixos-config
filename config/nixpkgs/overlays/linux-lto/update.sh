@@ -15,9 +15,10 @@ ATTR=linux-lto-overlay
 
 GH_OWNER=lovesegfault
 GH_REPO=nix-config
+GH_BRANCH=master
 GH_PATH=nix/overlays/linux-lto.nix
 
-API_DATA=$(curl -sS "https://api.github.com/repos/$GH_OWNER/$GH_REPO/commits?path=$GH_PATH&per_page=1")
+API_DATA=$(curl -sS "https://api.github.com/repos/$GH_OWNER/$GH_REPO/commits?sha=$GH_BRANCH&path=$GH_PATH&per_page=1")
 
 DATE=$(echo "$API_DATA" | jq -r '.[].commit.committer.date' | head -c10)
 REV=$(echo "$API_DATA" | jq -r '.[].sha')
