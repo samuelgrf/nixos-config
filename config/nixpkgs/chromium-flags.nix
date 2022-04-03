@@ -28,6 +28,7 @@ in flags [
 ] + enableFeatures [
   "BackForwardCache:enable_same_site/true"
   "CanvasOopRasterization"
+  "EnableTabMuting"
   "OverlayScrollbar"
   "RawDraw"
   "TabHoverCardImages"
