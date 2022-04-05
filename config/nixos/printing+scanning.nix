@@ -46,7 +46,7 @@
         MediaType = "Stationery";
         ColorModel = "RGB";
         Duplex = "None";
-        cupsPrintQuality = "Normal";
+        cupsPrintQuality = "Draft";
       };
     }
   ];
