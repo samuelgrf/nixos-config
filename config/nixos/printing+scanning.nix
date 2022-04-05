@@ -17,7 +17,7 @@
         InputSlot = "Auto";
         MediaType = "Stationery";
         ColorModel = "Gray";
-        Duplex = "DuplexNoTumble"; # Flip on long edge
+        Duplex = "None";
         cupsPrintQuality = "Normal";
       };
     }
@@ -45,7 +45,7 @@
         PageSize = "A3";
         MediaType = "Stationery";
         ColorModel = "RGB";
-        Duplex = "DuplexTumble"; # Flip on short edge
+        Duplex = "None";
         cupsPrintQuality = "Normal";
       };
     }
